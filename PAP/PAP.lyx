@@ -1,0 +1,718 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine natbib
+\cite_engine_type authoryear
+\biblio_style plainnat
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+A prequel to the Space to Place Impact Evaluation - Assessing the Relative
+ Importance of Space and Place Components 
+\end_layout
+
+\begin_layout Standard
+\align center
+A pre-analysis plan
+\end_layout
+
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Standard
+Raising agricultural productivity among smallholder farmers in Sub-Saharan
+ Africa is widely recognized as an important component of inclusive wealth
+ creation and structural transformation.
+ Central to this endeavor will be the adoption of sustainable soil and land
+ management to improve the sustainability, resilience and productivity of
+ agriculture.
+ The USAID Bureau for Resilience and Food Security (RFS) has led a partnership
+ with the International Fertilizer Development Center (IFDC) and other partners
+ to build a low-cost “Space to Place” (S2P) approach for developing and
+ disseminating localized fertilizer guidance.
+ The S2P approach revolves around the delivery of spatially appropriate
+ soil fertility management recommendations, guided by digitized soil maps
+ (Space) combined with farm(er)-level characteristics (Place), for effective
+ agronomic and fertilizer recommendations that increase fertilizer use efficienc
+y and maintain or surpass current productivity levels, and reduce fertilizer
+ wastage.
+\end_layout
+
+\begin_layout Standard
+IFPRI was tasked in 2023 to do a rigorous impact evaluation of the S2P approach.
+ It is now becoming apparent that the S2P prototype will not be ready to
+ be evaluated during the 2024/25 growing season.
+ A full and rigorous evaluation of the S2P approach should be possible for
+ the 2025/26 growing seasons and beyond.
+ 
+\end_layout
+
+\begin_layout Standard
+We are proposing to use the 2024/25 growing season to generate learning
+ to inform S2P’s theory of change.
+ A unique opportunity presents itself through S2P’s partnership with FSU
+ Meridian.
+ This private-sector player offers farmers spectral soil tests and site-
+ and crop-specific recommendations.
+ The model underlying the test was calibrated on wet-chemistry analyses
+ conducted on 22,000 samples from across Malawi and has been rolled out
+ across X years, now reaching Y farmers.
+ The tool is part of a private-sector business model in which FSU Meridian
+ forms a recommendation for a package of nutrients, which is then supplied
+ through their network of 400 agrodealers.
+ 
+\end_layout
+
+\begin_layout Section
+Motivation
+\end_layout
+
+\begin_layout Standard
+Decision support tools for tailored nutrient recommendations have generally
+ fallen short of expectations 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "sida2023failure"
+literal "false"
+
+\end_inset
+
+.
+ This could be due to the quality of the information they provide, and it
+ has indeed been argued that, often, “...the numerous laboratory services and
+ digital applications providing field-specific recommendations appear to
+ promise more accuracy than soil analysis can realistically deliver” 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "schut2020soil"
+literal "false"
+
+\end_inset
+
+.
+ Another reason why such tools have not scaled may be due to the fact that
+ they “address in-field heterogeneity, but not socioeconomic heterogeneity
+ of users” 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "sida2023failure"
+literal "false"
+
+\end_inset
+
+.
+ Indeed, one of the only rigorous impact evaluations that finds a positive
+ effect of a decision support tool also has an important agronomic information
+ component 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "ayalew2022site,beg2024information,gars2015confidence"
+literal "false"
+
+\end_inset
+
+.
+ In light of this, we feel it is important to study the relative importance
+ of the Space and Place components in a clean field experiment.
+\end_layout
+
+\begin_layout Section
+Research Questions
+\end_layout
+
+\begin_layout Enumerate
+Does the provision of site-specific soil nutrient information and the recommenda
+tion of a specific fertilizer blend based on this information, change outcomes
+ of interest.
+ The motivation for this research question can be found in the “Space” component
+ of S2P.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Does the provision farm-specific and farmer-tailored agronomic information
+ with respect to soil nutrient management--and particularly recommendations
+ on how to improve on current practice--change outcomes of interest.
+ This research question speaks to the “Place” component of S2P.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Does the provision of site-specific nutrient information and farm-specific
+ and farmer-tailored agronomic information with respect to soil nutrient
+ management change outcomes of interest.
+ This research question focuses on potential interactions between the Space
+ and Place components as implied in the S2P approach.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Does the provision of site-specific nutrient recommendations and agronomic
+ information with respect to soil nutrient management, combined with a subsidy
+ to buy these nutrients at a local agro-dealer change the outcomes of interest.
+ This research question looks at the importance of cash/credit constraints
+ in the effectiveness of S2P.
+\end_layout
+
+\begin_layout Section
+Outcomes of interest 
+\end_layout
+
+\begin_layout Standard
+Our outcomes of interest are agricultural practices (with a particular focus
+ on the us of recommended inputs and practices), yields, return on investment
+ in fertilizer, profitability of the targeted crops and the return on investment
+ for the subsidy.
+\end_layout
+
+\begin_layout Section
+Impact heterogeneity 
+\end_layout
+
+\begin_layout Standard
+We will study heterogeneity across gender, land size, wealth, remoteness,
+ availability of labor in the household, receipt of an AIP subsidy, and
+ use of improved agricultural technology (irrigation, improved seeds, soil
+ health management,…).
+\end_layout
+
+\begin_layout Section
+Sample and external validity 
+\end_layout
+
+\begin_layout Standard
+The study area requires on the one hand the presence of Meridian’s agro-dealers
+ (to ensure availability of the recommended inputs and to run the voucher
+ scheme through), but on the other hand a population that has not yet been
+ exposed to FSU’s soil testing and nutrient recommendation system.
+ We intend to work with FSU to identify greenfield locations, where FSU
+ is currently not operational, but where it is considering expansion by
+ setting up new agro-dealerships.
+ We would then work with FSU to adapt their approach in these areas for
+ 2024/25 season only.
+ Within the catchment area of the new shop, we will select X villages and
+ compile a list all farmers with at least 0.4 ha of land.
+ From this list we will randomly assign farmers into the 5 different treatment
+ groups.
+ 
+\end_layout
+
+\begin_layout Section
+AIP recipients 
+\end_layout
+
+\begin_layout Standard
+We are expecting about one out of every four farmers in our sample to be
+ receiving an AIP subsidy for the purchase of 50kg of the standard NPK blend
+ and 50kg of Urea.
+ The prevalence of AIP recipients will be balanced across treatment and
+ control and is listed among the variables for impact heterogeneity analysis.
+\end_layout
+
+\begin_layout Section
+Treatment Protocols 
+\end_layout
+
+\begin_layout Standard
+Treatment (T1): a farmer is offered a free soil test on a plot of their
+ choice.
+ If they accept then a few days later the farmer receives a soil report
+ (see example in Appendix 1), with some key characteristics of the soil.
+ The report indicates the soil’s texture, pH level, cation exchange capacity,
+ percentage organic matter, total nitrogen, carbon to nitrogen ratio, as
+ well as the parts per million of available P, exchangeable K, calcium,
+ magnesium, iron, manganese, boron, copper and zinc.
+ Beyond the exact measurements each soil property is given a score on a
+ 4-point Likert scale (very low, low, high, very high), with emojis, color
+ coding and bar charts indicating where the soil is deficient and where
+ the levels are sound.
+ Using a script, an enumerator then discusses the soil report with the farmer
+ to derive a recommended nutrient package specific to the crop the farmer
+ wants to grow.
+ The farmer is then informed where and how to obtain these nutrients.
+ 
+\end_layout
+
+\begin_layout Standard
+Treatment (T2): using a simple application, data is collected on a set of
+ key soil nutrient management practices that the farmer used in the past,
+ that the farmer generally uses, and/or that the farmer has the intention
+ to use in the next season (fertilizer application rates, timing of application,
+ method of application, visual cues that may suggest issues with soil health,...).
+ This information is then used to come up with tailor-made suggestions on
+ how the farmer can improve.
+ 
+\end_layout
+
+\begin_layout Standard
+The application will be developed on the basis of a workshop with experts.
+ During this workshop, problem tree analysis will be used to identify current
+ practice, and potential improvements for each problem will be selected.
+ Experts will then rank different solutions based 1) on how common/known
+ each solution is and 2) expected effect size on key outcomes.
+ Based on these insights, decision flowcharts will be developed and implemented
+ in ODK.
+ 
+\end_layout
+
+\begin_layout Standard
+Treatment (T3): a voucher to buy the recommended nutrients at a local agro-deale
+r.
+ The voucher will be of a value equivalent to the government’s fertilizer
+ subsidy.
+\end_layout
+
+\begin_layout Standard
+Comparison (C): A pure control with no soil test, no recommendations on
+ optimal soil fertility management, and no subsidy.
+\end_layout
+
+\begin_layout Section
+Randomization 
+\end_layout
+
+\begin_layout Standard
+Farmers will be randomized at the individual level following a factorial
+ design for T1 and T2.
+ An extra treatment cell will be added to the crossed treatment cell to
+ measure the incremental effect of the subsidy (T3).
+\end_layout
+
+\begin_layout Section
+Sample size
+\end_layout
+
+\begin_layout Standard
+We will run a simulation analysis to determine sample size for each treatment
+ cell.
+\end_layout
+
+\begin_layout Section
+Timeline
+\end_layout
+
+\begin_layout Standard
+Week of july 15: workshop in Malawi to develop treatments September 2024:
+ soil tests October 2024: treatment administration (+ baseline data collection)
+ April 2025: endline data collection
+\end_layout
+
+\begin_layout Standard
+===============================
+\end_layout
+
+\begin_layout Section
+Problems and consideration
+\end_layout
+
+\begin_layout Standard
+A first question is related to the agronomic or the effect size of a fairly
+ light touch intervention.
+ Throughout the scoping, we found it hard to get researchers to quote effects
+ of provide us with yield response curves.
+ The problem is confounded by the fact that yield effects are likely secondary
+ to cost benefit considerations when farmers decide to use a particular
+ blend of fertilizer.
+ 
+\end_layout
+
+\begin_layout Standard
+The numerous laboratory services and digital applications providing field-specif
+ic recommendations appear to promise more accuracy than soil analysis can
+ realistically deliver 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "schut2020soil"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The site specificness of many of the applications also needs to be taken
+ with a grain of salt.
+ In most cases, the input for the decision support systems consists of things
+ like farmer agro-management practices and soil characteristics as evaluated
+ by the farmers using rudimentary characteristics (clay, sandy, silt, or
+ loam soil type).
+ The models behind the decision support systems are often also not very
+ specific, focusing on broad agro-ecological zones or administrative boundaries
+ like districts.
+ However, there will be plenty of farmers that are on the periphery for
+ which alternative recommendations will be more effective.
+ This is a serious concern, as 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "beg2024information"
+literal "false"
+
+\end_inset
+
+ find little correlation between recommendations based on union-councils
+ and actual nutrient content on the plots within these union-councils.
+ More could be done by exploiting the geo-location capabilities of digital
+ decision support tools.
+\end_layout
+
+\begin_layout Standard
+Another problem is that some applications focus on maximizing yields and
+ to not consider costs.
+ However, optimal fertilizer application is likely to change with both input
+ and output prices.
+ Again, the extent to which this can be integrated into an application can
+ vary.
+ The CABI app for instance, does consider the cost of inputs when optimizing
+ fertilizer allocation but farmers have to input the prices of the fertilizers.
+ A better way would be to link the application to prices that get updated
+ in real-time.
+\end_layout
+
+\begin_layout Standard
+Site specific recommendations are not very effective is farmers can not
+ access the blends or components being recommended.
+ This was a problem that was repeatedly mentioned when we discussed site
+ specific recommendations during scoping.
+ Here, in theory, the use of ICT may provide an excellent opportunity to
+ link advise to stocks in real time.
+ For instance, when recommendations are provided, the application may point
+ farmers to the nearest agroworld shop that has the particular blend in
+ stock.
+ Alternatively, the decision support tool may resort to a second best blend
+ if the first choice can not be obtained within a reasonable distance.
+ 
+\end_layout
+
+\begin_layout Standard
+Somewhat related, the total cost of the blend should also be considered.
+ It was mentioned that farmers know the optimal blend, but that they will
+ go for the cheaper option.
+ This 
+\end_layout
+
+\begin_layout Standard
+Indivisibility, rule-of-thumb etc.
+ Farmers just use what they get, regardless of how much land they have and
+ what soil quality is.
+ Or farmers do not pay attention to quantities.
+ Do not say use 20kg of dap and 10 kg of urea, but use twice as much dap
+ as urea.
+ Again, the idea of some kind of market place for fertilizer would help...
+\end_layout
+
+\begin_layout Section
+Design
+\end_layout
+
+\begin_layout Standard
+In the first year, we will work with a paper based version of the decision
+ support.
+ We will have 4 different treatment arms in the form of a factorial design.
+ In a first treatment cell, we will have site specific recommendations.
+ In a second treatment, we will provide extension on fertilizer application
+ using a principled approach.
+ In a third treatment cell, we combine extension on fertilizer application
+ with extension.
+ A final treatment cell functions as a pure control.
+\end_layout
+
+\begin_layout Standard
+In the second year, the decision support tool will be piloted, but this
+ time with an alternative 
+\end_layout
+
+\begin_layout Section
+Related literature
+\end_layout
+
+\begin_layout Standard
+Recently, various studies have been done on site specific fertilizer recommendat
+ions.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset citation
+LatexCommand citet
+key "ayalew2022site"
+literal "false"
+
+\end_inset
+
+ evaluate the impact of targeted site-specific fertilizer blend recommendations
+ to Ethiopian smallholder farmers on fertilizer usage, farm productivity,
+ profits from maize production, and household welfare using a two-level
+ cluster randomized control trial.
+ The problem with this study is that it not only provides site specific
+ recommendations, but also information on timing on application and on expected
+ yields.
+ However, in the control group, no intervention takes place.
+ A better control group would have received the same intervention with the
+ only difference that the regional recommendations.
+ We feel that the treatment effect is contaminated by an effect emanating
+ from making fertilizer more salient.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset citation
+LatexCommand citet
+key "beg2024information"
+literal "false"
+
+\end_inset
+
+ do not find convincing effects from fertilizer quantity recommendations
+ in Bangladesh.
+ They compare two types of variety-specific fertilizer recommendations –
+ government provided, community-level recommendations and plot-specific
+ recommendations based on individual soil tests.
+ One potential reason why they find little effect (they only find that farmers
+ stop using a particular fertilizer type because farmers overuse according
+ to both recommendation types) is that the interventions are too complex.
+ In a different experiment, 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "doi:10.1086/711174"
+literal "false"
+
+\end_inset
+
+ provide farmers with a simple tool (a leaf color chart) and basic, rule-of-thum
+b instructions to guide the timing and quantity of urea (nitrogen) application.
+ This intervention with substantially lower mental and attention demands
+ on farmers does have a significant effect on the quantity of urea (nitrogen-fer
+tilizer) applied.
+ Taken together, this led them to conclude that advice should be bundled
+ with training and extension services to ensure farmers benefit as intended.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset citation
+LatexCommand citet
+key "berazneva2023paying"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset citation
+LatexCommand citet
+key "beg2020improving"
+literal "false"
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset citation
+LatexCommand citet
+key "gars2015confidence"
+literal "false"
+
+\end_inset
+
+ do not find compelling evidence that the information treatment led farmers
+ to substantially change their overall fertilizer application nor their
+ willingness to pay for recommended micronutrients, though there is some
+ evidence that farmers may have altered the timing of their fertilizer applicati
+on in such a way that improves fertilizer use efficiency.
+ 
+\end_layout
+
+\begin_layout Standard
+Additional treatments
+\end_layout
+
+\begin_layout Standard
+Credit and/or insuracence.
+ Note that 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "ayalew2022site"
+literal "false"
+
+\end_inset
+
+ provide free insurance as a complementary treatment and find no effect
+ of this.
+\end_layout
+
+\begin_layout Section
+Outcomes
+\end_layout
+
+\begin_layout Itemize
+a dummy for fertilizer use/dummies for use by fertilizer type
+\end_layout
+
+\begin_layout Itemize
+total level of inorganic fertilizer used in kg/ha.
+ Note that this effect is likely to be positive, but there may be some heterogen
+eity as farmers that use too much fertilizer may actually reduce fertilizer
+ use.
+ 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "ayalew2022site"
+literal "false"
+
+\end_inset
+
+ therefore also estimate quantile regressions and find a negative effect
+ in higher quantiles.
+\end_layout
+
+\begin_layout Itemize
+Application error or the gap between the amount of fertilizer used and the
+ recommended amounts.
+ This is a key outcome in 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "ayalew2022site"
+literal "false"
+
+\end_inset
+
+, who define this as follows: 
+\begin_inset Quotes eld
+\end_inset
+
+For the treatment households, the fertilizer use gap is calculated by using
+ the absolute difference between the actual macronutrient in kg/ha that
+ farmers applied for maize production and the site-specific recommended
+ values, whereas for the control house holds we used the absolute deviation
+ of the actual macronutrients used by farmers and the regional recommendation
+ values.
+\begin_inset Quotes erd
+\end_inset
+
+.
+ This could also be modeled as a quadratic loss function.
+ In 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "beg2024information"
+literal "false"
+
+\end_inset
+
+, the application error is constructed for farmers who apply a non-zero
+ amount of the respective fertilizer and is the absolute difference between
+ endline usage and the recommended quantity for each fertilizer (and it
+ is not clear what recommended quantities they use).
+ They standardize the application error with respect to the control group
+ mean and standard deviation.
+\end_layout
+
+\begin_layout Itemize
+productivity: measured as production of maize per acre.
+\end_layout
+
+\begin_layout Itemize
+revenue: yield*price 
+\end_layout
+
+\begin_layout Itemize
+farm expenditure (inputs + labour)
+\end_layout
+
+\begin_layout Itemize
+profits
+\end_layout
+
+\begin_layout Itemize
+welfare
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+btprint "btPrintCited"
+bibfiles "s2p_bib"
+options "IFPRI_Style"
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
