@@ -1,62 +1,114 @@
 rm(list=ls())
 
-#### power simulations to determine sample size for S2P project
-#### Bjorn Van Campennhout - Jul 8th 2024
-#### adapted for continuous outcomes with and without blocking on gender
+mean_base_outcome <- 2600
+sd_base_outcome <- 2000
+#install.packages("randomizr")
+library(randomizr)    # randomizr package for complete random assignment
 
-possible.ns <- seq(from=100, to=2000, by=50) ## vector for different candidate sample size to iterate over
-powers <- rep(NA, length(possible.ns)) ## will collect power levels (proportion of sig in total of sims)
-powers.blocked <- rep(NA, length(possible.ns)) ## will collect power levels for blocked design
-alpha <- 0.05
-sims <- 1000  # Increase the number of simulations
+possible.ns <- seq(from=100, to=1500, by=10)
+power.T1vsC <- rep(NA, length(possible.ns))
+power.T2vsC <- rep(NA, length(possible.ns))
+power.interact <- rep(NA, length(possible.ns))
+power.S2P <- rep(NA, length(possible.ns))
+alpha <- 0.1  #(one-tailed test at .05 level)
+sims <- 1000
 
+#### Outer loop to vary the number of subjects ####
 for (j in 1:length(possible.ns)){
+
   N <- possible.ns[j]
+
+  p.T1vsC <- rep(NA, sims)
+  p.T2vsC <- rep(NA, sims)
+  p.interact <- rep(NA, sims)
+  p.S2P <- rep(NA, sims)
   
-  significant.experiments <- rep(NA, sims)
-  significant.experiments.blocked <- rep(NA, sims) # Need a second empty vector here too
-  
+  c.T1vsC <- rep(NA, sims)
+  c.T2vsC <- rep(NA, sims)
+  c.interact <- rep(NA, sims)
+  c.S2P <- rep(NA, sims)
+  #### Inner loop to conduct experiments "sims" times over for each N ####
   for (i in 1:sims){
-    gender <- c(rep("F", N/2), rep("M", N/2)) # Generate "gender" covariate
-    age <- sample(x=18:65, size=N, replace=TRUE) # Generate "age" covariate
-    effectofgender <- 1000 # Increase the hypothesized effect of gender on continuous outcome
-    effectofage <- 50 # Increase the hypothesized effect of age on continuous outcome
+    Y0 <-  rnorm(n=N, mean=mean_base_outcome, sd=sd_base_outcome)
+    Y0[Y0<0] <- 0
+    tau_1 <- 375
+    tau_2 <- 250
+    tau_3 <- 188 # (5 percent additional)
     
-    ## Hypothesize Control Outcome as a function of gender, age, and error
-    Y0 <- 2500 + effectofgender * (gender == "M") + effectofage * age + rnorm(n=N, mean=0, sd=sqrt(1000))
+    Y1 <- Y0 + tau_1
+    Y2 <- Y0 + tau_2
+    Y3 <- Y0 + tau_1+ tau_2+ tau_3
     
-    ## This is all the same ##
-    tau <- 150 # Treatment effect corresponding to a 150 unit increase
-    Y1 <- Y0 + tau
+    Z.sim <- complete_ra(N=N, num_arms=4)
+    Y.sim <- Y0*(Z.sim=="T4")  + Y1*((Z.sim=="T1") ) + Y2*((Z.sim=="T2") )+ Y3*(Z.sim=="T3" )
+  first_demeaned <-  (as.numeric(Z.sim=="T1" | Z.sim=="T3") - mean(as.numeric(Z.sim=="T1" | Z.sim=="T3")))
+  second_demeaned <-  (as.numeric(Z.sim=="T2" | Z.sim=="T3") - mean(as.numeric(Z.sim=="T2" | Z.sim=="T3")))
+    frame.sim <- data.frame(Y.sim, Z.sim, first_demeaned, second_demeaned)
+
+    fit.T1vsC.sim <- lm(Y.sim ~as.numeric(Z.sim=="T1" | Z.sim=="T3") +second_demeaned+as.numeric(Z.sim=="T1" | Z.sim=="T3")*second_demeaned , data=frame.sim)
+    fit.T2vsC.sim <-lm(Y.sim ~first_demeaned+ as.numeric(Z.sim=="T2" | Z.sim=="T3") +first_demeaned*as.numeric(Z.sim=="T2" | Z.sim=="T3"), data=frame.sim)
+    fit.interact.sim <- lm(Y.sim ~first_demeaned+second_demeaned+((Z.sim=="T1" | Z.sim=="T3")  & (Z.sim=="T2" | Z.sim=="T3")), data=frame.sim)
+    fit.S2P.sim <- lm(Y.sim ~ Z.sim=="T3", data=frame.sim[frame.sim$Z.sim=="T3" | frame.sim$Z.sim=="T4",])   
+    ### Need to capture coefficients and pvalues (one-tailed tests, so signs are important)
+    c.T1vsC[i] <- summary(fit.T1vsC.sim)$coefficients[2,1]
+    c.T2vsC[i] <- summary(fit.T2vsC.sim)$coefficients[3,1]
+    c.interact[i] <- summary(fit.interact.sim)$coefficients[4,1]
+    c.S2P[i] <- summary(fit.S2P.sim)$coefficients[2,1]
     
-    ## Random assignment without blocking
-    Z.sim <- rbinom(n=N, size=1, prob=0.5)
-    Y.sim <- Y1 * Z.sim + Y0 * (1 - Z.sim)
+    p.T1vsC[i] <- summary(fit.T1vsC.sim)$coefficients[2,4]
+    p.T2vsC[i] <- summary(fit.T2vsC.sim)$coefficients[3,4]
+    p.interact[i] <- summary(fit.interact.sim)$coefficients[4,4]
+    p.S2P[i] <- summary(fit.S2P.sim)$coefficients[2,4]
     
-    ## Random assignment with blocking on gender
-    Z.sim.blocked <- rep(NA, N)
-    idx_male <- which(gender == "M")
-    idx_female <- which(gender == "F")
-    Z.sim.blocked[idx_male] <- rbinom(length(idx_male), size=1, prob=0.5)
-    Z.sim.blocked[idx_female] <- rbinom(length(idx_female), size=1, prob=0.5)
-    Y.sim.blocked <- Y1 * Z.sim.blocked + Y0 * (1 - Z.sim.blocked)
-    
-    ## Fit linear regression models ##
-    fit.sim <- lm(Y.sim ~ Z.sim)
-    fit.sim.blocked <- lm(Y.sim.blocked ~ Z.sim.blocked)
-    
-    ## Extract p-values and calculate significance ##
-    p.value <- summary(fit.sim)$coefficients[2,4]
-    p.value.blocked <- summary(fit.sim.blocked)$coefficients[2,4]
-    significant.experiments[i] <- (p.value <= alpha)
-    significant.experiments.blocked[i] <- (p.value.blocked <= alpha)
+    ###now add and extra group for 
   }
-  
-  powers[j] <- mean(significant.experiments)
-  powers.blocked[j] <- mean(significant.experiments.blocked)
+  power.T1vsC[j] <- mean(c.T1vsC>0 & (p.T1vsC < alpha/2 ))
+  power.T2vsC[j] <- mean( c.T2vsC>0 & (p.T2vsC < alpha/2))
+  power.interact[j] <- mean(c.interact>0 & (p.interact < alpha/2) )
+  power.S2P[j] <- mean(c.S2P>0 & (p.S2P < alpha/2) )
+  print(j)
 }
 
-plot(possible.ns, powers, ylim=c(0,1), type="l", col="blue", xlab="Sample Size", ylab="Power", main="Power Analysis for Continuous Outcome")
-lines(possible.ns, powers.blocked, col="red")
-legend("bottomright", legend=c("Without Blocking", "With Blocking"), col=c("blue", "red"), lty=1)
+png(file="power_plot1.png",
+    width=600, height=350)
 
+plot(type = "l",possible.ns,  power.T1vsC, ylim=c(0,1))
+lines(possible.ns,  power.T2vsC, col="red")
+lines(possible.ns, power.interact, col="blue")
+lines(possible.ns, power.S2P, col="orange")
+abline(h=0.8)
+
+dev.off()
+
+possible.ns <- seq(from=100, to=1500, by=10)     # The sample sizes we'll be considering
+powers <- rep(NA, length(possible.ns))           # Empty object to collect simulation estimates
+alpha <- 0.05                                    # Standard significance level
+sims <- 1000                                      # Number of simulations to conduct for each N
+
+#### Outer loop to vary the number of subjects ####
+for (j in 1:length(possible.ns)){
+  N <- possible.ns[j]                              # Pick the jth value for N
+  
+  significant.experiments <- rep(NA, sims)         # Empty object to count significant experiments
+  
+  #### Inner loop to conduct experiments "sims" times over for each N ####
+  for (i in 1:sims){
+    Y0 <-  rnorm(n=N, mean=mean_base_outcome+tau_1+tau_2+tau_3, sd=sd_base_outcome)              # control potential outcome
+    tau <- 500                                       # Hypothesize treatment effect
+    Y1 <- Y0 + tau                                 # treatment potential outcome
+    Z.sim <- rbinom(n=N, size=1, prob=.5)          # Do a random assignment
+    Y.sim <- Y1*Z.sim + Y0*(1-Z.sim)               # Reveal outcomes according to assignment
+    fit.sim <- lm(Y.sim ~ Z.sim)                   # Do analysis (Simple regression)
+    p.value <- summary(fit.sim)$coefficients[2,4]  # Extract p-values
+    significant.experiments[i] <- (p.value <= alpha) # Determine significance according to p <= 0.05
+  }
+  
+  powers[j] <- mean(significant.experiments)       # store average success rate (power) for each N
+}
+
+png(file="power_plot2.png",
+    width=600, height=350)
+
+plot(type = "l",possible.ns,  powers, ylim=c(0,1), col="green")
+abline(h=0.8)
+dev.off()
