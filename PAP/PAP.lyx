@@ -78,7 +78,61 @@
 \begin_body
 
 \begin_layout Title
-A prequel to the Space to Place Impact Evaluation - Assessing the Relative
+\begin_inset Preview
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+author{
+\end_layout
+
+\begin_layout Plain Layout
+
+Thomas Asefa
+\backslash
+thanks{Innovation Policy and Scaling Unit, IFPRI, Kenya},
+\end_layout
+
+\begin_layout Plain Layout
+
+Joachim De Weerdt
+\backslash
+thanks{Development Strategy and Governance Division, IFPRI, Malawi},
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+David Spielman
+\backslash
+thanks{Innovation Policy and Scaling Unit, IFPRI, United States},
+\end_layout
+
+\begin_layout Plain Layout
+
+Bjorn Van Campenhout
+\backslash
+thanks{Innovation Policy and Scaling Unit, IFPRI and LICOS Centre for Institutio
+ns and Economic Performance KU Leuven, Belgium - corresponding author: b.vancampe
+nhout@cgiar.org}}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+A Prequel to the Space to Place Impact Evaluation - Assessing the Relative
  Importance of Space and Place Components 
 \end_layout
 
@@ -232,20 +286,9 @@ Outcomes of interest
 
 \begin_layout Standard
 Our outcomes of interest are agricultural practices (with a particular focus
- on the us of recommended inputs and practices), yields, return on investment
+ on the use of recommended inputs and practices), yields, return on investment
  in fertilizer, profitability of the targeted crops and the return on investment
  for the subsidy.
-\end_layout
-
-\begin_layout Section
-Impact heterogeneity 
-\end_layout
-
-\begin_layout Standard
-We will study heterogeneity across gender, land size, wealth, remoteness,
- availability of labor in the household, receipt of an AIP subsidy, and
- use of improved agricultural technology (irrigation, improved seeds, soil
- health management,…).
 \end_layout
 
 \begin_layout Section
@@ -262,8 +305,8 @@ The study area requires on the one hand the presence of Meridian’s agro-dealer
  setting up new agro-dealerships.
  We would then work with FSU to adapt their approach in these areas for
  2024/25 season only.
- Within the catchment area of the new shop, we will select X villages and
- compile a list all farmers with at least 0.4 ha of land.
+ Within the market shed of the new shop, we will select X villages and compile
+ a list all farmers with at least 0.4 ha of land.
  From this list we will randomly assign farmers into the 5 different treatment
  groups.
  
@@ -278,14 +321,28 @@ We are expecting about one out of every four farmers in our sample to be
  receiving an AIP subsidy for the purchase of 50kg of the standard NPK blend
  and 50kg of Urea.
  The prevalence of AIP recipients will be balanced across treatment and
- control and is listed among the variables for impact heterogeneity analysis.
+ control (that is, we will block on being an AIP recipient in some way).
+ This will also allow us to look at treatment heterogeneity of the intervention
+ on this attribute (impact of interventions among AIP recipient versus impact
+ of interventions among non-AIP recipient) - see next section.
+\end_layout
+
+\begin_layout Section
+Impact heterogeneity 
+\end_layout
+
+\begin_layout Standard
+We will study heterogeneity across gender, land size, wealth, remoteness,
+ availability of labor in the household, receipt of an AIP subsidy, and
+ use of improved agricultural technology (irrigation, improved seeds, soil
+ health management,…).
 \end_layout
 
 \begin_layout Section
 Treatment Protocols 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 Treatment (T1): a farmer is offered a free soil test on a plot of their
  choice.
  If they accept then a few days later the farmer receives a soil report
@@ -302,10 +359,14 @@ Treatment (T1): a farmer is offered a free soil test on a plot of their
  to derive a recommended nutrient package specific to the crop the farmer
  wants to grow.
  The farmer is then informed where and how to obtain these nutrients.
+ The philosophy behind this treatment is really to provide objective information
+ about the soil on the plot that was chosen.
+ The enumerator is explicitly told to not comment on or make recommendations
+ with respect to farmer management practices.
  
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 Treatment (T2): using a simple application, data is collected on a set of
  key soil nutrient management practices that the farmer used in the past,
  that the farmer generally uses, and/or that the farmer has the intention
@@ -313,11 +374,9 @@ Treatment (T2): using a simple application, data is collected on a set of
  method of application, visual cues that may suggest issues with soil health,...).
  This information is then used to come up with tailor-made suggestions on
  how the farmer can improve.
- 
-\end_layout
-
-\begin_layout Standard
-The application will be developed on the basis of a workshop with experts.
+ The philosophy behind this treatment is to focus only on practices and
+ readily observable features of the crop and plot.
+ The application will be developed on the basis of a workshop with experts.
  During this workshop, problem tree analysis will be used to identify current
  practice, and potential improvements for each problem will be selected.
  Experts will then rank different solutions based 1) on how common/known
@@ -327,14 +386,14 @@ The application will be developed on the basis of a workshop with experts.
  
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 Treatment (T3): a voucher to buy the recommended nutrients at a local agro-deale
 r.
  The voucher will be of a value equivalent to the government’s fertilizer
  subsidy.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 Comparison (C): A pure control with no soil test, no recommendations on
  optimal soil fertility management, and no subsidy.
 \end_layout
@@ -357,6 +416,65 @@ Sample size
 \begin_layout Standard
 We will run a simulation analysis to determine sample size for each treatment
  cell.
+\end_layout
+
+\begin_layout Standard
+The treatment in the study in Ethiopia reported in 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "ayalew2022site"
+literal "false"
+
+\end_inset
+
+ consists of providing information on the recommended amount and blend of
+ fertilizer to use on a particular maize plot, the optimal timing of the
+ application of that fertilizer, and the expected yield outcome for that
+ recommendation.
+ They report a 13 percent increase in yield (437 on baseline yield of 3250
+ kg/ha) and a very similar increase in farmer profit.
+\end_layout
+
+\begin_layout Standard
+Another interesting study is 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "mesfin2021establishment"
+literal "false"
+
+\end_inset
+
+ who test different approaches in field trials for barley production in
+ Alaje, northern Ethiopia.
+ They have a design with 4 treatment arms.
+ The first is based on the Quantitative Evaluation of the Fertility of Tropical
+ Soils (QUEFTS) model with yields up to 4747.
+ The second is a blended fertilizer application (4045); the third treatment
+ arm implements average farmers’ fertilizer application practices 3,637
+ and there also a control group (without any fertilizer - 2727).
+ Form this, we would a treatment effect from 11 percent (if all farmers
+ are using following farmer practices) up to 50 percent (if farmers were
+ not using fertilizer before).
+ We will use a 15 percent increase in yield from T1 and a 10 percent increase
+ in yield from T2.
+ We further model a 6 percent interaction effect.
+ Finally, when comparing groups T1*T2 with T3, we expect 12.5 percent increase.
+\end_layout
+
+\begin_layout Standard
+For the outcome variable, which we consider to be yield
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+we should try to find a better final outcome, something that also allows
+ for cost.
+\end_layout
+
+\end_inset
+
+, we assume a normal distribution with mean 2500 kg/ha with a standard deviation
+ of 2000.
 \end_layout
 
 \begin_layout Section
