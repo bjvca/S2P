@@ -281,17 +281,6 @@ Does the provision of site-specific nutrient recommendations and agronomic
 \end_layout
 
 \begin_layout Section
-Outcomes of interest 
-\end_layout
-
-\begin_layout Standard
-Our outcomes of interest are agricultural practices (with a particular focus
- on the use of recommended inputs and practices), yields, return on investment
- in fertilizer, profitability of the targeted crops and the return on investment
- for the subsidy.
-\end_layout
-
-\begin_layout Section
 Sample and external validity 
 \end_layout
 
@@ -399,7 +388,14 @@ Comparison (C): A pure control with no soil test, no recommendations on
 \end_layout
 
 \begin_layout Section
-Randomization 
+Experimental Setup
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Experimental-Setup"
+
+\end_inset
+
+ 
 \end_layout
 
 \begin_layout Standard
@@ -407,10 +403,277 @@ Farmers will be randomized at the individual level following a factorial
  design for T1 and T2.
  An extra treatment cell will be added to the crossed treatment cell to
  measure the incremental effect of the subsidy (T3).
+ The layout of the experiment is illustrated in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Experimental-layout"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ To test the effectiveness of T1, we can exploit the factorial design and
+ pool T1 and T1+T2 treatment cells and compare this to the pooled treatment
+ cells C and T2.
+ Similarly, to estimate the effect of T1, we can pool T2 and T1+T2 and compare
+ this to the pooled C and T1 cells.
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+It is well known that the increase in power due to treatment cell pooling
+ can lead to both bias and false positives if there are significant interaction
+ effects.
+ Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "section: Empirical strategy"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ explains strategies to deal with this issue.
+\end_layout
+
+\end_inset
+
+ To test the (additional) effect of T3, we simply compare outcomes of treatment
+ cell T3 to outcomes for experimental subjects in treatment cells T1+T2.
+ Another interesting comparison we will consider is the difference between
+ C and T1+T2, which can be thought of as the impact of the S2P intervention
+ as a package.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename design.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Experimental layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Experimental-layout"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
-Sample size
+Empirical Strategy
+\begin_inset CommandInset label
+LatexCommand label
+name "section: Empirical strategy"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Due to the random assignment of participants to treatment and control groups,
+ comparing outcome variable averages of treated and control participants
+ provides unbiased estimates of the average treatment effects.
+ We compare averages using OLS regression.
+ The exact specification will depend on the hypothesis we want to test.
+\end_layout
+
+\begin_layout Standard
+For simple comparison, such as comparing C to T1+T2, or comparing T1+T2
+ to T3, we use the following specification:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+Y_{i}=\alpha+\beta_{T}T_{j}+\varepsilon_{i}\label{eq:simple}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $Y_{i}$
+\end_inset
+
+ is the outcome of interest (agronomic practices, profits, return on investment,
+ etc—see Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Outcomes-of-interest"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ below) of farmer 
+\emph on
+i
+\emph default
+.
+ 
+\begin_inset Formula $T_{i}$
+\end_inset
+
+ is a treatment indicator that takes the value of one if the farmer was
+ allocated to the treatment of interest (T1+T2 to estimate the effect of
+ S2P as a package and T3 to estimate the impact of adding a voucher to the
+ package) and zero if it is in the control group of that treatment (C to
+ estimate the effect of S2P as a package and T1+T2 to estimate the impact
+ of adding a voucher to the package) ).
+ The parameter estimate of 
+\begin_inset Formula $\beta_{T}$
+\end_inset
+
+ is the parameter of interest.
+ 
+\end_layout
+
+\begin_layout Standard
+For the regressions that estimate the effect of the components of S2P separately
+, we exploit the factorial design to boost power by pooling across treatment
+ cells (See Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Experimental-Setup"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+ However, we do not want to rule out the possibility of an interaction effect
+ between the two components, and as we will see in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Statistical-Power-and"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, powering our design to detect a reasonable interaction effect proves prohibiti
+vely expensive.
+ Therefore, we estimate the following equation:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+Y_{i}=\alpha+\beta_{T}T_{j}+\beta_{O}\left(O_{j}-\bar{O}\right)+\beta_{I}T_{j}\left(O_{j}-\bar{O}\right)+\varepsilon_{ij}\label{eq:factorial}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where the orthogonal treatment 
+\begin_inset Formula $\left(O_{j}\right)$
+\end_inset
+
+ enters the equation demeaned and fully interacted with the main treatment
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "lin2013agnostic,muralidharan2019factorial"
+literal "false"
+
+\end_inset
+
+.
+ This approach, that borrows from the literature on covariate adjustments
+ in experiments, allows one to recover the parameter estimate of the fully
+ interacted model without losing the power advantage of factorial designs.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See also this blog post: 
+\begin_inset CommandInset href
+LatexCommand href
+target "https://blogs.worldbank.org/en/impactevaluations/what-should-you-do-experiments-factorial-designs"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For outcome families with more than one outcome (knowledge, adoption, input
+ use, and effort), we compute outcome indices, which is a common way to
+ account for multiple hypothesis testing.
+ To do so, we follow 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "doi:10.1198/016214508000000841"
+literal "false"
+
+\end_inset
+
+, where each index is computed as a weighted mean of the standardized values
+ of the outcome variables.
+ The weights are derived from the (inverse) covariance matrix, such that
+ less weight is given to outcomes that are highly correlated with each other.
+ For these indices, signs of outcomes were switched where necessary so that
+ the positive direction always indicates a “better” outcome.
+\end_layout
+
+\begin_layout Section
+Statistical Power and Sample Size Determination
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Statistical-Power-and"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -475,6 +738,24 @@ we should try to find a better final outcome, something that also allows
 
 , we assume a normal distribution with mean 2500 kg/ha with a standard deviation
  of 2000.
+\end_layout
+
+\begin_layout Section
+Outcomes of interest
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Outcomes-of-interest"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Our outcomes of interest are agricultural practices (with a particular focus
+ on the use of recommended inputs and practices), yields, return on investment
+ in fertilizer, profitability of the targeted crops and the return on investment
+ for the subsidy.
 \end_layout
 
 \begin_layout Section
