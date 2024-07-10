@@ -31,9 +31,9 @@ for (j in 1:length(possible.ns)){
   for (i in 1:sims){
     Y0 <-  rnorm(n=N, mean=mean_base_outcome, sd=sd_base_outcome)
     Y0[Y0<0] <- 0
-    tau_1 <- 375
-    tau_2 <- 250
-    tau_3 <- 188 # (5 percent additional)
+    tau_1 <- mean_base_outcome*.15
+    tau_2 <- mean_base_outcome*.10
+    tau_3 <- (mean_base_outcome + mean_base_outcome*.15 + mean_base_outcome*.10)*0.075
     
     Y1 <- Y0 + tau_1
     Y2 <- Y0 + tau_2
@@ -94,7 +94,7 @@ for (j in 1:length(possible.ns)){
   #### Inner loop to conduct experiments "sims" times over for each N ####
   for (i in 1:sims){
     Y0 <-  rnorm(n=N, mean=mean_base_outcome+tau_1+tau_2+tau_3, sd=sd_base_outcome)              # control potential outcome
-    tau <- 500                                       # Hypothesize treatment effect
+    tau <- (mean_base_outcome+tau_1+tau_2+tau_3)*.125                                       # Hypothesize treatment effect
     Y1 <- Y0 + tau                                 # treatment potential outcome
     Z.sim <- rbinom(n=N, size=1, prob=.5)          # Do a random assignment
     Y.sim <- Y1*Z.sim + Y0*(1-Z.sim)               # Reveal outcomes according to assignment
