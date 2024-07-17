@@ -342,10 +342,9 @@ Treatment Protocols
 \end_layout
 
 \begin_layout Itemize
-Treatment (T1): a farmer is offered a free soil test on a plot of their
- choice.
- If they accept then a few days later the farmer receives a soil report
- (see example in Appendix 1), with some key characteristics of the soil.
+Treatment (T1): a farmer is offered a free soil test on their main plot.
+ If they accept, a few days later the farmer receives a soil report (see
+ example in Appendix 1), with some key characteristics of the soil.
  The report indicates the soil’s texture, pH level, cation exchange capacity,
  percentage organic matter, total nitrogen, carbon to nitrogen ratio, as
  well as the parts per million of available P, exchangeable K, calcium,
@@ -890,7 +889,7 @@ Given the above, we settle for a total sample of 1,250, with 5 groups of
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -968,6 +967,31 @@ Our outcomes of interest are agricultural practices (with a particular focus
  on the use of recommended inputs and practices), yields, return on investment
  in fertilizer, profitability of the targeted crops and the return on investment
  for the subsidy.
+\end_layout
+
+\begin_layout Itemize
+number of crops grown by the farmers
+\end_layout
+
+\begin_layout Itemize
+use of inorganic fertilizer on any field
+\end_layout
+
+\begin_layout Itemize
+use of inorganic fertilizer on the main plot
+\end_layout
+
+\begin_layout Standard
+We will also test for balance on ten pre-specified variables.
+ While we will not do a dedicated baseline, we will collect data on some
+ background characteristics at the time of the treatment administration.
+ We will use the following five variables that are unlikely to be affected
+ by the treatments: farmer's age (in years), sex of farmer, household size,
+ land area for crop production (acres), and AIP recepient in previous year.
+ We also include five variables from among the outcomes of interest to test
+ balance at baseline, in particular: number of crops grown by the farmer,
+ use of seed of an improved variety, yield in previous season on the main
+ plot.
 \end_layout
 
 \begin_layout Section
