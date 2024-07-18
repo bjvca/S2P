@@ -1,4 +1,23 @@
 rm(list=ls())
+dta <- read.csv("~/data/projects/malawi/RCT/endline_2024/data/public/endline_2024.csv")
+dta$maize_hrv <- as.numeric(dta$maize_hrv)
+
+
+dta$maize_acre <- as.numeric(dta$maize_acre)
+boxplot(dta$maize_acre)
+dta$maize_acre[dta$maize_acre <= 0] <- NA 
+
+dta$maize_acre[dta$maize_acre > 10] <- NA 
+
+dta$yield <- dta$maize_hrv*60/dta$maize_acre*2.5
+
+dta$yield[dta$yield >8500] <- NA
+dta$yield[dta$yield < 500] <- NA
+mean(dta$yield, na.rm=T)
+sd(dta$yield, na.rm=T)
+
+sum(!is.na(dta$yield))
+
 
 mean_base_outcome <- 2600
 sd_base_outcome <- 2000
@@ -29,11 +48,11 @@ for (j in 1:length(possible.ns)){
   c.S2P <- rep(NA, sims)
   #### Inner loop to conduct experiments "sims" times over for each N ####
   for (i in 1:sims){
-    Y0 <-  rnorm(n=N, mean=mean_base_outcome, sd=sd_base_outcome)
+    Y0 <-  sample(dta$yield, size=N)
     Y0[Y0<0] <- 0
-    tau_1 <- mean_base_outcome*.15
-    tau_2 <- mean_base_outcome*.10
-    tau_3 <- (mean_base_outcome + mean_base_outcome*.15 + mean_base_outcome*.10)*0.075
+    tau_1 <- mean_base_outcome*.10
+    tau_2 <- mean_base_outcome*.05
+    tau_3 <- (mean_base_outcome + mean_base_outcome*.10 + mean_base_outcome*.05)*0.15
     
     Y1 <- Y0 + tau_1
     Y2 <- Y0 + tau_2
@@ -93,8 +112,8 @@ for (j in 1:length(possible.ns)){
   
   #### Inner loop to conduct experiments "sims" times over for each N ####
   for (i in 1:sims){
-    Y0 <-  rnorm(n=N, mean=mean_base_outcome+tau_1+tau_2+tau_3, sd=sd_base_outcome)              # control potential outcome
-    tau <- (mean_base_outcome+tau_1+tau_2+tau_3)*.125                                       # Hypothesize treatment effect
+    Y0 <-  sample(size = N, dta$yield)+tau_1+tau_2+tau_3              # control potential outcome
+    tau <- (mean_base_outcome+tau_1+tau_2+tau_3)*.1                                       # Hypothesize treatment effect
     Y1 <- Y0 + tau                                 # treatment potential outcome
     Z.sim <- rbinom(n=N, size=1, prob=.5)          # Do a random assignment
     Y.sim <- Y1*Z.sim + Y0*(1-Z.sim)               # Reveal outcomes according to assignment
