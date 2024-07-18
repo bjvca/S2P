@@ -763,7 +763,7 @@ literal "false"
  The second is a blended fertilizer application (which has an average yield
  of 4045); the third treatment arm implements average farmers’ fertilizer
  application practices (where yield was 3,637) and there also a control
- group (without any fertilizer, obtaining 2727 kg/ha).
+ group (without any fertilizer, obtaining 2,727 kg/ha).
  Form this, we estimate a treatment effect that ranges from 11 percent (if
  all farmers are using following farmer practices) up to 50 percent (if
  farmers were not using fertilizer before).
@@ -778,19 +778,19 @@ We will use a 15 percent increase in yield from T1 and a 10 percent increase
 \end_layout
 
 \begin_layout Standard
-For the outcome variable, which we consider to be yield
-\begin_inset Note Note
-status collapsed
-
-\begin_layout Plain Layout
-we should try to find a better final outcome, something that also allows
- for cost.
-\end_layout
+For the outcome variable, which we consider to be maize yield, we draw random
+ samples from farmer level data that was collected from a study on smallholder
+ market participation in the central region of Malawi 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "de2024expecting"
+literal "false"
 
 \end_inset
 
-, we assume a normal distribution with mean 2,600 kg/ha with a standard
- deviation of 2,000.
+.
+ Using this data, we find that average yield is 1,889 kilogram per hectare
+ with a standard deviation of 1,191.
 \end_layout
 
 \begin_layout Standard
@@ -877,12 +877,20 @@ noprefix "false"
 \end_inset
 
  indicates that we would need about 500 to 600 farmers for the comparison
- between T1+T2 and T3, or 250 to 300 in each group.
+ between T1+T2 and T3, or 300 in each group.
 \end_layout
 
 \begin_layout Standard
-Given the above, we settle for a total sample of 1,250, with 5 groups of
- 250 farmers.
+Finally, we will also add a control group of farmers that are in different
+ areas.
+ This is done to assess spillover effects from our intervention.
+ We use a group of 500 farmers.
+\end_layout
+
+\begin_layout Standard
+Given the above, we settle for a total sample of 1,550.
+ To account for attrition, we add 10 percent to each treatment group, leading
+ to a total sample size of 1,705 farmers.
 \end_layout
 
 \begin_layout Standard
