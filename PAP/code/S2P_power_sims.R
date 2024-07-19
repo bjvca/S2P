@@ -52,13 +52,13 @@ for (j in 1:length(possible.ns)){
     Y0[Y0<0] <- 0
     tau_1 <- mean_base_outcome*.10
     tau_2 <- mean_base_outcome*.05
-    tau_3 <- (mean_base_outcome + mean_base_outcome*.10 + mean_base_outcome*.05)*0.15
+    tau_3 <- mean_base_outcome*0.15
     
     Y1 <- Y0 + tau_1
     Y2 <- Y0 + tau_2
-    Y3 <- Y0 + tau_1+ tau_2+ tau_3
+    Y3 <- Y0 + tau_3
     
-    Z.sim <- complete_ra(N=N, num_arms=4)
+    Z.sim <- complete_ra(N=N, m_each=c(N/2,N/8,N/8, N/8) )
     Y.sim <- Y0*(Z.sim=="T4")  + Y1*((Z.sim=="T1") ) + Y2*((Z.sim=="T2") )+ Y3*(Z.sim=="T3" )
   first_demeaned <-  (as.numeric(Z.sim=="T1" | Z.sim=="T3") - mean(as.numeric(Z.sim=="T1" | Z.sim=="T3")))
   second_demeaned <-  (as.numeric(Z.sim=="T2" | Z.sim=="T3") - mean(as.numeric(Z.sim=="T2" | Z.sim=="T3")))
