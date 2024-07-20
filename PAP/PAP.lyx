@@ -91,7 +91,7 @@
 \begin_body
 
 \begin_layout Author
- Thomas Assefa
+Thomas Assefa
 \begin_inset Foot
 status collapsed
 
@@ -276,6 +276,128 @@ literal "false"
 .
  In light of this, we feel it is important to study the relative importance
  of the Space and Place components in a clean field experiment.
+\end_layout
+
+\begin_layout Section
+Related literature
+\end_layout
+
+\begin_layout Standard
+Recently, various studies have been done on site specific fertilizer recommendat
+ions.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset citation
+LatexCommand citet
+key "ayalew2022site"
+literal "false"
+
+\end_inset
+
+ evaluate the impact of targeted site-specific fertilizer blend recommendations
+ to Ethiopian smallholder farmers on fertilizer usage, farm productivity,
+ profits from maize production, and household welfare using a two-level
+ cluster randomized control trial.
+ The problem with this study is that it provides not only site-specific
+ recommendations but also information on the timing of application and expected
+ yields.
+ Therefore, the treatment effect cannot be attributed solely to site-specific
+ recommendations.
+ A better control group, in terms of testing the effect of site-specific
+ recommendations, would have received the same intervention as the treated
+ group, with the only difference being the absence of site-specific (regional)
+ recommendations.
+ We feel that the treatment effect is contaminated by an effect emanating
+ from making fertilizer more salient.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset citation
+LatexCommand citet
+key "beg2024information"
+literal "false"
+
+\end_inset
+
+ do not find convincing effects from fertilizer quantity recommendations
+ in Bangladesh.
+ They compare two types of variety-specific fertilizer recommendations –
+ government provided, community-level recommendations and plot-specific
+ recommendations based on individual soil tests.
+ One potential reason why they find little effect (they only find that farmers
+ stop using a particular fertilizer type because farmers overuse according
+ to both recommendation types) is that the interventions are too complex.
+ In a different experiment, 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "doi:10.1086/711174"
+literal "false"
+
+\end_inset
+
+ provide farmers with a simple tool (a leaf color chart) and basic, rule-of-thum
+b instructions to guide the timing and quantity of urea (nitrogen) application.
+ This intervention with substantially lower mental and attention demands
+ on farmers does have a significant effect on the quantity of urea (nitrogen-fer
+tilizer) applied.
+ Taken together, this led them to conclude that advice should be bundled
+ with training and extension services to ensure farmers benefit as intended.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset citation
+LatexCommand citet
+key "berazneva2023paying"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset citation
+LatexCommand citet
+key "beg2020improving"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset citation
+LatexCommand citet
+key "gars2015confidence"
+literal "false"
+
+\end_inset
+
+ do not find compelling evidence that the information treatment led farmers
+ to substantially change their overall fertilizer application nor their
+ willingness to pay for recommended micronutrients, though there is some
+ evidence that farmers may have altered the timing of their fertilizer applicati
+on in such a way that improves fertilizer use efficiency.
+\end_layout
+
+\begin_layout Standard
+Additional treatments
+\end_layout
+
+\begin_layout Standard
+Credit and/or insuracence.
+ Note that 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "ayalew2022site"
+literal "false"
+
+\end_inset
+
+ provide free insurance as a complementary treatment and find no effect
+ of this.
 \end_layout
 
 \begin_layout Section
@@ -1281,125 +1403,6 @@ In the first year, we will work with a paper based version of the decision
 \begin_layout Standard
 In the second year, the decision support tool will be piloted, but this
  time with an alternative
-\end_layout
-
-\begin_layout Section
-Related literature
-\end_layout
-
-\begin_layout Standard
-Recently, various studies have been done on site specific fertilizer recommendat
-ions.
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset citation
-LatexCommand citet
-key "ayalew2022site"
-literal "false"
-
-\end_inset
-
- evaluate the impact of targeted site-specific fertilizer blend recommendations
- to Ethiopian smallholder farmers on fertilizer usage, farm productivity,
- profits from maize production, and household welfare using a two-level
- cluster randomized control trial.
- The problem with this study is that it not only provides site specific
- recommendations, but also information on timing on application and on expected
- yields.
- However, in the control group, no intervention takes place.
- A better control group would have received the same intervention with the
- only difference that the regional recommendations.
- We feel that the treatment effect is contaminated by an effect emanating
- from making fertilizer more salient.
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset citation
-LatexCommand citet
-key "beg2024information"
-literal "false"
-
-\end_inset
-
- do not find convincing effects from fertilizer quantity recommendations
- in Bangladesh.
- They compare two types of variety-specific fertilizer recommendations –
- government provided, community-level recommendations and plot-specific
- recommendations based on individual soil tests.
- One potential reason why they find little effect (they only find that farmers
- stop using a particular fertilizer type because farmers overuse according
- to both recommendation types) is that the interventions are too complex.
- In a different experiment, 
-\begin_inset CommandInset citation
-LatexCommand citet
-key "doi:10.1086/711174"
-literal "false"
-
-\end_inset
-
- provide farmers with a simple tool (a leaf color chart) and basic, rule-of-thum
-b instructions to guide the timing and quantity of urea (nitrogen) application.
- This intervention with substantially lower mental and attention demands
- on farmers does have a significant effect on the quantity of urea (nitrogen-fer
-tilizer) applied.
- Taken together, this led them to conclude that advice should be bundled
- with training and extension services to ensure farmers benefit as intended.
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset citation
-LatexCommand citet
-key "berazneva2023paying"
-literal "false"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset citation
-LatexCommand citet
-key "beg2020improving"
-literal "false"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset citation
-LatexCommand citet
-key "gars2015confidence"
-literal "false"
-
-\end_inset
-
- do not find compelling evidence that the information treatment led farmers
- to substantially change their overall fertilizer application nor their
- willingness to pay for recommended micronutrients, though there is some
- evidence that farmers may have altered the timing of their fertilizer applicati
-on in such a way that improves fertilizer use efficiency.
-\end_layout
-
-\begin_layout Standard
-Additional treatments
-\end_layout
-
-\begin_layout Standard
-Credit and/or insuracence.
- Note that 
-\begin_inset CommandInset citation
-LatexCommand citet
-key "ayalew2022site"
-literal "false"
-
-\end_inset
-
- provide free insurance as a complementary treatment and find no effect
- of this.
 \end_layout
 
 \begin_layout Section
