@@ -90,10 +90,6 @@
 
 \begin_body
 
-\begin_layout Title
-
-\end_layout
-
 \begin_layout Author
  Thomas Assefa
 \begin_inset Foot
@@ -504,9 +500,9 @@ name "sec:Experimental-Setup"
 
 \begin_layout Standard
 Farmers will be randomized at the individual level following a parallel
- design for T1 and T2.
- An extra treatment cell will be added to the crossed treatment cell to
- measure the incremental effect of the subsidy (T3).
+ design for T1, T2 and T3.
+ An extra treatment cell will be added to the T3 treatment cell to measure
+ the incremental effect of the subsidy (T4).
  The layout of the experiment is illustrated in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
