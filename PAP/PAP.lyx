@@ -773,14 +773,33 @@ To estimate
  exploiting the fact that farmers that received the voucher also received
  T3.
  To do so, we consider T4 as covariate and enter it in deviations from its
- mean in the following way: 
+ mean in the subsample of control and T3 farmers in following way 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "lin2013agnostic"
+literal "false"
+
+\end_inset
+
+: 
 \end_layout
 
 \begin_layout Plain Layout
 \begin_inset Formula 
 \begin{equation}
-Y_{i}=\alpha+\beta_{T1}T1_{i}+\beta_{T2}T2_{i}+\beta_{T3}T3_{i}+\beta_{T4}T3_{i}\centerdot T4_{i}+\varepsilon_{i}\label{eq:othog}
+Y_{i}=\alpha+\beta_{T3}T3_{i}+\beta_{T4}T3_{i}\left(T4_{i}-\overline{T4}\right)+\beta_{C}\left(T4_{i}-\overline{T4}\right)+\varepsilon_{i}\label{eq:othog}
 \end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+See also this blog post: 
+\begin_inset CommandInset href
+LatexCommand href
+target "https://blogs.worldbank.org/en/impactevaluations/what-should-you-do-experiments-factorial-designs"
 
 \end_inset
 
