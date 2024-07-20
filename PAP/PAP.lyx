@@ -415,7 +415,7 @@ Treatment Protocols
 \end_layout
 
 \begin_layout Itemize
-Treatment (T1): a farmer is offered a free soil test on their main plot.
+Treatment 1 (T1): a farmer is offered a free soil test on their main plot.
  If they accept, a few days later the farmer receives a soil report (see
  example in Appendix 1), with some key characteristics of the soil.
  The report indicates the soil
@@ -442,8 +442,8 @@ s texture, pH level, cation exchange capacity, percentage organic matter,
 \end_layout
 
 \begin_layout Itemize
-Treatment (T2): using a simple application, data is collected on a set of
- key soil nutrient management practices that the farmer used in the past,
+Treatment 2 (T2): using a simple application, data is collected on a set
+ of key soil nutrient management practices that the farmer used in the past,
  that the farmer generally uses, and/or that the farmer has the intention
  to use in the next season (fertilizer application rates, timing of application,
  method of application, visual cues that may suggest issues with soil health,...).
@@ -462,8 +462,12 @@ Treatment (T2): using a simple application, data is collected on a set of
 \end_layout
 
 \begin_layout Itemize
-Treatment (T3): a voucher to buy the recommended nutrients at a local agro-deale
-r.
+Treatment 3: (T3): This treatment combines treatments T1 and T2
+\end_layout
+
+\begin_layout Itemize
+Treatment 4 (T4): a voucher to buy the recommended nutrients at a local
+ agro-dealer.
  The voucher will be of a value equivalent to the government
 \begin_inset Quotes ers
 \end_inset
@@ -473,9 +477,18 @@ s fertilizer subsidy.
 \end_layout
 
 \begin_layout Itemize
-Comparison (C): A pure control with no soil test, no recommendations on
- optimal soil fertility management, and no subsidy.
- 
+Comparison (C): A pure control with no soil test, no custom recommendations
+ on optimal soil fertility management, and no subsidy.
+ They will only provided with a 
+\begin_inset Quotes eld
+\end_inset
+
+blanket
+\begin_inset Quotes erd
+\end_inset
+
+ recommendation of the three most important practices that can be used to
+ improve soil health.
 \end_layout
 
 \begin_layout Section
@@ -533,7 +546,7 @@ It is well known that the increase in power due to treatment cell pooling
  Section 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "section:=000020Empirical=000020strategy"
+reference "empirical_strategy"
 plural "false"
 caps "false"
 noprefix "false"
@@ -561,7 +574,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename ../../../design
+	filename design.png
 	scale 50
 
 \end_inset
@@ -608,22 +621,9 @@ name "fig:Experimental-layout"
 
 \begin_layout Section
 Empirical Strategy
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-
-\backslash
-protect
-\end_layout
-
-\end_inset
-
-
 \begin_inset CommandInset label
 LatexCommand label
-name "section:=000020Empirical=000020strategy"
+name "sec:Empirical-Strategy"
 
 \end_inset
 
@@ -634,19 +634,13 @@ name "section:=000020Empirical=000020strategy"
 Due to the random assignment of participants to treatment and control groups,
  comparing outcome variable averages of treated and control participants
  provides unbiased estimates of the average treatment effects.
- We compare averages using OLS regression.
- The exact specification will depend on the hypothesis we want to test.
-\end_layout
-
-\begin_layout Standard
-For simple comparison, such as comparing C to T1+T2, or comparing T1+T2
- to T3, we use the following specification:
+ We compare averages using OLS regression of the following form:
 \end_layout
 
 \begin_layout Standard
 \begin_inset Formula 
 \begin{equation}
-Y_{i}=\alpha+\beta_{T}T_{j}+\varepsilon_{i}\label{eq:simple}
+Y_{i}=\alpha+\beta_{T1}T1_{i}+\beta_{T2}T2_{i}+\beta_{T3}T3_{i}+\varepsilon_{i}\label{eq:simple}
 \end{equation}
 
 \end_inset
@@ -690,85 +684,6 @@ i
 \end_inset
 
  is the parameter of interest.
-\end_layout
-
-\begin_layout Standard
-For the regressions that estimate the effect of the components of S2P separately
-, we exploit the factorial design to boost power by pooling across treatment
- cells (See Section 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:Experimental-Setup"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-).
- However, we do not want to rule out the possibility of an interaction effect
- between the two components, and as we will see in Section 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:Statistical-Power-and"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-, powering our design to detect a reasonable interaction effect proves prohibiti
-vely expensive.
- Therefore, we estimate the following equation:
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\begin{equation}
-Y_{i}=\alpha+\beta_{T}T_{j}+\beta_{O}\left(O_{j}-\bar{O}\right)+\beta_{I}T_{j}\left(O_{j}-\bar{O}\right)+\varepsilon_{ij}\label{eq:factorial}
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-where the orthogonal treatment 
-\begin_inset Formula $\left(O_{j}\right)$
-\end_inset
-
- enters the equation demeaned and fully interacted with the main treatment
- 
-\begin_inset CommandInset citation
-LatexCommand citep
-key "lin2013agnostic,muralidharan2019factorial"
-literal "false"
-
-\end_inset
-
-.
- This approach, that borrows from the literature on covariate adjustments
- in experiments, allows one to recover the parameter estimate of the fully
- interacted model without losing the power advantage of factorial designs.
-\begin_inset Foot
-status collapsed
-
-\begin_layout Plain Layout
-See also this blog post: 
-\begin_inset CommandInset href
-LatexCommand href
-target "https://blogs.worldbank.org/en/impactevaluations/what-should-you-do-experiments-factorial-designs"
-literal "false"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -825,7 +740,17 @@ name "sec:Statistical-Power-and"
 
 \begin_layout Standard
 We will run a simulation analysis to determine sample size for the design
- presented in section using the specifications in.
+ presented in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Empirical-Strategy"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
  Simulation, where you basically tell your computer to run an experiment
  thousands of times and simply count how frequently our experiment comes
  up significant under a set of assumptions, is a far more flexible, and
@@ -848,12 +773,6 @@ literal "false"
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-We will use yield (kg/ha) as the main outcome in the power analysis.
- We assume a normal distribution with mean 2,600 kg/ha with a standard deviation
- of 2,000.
 \end_layout
 
 \begin_layout Standard
@@ -901,10 +820,30 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-We will use a 15 percent increase in yield from T1 and a 10 percent increase
+We will use a 5 percent increase in yield from T1 and a 5 percent increase
  in yield from T2.
- We further model a 7.5 percent interaction effect.
- Finally, when comparing groups T1*T2 with T3, we expect 12.5 percent increase.
+ We further model a 10 percent effect from the bundled innovation.
+ Finally, when comparing groups T3 with T4, we expect 12.5 percent increase.
+\end_layout
+
+\begin_layout Standard
+For power simulations, we proceed in the following way.
+\end_layout
+
+\begin_layout Standard
+We determine sample size for C1 and T1.
+\end_layout
+
+\begin_layout Standard
+We determine sample size for C2 and T2.
+\end_layout
+
+\begin_layout Standard
+We determine sample size for C3 and T2.
+\end_layout
+
+\begin_layout Standard
+We then take max(C1,C2,C3) and consider the fact that some can be reused.
 \end_layout
 
 \begin_layout Standard
@@ -921,51 +860,6 @@ literal "false"
 .
  Using this data, we find that average yield is 1,889 kilogram per hectare
  with a standard deviation of 1,191.
-\end_layout
-
-\begin_layout Standard
-We run two experiments.
- We first power the factorial design, with subsamples of the same size in
- each of the four treatment cells.
- We then look at power of four comparisons.
- First, we compare T1 to the control using Equation 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "eq:factorial"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-.
- Similarly, we compare T1 to the control using the same equation.
- As these pool two treatment cells, power is likely to be high at a given
- sample size.
- We also look at the interaction effect of a fully saturated model:
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\begin{equation}
-Y_{i}=\alpha+\beta_{T1}T1_{j}+\beta_{T2}T2_{j}+\beta_{T12}T1_{j}.T2_{j}+\varepsilon_{i}\label{eq:simple-1}
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-As this compares treatment effects in a single cell over and above the main
- treatment effects, power is likely to be low.
- We also directly compare the control to the T1+T2 treatment.
- As expect a large effect size here, the smaller samples used due to the
- fact that we only compare two treatment cell should be less of an issue.
- Finally, we also compare the two treatment cells of T1+T2 to T3, which
- also has a reasonable minimal detectable effect size.
- Other parameters for the simulation include a 5 percent significance level,
- and 1000 replications.
 \end_layout
 
 \begin_layout Standard
@@ -1036,7 +930,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename ../../../code/power_plot1
+	filename code/power_plot1.png
 	scale 50
 
 \end_inset
@@ -1052,7 +946,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename ../../../code/power_plot2
+	filename code/power_plot2.png
 	scale 50
 
 \end_inset
