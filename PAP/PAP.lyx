@@ -610,7 +610,7 @@ blanket
 \end_layout
 
 \begin_layout Section
-Experimental Setup
+Experimental Setup and Empirical Specifications
 \begin_inset CommandInset label
 LatexCommand label
 name "sec:Experimental-design"
@@ -636,38 +636,7 @@ noprefix "false"
 \end_inset
 
 .
- To test the effectiveness of T1, we can exploit the factorial design and
- pool T1 and T1+T2 treatment cells and compare this to the pooled treatment
- cells C and T2.
- Similarly, to estimate the effect of T1, we can pool T2 and T1+T2 and compare
- this to the pooled C and T1 cells.
-\begin_inset Foot
-status collapsed
-
-\begin_layout Plain Layout
-It is well known that the increase in power due to treatment cell pooling
- can lead to both bias and false positives if there are significant interaction
- effects.
- Section 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "empirical_strategy"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
- explains strategies to deal with this issue.
-\end_layout
-
-\end_inset
-
- To test the (additional) effect of T3, we simply compare outcomes of treatment
- cell T3 to outcomes for experimental subjects in treatment cells T1+T2.
- Another interesting comparison we will consider is the difference between
- C and T1+T2, which can be thought of as the impact of the S2P intervention
- as a package.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -680,7 +649,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename design.png
-	scale 50
+	scale 20
 
 \end_inset
 
@@ -692,19 +661,6 @@ status open
 
 \begin_layout Plain Layout
 Experimental layout
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-
-\backslash
-protect
-\end_layout
-
-\end_inset
-
-
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Experimental-layout"
@@ -724,28 +680,18 @@ name "fig:Experimental-layout"
 
 \end_layout
 
-\begin_layout Section
-Empirical Strategy
-\begin_inset CommandInset label
-LatexCommand label
-name "sec:Empirical-Strategy"
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Standard
 Due to the random assignment of participants to treatment and control groups,
  comparing outcome variable averages of treated and control participants
  provides unbiased estimates of the average treatment effects.
- We compare averages using OLS regression of the following form:
+ For the parallel design, we compare averages using OLS regression of the
+ following form:
 \end_layout
 
 \begin_layout Standard
 \begin_inset Formula 
 \begin{equation}
-Y_{i}=\alpha+\beta_{T1}T1_{i}+\beta_{T2}T2_{i}+\beta_{T3}T3_{i}+\varepsilon_{i}\label{eq:simple}
+Y_{i}=\alpha+\beta_{T1}T1_{i}+\beta_{T2}T2_{i}+\beta_{T3}T3_{i}+\beta_{T4}T3_{i}\centerdot T4_{i}+\varepsilon_{i}\label{eq:simple}
 \end{equation}
 
 \end_inset
@@ -775,20 +721,75 @@ i
 \emph default
 .
  
-\begin_inset Formula $T_{i}$
+\begin_inset Formula $T1_{i}$
 \end_inset
 
- is a treatment indicator that takes the value of one if the farmer was
- allocated to the treatment of interest (T1+T2 to estimate the effect of
- S2P as a package and T3 to estimate the impact of adding a voucher to the
- package) and zero if it is in the control group of that treatment (C to
- estimate the effect of S2P as a package and T1+T2 to estimate the impact
- of adding a voucher to the package) ).
+, 
+\begin_inset Formula $T2_{i}$
+\end_inset
+
+, and 
+\begin_inset Formula $T3_{i}$
+\end_inset
+
+ are treatment indicators that take the value of one if the farmer was allocated
+ to the respective treatment group, and zero if it is in the pooled control
+ group (C1, C2 or C3).
  The parameter estimate of 
-\begin_inset Formula $\beta_{T}$
+\begin_inset Formula $\beta_{T1}$
 \end_inset
 
- is the parameter of interest.
+ is the treatment effect of the soil test treatment, 
+\begin_inset Formula $\beta_{T2}$
+\end_inset
+
+ is the effect of the treatment that provides tailor made advice on agronomic
+ practices and 
+\begin_inset Formula $\beta_{T3}$
+\end_inset
+
+ is the effect of the combined treatment.
+ Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:simple"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ also estimates the incremental effect of adding the voucher to the combined
+ treatment.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+To estimate 
+\begin_inset Formula $\beta_{T3}$
+\end_inset
+
+, we will also estimate an alternative specification that boosts power by
+ exploiting the fact that farmers that received the voucher also received
+ T3.
+ To do so, we consider T4 as covariate and enter it in deviations from its
+ mean in the following way: 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{equation}
+Y_{i}=\alpha+\beta_{T1}T1_{i}+\beta_{T2}T2_{i}+\beta_{T3}T3_{i}+\beta_{T4}T3_{i}\centerdot T4_{i}+\varepsilon_{i}\label{eq:othog}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
