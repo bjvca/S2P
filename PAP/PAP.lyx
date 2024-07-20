@@ -611,26 +611,13 @@ blanket
 
 \begin_layout Section
 Experimental Setup
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-
-\backslash
-protect
-\end_layout
-
-\end_inset
-
-
 \begin_inset CommandInset label
 LatexCommand label
 name "sec:Experimental-Setup"
 
 \end_inset
 
- 
+
 \end_layout
 
 \begin_layout Standard
