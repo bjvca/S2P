@@ -621,8 +621,7 @@ name "sec:Experimental-design"
 \end_layout
 
 \begin_layout Standard
-
-Subjects will be randomized at the individual level following a parallel
+Households will be randomized at the individual level following a parallel
  design for T1, T2 and T3.
  An extra treatment cell will be added to the T3 treatment cell to measure
  the incremental effect of the subsidy (T4).
