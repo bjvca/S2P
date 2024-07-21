@@ -13,79 +13,67 @@ dta$yield <- dta$maize_hrv*60/dta$maize_acre*2.5
 
 dta$yield[dta$yield >8500] <- NA
 dta$yield[dta$yield < 500] <- NA
+dta <- subset(dta,!is.na(dta$yield))
 mean(dta$yield, na.rm=T)
 sd(dta$yield, na.rm=T)
 
 sum(!is.na(dta$yield))
 
-
-mean_base_outcome <- 2600
-sd_base_outcome <- 2000
-#install.packages("randomizr")
 library(randomizr)    # randomizr package for complete random assignment
 
-possible.ns <- seq(from=100, to=1500, by=10)
-power.T1vsC <- rep(NA, length(possible.ns))
-power.T2vsC <- rep(NA, length(possible.ns))
-power.interact <- rep(NA, length(possible.ns))
-power.S2P <- rep(NA, length(possible.ns))
-alpha <- 0.1  #(one-tailed test at .05 level)
+possible.ns <- seq(from=.2, to=.8, by=0.1)
+possible.ns2 <- seq(from=.2, to=.8, by=0.1)
+
+
+power.atleastone <-  matrix(NA, length(possible.ns),length(possible.ns2))  
+power.alltreatments <-  matrix(NA, length(possible.ns),length(possible.ns2))  
+
+alpha <- 0.5
 sims <- 1000
+N <- 1000
 
 #### Outer loop to vary the number of subjects ####
 for (j in 1:length(possible.ns)){
+  for (k in 1:length(possible.ns2)){
+    significant.experiments <- rep(NA, sims)  
+    one.significant.experiment <- rep(NA, sims)  
+  shares_C <- possible.ns[j]
+  shares_T1 <- possible.ns[k]
 
-  N <- possible.ns[j]
-
-  p.T1vsC <- rep(NA, sims)
-  p.T2vsC <- rep(NA, sims)
   p.interact <- rep(NA, sims)
-  p.S2P <- rep(NA, sims)
-  
-  c.T1vsC <- rep(NA, sims)
-  c.T2vsC <- rep(NA, sims)
   c.interact <- rep(NA, sims)
-  c.S2P <- rep(NA, sims)
+
   #### Inner loop to conduct experiments "sims" times over for each N ####
   for (i in 1:sims){
     Y0 <-  sample(dta$yield, size=N)
     Y0[Y0<0] <- 0
-    tau_1 <- mean_base_outcome*.10
-    tau_2 <- mean_base_outcome*.05
-    tau_3 <- mean_base_outcome*0.15
+    tau_1 <-  mean(Y0, na.rm=T)*.06
+    tau_2 <-  mean(Y0, na.rm=T)*.06
+    tau_3 <-  mean(Y0, na.rm=T)*.10
     
     Y1 <- Y0 + tau_1
     Y2 <- Y0 + tau_2
     Y3 <- Y0 + tau_3
     
-    Z.sim <- complete_ra(N=N, m_each=c(N/2,N/8,N/8, N/8) )
-    Y.sim <- Y0*(Z.sim=="T4")  + Y1*((Z.sim=="T1") ) + Y2*((Z.sim=="T2") )+ Y3*(Z.sim=="T3" )
-  first_demeaned <-  (as.numeric(Z.sim=="T1" | Z.sim=="T3") - mean(as.numeric(Z.sim=="T1" | Z.sim=="T3")))
-  second_demeaned <-  (as.numeric(Z.sim=="T2" | Z.sim=="T3") - mean(as.numeric(Z.sim=="T2" | Z.sim=="T3")))
-    frame.sim <- data.frame(Y.sim, Z.sim, first_demeaned, second_demeaned)
+    Z.sim <- complete_ra(N=1000,prob_each = c((1-shares_C)*shares_T1/2, (1-shares_C)*shares_T1/2,(1-shares_C)*(1-shares_T1), shares_C) )
+    Y.sim <- Y0*(Z.sim=="T4")  + Y1*(Z.sim=="T1")  + Y2*(Z.sim=="T2") + Y3*(Z.sim=="T3")
 
-    fit.T1vsC.sim <- lm(Y.sim ~as.numeric(Z.sim=="T1" | Z.sim=="T3") +second_demeaned+as.numeric(Z.sim=="T1" | Z.sim=="T3")*second_demeaned , data=frame.sim)
-    fit.T2vsC.sim <-lm(Y.sim ~first_demeaned+ as.numeric(Z.sim=="T2" | Z.sim=="T3") +first_demeaned*as.numeric(Z.sim=="T2" | Z.sim=="T3"), data=frame.sim)
-    fit.interact.sim <- lm(Y.sim ~first_demeaned+second_demeaned+((Z.sim=="T1" | Z.sim=="T3")  & (Z.sim=="T2" | Z.sim=="T3")), data=frame.sim)
-    fit.S2P.sim <- lm(Y.sim ~ Z.sim=="T3", data=frame.sim[frame.sim$Z.sim=="T3" | frame.sim$Z.sim=="T4",])   
-    ### Need to capture coefficients and pvalues (one-tailed tests, so signs are important)
-    c.T1vsC[i] <- summary(fit.T1vsC.sim)$coefficients[2,1]
-    c.T2vsC[i] <- summary(fit.T2vsC.sim)$coefficients[3,1]
-    c.interact[i] <- summary(fit.interact.sim)$coefficients[4,1]
-    c.S2P[i] <- summary(fit.S2P.sim)$coefficients[2,1]
+    fit.sim <- lm(Y.sim ~(Z.sim=="T1") + (Z.sim=="T2")+ (Z.sim=="T3"))
+
     
-    p.T1vsC[i] <- summary(fit.T1vsC.sim)$coefficients[2,4]
-    p.T2vsC[i] <- summary(fit.T2vsC.sim)$coefficients[3,4]
-    p.interact[i] <- summary(fit.interact.sim)$coefficients[4,4]
-    p.S2P[i] <- summary(fit.S2P.sim)$coefficients[2,4]
+    p.T1vsC <- summary(fit.sim)$coefficients[2,4]
+    p.T2vsC <- summary(fit.sim)$coefficients[3,4]
+    p.T3vsC <- summary(fit.sim)$coefficients[4,4]
     
+    significant.experiments[i] <- (p.T1vsC < alpha) & (p.T2vsC < alpha) & (p.T3vsC < alpha)
+    one.significant.experiment[i] <- (p.T1vsC < alpha) | (p.T2vsC < alpha) | (p.T3vsC < alpha)
     ###now add and extra group for 
   }
-  power.T1vsC[j] <- mean(c.T1vsC>0 & (p.T1vsC < alpha/2 ))
-  power.T2vsC[j] <- mean( c.T2vsC>0 & (p.T2vsC < alpha/2))
-  power.interact[j] <- mean(c.interact>0 & (p.interact < alpha/2) )
-  power.S2P[j] <- mean(c.S2P>0 & (p.S2P < alpha/2) )
-  print(j)
+  power.alltreatments[j,k] <- mean(significant.experiments)
+  power.atleastone[j,k] <- mean(significant.experiments)
+  print(k)
+  }
+print(j)  
 }
 
 png(file="power_plot1.png",
@@ -122,7 +110,7 @@ for (j in 1:length(possible.ns)){
     significant.experiments[i] <- (p.value <= alpha) # Determine significance according to p <= 0.05
   }
   
-  powers[j] <- mean(significant.experiments)       # store average success rate (power) for each N
+
 }
 
 png(file="power_plot2.png",
