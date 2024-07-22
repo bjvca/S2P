@@ -868,7 +868,7 @@ We will run a simulation analysis to determine sample size for the design
  presented in section 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "sec:Empirical-Strategy"
+reference "sec:Experimental-design"
 plural "false"
 caps "false"
 noprefix "false"
@@ -902,7 +902,19 @@ literal "false"
 
 \begin_layout Standard
 A key parameter in statistical power analysis is the choice of the minimal
- detectable effect (MDE) size.
+ detectable effect (MDE) size associated to a comparison.
+ In our case, we will power the design to detect four comparisons, as outlined
+ in Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:simple"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
  This can be done by looking at previous studies that use similar treatments.
  One such treatment is the one used in the study in Ethiopia reported in
  
@@ -939,16 +951,41 @@ literal "false"
 
  fertilizer application practices (where yield was 3,637) and there also
  a control group (without any fertilizer, obtaining 2,727 kg/ha).
- Form this, we estimate a treatment effect that ranges from 11 percent (if
- all farmers are using following farmer practices) up to 50 percent (if
- farmers were not using fertilizer before).
+ Form this, the conclude treatment effects range from 11 percent (if all
+ farmers are using following farmer practices) up to 50 percent (if farmers
+ were not using fertilizer before).
 \end_layout
 
 \begin_layout Standard
-We will use a 5 percent increase in yield from T1 and a 5 percent increase
- in yield from T2.
- We further model a 10 percent effect from the bundled innovation.
- Finally, when comparing groups T3 with T4, we expect 12.5 percent increase.
+For T1 and T2, we will consider similar effects—a 10 percent increase in
+ yield.
+ For T3, we model a 25 percent increase.
+ While this may seem like a large effect, it should be noted that this effect
+ includes the main effects of both treatments (two time 10 percent) as well
+ as an interaction effect of 
+\end_layout
+
+\begin_layout Standard
+Power calculations also require the choice of an outcome variable.
+ Normally, this outcome is assumed to be normally distributed, with a particular
+ mean and standard deviation.
+ However, when simulation is used, it is possible to draw from an actual
+ distribution of the outcome variable if data is available.
+ The outcome we consider in this study for our power calculations is maize
+ yield.
+ As such, we draw random samples from farmer level data that was collected
+ for a study on smallholder market participation in the central region of
+ Malawi 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "de2024expecting"
+literal "false"
+
+\end_inset
+
+.
+ Using this data, we find that average yield is 2,574 kilogram per hectare
+ with a standard deviation of 1,145.
 \end_layout
 
 \begin_layout Standard
@@ -969,22 +1006,6 @@ We determine sample size for C3 and T2.
 
 \begin_layout Standard
 We then take max(C1,C2,C3) and consider the fact that some can be reused.
-\end_layout
-
-\begin_layout Standard
-For the outcome variable, which we consider to be maize yield, we draw random
- samples from farmer level data that was collected from a study on smallholder
- market participation in the central region of Malawi 
-\begin_inset CommandInset citation
-LatexCommand citep
-key "de2024expecting"
-literal "false"
-
-\end_inset
-
-.
- Using this data, we find that average yield is 1,889 kilogram per hectare
- with a standard deviation of 1,191.
 \end_layout
 
 \begin_layout Standard
@@ -1029,16 +1050,19 @@ noprefix "false"
 \end_layout
 
 \begin_layout Standard
-Finally, we will also add a control group of farmers that are in different
- areas.
- This is done to assess spillover effects from our intervention.
- We use a group of 500 farmers.
+The figure shows that at about 1,800 observations, we have will detect a
+ significant difference for all treatments 80 percent of the time.
+ The allocation over the different treatment groups is as follows: T1 and
+ T2 are each allocated 351 households.
+ 468 households receive T3, of which half also receive T4.
+ Finally, 630 households are 
 \end_layout
 
 \begin_layout Standard
-Given the above, we settle for a total sample of 1,550.
- To account for attrition, we add 10 percent to each treatment group, leading
- to a total sample size of 1,705 farmers.
+The interventions are implemented at the individual level.
+ While this maximizes power, the downside is that spillovers are more likely
+ than some kind of clustered treatment assignment.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -1049,13 +1073,13 @@ status open
 
 \begin_layout Plain Layout
 \align center
-(a) 
+(a) Allocation to treatment groups
 \end_layout
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename code/power_plot1.png
+	filename code/contour_plot.png
 	scale 50
 
 \end_inset
@@ -1065,13 +1089,13 @@ status open
 
 \begin_layout Plain Layout
 \align center
-(b) 
+(b) Power curves
 \end_layout
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename code/power_plot2.png
+	filename code/power_curves.png
 	scale 50
 
 \end_inset
@@ -1083,20 +1107,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Power curves
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-
-\backslash
-protect
-\end_layout
-
-\end_inset
-
-
+Power simulations
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Power-curves"
