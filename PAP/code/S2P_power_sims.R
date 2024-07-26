@@ -30,7 +30,7 @@ power.alltreatments <-  matrix(NA, length(possible.ns),length(possible.ns2))
 
 alpha <- 0.05
 sims <- 1000
-N <- 2000
+N <- 3000
 
 #### Outer loop to vary the number of subjects ####
 for (j in 1:length(possible.ns)){
@@ -47,9 +47,9 @@ for (j in 1:length(possible.ns)){
   for (i in 1:sims){
     Y0 <-  sample(dta$yield, size=N, replace = TRUE)
     Y0[Y0<0] <- 0
-    tau_1 <-  mean(Y0, na.rm=T)*.1
-    tau_2 <-  mean(Y0, na.rm=T)*.1
-    tau_3 <-  mean(Y0, na.rm=T)*.25
+    tau_1 <-  mean(Y0, na.rm=T)*.07
+    tau_2 <-  mean(Y0, na.rm=T)*.07
+    tau_3 <-  mean(Y0, na.rm=T)*.21
     tau_4 <-  mean(Y0, na.rm=T)*.40
     
     Y1 <- Y0 + tau_1
@@ -71,7 +71,7 @@ for (j in 1:length(possible.ns)){
     
     
     
-    significant.experiments[i] <- (p.T1vsC < alpha) & (p.T2vsC < alpha) & (p.T3vsC < alpha) & (p.T3vsP4 < alpha)
+    significant.experiments[i] <- ((p.T1vsC < alpha) & (p.T2vsC < alpha)) & (p.T3vsC < alpha) & (p.T3vsP4 < alpha)
     one.significant.experiment[i] <- (p.T1vsC < alpha) | (p.T2vsC < alpha) | (p.T3vsC < alpha) | (p.T3vsP4 < alpha)
     ###now add and extra group for 
   }
@@ -89,7 +89,7 @@ contour(possible.ns2,possible.ns,t(power.alltreatments), levels = c(0.8), add = 
 
 dev.off()
 
-possible.ss <- seq(from=200, to=1900, by=10)     # The sample sizes we'll be considering
+possible.ss <- seq(from=200, to=2000, by=10)     # The sample sizes we'll be considering
 power.all <- rep(NA, length(possible.ss))  
 power.one <- rep(NA, length(possible.ss))  
 power.T1 <- rep(NA, length(possible.ss))  
@@ -101,7 +101,7 @@ sims <- 1000                                      # Number of simulations to con
 
 ### fill in optimized shares from previous 
 j <- 4
-k <- 9
+k <- 13
 
 shares_C <- possible.ns[j]
 shares_T1 <- possible.ns[k]
@@ -122,9 +122,9 @@ for (j in 1:length(possible.ss)){
   for (i in 1:sims){
     Y0 <-  sample(dta$yield, size=N, replace = TRUE)
     Y0[Y0<0] <- 0
-    tau_1 <-  mean(Y0, na.rm=T)*.1
-    tau_2 <-  mean(Y0, na.rm=T)*.1
-    tau_3 <-  mean(Y0, na.rm=T)*.25
+    tau_1 <-  mean(Y0, na.rm=T)*.07
+    tau_2 <-  mean(Y0, na.rm=T)*.07
+    tau_3 <-  mean(Y0, na.rm=T)*.21
     tau_4 <-  mean(Y0, na.rm=T)*.40
     
     
@@ -146,7 +146,7 @@ for (j in 1:length(possible.ss)){
     
     
     
-    significant.experiments[i] <- (p.T1vsC < alpha) & (p.T2vsC < alpha) & (p.T3vsC < alpha) & (p.T3vsP4 < alpha)
+    significant.experiments[i] <- ((p.T1vsC < alpha) | (p.T2vsC < alpha)) & (p.T3vsC < alpha) & (p.T3vsP4 < alpha)
     one.significant.experiment[i] <- (p.T1vsC < alpha) | (p.T2vsC < alpha) | (p.T3vsC < alpha) | (p.T3vsP4 < alpha)
     T1.sig[i] <- (p.T1vsC < alpha)
     T2.sig[i] <- (p.T2vsC < alpha)
@@ -166,11 +166,11 @@ png(file="power_curves.png",   width=600, height=350)
 
 plot(type = "l",possible.ss,  power.all, ylim=c(0,1), col="black")
 lines(possible.ss,power.T1, col="green")
-lines(possible.ss,power.T2, col="red")
+#lines(possible.ss,power.T2, col="red")
 lines(possible.ss,power.T3, col="blue")
-lines(possible.ss,power.T4, col="orange")
+lines(possible.ss,power.T4, col="red")
 abline(h=0.8)
 dev.off()
 
 ### finally fill in sample size to get the groups:
-table(complete_ra(N=1800,prob_each = c((1-shares_C)*shares_T1/2, (1-shares_C)*shares_T1/2,(1-shares_C)*(1-shares_T1)/2,(1-shares_C)*(1-shares_T1)/2, shares_C) ))
+table(complete_ra(N=2000,prob_each = c((1-shares_C)*shares_T1/2, (1-shares_C)*shares_T1/2,(1-shares_C)*(1-shares_T1)/2,(1-shares_C)*(1-shares_T1)/2, shares_C) ))

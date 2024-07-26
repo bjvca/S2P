@@ -283,8 +283,28 @@ Related literature
 \end_layout
 
 \begin_layout Standard
-Recently, various studies have been done on site specific fertilizer recommendat
-ions.
+Recently, various studies have been done on site specific recommendations.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset citation
+LatexCommand citet
+key "arouna2021one"
+literal "false"
+
+\end_inset
+
+ evaluate the effectiveness of a mobile application that provides personalized
+ advice on rice nutrient management.
+ In particular, they evaluate RiceAdvice, an Android-based application to
+ provide personalized recommendations on nutrient management (type, quantity,
+ and timing of fertilizer) in rice production.They find that the intervention
+ increases yields by 7 percent.
+ No soil tests are done.
+ They also have a treatment that combines personalized advice plus a grant
+ that provides the recommended level of fertilizer.
+ Here they estimate a treament effect of 20 percent.
 \end_layout
 
 \begin_layout Standard
@@ -841,19 +861,6 @@ better
 
 \begin_layout Section
 Statistical Power and Sample Size Determination
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-
-\backslash
-protect
-\end_layout
-
-\end_inset
-
-
 \begin_inset CommandInset label
 LatexCommand label
 name "sec:Statistical-Power-and"
@@ -876,10 +883,10 @@ noprefix "false"
 \end_inset
 
 .
- Simulation, where you basically tell your computer to run an experiment
- thousands of times and simply count how frequently our experiment comes
- up significant under a set of assumptions, is a far more flexible, and
- far more intuitive way to think about power analysis.
+ Simulation, which involves instructing a computer to conduct an experiment
+ thousands of times and tallying the frequency of significant outcomes under
+ specific assumptions, is a considerably more flexible and intuitive approach
+ to conceptualizing power analysis.
 \begin_inset Foot
 status collapsed
 
@@ -898,6 +905,29 @@ literal "false"
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+Power calculations require the choice of an outcome variable.
+ Normally, this outcome is assumed to be normally distributed, with a particular
+ mean and standard deviation.
+ However, when simulation is used, it is possible to draw from an actual
+ distribution of the outcome variable if data is available.
+ The outcome we consider in this study for our power calculations is maize
+ yield.
+ As such, we draw random samples from farmer level data that was collected
+ for a study on smallholder market participation in the central region of
+ Malawi 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "de2024expecting"
+literal "false"
+
+\end_inset
+
+.
+ Using this data, we find that average yield is 2,574 kilogram per hectare
+ with a standard deviation of 1,145.
 \end_layout
 
 \begin_layout Standard
@@ -943,73 +973,44 @@ literal "false"
  Alaje, northern Ethiopia.
  They have a design with 4 treatment arms.
  The first is based on the Quantitative Evaluation of the Fertility of Tropical
- Soils (QUEFTS) model with yields up to 4747.
+ Soils (QUEFTS) model with yields up to 4,747 kg/ha.
  The second is a blended fertilizer application (which has an average yield
- of 4045); the third treatment arm implements average farmers
+ of 4,045 kg/ha); the third treatment arm implements average farmers
 \begin_inset Quotes ers
 \end_inset
 
- fertilizer application practices (where yield was 3,637) and there also
- a control group (without any fertilizer, obtaining 2,727 kg/ha).
- Form this, the conclude treatment effects range from 11 percent (if all
+ fertilizer application practices (where yield was 3,637 kg/ha) and there
+ also a control group (without any fertilizer, obtaining 2,727 kg/ha).
+ Form this, we learn that treatment effects range from 11 percent (if all
  farmers are using following farmer practices) up to 50 percent (if farmers
  were not using fertilizer before).
 \end_layout
 
 \begin_layout Standard
-For T1 and T2, we will consider similar effects—a 10 percent increase in
+For T1 and T2, we will consider similar effects—a 7 percent increase in
  yield.
- For T3, we model a 25 percent increase.
+ For T3, we model a 21 percent increase.
  While this may seem like a large effect, it should be noted that this effect
- includes the main effects of both treatments (two time 10 percent) as well
- as an interaction effect of 
+ includes the main effects of both treatments (two times 10 percentage points)
+ as well as an interaction effect of 5 percentage points.
+ Finally, for T4, we model a 40 percent treatment effect over the mean.
+ However, as this is implemented as an additional treatment to T3, we will
+ be interested in the difference between T3 and T4, which is a 15 percentage
+ point difference.
 \end_layout
 
 \begin_layout Standard
-Power calculations also require the choice of an outcome variable.
- Normally, this outcome is assumed to be normally distributed, with a particular
- mean and standard deviation.
- However, when simulation is used, it is possible to draw from an actual
- distribution of the outcome variable if data is available.
- The outcome we consider in this study for our power calculations is maize
- yield.
- As such, we draw random samples from farmer level data that was collected
- for a study on smallholder market participation in the central region of
- Malawi 
-\begin_inset CommandInset citation
-LatexCommand citep
-key "de2024expecting"
-literal "false"
-
-\end_inset
-
-.
- Using this data, we find that average yield is 2,574 kilogram per hectare
- with a standard deviation of 1,145.
+We optimize power subject to the following constraints.
+ As T1 and T2 are essentially interchangeable, we constrain the sample size
+ in T1 and T2 to be the same.
+ Furthermore, we place the same number of observations in the (pure) T3
+ group as in the T4 group.
+ In other words, of all farmers that get the complete S2P (T3) treatment,
+ exactly half will also get the voucher (T4).
 \end_layout
 
 \begin_layout Standard
-For power simulations, we proceed in the following way.
-\end_layout
-
-\begin_layout Standard
-We determine sample size for C1 and T1.
-\end_layout
-
-\begin_layout Standard
-We determine sample size for C2 and T2.
-\end_layout
-
-\begin_layout Standard
-We determine sample size for C3 and T2.
-\end_layout
-
-\begin_layout Standard
-We then take max(C1,C2,C3) and consider the fact that some can be reused.
-\end_layout
-
-\begin_layout Standard
-Resulting power curves are plotted in Figure 
+Panel (a) of Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Power-curves"
@@ -1019,19 +1020,9 @@ noprefix "false"
 
 \end_inset
 
-.
- The orange curve, representing the comparison of the T1+T2 package to the
- pure control, has highest power.
- With a total sample size of just over 300 (meaning less than 100 farmers
- in each of the four groups), we would get 80 percent power for that test.
- The red curve compares T2 to the pure control.
- Here we get 80 percent power with a total sample of about 900 farmers or
- 225 in each treatment group.
- The black line is for the T1-C comparison, which has higher power (due
- to the larger assumed MDE).
- Finally, the blue line depicts power for the interaction effect.
- Power for the interaction effects remains minimal over the entire range
- of sample size we consider reasonable.
+ shows contour plots for a grid search over the share to be allocated to
+ treatment and control (y-axis) and between T1 and T2 on the one hand and
+ T3 and T4 on the other hand.
 \end_layout
 
 \begin_layout Standard
@@ -1045,17 +1036,26 @@ noprefix "false"
 
 \end_inset
 
- indicates that we would need about 500 to 600 farmers for the comparison
- between T1+T2 and T3, or 300 in each group.
+ shows power curves (statistical power reached with increasing sample size)
+ for the different comparisons.
+ Not surprisingly, the difference between the control group and T3 is easiest
+ to identify given the large assumed treatment effect.
+ We also have sufficient power to identify the additional effect of T4.
+ This is different when we look at the power to detect a 7 percentage point
+ increase from T1 (or T2 as we treat then symmetrically).
+ The black line looks at combined treatments and shows the power for detecting
+ a significant impact on at least one of T1 and T2 (in addition to identifying
+ T3 and T4)
 \end_layout
 
 \begin_layout Standard
-The figure shows that at about 1,800 observations, we have will detect a
- significant difference for all treatments 80 percent of the time.
+At about 1,850 observations, we have will detect a significant difference
+ for all treatments 80 percent of the time.
  The allocation over the different treatment groups is as follows: T1 and
- T2 are each allocated 351 households.
- 468 households receive T3, of which half also receive T4.
- Finally, 630 households are 
+ T2 are each allocated 481 households.
+ 240 households receive T3, of which half (120) also receive T4.
+ Finally, 648 households are in the control group.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -1130,7 +1130,7 @@ name "fig:Power-curves"
 \begin_layout Section
 Outcomes of interest
 \begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
