@@ -283,53 +283,10 @@ Related literature
 \end_layout
 
 \begin_layout Standard
-Recently, various studies have been done on site specific recommendations.
- 
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset citation
-LatexCommand citet
-key "arouna2021one"
-literal "false"
-
-\end_inset
-
- evaluate the effectiveness of a mobile application that provides personalized
- advice on rice nutrient management.
- In particular, they evaluate RiceAdvice, an Android-based application to
- provide personalized recommendations on nutrient management (type, quantity,
- and timing of fertilizer) in rice production.They find that the intervention
- increases yields by 7 percent.
- No soil tests are done.
- They also have a treatment that combines personalized advice plus a grant
- that provides the recommended level of fertilizer.
- Here they estimate a treament effect of 20 percent.
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset citation
-LatexCommand citet
-key "ayalew2022site"
-literal "false"
-
-\end_inset
-
- evaluate the impact of targeted site-specific fertilizer blend recommendations
- to Ethiopian smallholder farmers on fertilizer usage, farm productivity,
- profits from maize production, and household welfare using a two-level
- cluster randomized control trial.
- The problem with this study is that it provides not only site-specific
- recommendations but also information on the timing of application and expected
- yields.
- Therefore, the treatment effect cannot be attributed solely to site-specific
+Recently, various studies have been done on site specific nutrient management
  recommendations.
- A better control group, in terms of testing the effect of site-specific
- recommendations, would have received the same intervention as the treated
- group, with the only difference being the absence of site-specific (regional)
- recommendations.
- We feel that the treatment effect is contaminated by an effect emanating
- from making fertilizer more salient.
+ Most of these studies focus on Asia, which has had more success in site
+ specific recommendations.
 \end_layout
 
 \begin_layout Standard
@@ -368,28 +325,6 @@ tilizer) applied.
 \begin_layout Standard
 \begin_inset CommandInset citation
 LatexCommand citet
-key "berazneva2023paying"
-literal "false"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset citation
-LatexCommand citet
-key "beg2020improving"
-literal "false"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset citation
-LatexCommand citet
 key "gars2015confidence"
 literal "false"
 
@@ -403,12 +338,58 @@ on in such a way that improves fertilizer use efficiency.
 \end_layout
 
 \begin_layout Standard
-Additional treatments
+In Africa, there are only a handful of studies.
 \end_layout
 
 \begin_layout Standard
-Credit and/or insuracence.
- Note that 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "arouna2021one"
+literal "false"
+
+\end_inset
+
+ evaluate the effectiveness of a mobile application that provides personalized
+ advice on rice nutrient management.
+ In particular, they evaluate RiceAdvice, an Android-based application to
+ provide personalized recommendations on nutrient management (type, quantity,
+ and timing of fertilizer) in rice production.They find that the intervention
+ increases yields by 7 percent.
+ No soil tests are done.
+ They also have a treatment that combines personalized advice plus a grant
+ that provides the recommended level of fertilizer.
+ Here they estimate a treament effect of 20 percent.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset citation
+LatexCommand citet
+key "oyinbo2022digital"
+literal "false"
+
+\end_inset
+
+ study maize in Nigeria.
+ See also 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "maertens2023sustainable"
+literal "false"
+
+\end_inset
+
+.
+ impact of SSNM extension advice through the Nutrient Expert tool.
+ They have two treatment arms and one business as usual blanket recommendations
+ control: T1 farmers who are exposed to SSNM information interventions on
+ nutrient application rates and fertilizer management, and T2 farmers who
+ are exposed to the same SSNM information and additional information on
+ the variability of expected returns to fertilizer investment under different
+ price scenarios.
+ They find modest effects on yields and profits
+\end_layout
+
+\begin_layout Standard
 \begin_inset CommandInset citation
 LatexCommand citet
 key "ayalew2022site"
@@ -416,8 +397,22 @@ literal "false"
 
 \end_inset
 
- provide free insurance as a complementary treatment and find no effect
- of this.
+ evaluate the impact of targeted site-specific fertilizer blend recommendations
+ to Ethiopian smallholder farmers on fertilizer usage, farm productivity,
+ profits from maize production, and household welfare using a two-level
+ cluster randomized control trial.
+ They find significant reduction of the application error.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset citation
+LatexCommand citet
+key "berazneva2023paying"
+literal "false"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -984,11 +979,33 @@ literal "false"
  Form this, we learn that treatment effects range from 11 percent (if all
  farmers are using following farmer practices) up to 50 percent (if farmers
  were not using fertilizer before).
+ 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "arouna2021one"
+literal "false"
+
+\end_inset
+
+ find a yield effect of about 7 percent for maize and a slightly higher
+ increase for profits.
+ 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "chivenge2022progress"
+literal "false"
+
+\end_inset
+
+ report on more than 60 on site trials in SSA.
+ Yield gains of rice and maize with SSNM in SSA were on average 24% and
+ 69% when compared to the farmer practice, respectively, or 11% and 4% when
+ compared to local blanket fertilizer recommendations.
 \end_layout
 
 \begin_layout Standard
-For T1 and T2, we will consider similar effects—a 7 percent increase in
- yield.
+Based on this, for T1 and T2, we will consider similar effects—a 7 percent
+ increase in yield.
  For T3, we model a 21 percent increase.
  While this may seem like a large effect, it should be noted that this effect
  includes the main effects of both treatments (two times 10 percentage points)
@@ -1361,13 +1378,12 @@ literal "false"
 For the treatment households, the fertilizer use gap is calculated by using
  the absolute difference between the actual macronutrient in kg/ha that
  farmers applied for maize production and the site-specific recommended
- values, whereas for the control house holds we used the absolute deviation
+ values, whereas for the control households we used the absolute deviation
  of the actual macronutrients used by farmers and the regional recommendation
  values.
 \begin_inset Quotes erd
 \end_inset
 
-.
  This could also be modeled as a quadratic loss function.
  In 
 \begin_inset CommandInset citation

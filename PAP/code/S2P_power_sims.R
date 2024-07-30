@@ -173,4 +173,4 @@ abline(h=0.8)
 dev.off()
 
 ### finally fill in sample size to get the groups:
-table(complete_ra(N=2000,prob_each = c((1-shares_C)*shares_T1/2, (1-shares_C)*shares_T1/2,(1-shares_C)*(1-shares_T1)/2,(1-shares_C)*(1-shares_T1)/2, shares_C) ))
+table(complete_ra(N=1850,prob_each = c((1-shares_C)*shares_T1/2, (1-shares_C)*shares_T1/2,(1-shares_C)*(1-shares_T1)/2,(1-shares_C)*(1-shares_T1)/2, shares_C) ))
