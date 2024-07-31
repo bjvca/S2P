@@ -569,29 +569,30 @@ s texture, pH level, cation exchange capacity, percentage organic matter,
  The farmer is then informed where and how to obtain these nutrients.
  The philosophy behind this treatment is really to provide objective information
  about the soil on the plot that was chosen.
- The enumerator is explicitly told to not comment on or make recommendations
- with respect to farmer management practices.
  
 \end_layout
 
 \begin_layout Itemize
-Treatment 2 (T2): using a simple application, data is collected on a set
- of key soil nutrient management practices that the farmer used in the past,
- that the farmer generally uses, and/or that the farmer has the intention
- to use in the next season (fertilizer application rates, timing of application,
- method of application, visual cues that may suggest issues with soil health,...).
+Treatment 2 (T2): using a simple application (fertilizer optimizer), data
+ is collected on inorganic fertilizer application that the farmer is planning
+ to use in the upcoming season.
+ It asks at what prices the farmer can obtain these fertilizers, and what
+ the farmer plans to spend in total on fertilizers.
+ It also allows one to input soil nutrient management practices that the
+ farmer will use and has used in the past.
  This information is then used to come up with tailor-made suggestions on
- how the farmer can improve.
- The philosophy behind this treatment is to focus only on practices and
- readily observable features of the crop and plot.
- The application will be developed on the basis of a workshop with experts.
- During this workshop, problem tree analysis will be used to identify current
- practice, and potential improvements for each problem will be selected.
- Experts will then rank different solutions based 1) on how common/known
- each solution is and 2) expected effect size on key outcomes.
- Based on these insights, decision flowcharts will be developed and implemented
- in ODK.
- 
+ how the farmer can optimize fertilizer use.
+ The philosophy behind this treatment is on the economics behind decision
+ making related to inorganic fertilizer use.
+ More information on the fertilizer optimizer app can be found in 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "wortmann2017fertilizer"
+literal "false"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
