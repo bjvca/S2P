@@ -176,42 +176,63 @@ Space to Place
  soil fertility management recommendations, guided by digitized soil maps
  (Space) combined with farm(er)-level characteristics (Place), for effective
  agronomic and fertilizer recommendations that increase fertilizer use efficienc
-y and maintain or surpass current productivity levels, and reduce fertilizer
+y to maintain or surpass current productivity levels, and reduce fertilizer
  wastage.
 \end_layout
 
 \begin_layout Standard
 IFPRI was tasked in 2023 to do a rigorous impact evaluation of the S2P approach.
- It is now becoming apparent that the S2P prototype will not be ready to
- be evaluated during the 2024/25 growing season.
- A full and rigorous evaluation of the S2P approach should be possible for
- the 2025/26 growing seasons and beyond.
-\end_layout
-
-\begin_layout Standard
-We are proposing to use the 2024/25 growing season to generate learning
- to inform S2P
+ However, at the start of the project if quickly became clear that the S2P
+ application was not going to be ready in the first operational year of
+ the evaluation (during the 2024/25 growing season).
+ A full and rigorous evaluation of the S2P approach was therefore deferred
+ to the 2025/26 growing seasons and beyond.
+ As such, we decided that  the 2024/25 growing season would be used to generate
+ learning to inform S2P
 \begin_inset Quotes ers
 \end_inset
 
 s theory of change.
- A unique opportunity presents itself through S2P
-\begin_inset Quotes ers
-\end_inset
-
-s partnership with FSU Meridian.
- This private-sector player offers farmers spectral soil tests and site-
- and crop-specific recommendations.
- The model underlying the test was calibrated on wet-chemistry analyses
- conducted on 22,000 samples from across Malawi and has been rolled out
- across X years, now reaching Y farmers.
- The tool is part of a private-sector business model in which FSU Meridian
- forms a recommendation for a package of nutrients, which is then supplied
- through their network of 400 agrodealers.
+ 
 \end_layout
 
 \begin_layout Section
 Motivation
+\end_layout
+
+\begin_layout Standard
+Governments in developing countries are trying to increase adoption of Green
+ Revolution technologies, seed of improved varieties and mineral fertilizer
+ in particular, through agricultural extension advice.
+ In general, these extension systems provide blanket recommendations.
+ One important reason why farmers fail to adopt a seemingly profitable yield
+ improving technologies is heterogeneity in the farmer's ability and context.
+ For instance, high transacting costs may make a technology unprofitable
+ for a farmer even though on average the technology would be profitable.
+ A similar argument can be made for the soil that the farmer works—another
+ key production factor in agricultural production 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "arouna2021one"
+literal "false"
+
+\end_inset
+
+.
+ Also here, differences in soil composition and nutrient content may mean
+ that a particular fertilizer recommendation is not suitable.
+ Site Specific Fertilizer Recommendation Decsion support tools are designed
+ to reduce inefficiencies coming from grossly simplified recommendations,
+ thereby raising the productivity and profitability from adopting improved
+ inputs 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "arouna2021one"
+literal "false"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -225,8 +246,11 @@ literal "false"
 \end_inset
 
 .
- This could be due to the quality of the information they provide, and it
- has indeed been argued that, often, 
+ One the one hand, there is the issue of spatial resolution, or how site
+ specific these tools really are.
+ Many of the tools rely on models that predict soil composition in large
+ areas.
+ As such, it has been argued that, often, 
 \begin_inset Quotes eld
 \end_inset
 
@@ -263,18 +287,20 @@ literal "false"
 \end_inset
 
 .
- Indeed, one of the only rigorous impact evaluations that finds a positive
- effect of a decision support tool also has an important agronomic information
- component 
-\begin_inset CommandInset citation
-LatexCommand citep
-key "ayalew2022site,beg2024information,gars2015confidence"
-literal "false"
+ Indeed, predictions of these models do not consider whether farmers rotated
+ and used a leguminous crop in the previous season.
+ In addition, 
+\end_layout
 
-\end_inset
+\begin_layout Standard
+The Space2Place approach addresses some of these concerns by combining SPACE
+ (top-down information) and PLACE (on-site information) in a singe decision
+ support tool to develop practical, profitable, scale-appropriate fertilizer
+ and land management recommendations.
+\end_layout
 
-.
- In light of this, we feel it is important to study the relative importance
+\begin_layout Standard
+In light of this, we feel it is important to study the relative importance
  of the Space and Place components in a clean field experiment.
 \end_layout
 
@@ -548,7 +574,8 @@ Treatment Protocols
 \end_layout
 
 \begin_layout Itemize
-Treatment 1 (T1): a farmer is offered a free soil test on their main plot.
+Treatment 1 (T1): In a first treatment, a maize farmer is offered a free
+ soil test on their main plot.
  If they accept, a few days later the farmer receives a soil report (see
  example in Appendix 1), with some key characteristics of the soil.
  The report indicates the soil
@@ -572,6 +599,20 @@ s texture, pH level, cation exchange capacity, percentage organic matter,
  
 \end_layout
 
+\begin_deeper
+\begin_layout Standard
+For this treatment, we cooperate with Meridian's Farmer Support Unit (FSU).
+ This private-sector player offers farmers spectral soil tests and site-
+ and crop-specific recommendations.
+ The model underlying the test was calibrated on wet-chemistry analyses
+ conducted on 22,000 samples from across Malawi and has been rolled out
+ across X years, now reaching Y farmers.
+ The tool is part of a private-sector business model in which FSU Meridian
+ forms a recommendation for a package of nutrients, which is then supplied
+ through their network of 400 agrodealers.
+\end_layout
+
+\end_deeper
 \begin_layout Itemize
 Treatment 2 (T2): using a simple application (fertilizer optimizer), data
  is collected on inorganic fertilizer application that the farmer is planning
