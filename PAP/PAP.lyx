@@ -331,7 +331,20 @@ literal "false"
  One potential reason why they find little effect (they only find that farmers
  stop using a particular fertilizer type because farmers overuse according
  to both recommendation types) is that the interventions are too complex.
- In a different experiment, 
+ 
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Outcome
+\series default
+: Amount of fertilizer used by type, application error (gap from recommended
+ rate, Yield, Farm revenue, Farm expenditure 
+\end_layout
+
+\begin_layout Standard
+In a different experiment, 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "doi:10.1086/711174"
@@ -346,6 +359,15 @@ b instructions to guide the timing and quantity of urea (nitrogen) application.
 tilizer) applied.
  Taken together, this led them to conclude that advice should be bundled
  with training and extension services to ensure farmers benefit as intended.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Outcome
+\series default
+: Fertilizer (Urea) application patterns (frequency and timing), total fertilize
+r (urea) use, and yields.
 \end_layout
 
 \begin_layout Standard
@@ -368,6 +390,15 @@ In Africa, there are only a handful of studies.
 \end_layout
 
 \begin_layout Standard
+
+\series bold
+Outcome
+\series default
+: Willingness to pay for soil testing, and fertilizer use (application rates).
+ 
+\end_layout
+
+\begin_layout Standard
 \begin_inset CommandInset citation
 LatexCommand citet
 key "arouna2021one"
@@ -384,7 +415,19 @@ literal "false"
  No soil tests are done.
  They also have a treatment that combines personalized advice plus a grant
  that provides the recommended level of fertilizer.
- Here they estimate a treament effect of 20 percent.
+ Here they estimate a treatment effect of 20 percent.
+ They found a 10% increase from the intervention on profit which increased
+ to 23% when the intervention is combined with the grant.
+ 
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Outcome
+\series default
+: Fertilizer adoption, Amount of fertilizer used, Yield, profit.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -416,6 +459,15 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
+
+\series bold
+Outcome
+\series default
+: Fertilizer application rates, fertilizer management practices, maize yields,
+ and revenues
+\end_layout
+
+\begin_layout Standard
 \begin_inset CommandInset citation
 LatexCommand citet
 key "ayalew2022site"
@@ -428,6 +480,15 @@ literal "false"
  profits from maize production, and household welfare using a two-level
  cluster randomized control trial.
  They find significant reduction of the application error.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Outcome
+\series default
+: Fertilizer adoption rates, Yield, Profit.
+ 
 \end_layout
 
 \begin_layout Standard
