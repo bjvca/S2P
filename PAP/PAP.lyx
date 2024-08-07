@@ -208,7 +208,16 @@ Governments in developing countries are trying to increase adoption of Green
  One important reason why farmers fail to adopt a seemingly profitable yield
  improving technologies is heterogeneity in the farmer's ability and context.
  For instance, high transacting costs may make a technology unprofitable
- for a farmer even though on average the technology would be profitable.
+ for a farmer even though on average the technology would be profitable
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "suri2011selection"
+literal "false"
+
+\end_inset
+
+.
  A similar argument can be made for the soil that the farmer works—another
  key production factor in agricultural production 
 \begin_inset CommandInset citation
@@ -220,11 +229,26 @@ literal "false"
 
 .
  Also here, differences in soil composition and nutrient content may mean
- that a particular fertilizer recommendation is not suitable.
- Site Specific Fertilizer Recommendation Decsion support tools are designed
- to reduce inefficiencies coming from grossly simplified recommendations,
- thereby raising the productivity and profitability from adopting improved
- inputs 
+ that blanket fertilizer recommendations are sub-optimal.
+ 
+\end_layout
+
+\begin_layout Standard
+Information and Communication Technologies (ICTs) may provide an opportunity
+ to provide advisory services that are more tailored to the specific needs
+ of farmers 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "spielman2021information"
+literal "false"
+
+\end_inset
+
+.
+ Numerous Site Specific Fertilizer Recommendation Decision support tools
+ have been developed with the promise to reduce inefficiencies coming from
+ grossly simplified recommendations, thereby raising the productivity and
+ profitability from adopting improved inputs 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "arouna2021one"
@@ -236,8 +260,9 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-Decision support tools for tailored nutrient recommendations have generally
- fallen short of expectations 
+However, decision support tools for tailored nutrient recommendations have
+ generally fallen short of expectations, and this is illustrated by the
+ numerous apps and tools that are out there but fail to scale 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "sida2023failure"
@@ -246,8 +271,13 @@ literal "false"
 \end_inset
 
 .
- One the one hand, there is the issue of spatial resolution, or how site
- specific these tools really are.
+ Some of the reasons why such tools do not have more impact may be related
+ to the following open questions:
+\end_layout
+
+\begin_layout Itemize
+the issue of spatial resolution, or how site specific these tools really
+ are.
  Many of the tools rely on models that predict soil composition in large
  areas.
  As such, it has been argued that, often, 
@@ -269,16 +299,12 @@ literal "false"
 \end_inset
 
 .
- Another reason why such tools have not scaled may be due to the fact that
- they 
-\begin_inset Quotes eld
-\end_inset
-
-address in-field heterogeneity, but not socioeconomic heterogeneity of users
-\begin_inset Quotes erd
-\end_inset
-
  
+\end_layout
+
+\begin_layout Itemize
+the tools often focus too much on in-field heterogeneity, but not socioeconomic
+ heterogeneity of users 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "sida2023failure"
@@ -287,9 +313,30 @@ literal "false"
 \end_inset
 
 .
- Indeed, predictions of these models do not consider whether farmers rotated
- and used a leguminous crop in the previous season.
- In addition, 
+ This is partly due to the fact that these tools are developed by agronomists
+ who maximize yields.
+ However, farmers typically base decisions on cost-benefit considerations.
+\end_layout
+
+\begin_layout Itemize
+related, the tools and apps we reviewed were mostly focusing on inorganic
+ fertilizers.
+ However, experts in the field were mostly talking about soil health.
+ They argue that gains from using or re-optimizing inorganic fertilizer
+ would be much smaller than what is typically found in on-station trials
+ if we consider plots that suffer from years of nutrient mining and soil
+ erosion.
+\end_layout
+
+\begin_layout Itemize
+decision support tools often take a host of pre-conditions for granted,
+ the most critical probably being the fact that the recommended blend of
+ soil macro- and micro nutrients is available to the farmer at reasonable
+ cost.
+ Indeed, as we will see below, most RCTs that study the effectiveness of
+ DSTs have at least one treatment arm that investigates the importance of
+ a particular pre-condition (such as access to insurance, finance or information
+)
 \end_layout
 
 \begin_layout Standard
@@ -311,8 +358,7 @@ Related literature
 \begin_layout Standard
 Recently, various studies have been done on site specific nutrient management
  recommendations.
- Most of these studies focus on Asia, which has had more success in site
- specific recommendations.
+ Below, we review some of the most relevant studies.
 \end_layout
 
 \begin_layout Standard
@@ -323,24 +369,32 @@ literal "false"
 
 \end_inset
 
- do not find convincing effects from fertilizer quantity recommendations
- in Bangladesh.
- They compare two types of variety-specific fertilizer recommendations –
- government provided, community-level recommendations and plot-specific
- recommendations based on individual soil tests.
- One potential reason why they find little effect (they only find that farmers
- stop using a particular fertilizer type because farmers overuse according
- to both recommendation types) is that the interventions are too complex.
+ is the only few study that has a treatment arm with a soil test (which
+ is similar to one of our tretament arms, see below).
+ In particular, they compare two types of variety-specific fertilizer recommenda
+tions – government provided, community-level recommendations and plot-specific
+ recommendations based on individual soil tests among rice farmers in Bangladesh.
+ They find limited effects, except perhaps for a reduction in application
+ error (difference between recommended quantity of a particular nutrient
+ and quantity used).
+ That is, some farmers were using more than the recommended TSP and as a
+ result of the interention cut back.
+ Some even appear to over-react and stop using TSP altoghether, leading
+ to lower yield.
+ They also find indications that farmers adapt seed use to match baseline
+ fertilizer use.
  
-\end_layout
+\begin_inset CommandInset citation
+LatexCommand citet
+key "gars2015confidence"
+literal "false"
 
-\begin_layout Standard
+\end_inset
 
-\series bold
-Outcome
-\series default
-: Amount of fertilizer used by type, application error (gap from recommended
- rate, Yield, Farm revenue, Farm expenditure 
+ show that plot-level soil testing and tailored input recommendations changed
+ farmers’ fertilizer usage and increased the adoption of recommended practices,
+ leading to improved yields.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -362,43 +416,6 @@ tilizer) applied.
 \end_layout
 
 \begin_layout Standard
-
-\series bold
-Outcome
-\series default
-: Fertilizer (Urea) application patterns (frequency and timing), total fertilize
-r (urea) use, and yields.
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset citation
-LatexCommand citet
-key "gars2015confidence"
-literal "false"
-
-\end_inset
-
- do not find compelling evidence that the information treatment led farmers
- to substantially change their overall fertilizer application nor their
- willingness to pay for recommended micronutrients, though there is some
- evidence that farmers may have altered the timing of their fertilizer applicati
-on in such a way that improves fertilizer use efficiency.
-\end_layout
-
-\begin_layout Standard
-In Africa, there are only a handful of studies.
-\end_layout
-
-\begin_layout Standard
-
-\series bold
-Outcome
-\series default
-: Willingness to pay for soil testing, and fertilizer use (application rates).
- 
-\end_layout
-
-\begin_layout Standard
 \begin_inset CommandInset citation
 LatexCommand citet
 key "arouna2021one"
@@ -407,64 +424,20 @@ literal "false"
 \end_inset
 
  evaluate the effectiveness of a mobile application that provides personalized
- advice on rice nutrient management.
+ advice on rice nutrient management in Nigeria.
  In particular, they evaluate RiceAdvice, an Android-based application to
  provide personalized recommendations on nutrient management (type, quantity,
  and timing of fertilizer) in rice production.They find that the intervention
  increases yields by 7 percent.
  No soil tests are done.
- They also have a treatment that combines personalized advice plus a grant
+ They also have a treatment that combines personalized advice with a grant
  that provides the recommended level of fertilizer.
  Here they estimate a treatment effect of 20 percent.
  They found a 10% increase from the intervention on profit which increased
  to 23% when the intervention is combined with the grant.
- 
-\end_layout
-
-\begin_layout Standard
-
-\series bold
-Outcome
-\series default
-: Fertilizer adoption, Amount of fertilizer used, Yield, profit.
- 
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset citation
-LatexCommand citet
-key "oyinbo2022digital"
-literal "false"
-
-\end_inset
-
- study maize in Nigeria.
- See also 
-\begin_inset CommandInset citation
-LatexCommand citet
-key "maertens2023sustainable"
-literal "false"
-
-\end_inset
-
-.
- impact of SSNM extension advice through the Nutrient Expert tool.
- They have two treatment arms and one business as usual blanket recommendations
- control: T1 farmers who are exposed to SSNM information interventions on
- nutrient application rates and fertilizer management, and T2 farmers who
- are exposed to the same SSNM information and additional information on
- the variability of expected returns to fertilizer investment under different
- price scenarios.
- They find modest effects on yields and profits
-\end_layout
-
-\begin_layout Standard
-
-\series bold
-Outcome
-\series default
-: Fertilizer application rates, fertilizer management practices, maize yields,
- and revenues
+ The mechanism behind the increase in yield and profitability seems to be
+ a reallocation in the fertilizer mix, with farmers using less NPK and more
+ Urea.
 \end_layout
 
 \begin_layout Standard
@@ -479,31 +452,53 @@ literal "false"
  to Ethiopian smallholder farmers on fertilizer usage, farm productivity,
  profits from maize production, and household welfare using a two-level
  cluster randomized control trial.
- They find significant reduction of the application error.
-\end_layout
-
-\begin_layout Standard
-
-\series bold
-Outcome
-\series default
-: Fertilizer adoption rates, Yield, Profit.
- 
+ They also have a treatment arm that adds insurance to the recommendation.
+ They find significant reduction of the application error, which in turn
+ affects yields.
+ In particular, they report a 13 percent increase in yield (437 on baseline
+ yield of 3250 kg/ha) and a very similar increase in farmer profit.
 \end_layout
 
 \begin_layout Standard
 \begin_inset CommandInset citation
 LatexCommand citet
-key "berazneva2023paying"
+key "oyinbo2022digital"
 literal "false"
 
 \end_inset
 
+ study maize in Nigeria.
+ They study the impact of Site specific Soil Nutrient Management extension
+ advice through the Nutrient Expert tool.
+ They have two treatment arms and one business-as-usual blanket recommendations
+ control.
+ T1 farmers who are exposed to SSNM information interventions on nutrient
+ application rates and fertilizer management, and T2 farmers who are exposed
+ to the same SSNM information and additional information on the variability
+ of expected returns to fertilizer investment under different price scenarios.
+ They find modest effects on yields and profits.
+ See also 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "maertens2023sustainable"
+literal "false"
 
+\end_inset
+
+.
+ 
 \end_layout
 
 \begin_layout Section
 Research Questions
+\end_layout
+
+\begin_layout Standard
+Our research aims to look at a prototype S2P intervention, as well as assess
+ the relative importance of two of the key components.
+ It will also investigate the role of resources constraints as a potential
+ enabling factor.
+ In particular, we look at the following research questions:
 \end_layout
 
 \begin_layout Enumerate
@@ -519,34 +514,15 @@ Space
 \end_inset
 
  component of S2P.
- 
+ It tests if providing objectively measured scientific information provided
+ in a fairly top-down fashion suffices to instigate behavior change.
+ The objective function in this research question is optimizing yield.
 \end_layout
 
 \begin_layout Enumerate
-Does the provision farm-specific and farmer-tailored agronomic information
- with respect to soil nutrient management-
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-{}
-\end_layout
-
-\end_inset
-
--and particularly recommendations on how to improve on current practice-
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-{}
-\end_layout
-
-\end_inset
-
--change outcomes of interest.
+Does providing advice based on farmer characteristics (farmer practices,
+ budget constraints,...) and the environment in which farmer operates (availability
+ of fertilizer, prices,...) changes outcomes of interest.
  This research question speaks to the 
 \begin_inset Quotes eld
 \end_inset
@@ -556,7 +532,7 @@ Place
 \end_inset
 
  component of S2P.
- 
+ The objective function in this research question is profit.
 \end_layout
 
 \begin_layout Enumerate
@@ -1280,15 +1256,54 @@ Our outcomes of interest are agricultural practices (with a particular focus
 \end_layout
 
 \begin_layout Itemize
-number of crops grown by the farmers 
+use of inorganic fertilizer on the main plot (4 Rs: source, place, timing
+ and rate) 
 \end_layout
 
 \begin_layout Itemize
-use of inorganic fertilizer on any field 
+use of organic fertilizer on main plot (quantity)
 \end_layout
 
 \begin_layout Itemize
-use of inorganic fertilizer on the main plot 
+yield on main plot (gps and subjectively measured plot area, estimated yield
+ in bags and in kg)
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Outcome
+\series default
+: Amount of fertilizer used by type, application error (gap from recommended
+ rate, Yield, Farm revenue, Farm expenditure.
+ We need to make sure that we also ask all questions needed to generate
+ a recommendation via the fertilizer optimizer app.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Outcome
+\series default
+: Fertilizer adoption, Amount of fertilizer used, Yield, profit.
+ 
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Outcome
+\series default
+: Fertilizer adoption rates, Yield, Profit.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Outcome
+\series default
+: Fertilizer application rates, fertilizer management practices, maize yields,
+ and revenues
 \end_layout
 
 \begin_layout Standard
