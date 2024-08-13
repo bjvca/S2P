@@ -141,8 +141,7 @@ out@cgiar.org
 \end_layout
 
 \begin_layout Title
-A Prequel to the Space to Place Impact Evaluation - Assessing the Relative
- Importance of Space and Place Components 
+Assessing the Relative Importance of Space and Place Components 
 \end_layout
 
 \begin_layout Standard
@@ -187,7 +186,7 @@ IFPRI was tasked in 2023 to do a rigorous impact evaluation of the S2P approach.
  the evaluation (during the 2024/25 growing season).
  A full and rigorous evaluation of the S2P approach was therefore deferred
  to the 2025/26 growing seasons and beyond.
- As such, we decided that  the 2024/25 growing season would be used to generate
+ As such, we decided that the 2024/25 growing season could be used to generate
  learning to inform S2P
 \begin_inset Quotes ers
 \end_inset
@@ -205,7 +204,7 @@ Governments in developing countries are trying to increase adoption of Green
  Revolution technologies, seed of improved varieties and mineral fertilizer
  in particular, through agricultural extension advice.
  In general, these extension systems provide blanket recommendations.
- One important reason why farmers fail to adopt a seemingly profitable yield
+ One important reason why farmers fail to adopt seemingly profitable yield
  improving technologies is heterogeneity in the farmer's ability and context.
  For instance, high transacting costs may make a technology unprofitable
  for a farmer even though on average the technology would be profitable
@@ -218,8 +217,8 @@ literal "false"
 \end_inset
 
 .
- A similar argument can be made for the soil that the farmer works—another
- key production factor in agricultural production 
+ A similar argument can be made for soil—another key production factor in
+ agricultural production 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "arouna2021one"
@@ -234,8 +233,8 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-Information and Communication Technologies (ICTs) may provide an opportunity
- to provide advisory services that are more tailored to the specific needs
+Information and Communication Technologies (ICTs) provide an opportunity
+ to deliver advisory services that are more tailored to the specific needs
  of farmers 
 \begin_inset CommandInset citation
 LatexCommand citep
@@ -245,10 +244,10 @@ literal "false"
 \end_inset
 
 .
- Numerous Site Specific Fertilizer Recommendation Decision support tools
- have been developed with the promise to reduce inefficiencies coming from
- grossly simplified recommendations, thereby raising the productivity and
- profitability from adopting improved inputs 
+ Numerous Site Specific Nutrient Management (SSNM) Decision Support Tools
+ (DST) have been developed with the promise to reduce inefficiencies coming
+ from grossly simplified recommendations, thereby raising the productivity
+ and profitability from adopting improved inputs 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "arouna2021one"
@@ -261,8 +260,9 @@ literal "false"
 
 \begin_layout Standard
 However, decision support tools for tailored nutrient recommendations have
- generally fallen short of expectations, and this is illustrated by the
- numerous apps and tools that are out there but fail to scale 
+ generally fallen short of expectations.
+ This is illustrated by the numerous apps and tools that are out there but
+ fail to scale 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "sida2023failure"
@@ -278,8 +278,8 @@ literal "false"
 \begin_layout Itemize
 the issue of spatial resolution, or how site specific these tools really
  are.
- Many of the tools rely on models that predict soil composition in large
- areas.
+ Many of the tools rely on models that predict soil composition and nutrients
+ in fairly large areas.
  As such, it has been argued that, often, 
 \begin_inset Quotes eld
 \end_inset
@@ -316,6 +316,11 @@ literal "false"
  This is partly due to the fact that these tools are developed by agronomists
  who maximize yields.
  However, farmers typically base decisions on cost-benefit considerations.
+ In these considerations, a variety of other factors in addition to soil
+ characteristics enter the equation.
+ For instance, profitability is influence by availability and prices of
+ the recommended fertilizers and the price at which farmers can sell the
+ crops derived from the fields on which they invested.
 \end_layout
 
 \begin_layout Itemize
@@ -335,8 +340,8 @@ decision support tools often take a host of pre-conditions for granted,
  cost.
  Indeed, as we will see below, most RCTs that study the effectiveness of
  DSTs have at least one treatment arm that investigates the importance of
- a particular pre-condition (such as access to insurance, finance or information
-)
+ a particular pre-condition (such as access to insurance, financial resources,
+ or information).
 \end_layout
 
 \begin_layout Standard
@@ -344,11 +349,6 @@ The Space2Place approach addresses some of these concerns by combining SPACE
  (top-down information) and PLACE (on-site information) in a singe decision
  support tool to develop practical, profitable, scale-appropriate fertilizer
  and land management recommendations.
-\end_layout
-
-\begin_layout Standard
-In light of this, we feel it is important to study the relative importance
- of the Space and Place components in a clean field experiment.
 \end_layout
 
 \begin_layout Section
@@ -369,21 +369,22 @@ literal "false"
 
 \end_inset
 
- is the only few study that has a treatment arm with a soil test (which
- is similar to one of our tretament arms, see below).
- In particular, they compare two types of variety-specific fertilizer recommenda
-tions – government provided, community-level recommendations and plot-specific
- recommendations based on individual soil tests among rice farmers in Bangladesh.
+ is one of the few studies that has a treatment arm with a soil test (which
+ is similar to one of the treatment arms in our study, see below).
+ In particular, using rice farmers in Bangladesh as a case, they compare
+ two types of site-specific fertilizer recommendations—community-level recommend
+ations and plot-specific recommendations based on individual soil tests—and
+ compare this to government provided recommendations.
  They find limited effects, except perhaps for a reduction in application
  error (difference between recommended quantity of a particular nutrient
  and quantity used).
  That is, some farmers were using more than the recommended TSP and as a
- result of the interention cut back.
- Some even appear to over-react and stop using TSP altoghether, leading
- to lower yield.
+ result of the intervention cut back.
+ Some even appear to over-react and stop using TSP altogether, leading to
+ lower yield.
  They also find indications that farmers adapt seed use to match baseline
  fertilizer use.
- 
+ Another study with a soil test treatment are is 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "gars2015confidence"
@@ -391,28 +392,10 @@ literal "false"
 
 \end_inset
 
- show that plot-level soil testing and tailored input recommendations changed
- farmers’ fertilizer usage and increased the adoption of recommended practices,
- leading to improved yields.
+, which shows that plot-level soil testing and tailored input recommendations
+ changed farmers’ fertilizer usage and increased the adoption of recommended
+ practices, leading to improved yields.
  
-\end_layout
-
-\begin_layout Standard
-In a different experiment, 
-\begin_inset CommandInset citation
-LatexCommand citet
-key "doi:10.1086/711174"
-literal "false"
-
-\end_inset
-
- provide farmers with a simple tool (a leaf color chart) and basic, rule-of-thum
-b instructions to guide the timing and quantity of urea (nitrogen) application.
- This intervention with substantially lower mental and attention demands
- on farmers does have a significant effect on the quantity of urea (nitrogen-fer
-tilizer) applied.
- Taken together, this led them to conclude that advice should be bundled
- with training and extension services to ensure farmers benefit as intended.
 \end_layout
 
 \begin_layout Standard
@@ -427,13 +410,13 @@ literal "false"
  advice on rice nutrient management in Nigeria.
  In particular, they evaluate RiceAdvice, an Android-based application to
  provide personalized recommendations on nutrient management (type, quantity,
- and timing of fertilizer) in rice production.They find that the intervention
- increases yields by 7 percent.
+ and timing of fertilizer) in rice production.
+ They find that the intervention increases yields by 7 percent.
  No soil tests are done.
  They also have a treatment that combines personalized advice with a grant
  that provides the recommended level of fertilizer.
  Here they estimate a treatment effect of 20 percent.
- They found a 10% increase from the intervention on profit which increased
+ They also found a 10% increase from the intervention on profit which increased
  to 23% when the intervention is combined with the grant.
  The mechanism behind the increase in yield and profitability seems to be
  a reallocation in the fertilizer mix, with farmers using less NPK and more
@@ -450,8 +433,8 @@ literal "false"
 
  evaluate the impact of targeted site-specific fertilizer blend recommendations
  to Ethiopian smallholder farmers on fertilizer usage, farm productivity,
- profits from maize production, and household welfare using a two-level
- cluster randomized control trial.
+ profits from maize production, and household welfare using a cluster randomized
+ control trial.
  They also have a treatment arm that adds insurance to the recommendation.
  They find significant reduction of the application error, which in turn
  affects yields.
@@ -468,7 +451,7 @@ literal "false"
 \end_inset
 
  study maize in Nigeria.
- They study the impact of Site specific Soil Nutrient Management extension
+ They study the impact of Site Specific Soil Nutrient Management extension
  advice through the Nutrient Expert tool.
  They have two treatment arms and one business-as-usual blanket recommendations
  control.
@@ -486,7 +469,19 @@ literal "false"
 \end_inset
 
 .
- 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Add the MSU paper on reflectometers?
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -497,15 +492,15 @@ Research Questions
 Our research aims to look at a prototype S2P intervention, as well as assess
  the relative importance of two of the key components.
  It will also investigate the role of resources constraints as a potential
- enabling factor.
- In particular, we look at the following research questions:
+ enabling factor and look into peer learning.
+ In particular, we will answer the following research questions:
 \end_layout
 
 \begin_layout Enumerate
-Does the provision of site-specific soil nutrient information and the recommenda
-tion of a specific fertilizer blend based on this information, change outcomes
- of interest.
- The motivation for this research question can be found in the 
+Does the provision of site-specific soil nutrient information derived from
+ a soil test and the recommendation of a specific fertilizer blend based
+ on this information change outcomes of interest? The motivation for this
+ research question can be found in the 
 \begin_inset Quotes eld
 \end_inset
 
@@ -516,14 +511,15 @@ Space
  component of S2P.
  It tests if providing objectively measured scientific information provided
  in a fairly top-down fashion suffices to instigate behavior change.
- The objective function in this research question is optimizing yield.
+ This research question also touches on the discussion whether information
+ that allows farmers to optimize yields is useful to them.
 \end_layout
 
 \begin_layout Enumerate
 Does providing advice based on farmer characteristics (farmer practices,
  budget constraints,...) and the environment in which farmer operates (availability
- of fertilizer, prices,...) changes outcomes of interest.
- This research question speaks to the 
+ of fertilizer, prices,...) changes outcomes of interest? This research question
+ speaks to the 
 \begin_inset Quotes eld
 \end_inset
 
@@ -532,36 +528,80 @@ Place
 \end_inset
 
  component of S2P.
- The objective function in this research question is profit.
+ This research question investigates if information useful for assessing
+ yield is important for farmers.
 \end_layout
 
 \begin_layout Enumerate
 Does the provision of site-specific nutrient information and farm-specific
  and farmer-tailored agronomic information with respect to soil nutrient
- management change outcomes of interest.
- This research question focuses on potential interactions between the Space
- and Place components as implied in the S2P approach.
+ management change outcomes of interest? This research question focuses
+ on potential interactions between the Space and Place components as implied
+ in the S2P approach.
  
 \end_layout
 
 \begin_layout Enumerate
 Does the provision of site-specific nutrient recommendations and agronomic
  information with respect to soil nutrient management, combined with a subsidy
- to buy these nutrients at a local agro-dealer change the outcomes of interest.
+ to buy these nutrients at a local agro-dealer, change the outcomes of interest?
  This research question looks at the importance of cash/credit constraints
  in the effectiveness of S2P.
  
+\end_layout
+
+\begin_layout Enumerate
+Are there important spillover effects? It is well known that, in addition
+ to experiential learning on their own fields, farmers also lean from peers
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "foster1995learning,conley2010learning"
+literal "false"
+
+\end_inset
+
+.
+ The results of a soil test on a particular plot may also provide valuable
+ information for farmers with similar plots in the vicinity 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "berazneva2023paying"
+literal "false"
+
+\end_inset
+
+.
+ In a similar fashion, advice based on farmer characteristics and the environmen
+t in which farmer operates may be relevant for similar farmers in the same
+ village who are likely to face similar issues related to access to fertilizers,
+ marketing of final products, etc.
 \end_layout
 
 \begin_layout Section
 Treatment Protocols 
 \end_layout
 
+\begin_layout Standard
+To answer the 5 research questions above, we develop 5 different treatments.
+ 
+\end_layout
+
 \begin_layout Itemize
-Treatment 1 (T1): In a first treatment, a maize farmer is offered a free
- soil test on their main plot.
- If they accept, a few days later the farmer receives a soil report (see
- example in Appendix 1), with some key characteristics of the soil.
+Treatment 1 (T1): In a first treatment, a farmer receives a soil report
+ (see example in Appendix 1) derived from a soil test on a plot chosen by
+ the farmer (See section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Sampling-and-data"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ for more information on the soil tests) , with some key characteristics
+ of the soil.
  The report indicates the soil
 \begin_inset Quotes ers
 \end_inset
@@ -574,29 +614,13 @@ s texture, pH level, cation exchange capacity, percentage organic matter,
  4-point Likert scale (very low, low, high, very high), with emojis, color
  coding and bar charts indicating where the soil is deficient and where
  the levels are sound.
- Using a script, an enumerator then discusses the soil report with the farmer
- to derive a recommended nutrient package specific to the crop the farmer
- wants to grow.
- The farmer is then informed where and how to obtain these nutrients.
- The philosophy behind this treatment is really to provide objective information
- about the soil on the plot that was chosen.
- 
+ Using a script, a trained enumerator and/or extension worker then discusses
+ the soil report with the farmer to derive a recommended nutrient package
+ specific to the crop the farmer wants to grow.
+ The farmer is then informed where and how to obtain these nutrients (in
+ the form of a particular fertilizer blend).
 \end_layout
 
-\begin_deeper
-\begin_layout Standard
-For this treatment, we cooperate with Meridian's Farmer Support Unit (FSU).
- This private-sector player offers farmers spectral soil tests and site-
- and crop-specific recommendations.
- The model underlying the test was calibrated on wet-chemistry analyses
- conducted on 22,000 samples from across Malawi and has been rolled out
- across X years, now reaching Y farmers.
- The tool is part of a private-sector business model in which FSU Meridian
- forms a recommendation for a package of nutrients, which is then supplied
- through their network of 400 agrodealers.
-\end_layout
-
-\end_deeper
 \begin_layout Itemize
 Treatment 2 (T2): using a simple application (fertilizer optimizer), data
  is collected on inorganic fertilizer application that the farmer is planning
@@ -621,7 +645,7 @@ literal "false"
 \end_layout
 
 \begin_layout Itemize
-Treatment 3: (T3): This treatment combines treatments T1 and T2
+Treatment 3: (T3): This treatment combines treatments T1 and T2.
 \end_layout
 
 \begin_layout Itemize
@@ -636,7 +660,7 @@ s fertilizer subsidy.
 \end_layout
 
 \begin_layout Itemize
-Comparison (C): A pure control with no soil test, no custom recommendations
+Comparison 1 (C1): A pure control with no soil test, no custom recommendations
  on optimal soil fertility management, and no subsidy.
  They will only provided with a 
 \begin_inset Quotes eld
@@ -648,6 +672,14 @@ blanket
 
  recommendation of the three most important practices that can be used to
  improve soil health.
+\end_layout
+
+\begin_layout Itemize
+Comparison 2 (C2): Similar to C1, but these control households will be selected
+ in villages where no other treatments are implemented.
+ The idea is the assess potential spillover effect from our treatments on
+ controls that are close to treated farmers.
+ 
 \end_layout
 
 \begin_layout Section
@@ -1266,106 +1298,70 @@ We will also test for balance on ten pre-specified variables.
 \end_layout
 
 \begin_layout Section
+Sampling and data collection
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Sampling-and-data"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We took the four districts that are known for maize production (Kasungu,
+ Ntchisi, Dowa, and Mchinji).
+ To get a nationally representative sampling frame of the smallholder farmer
+ population in Malawi, we rely on the list created by the Ministry of Agricultur
+e for their Agricultural Input Programme (AIP).
+ The AIP targets smallholder farmers in the villages who mostly registered
+ with the village chiefs.
+ We used a two-stage sampling procedure where we first sampled villages
+ with the likelihood of a village being selected proportionate to the number
+ of people that live in this village (such that larger villages are more
+ likely to end up in the sample).
+ We cluster at village level and selected 30 households per village, resulting
+ in about 65 villages.
+ We block at the village level so we have: 10 control households, 8 T1 household
+s, 8 T2 households, 2 T3 households and 2 T4 households.
+ Code used to generate the sampling lists can be found 
+\begin_inset CommandInset href
+LatexCommand href
+name "here"
+target "https://github.com/bjvca/S2P/blob/master/sampling/sample_frame.R"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+In all households, soil tests will be done.
+ For this, we cooperate with Meridian's Farmer Support Unit (FSU).
+ This private-sector player offers farmers spectral soil tests and site-
+ and crop-specific recommendations.
+ The model underlying the test was calibrated on wet-chemistry analyses
+ conducted on 22,000 samples from across Malawi and has been rolled out
+ across X years, now reaching Y farmers.
+ The tool is part of a private-sector business model in which FSU Meridian
+ forms a recommendation for a package of nutrients, which is then supplied
+ through their network of 400 agrodealers.
+\end_layout
+
+\begin_layout Section
 Timeline
 \end_layout
 
 \begin_layout Standard
-Week of july 15: workshop in Malawi to develop treatments September 2024:
- soil tests October 2024: treatment administration (+ baseline data collection)
- April 2025: endline data collection
-\end_layout
-
-\begin_layout Section
-Outcomes
-\end_layout
-
-\begin_layout Itemize
-a dummy for fertilizer use/dummies for use by fertilizer type 
-\end_layout
-
-\begin_layout Itemize
-total level of inorganic fertilizer used in kg/ha.
- Note that this effect is likely to be positive, but there may be some heterogen
-eity as farmers that use too much fertilizer may actually reduce fertilizer
- use.
- 
-\begin_inset CommandInset citation
-LatexCommand citet
-key "ayalew2022site"
-literal "false"
-
-\end_inset
-
- therefore also estimate quantile regressions and find a negative effect
- in higher quantiles.
- 
-\end_layout
-
-\begin_layout Itemize
-Application error or the gap between the amount of fertilizer used and the
- recommended amounts.
- This is a key outcome in 
-\begin_inset CommandInset citation
-LatexCommand citet
-key "ayalew2022site"
-literal "false"
-
-\end_inset
-
-, who define this as follows: 
-\begin_inset Quotes eld
-\end_inset
-
-For the treatment households, the fertilizer use gap is calculated by using
- the absolute difference between the actual macronutrient in kg/ha that
- farmers applied for maize production and the site-specific recommended
- values, whereas for the control households we used the absolute deviation
- of the actual macronutrients used by farmers and the regional recommendation
- values.
-\begin_inset Quotes erd
-\end_inset
-
- This could also be modeled as a quadratic loss function.
- In 
-\begin_inset CommandInset citation
-LatexCommand citet
-key "beg2024information"
-literal "false"
-
-\end_inset
-
-, the application error is constructed for farmers who apply a non-zero
- amount of the respective fertilizer and is the absolute difference between
- endline usage and the recommended quantity for each fertilizer (and it
- is not clear what recommended quantities they use).
- They standardize the application error with respect to the control group
- mean and standard deviation.
- 
-\end_layout
-
-\begin_layout Itemize
-productivity: measured as production of maize per acre.
- 
-\end_layout
-
-\begin_layout Itemize
-revenue: yield*price 
-\end_layout
-
-\begin_layout Itemize
-farm expenditure (inputs + labour) 
-\end_layout
-
-\begin_layout Itemize
-profits 
-\end_layout
-
-\begin_layout Itemize
-welfare 
+Soil tests will be done in September 2024.
+ Treatment administration (+ baseline data collection) will happen once
+ results from the soil tests are available, which should be after about
+ 2 weeks.
+ In April 2025, endline data will be collected.
 \end_layout
 
 \begin_layout Standard
- 
 \begin_inset CommandInset bibtex
 LatexCommand bibtex
 bibfiles "s2p_bib"
