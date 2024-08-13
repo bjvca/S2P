@@ -6,102 +6,86 @@
 # load libraries
 library(haven)
 library(randomizr)
+library(dplyr)
 
 # work with relative paths
 path <- getwd()
 
-# load in all the AIP data
-raw_dowa <-read.csv(paste(path,"data/full_data/dowa.csv", sep="/"))
-raw_kasungu <-read.csv(paste(path,"data/full_data/kasungu.csv", sep="/"))
-raw_ntchisi <-read.csv(paste(path,"data/full_data/ntchisi.csv", sep="/"))
-raw_mchinji <-read.csv(paste(path,"data/full_data/mchinji.csv", sep="/"))
-names(raw_mchinji) <- names(raw_kasungu)
-names(raw_dowa) <- names(raw_kasungu)
+#use sampling frame from our market participation study
+data <- read.csv(paste(path,"data/full_data/baseline_raw.csv", sep="/"))
 
+data$q54a <- as.numeric(data$q54a) 
+data$q54a[data$q54a >=100] <- NA
 
-### cleaning data
-raw_dowa[c("district","ta","gvh","village")] <- lapply(raw_dowa[c("district","ta","gvh","village")], function(x) toupper(as.character(x) ))
-raw_kasungu[c("district","ta","gvh","village")] <- lapply(raw_kasungu[c("district","ta","gvh","village")], function(x) toupper(as.character(x) ))
-raw_ntchisi[c("district","ta","gvh","village")] <- lapply(raw_ntchisi[c("district","ta","gvh","village")], function(x) toupper(as.character(x) ))
-raw_mchinji[c("district","ta","gvh","village")] <- lapply(raw_mchinji[c("district","ta","gvh","village")], function(x) toupper(as.character(x) ))
+data$q58a <- as.numeric(data$q58a) 
+data$q58a[data$q58a >=100] <- NA
 
-raw_dowa[c("district","ta","gvh","village")] <- lapply(raw_dowa[c("district","ta","gvh","village")], function(x) trimws(as.character(x) ))
-raw_kasungu[c("district","ta","gvh","village")] <- lapply(raw_kasungu[c("district","ta","gvh","village")], function(x) trimws(as.character(x) ))
-raw_ntchisi[c("district","ta","gvh","village")] <- lapply(raw_ntchisi[c("district","ta","gvh","village")], function(x) trimws(as.character(x) ))
-raw_mchinji[c("district","ta","gvh","village")] <- lapply(raw_mchinji[c("district","ta","gvh","village")], function(x) trimws(as.character(x) ))
+data$q62a <- as.numeric(data$q62a) 
+data$q62a[data$q62a >=100] <- NA
 
-data <- rbind(raw_dowa,raw_kasungu,raw_ntchisi,raw_mchinji )
+data$land_size <- rowSums(cbind(as.numeric(data$q54a), as.numeric(data$q58a), as.numeric(data$q62a)), na.rm=TRUE)
+data$land_size[data$land_size>50] <- NA
+data$land_size_ha <- data$land_size/2.471
 
-names(data)
-nrow(data)
+data$q19[data$q19>15] <- NA
 
-#just to make sure, we need to remove villages wiht less than 40 households - this can change now that we only implement 
-data$ones <- 1
-hh_size_per_village <- data.frame(aggregate(ones~district+ta+gvh+village,data=data, FUN=sum))
-#get village names of villages with more than 35 hh
- 
-hh_size_per_village <- subset(hh_size_per_village, ones>35)
+data$land_per_capita <-  data$land_size_ha/data$q19
 
-data <- merge(hh_size_per_village, data, by = c("district","ta","gvh","village"))
-data$ones.x <- NULL
-data$ones.y <- NULL
+data$smallholder <-data$land_per_capita < 0.25
+###this is for stratification - 31 percent are large farmers
+prop.table(table(data$smallholder))
 
-
-# randomly select 62 villages - let us do 65 for attrition
 set.seed(120824)
+#how many villages do we have? 113
+length(table(data$q3))
+### keep only villages that have more than 30 observations
+village_counts <- table(data$q3)
+data <- data[data$q3 %in% names(village_counts[village_counts >= 30]), ]
+#and sample only 30 households per village
+df_sampled <- data %>%
+  group_by(q3) %>%
+  sample_n(size = 30) %>%
+  ungroup()
+data <- data.frame(df_sampled)
 
-sampling_frame <- data[sample(1:dim(data)[1], size=65),]
-sampling_frame  <- sampling_frame[,c("district","ta","gvh","village")] 
+
+#select 17 villages as pure control and remove them from the sample
+pure_ctrl <- sample(names(table(data$q3)), size=22)
+pure_ctrl_data <- subset(data, q3 %in% pure_ctrl)
+
+#from remainder, select 62 villages
+sampling_frame <-  subset(data, !(q3 %in% pure_ctrl))
+sampling_frame_names <- sample(names(table(sampling_frame$q3)), size=62)
+sampling_frame <- subset(sampling_frame, q3 %in% sampling_frame_names)
 
 ### check if there are duplicates
 sum(duplicated(sampling_frame))
-#one are duplicated - 
- 
-#for the non duplicated, randomly select 30 in each village and then allocate 10 to control 8 to T1, 8 to T2, 2 to T3, and 2 to T4.
 
-#not sure why this was there...
-#sampling_frame_1 <- subset(sampling_frame, !(district == "DOWA" & ta=="CHIWERE" & gvh=="KALUMA" & village =="CHINKHADZE" ))
+### treatment assignment
 
-#initialize sample_names:
-sample_names <- data.frame(matrix(ncol = 13, nrow = 0))
-colnames(sample_names) <- c("district","ta","gvh","village","Add","epa","section","asp", "person.type", "person.name", "NID", "sex","treat")  
+subset_strat_1 <- subset(sampling_frame,smallholder == TRUE & sampling_frame$q13 == "Male")
+treats <- complete_ra(N=dim(subset_strat_1)[1],prob_each = c(0.26,0.26,0.065,0.065, 1-2*0.065-2*0.26))
+subset_strat_1 <-data.frame(subset_strat_1,treats)
 
+subset_strat_2 <- subset(sampling_frame,smallholder == FALSE & sampling_frame$q13 == "Male")
+treats <- complete_ra(N=dim(subset_strat_2)[1],prob_each = c(0.26,0.26,0.065,0.065, 1-2*0.065-2*0.26))
+subset_strat_2 <-data.frame(subset_strat_2,treats)
 
-for (i in (1:nrow(sampling_frame))) {
-df <- data[as.character(data$district) == as.character(sampling_frame$district[i])  & as.character(data$ta) == as.character(sampling_frame$ta[i]) & as.character(data$gvh) == as.character(sampling_frame$gvh[i]) & as.character(data$village) == as.character(sampling_frame$village[i]),]
+subset_strat_3 <- subset(sampling_frame,smallholder == TRUE & sampling_frame$q13 == "Female")
+treats <- complete_ra(N=dim(subset_strat_3)[1],prob_each = c(0.26,0.26,0.065,0.065, 1-2*0.065-2*0.26))
+subset_strat_3 <-data.frame(subset_strat_3,treats)
 
-sample_names_int <- cbind(df[sample(nrow(df), 30),],c(rep("C",times=10),rep("T1",times=8),rep("T2",times=8),rep("T3",times=2),rep("T4",times=2)))
-colnames(sample_names_int) <- c("district","ta","gvh","village","Add","epa","section","asp", "person.type", "person.name", "NID", "sex","treat")  
-sample_names <- rbind(sample_names, sample_names_int)
-print(i)
-}
+subset_strat_4 <- subset(sampling_frame,smallholder == FALSE & sampling_frame$q13 == "Female")
+treats <- complete_ra(N=dim(subset_strat_4)[1],prob_each = c(0.26,0.26,0.065,0.065, 1-2*0.065-2*0.26))
+subset_strat_4 <-data.frame(subset_strat_4,treats)
 
+sampling_frame <- rbind(subset_strat_1, subset_strat_2, subset_strat_3, subset_strat_4)
+levels(sampling_frame$treats)[levels(sampling_frame$treats) == "T5"] <- "C1"
 
+pure_ctrl_data$treats <- "C2"
 
-#just scramble them to make sure there is not a predictable order in the treatments in the ODK app
-all <- sample_names[sample(1:dim(sample_names)[1], size=nrow(sample_names)),]
-
-#now order them again on district ta, gvh and village
-
-all <- all[with(all, order(all$district, all$ta, all$gvh, all$village)),]
-
-#add unique farmer ID dhere
-
-all$farmer_ID <- paste("F",1:nrow(all), sep="_")
-
-all$person.name <-  trimws(as.character(all$person.name))
-all$unique_ID <- paste(paste(all$person.name,all$farmer_ID, sep=" ("),")", sep="")
-
-#save csv output
-write.csv(all[,c("farmer_ID","district", "ta", "gvh", "village", "treat")], file = paste(path,"sampling_frame_ODK.csv", sep="/"), row.names=F)
-write.csv(all[,c("farmer_ID","district", "ta", "gvh", "village", "person.type", "person.name", "NID", "sex","treat","unique_ID")], file = paste(path,"sampling_frame_ODK_names.csv", sep="/"), row.names=F)
+sampling_frame <- rbind(sampling_frame, pure_ctrl_data)
 
 
-### sample list for Meridian:
-
-soil_tests <- subset(all, treat %in% c("T1","T3","T4"))
-
-write.csv(soil_tests[,c("farmer_ID","district", "ta", "gvh", "village", "person.type", "person.name", "NID", "sex","treat","unique_ID")], file = paste(path,"sampling_frame_soil_tests.csv", sep="/"), row.names=F)
-
-
-
+## OK, this seems reasonable - export only the relevant 
+sampling_frame[c("q1","q2","q3", "farmername", "farmer_ID" ,  "q11", "treats", "gps_latitude", "gps_longitude")]
