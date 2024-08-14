@@ -7,6 +7,7 @@
 library(haven)
 library(randomizr)
 library(dplyr)
+library(leaflet)
 
 # work with relative paths
 path <- getwd()
@@ -88,4 +89,13 @@ sampling_frame <- rbind(sampling_frame, pure_ctrl_data)
 
 
 ## OK, this seems reasonable - export only the relevant 
-sampling_frame[c("q1","q2","q3", "farmername", "farmer_ID" ,  "q11", "treats", "gps_latitude", "gps_longitude")]
+sampling_frame <- sampling_frame[c("q1","q2","q3", "farmername", "farmer_ID" ,  "q11", "treats", "gps_latitude", "gps_longitude")]
+
+##create a map
+
+pal <- colorFactor(c("red", "orange","blue","green","grey","black"),sampling_frame$treats)
+
+map <-  leaflet() %>% setView(lat =mean(as.numeric(as.character(sampling_frame$gps_latitude)),na.rm=T), lng = mean(as.numeric(as.character(sampling_frame$gps_longitude)),na.rm=T), zoom=9)  %>%  addTiles(group="OSM") %>% addTiles(urlTemplate = "https://mts1.google.com/vt/lyrs=s&hl=en&src=app&x={x}&y={y}&z={z}&s=G",  group="Google", attribution = 'Google')  %>% addProviderTiles(providers$OpenTopoMap, group="Topography") %>% addCircleMarkers(data=sampling_frame, lng=~as.numeric(as.character(gps_longitude)), lat=~as.numeric(as.character(gps_latitude)),radius= 2,   color = ~pal(treats), popup = ~as.character(farmer_ID))   %>%  addLayersControl(baseGroups=c('OSM','Google','Topography')) 
+
+saveWidget(map, file="S2P_sampling.html",selfcontained = TRUE) #traders and farmers 
+write.csv(sampling_frame, file = "sample.csv", row.names = FALSE)

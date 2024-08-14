@@ -484,6 +484,20 @@ Add the MSU paper on reflectometers?
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+add: The joint effects of information and financing constraints on technology
+ adoption: Evidence from a field experiment in rural Tanzania
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Research Questions
 \end_layout
@@ -499,83 +513,15 @@ Our research aims to look at a prototype S2P intervention, as well as assess
 \begin_layout Enumerate
 Does the provision of site-specific soil nutrient information derived from
  a soil test and the recommendation of a specific fertilizer blend based
- on this information change outcomes of interest? The motivation for this
- research question can be found in the 
-\begin_inset Quotes eld
-\end_inset
-
-Space
-\begin_inset Quotes erd
-\end_inset
-
- component of S2P.
- It tests if providing objectively measured scientific information provided
- in a fairly top-down fashion suffices to instigate behavior change.
- This research question also touches on the discussion whether information
- that allows farmers to optimize yields is useful to them.
+ on this information change outcomes of interest?
 \end_layout
 
 \begin_layout Enumerate
-Does providing advice based on farmer characteristics (farmer practices,
- budget constraints,...) and the environment in which farmer operates (availability
- of fertilizer, prices,...) changes outcomes of interest? This research question
- speaks to the 
-\begin_inset Quotes eld
-\end_inset
-
-Place
-\begin_inset Quotes erd
-\end_inset
-
- component of S2P.
- This research question investigates if information useful for assessing
- yield is important for farmers.
-\end_layout
-
-\begin_layout Enumerate
-Does the provision of site-specific nutrient information and farm-specific
- and farmer-tailored agronomic information with respect to soil nutrient
- management change outcomes of interest? This research question focuses
- on potential interactions between the Space and Place components as implied
- in the S2P approach.
+Does the provision of site-specific nutrient recommendations combined with
+ a subsidy to buy these nutrients at a local agro-dealer, change the outcomes
+ of interest? This research question looks at the importance of cash/credit
+ constraints in the effectiveness of S2P.
  
-\end_layout
-
-\begin_layout Enumerate
-Does the provision of site-specific nutrient recommendations and agronomic
- information with respect to soil nutrient management, combined with a subsidy
- to buy these nutrients at a local agro-dealer, change the outcomes of interest?
- This research question looks at the importance of cash/credit constraints
- in the effectiveness of S2P.
- 
-\end_layout
-
-\begin_layout Enumerate
-Are there important spillover effects? It is well known that, in addition
- to experiential learning on their own fields, farmers also lean from peers
- 
-\begin_inset CommandInset citation
-LatexCommand citep
-key "foster1995learning,conley2010learning"
-literal "false"
-
-\end_inset
-
-.
- The results of a soil test on a particular plot may also provide valuable
- information for farmers with similar plots in the vicinity 
-\begin_inset CommandInset citation
-LatexCommand citep
-key "berazneva2023paying"
-literal "false"
-
-\end_inset
-
-.
- In a similar fashion, advice based on farmer characteristics and the environmen
-t in which farmer operates may be relevant for similar farmers in the same
- village who are likely to face similar issues related to access to fertilizers,
- marketing of final products, etc.
 \end_layout
 
 \begin_layout Section
@@ -622,45 +568,13 @@ s texture, pH level, cation exchange capacity, percentage organic matter,
 \end_layout
 
 \begin_layout Itemize
-Treatment 2 (T2): using a simple application (fertilizer optimizer), data
- is collected on inorganic fertilizer application that the farmer is planning
- to use in the upcoming season.
- It asks at what prices the farmer can obtain these fertilizers, and what
- the farmer plans to spend in total on fertilizers.
- It also allows one to input soil nutrient management practices that the
- farmer will use and has used in the past.
- This information is then used to come up with tailor-made suggestions on
- how the farmer can optimize fertilizer use.
- The philosophy behind this treatment is on the economics behind decision
- making related to inorganic fertilizer use.
- More information on the fertilizer optimizer app can be found in 
-\begin_inset CommandInset citation
-LatexCommand citet
-key "wortmann2017fertilizer"
-literal "false"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-Treatment 3: (T3): This treatment combines treatments T1 and T2.
-\end_layout
-
-\begin_layout Itemize
-Treatment 4 (T4): a voucher to buy the recommended nutrients at a local
- agro-dealer.
- The voucher will be of a value equivalent to the government
-\begin_inset Quotes ers
-\end_inset
-
-s fertilizer subsidy.
+Treatment 2 (T2): T1 plus a voucher to buy the recommended nutrients at
+ a local agro-dealer.
  
 \end_layout
 
 \begin_layout Itemize
-Comparison 1 (C1): A pure control with no soil test, no custom recommendations
+Comparison 1 (C): A pure control with no soil test, no custom recommendations
  on optimal soil fertility management, and no subsidy.
  They will only provided with a 
 \begin_inset Quotes eld
@@ -672,14 +586,6 @@ blanket
 
  recommendation of the three most important practices that can be used to
  improve soil health.
-\end_layout
-
-\begin_layout Itemize
-Comparison 2 (C2): Similar to C1, but these control households will be selected
- in villages where no other treatments are implemented.
- The idea is the assess potential spillover effect from our treatments on
- controls that are close to treated farmers.
- 
 \end_layout
 
 \begin_layout Section
@@ -1137,6 +1043,12 @@ At about 1,850 observations, we have will detect a significant difference
 The interventions are implemented at the individual level.
  While this maximizes power, the downside is that spillovers are more likely
  than some kind of clustered treatment assignment.
+ To assess spillover effects, we therefore also include villages with only
+ control households (referred to as C2-pure control villages and households).
+ We did not run power calculations for these comparisons but simply take
+ a generous sample of 22 villages of 30 households, leading to 660 households
+ in pure control condition, which is larger than the size of the C1-control
+ group.
  
 \end_layout
 
@@ -1216,19 +1128,23 @@ name "sec:Outcomes-of-interest"
 \begin_layout Standard
 Our outcomes of interest are agricultural practices (with a particular focus
  on the use of recommended inputs and practices), yields, return on investment
- in fertilizer, profitability of the targeted crops and the return on investment
+ in fertilizer, profitability of the crops and the return on investment
  for the subsidy.
  
 \end_layout
 
 \begin_layout Itemize
-use of inorganic fertilizer on the main plot.
+crop chosen on the plot on which the soil test was done
+\end_layout
+
+\begin_layout Itemize
+use of inorganic fertilizer on the plot on which the soil test was done.
  In particular, we will make sure we cover the 4 Rs (4 Rs: source, place,
  timing and rate) 
 \end_layout
 
 \begin_layout Itemize
-use of organic fertilizer on main plot (quantity)
+use of organic fertilizer on the plot on which the soil test was done (quantity)
 \end_layout
 
 \begin_layout Itemize
@@ -1245,7 +1161,12 @@ complementary input use and costs (seed used, chemical used)
 \end_layout
 
 \begin_layout Itemize
-complementary agronomic practices, in particular those that also 
+complementary agronomic practices, in particular those that also adress
+ soil health
+\end_layout
+
+\begin_layout Itemize
+a range of outcomes at the farm household level (crop mix, overall profits)
 \end_layout
 
 \begin_layout Standard
@@ -1321,9 +1242,8 @@ e for their Agricultural Input Programme (AIP).
  of people that live in this village (such that larger villages are more
  likely to end up in the sample).
  We cluster at village level and selected 30 households per village, resulting
- in about 65 villages.
- We block at the village level so we have: 10 control households, 8 T1 household
-s, 8 T2 households, 2 T3 households and 2 T4 households.
+ in 84 villages (of which 22 are pure control villages to measure spillover
+ effects).
  Code used to generate the sampling lists can be found 
 \begin_inset CommandInset href
 LatexCommand href
@@ -1342,11 +1262,28 @@ In all households, soil tests will be done.
  This private-sector player offers farmers spectral soil tests and site-
  and crop-specific recommendations.
  The model underlying the test was calibrated on wet-chemistry analyses
- conducted on 22,000 samples from across Malawi and has been rolled out
- across X years, now reaching Y farmers.
+ conducted on 22,000 samples from across Malawi.
  The tool is part of a private-sector business model in which FSU Meridian
  forms a recommendation for a package of nutrients, which is then supplied
  through their network of 400 agrodealers.
+ Similarly, in all households, all necessary information will be collected
+ that is needed to generate a recommendation in with the fertilizer optimizer
+ application.
+ This means that for all households in our sample, irrespective of treatment
+ group, we can calculate recommended fertilizer blends and optimal fertilizer
+ application.
+ This will be useful in defining key outcome variables such as application
+ error.
+\end_layout
+
+\begin_layout Standard
+We do not restrict plot or crop, but rather let the farmer decide on which
+ plot he or she wants the soil test to be done.
+ We do this because the crop chosen is an important outcome
+\end_layout
+
+\begin_layout Standard
+
 \end_layout
 
 \begin_layout Section

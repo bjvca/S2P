@@ -1,5 +1,15 @@
 rm(list=ls())
+library(dplyr)
 dta <- read.csv("~/data/projects/malawi/RCT/endline_2024/data/public/endline_2024.csv")
+#we need the villages, merge in from baseline
+villages <- read.csv("~/data/projects/malawi/RCT/midline_sept/data/raw/to_upload.csv")[c("farmer_ID", "q1", "q2","q3" )]
+
+dta <- merge(dta, villages, by="farmer_ID")
+
+dta$village <- paste(paste(dta$q1, dta$q2,sep="_"), dta$q3,sep="_")
+
+
+
 dta$maize_hrv <- as.numeric(dta$maize_hrv)
 
 
@@ -14,12 +24,45 @@ dta$yield <- dta$maize_hrv*60/dta$maize_acre*2.5
 dta$yield[dta$yield >8500] <- NA
 dta$yield[dta$yield < 1500] <- NA
 dta <- subset(dta,!is.na(dta$yield))
+
+### make sure every village has 30 households
+
+# Define the sampling function
+sample_households <- function(group) {
+  n <- nrow(group)
+  if (n >= 30) {
+    # Sample without replacement if the group size is 30 or more
+    return(group %>% sample_n(30, replace = FALSE))
+  } else {
+    # Sample with replacement if the group size is less than 30
+    return(group %>% sample_n(30, replace = TRUE))
+  }
+}
+
+
+sampled_dta <- dta %>%
+  group_by(village) %>%
+  group_modify(~ sample_households(.x)) %>%
+  ungroup()
+
+dta <- data.frame(sampled_dta)
+
 mean(dta$yield, na.rm=T)
 sd(dta$yield, na.rm=T)
 
 sum(!is.na(dta$yield))
 
 library(randomizr)    # randomizr package for complete random assignment
+###start with a fixed number of villages (eg 110)
+###in the outer loop, randomly select share of villages in C2 pure control (rest will get C1, T1, T2 or T3)
+### in inner loop select share in C1, rest is in T1, T2 or T3 according to the following distribution:
+### we assume symmetry between T1 and T3
+### we model T2 as an additional effect on T2, so size T2 is half the size of T1
+
+### C2 are the control
+### C1 get 0.15 - in other words we add a constant effect for all non C2 villages  
+### T1 and T3 both get 0.07
+### T3 gets an effect of .2
 
 possible.ns <- seq(from=.2, to=.8, by=0.05)
 possible.ns2 <- seq(from=.2, to=.8, by=0.05)
@@ -30,14 +73,15 @@ power.alltreatments <-  matrix(NA, length(possible.ns),length(possible.ns2))
 
 alpha <- 0.05
 sims <- 1000
-N <- 3000
+### N is number of villages
+N <- 100
 
 #### Outer loop to vary the number of subjects ####
 for (j in 1:length(possible.ns)){
   for (k in 1:length(possible.ns2)){
     significant.experiments <- rep(NA, sims)  
     one.significant.experiment <- rep(NA, sims)  
-  shares_C <- possible.ns[j]
+  shares_C2 <- possible.ns[j]
   shares_T1 <- possible.ns[k]
 
   p.interact <- rep(NA, sims)
@@ -45,17 +89,41 @@ for (j in 1:length(possible.ns)){
 
   #### Inner loop to conduct experiments "sims" times over for each N ####
   for (i in 1:sims){
-    Y0 <-  sample(dta$yield, size=N, replace = TRUE)
-    Y0[Y0<0] <- 0
-    tau_1 <-  mean(Y0, na.rm=T)*.07
-    tau_2 <-  mean(Y0, na.rm=T)*.07
-    tau_3 <-  mean(Y0, na.rm=T)*.21
-    tau_4 <-  mean(Y0, na.rm=T)*.40
+### start by taking a sample of N villages
     
-    Y1 <- Y0 + tau_1
-    Y2 <- Y0 + tau_2
-    Y3 <- Y0 + tau_3
-    Y4 <- Y0 + tau_4
+    villages <- unique(dta$village)
+    
+    # Randomly sample X villages with replacement
+    sampled_villages <- sample(villages, size = N)
+    
+    # Filter the data frame to include only the sampled villages
+    final_sampled_df <- dta %>%
+      filter(village %in% sampled_villages)
+    #define effects
+    eff_C1 <-  mean(final_sampled_df$yield, na.rm=T)*.15
+    eff_T1 <-  mean(final_sampled_df$yield, na.rm=T)*.07
+    eff_T2 <-  mean(final_sampled_df$yield, na.rm=T)*.21
+    eff_T3 <-  mean(final_sampled_df$yield, na.rm=T)*.07
+    ### potential outcomes
+    C1 <- final_sampled_df$yield + eff_C1
+    T1 <- final_sampled_df$yield + eff_C1 + eff_T1
+    T2 <- final_sampled_df$yield + eff_C1 + eff_T1 + eff_T2
+    T3 <- final_sampled_df$yield + eff_C1 + eff_T3
+    
+    #step one: from total sample size (V*30), assign shares_C2 to control and 1-shares_C2 to C1, T1, T2 and T3
+    
+    villages <- unique(dta$village)
+    
+    # Calculate the number of villages to sample
+    num_villages_to_sample <- ceiling(length(villages) *shares_C2*N)
+  
+    sampled_villages <- sample(villages, size = num_villages_to_sample)
+    
+    # Filter the data frame to include only the sampled villages
+    final_sampled_df <- sampled_df %>%
+      filter(village %in% sampled_villages)
+    
+    
     
     Z.sim <- complete_ra(N=N,prob_each = c((1-shares_C)*shares_T1/2, (1-shares_C)*shares_T1/2,(1-shares_C)*(1-shares_T1)/2,(1-shares_C)*(1-shares_T1)/2, shares_C) )
     Y.sim <- Y0*(Z.sim=="T5")  + Y1*(Z.sim=="T1")  + Y2*(Z.sim=="T2") + Y3*(Z.sim=="T3") +  Y4*(Z.sim=="T4")
