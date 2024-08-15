@@ -15,6 +15,8 @@ path <- getwd()
 #use sampling frame from our market participation study
 data <- read.csv(paste(path,"data/full_data/baseline_raw.csv", sep="/"))
 
+data$treatment <- NULL
+
 data$q54a <- as.numeric(data$q54a) 
 data$q54a[data$q54a >=100] <- NA
 
@@ -39,63 +41,62 @@ prop.table(table(data$smallholder))
 set.seed(120824)
 #how many villages do we have? 113
 length(table(data$q3))
-### keep only villages that have more than 30 observations
-village_counts <- table(data$q3)
-data <- data[data$q3 %in% names(village_counts[village_counts >= 30]), ]
-#and sample only 30 households per village
-df_sampled <- data %>%
-  group_by(q3) %>%
-  sample_n(size = 30) %>%
-  ungroup()
-data <- data.frame(df_sampled)
 
+### treatment assignment - 30 percent in control and the rest equally split into T1 and T2.
+### create unique village ID
+data$village <- paste(paste(data$q1, data$q2, sep="_"), data$q3, sep="_")
 
-#select 17 villages as pure control and remove them from the sample
-pure_ctrl <- sample(names(table(data$q3)), size=22)
-pure_ctrl_data <- subset(data, q3 %in% pure_ctrl)
+# Get the unique villages
+unique_villages <- unique(data$village)
+n_villages <- length(unique_villages)
 
-#from remainder, select 62 villages
-sampling_frame <-  subset(data, !(q3 %in% pure_ctrl))
-sampling_frame_names <- sample(names(table(sampling_frame$q3)), size=62)
-sampling_frame <- subset(sampling_frame, q3 %in% sampling_frame_names)
+# Calculate the number of villages in each group
+n_control_villages <- round(0.30 * n_villages)
+n_treatment1_villages <- round(0.35 * n_villages)
+n_treatment2_villages <- n_villages - n_control_villages - n_treatment1_villages
 
-### check if there are duplicates
-sum(duplicated(sampling_frame))
+# Assign treatment at the village level
+village_assignments <- c(rep("C", n_control_villages), 
+                         rep("T1", n_treatment1_villages), 
+                         rep("T2", n_treatment2_villages))
 
-### treatment assignment
+# Shuffle the assignments randomly
+set.seed(15082024) # Set seed for reproducibility
+village_assignments <- sample(village_assignments)
 
-subset_strat_1 <- subset(sampling_frame,smallholder == TRUE & sampling_frame$q13 == "Male")
-treats <- complete_ra(N=dim(subset_strat_1)[1],prob_each = c(0.26,0.26,0.065,0.065, 1-2*0.065-2*0.26))
-subset_strat_1 <-data.frame(subset_strat_1,treats)
+# Create a data frame to store village assignments
+village_treatment <- data.frame(village = unique_villages, treatment = village_assignments)
 
-subset_strat_2 <- subset(sampling_frame,smallholder == FALSE & sampling_frame$q13 == "Male")
-treats <- complete_ra(N=dim(subset_strat_2)[1],prob_each = c(0.26,0.26,0.065,0.065, 1-2*0.065-2*0.26))
-subset_strat_2 <-data.frame(subset_strat_2,treats)
+# Merge treatment assignments back into the original household data
+data <- merge(data, village_treatment, by = "village")
 
-subset_strat_3 <- subset(sampling_frame,smallholder == TRUE & sampling_frame$q13 == "Female")
-treats <- complete_ra(N=dim(subset_strat_3)[1],prob_each = c(0.26,0.26,0.065,0.065, 1-2*0.065-2*0.26))
-subset_strat_3 <-data.frame(subset_strat_3,treats)
+# Set the number of households to select per village
+n_households_per_village <- 16
 
-subset_strat_4 <- subset(sampling_frame,smallholder == FALSE & sampling_frame$q13 == "Female")
-treats <- complete_ra(N=dim(subset_strat_4)[1],prob_each = c(0.26,0.26,0.065,0.065, 1-2*0.065-2*0.26))
-subset_strat_4 <-data.frame(subset_strat_4,treats)
+sampling_frame <- data %>%
+  group_by(village) %>%
+  sample_n(n_households_per_village, replace = FALSE)
 
-sampling_frame <- rbind(subset_strat_1, subset_strat_2, subset_strat_3, subset_strat_4)
-levels(sampling_frame$treats)[levels(sampling_frame$treats) == "T5"] <- "C1"
+sampling_frame <- data.frame(sampling_frame )
 
-pure_ctrl_data$treats <- "C2"
-
-sampling_frame <- rbind(sampling_frame, pure_ctrl_data)
-
-
-## OK, this seems reasonable - export only the relevant 
-sampling_frame <- sampling_frame[c("q1","q2","q3", "farmername", "farmer_ID" ,  "q11", "treats", "gps_latitude", "gps_longitude")]
+sampling_frame <- sampling_frame[c("q1","q2","q3", "farmername", "farmer_ID" ,  "q11", "treatment", "gps_latitude", "gps_longitude")]
 
 ##create a map
 
-pal <- colorFactor(c("red", "orange","blue","green","grey","black"),sampling_frame$treats)
+pal <- colorFactor(c("black","red", "green"),sampling_frame$treats)
 
-map <-  leaflet() %>% setView(lat =mean(as.numeric(as.character(sampling_frame$gps_latitude)),na.rm=T), lng = mean(as.numeric(as.character(sampling_frame$gps_longitude)),na.rm=T), zoom=9)  %>%  addTiles(group="OSM") %>% addTiles(urlTemplate = "https://mts1.google.com/vt/lyrs=s&hl=en&src=app&x={x}&y={y}&z={z}&s=G",  group="Google", attribution = 'Google')  %>% addProviderTiles(providers$OpenTopoMap, group="Topography") %>% addCircleMarkers(data=sampling_frame, lng=~as.numeric(as.character(gps_longitude)), lat=~as.numeric(as.character(gps_latitude)),radius= 2,   color = ~pal(treats), popup = ~as.character(farmer_ID))   %>%  addLayersControl(baseGroups=c('OSM','Google','Topography')) 
+map <-  leaflet() %>% setView(lat =mean(as.numeric(as.character(sampling_frame$gps_latitude)),na.rm=T), lng = mean(as.numeric(as.character(sampling_frame$gps_longitude)),na.rm=T), zoom=9)  %>%  addTiles(group="OSM") %>% addTiles(urlTemplate = "https://mts1.google.com/vt/lyrs=s&hl=en&src=app&x={x}&y={y}&z={z}&s=G",  group="Google", attribution = 'Google')  %>% addProviderTiles(providers$OpenTopoMap, group="Topography") %>% addCircleMarkers(data=sampling_frame, lng=~as.numeric(as.character(gps_longitude)), lat=~as.numeric(as.character(gps_latitude)),radius= 2,   color = ~pal(treatment), popup = ~as.character(farmer_ID))   %>%  addLayersControl(baseGroups=c('OSM','Google','Topography')) 
 
 saveWidget(map, file="S2P_sampling.html",selfcontained = TRUE) #traders and farmers 
 write.csv(sampling_frame, file = "sample.csv", row.names = FALSE)
+
+
+### create a map for meridian by aggregating 
+
+gps <- aggregate(cbind(as.numeric(sampling_frame$gps_longitude),as.numeric(sampling_frame$gps_latitude)),by=list(sampling_frame$q1,sampling_frame$q2, sampling_frame$q3), FUN=mean, na.rm=TRUE)
+
+names(gps) <- c("dist","sub","village","long","lat")
+
+map <-  leaflet() %>% setView(lat =mean(as.numeric(as.character(gps$lat)),na.rm=T), lng = mean(as.numeric(as.character(gps$long)),na.rm=T), zoom=9)  %>%  addTiles(group="OSM") %>% addTiles(urlTemplate = "https://mts1.google.com/vt/lyrs=s&hl=en&src=app&x={x}&y={y}&z={z}&s=G",  group="Google", attribution = 'Google')  %>% addProviderTiles(providers$OpenTopoMap, group="Topography") %>% addCircleMarkers(data=gps, lng=~as.numeric(as.character(long)), lat=~as.numeric(as.character(lat)),radius= 2,  , popup = ~as.character(village))   %>%  addLayersControl(baseGroups=c('OSM','Google','Topography')) 
+
+saveWidget(map, file="map_meridian.html",selfcontained = TRUE)
