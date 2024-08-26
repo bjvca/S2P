@@ -137,6 +137,16 @@ out@cgiar.org
 
 \end_inset
 
+, Edwin Siyame
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Development Strategy and Governance Division, IFPRI, Malawi
+\end_layout
+
+\end_inset
+
 
 \end_layout
 
@@ -588,6 +598,109 @@ blanket
  improve soil health.
 \end_layout
 
+\begin_layout Standard
+The study employs a randomized controlled trial (RCT) design involving 113
+ villages across four districts in Malawi (Lilongwe, Dowa, Ntchisi, and
+ Mchinji).
+ The villages are randomly assigned to one of three groups.
+ 
+\end_layout
+
+\begin_layout Itemize
+The first group, Treatment 1 (T1), is designed to test the "Space" component
+ of the S2P approach.
+ Farmers in this group receive a soil report based on a soil test conducted
+ on a plot chosen by the farmer.
+ This report includes key characteristics of the soil, along with a customized
+ recommendation for a fertilizer blend tailored to the specific crop selected
+ by the farmer.
+\end_layout
+
+\begin_layout Itemize
+The second group, Treatment 2 (T2), builds on the T1 intervention by examining
+ the importance of relaxing resource constraints as an enabling factor.
+ In addition to receiving the soil report and fertilizer recommendation
+ as in T1, farmers in this group also receive a discount voucher to purchase
+ the recommended fertilizer blend from a local agro-dealer.
+\end_layout
+
+\begin_layout Itemize
+The third group serves as the control (C) and provides the counterfactual
+ for comparison.
+ Farmers in this group receive a soil test, but instead of a site-specific
+ fertilizer recommendation, they are provided with a blanket fertilizer
+ recommendation that does not account for the specific conditions of their
+ plots.
+ 
+\end_layout
+
+\begin_layout Standard
+The sample for this study is drawn from a previous longitudinal study that
+ involved 113 villages.
+ This gives us the opportunity of leveraging two years’ worth of data on
+ Maize, Groundnut, and Soyabean growing famers for our study design and
+ analysis.
+ In doing so, we ensure that we do not lose external validity and generalizabili
+ty as we are relying on a specific sample drawn for a different purpose.
+ Since the sample for the previous study was selected using the same approach
+ we would have applied for this study—randomly drawing districts, villages,
+ and households within villages—we believe that using this sample does not
+ compromise external validity.
+ 
+\end_layout
+
+\begin_layout Standard
+Based on a thorough power and sample size calculation, we have determined
+ that we will need to sample 16 households per village, resulting in a total
+ of 1,808 households.
+ Out of the 113 villages, 42 villages will be assigned to Treatment 1 (T1),
+ another 42 villages to Treatment 2 (T2), and the remaining 41 villages
+ to the control group (C).
+ During the initial visit, farmers in all 113 villages will be offered a
+ soil test.
+ Those who accept the offer will be asked to select a plot of their choice
+ for the soil test.
+ Additionally, they will be asked to specify the crop for which they would
+ like to receive recommendations, as well as their target yield.
+ In making these selections, all farmers, regardless of treatment assignment,
+ will be informed that there is a two-thirds chance they will receive the
+ results of the soil test in time for the 2024/25 growing season.
+ 
+\end_layout
+
+\begin_layout Standard
+The soil samples will be collected and tested by a private company called
+ Meridian, whose core business involves the importation, blending, and distribut
+ion of fertilizer in Malawi, Mozambique, Zambia, and Zimbabwe.
+ After the soil tests are conducted, the results will be communicated in
+ a follow up visit to farmers in the randomly assigned T1 and T2 groups,
+ along with nutrient management advice from private sector-trained extension
+ agents, known as "agronauts.” Farmers in the C group will also receive a
+ follow-up visit in which blanket fertilizer recommendations will be provided
+ instead of the soil test results to avoid contaminating the control group.
+ Farmers in the control group will receive the results of the soil test
+ along with the nutrient management advice as in the treated group during
+ an end-line survey after the 2024/25 growing season.
+ 
+\end_layout
+
+\begin_layout Standard
+We will visit farmers three times during the duration of this study between
+ September 2024 and June 2025: first, when we visit them to collect soil
+ samples; second, before the 2024/25 growing season to gather baseline data;
+ and third, after the 2024/25 growing season to collect endline data.
+ During the initial visit, we will begin by obtaining farmers' consent to
+ participate in the study after providing them with complete information
+ (see the attached consent letter).
+ Farmers will then be asked to provide the location of the plot from which
+ soil samples will be collected for testing.
+ During the second visit, baseline data will be collected on key outcome
+ indicators using the attached questionnaire, prior to implementing the
+ interventions.
+ During the third and final visit we will collect endline data on key outcome
+ indicators as in the baseline 
+\end_layout
+
 \begin_layout Section
 Experimental Setup and Empirical Specifications
 \begin_inset CommandInset label
@@ -842,7 +955,7 @@ noprefix "false"
  specific assumptions, is a considerably more flexible and intuitive approach
  to conceptualizing power analysis.
 \begin_inset Foot
-status collapsed
+status open
 
 \begin_layout Plain Layout
 See also this methods guide: 
