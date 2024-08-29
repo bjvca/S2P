@@ -179,31 +179,66 @@ write.csv(gps, file = "village_list_meridian.csv", row.names = FALSE)
 ##farmer's age (in years), sex of farmer, household size, land area for crop production (acres), and AIP recepient in previous year. We also include five variables from among the outcomes of interest to test balance at baseline, in particular: use of organic fertilizer (yes/no), use of Urea (kg), yield, profit, crop in previous season was legume
 ### may need to be merged in 
 
+df_balance <- array(NA,dim=c(8,9))
+balance_vars <- c("age_head", "male_head","HH_size","land_size_ha","poor")
+
 sampling_frame$treatment1 <- sampling_frame$treatment=="T1" | sampling_frame$treatment=="T2"
 sampling_frame$treatment2 <- sampling_frame$treatment=="T2"
 
 #age of HH head
-
-fit.sim <- lm(age_head~treatment1+treatment2, data=sampling_frame)
+for (i in 1:length(balance_vars)){
+  
+  df_balance[i,1] <- round(tapply(as.numeric(unlist(sampling_frame[balance_vars[i]])), sampling_frame$treatment, FUN = mean, na.rm=TRUE)[1], digits = 3)
+  df_balance[i,2] <- round(tapply(as.numeric(unlist(sampling_frame[balance_vars[i]])), sampling_frame$treatment, FUN = sd, na.rm=TRUE)[1], digits = 3)
+  
+fit.sim <- lm(as.formula(paste(balance_vars[i],"treatment1+treatment2",sep = "~")), data=sampling_frame)
 vcov_cluster <- vcovCR(fit.sim,cluster=sampling_frame$village,type="CR3")
 coef_test(fit.sim, vcov_cluster)
 
-#sex of HH head == male
-fit.sim <- lm(male_head~treatment1+treatment2, data=sampling_frame)
-vcov_cluster <- vcovCR(fit.sim,cluster=sampling_frame$village,type="CR3")
-coef_test(fit.sim, vcov_cluster)
 
-## HH size
-fit.sim <- lm(HH_size~treatment1+treatment2, data=sampling_frame)
-vcov_cluster <- vcovCR(fit.sim,cluster=sampling_frame$village,type="CR3")
-coef_test(fit.sim, vcov_cluster)
 
-### land area for crop production (three main crops in ha)
-fit.sim <- lm(land_size_ha~treatment1+treatment2, data=sampling_frame)
-vcov_cluster <- vcovCR(fit.sim,cluster=sampling_frame$village,type="CR3")
-coef_test(fit.sim, vcov_cluster)
+df_balance[i,3] <- round(coef_test(fit.sim, vcov_cluster)$beta[2], digits = 3)
+df_balance[i,4] <- round(coef_test(fit.sim, vcov_cluster)$SE[2], digits = 3)
+df_balance[i,5] <- coef_test(fit.sim, vcov_cluster)$p_Satt[2]
 
-## has often or very often problems satisfying food needs of the household in the last year (poor)
-fit.sim <- lm(poor~treatment1+treatment2, data=sampling_frame)
-vcov_cluster <- vcovCR(fit.sim,cluster=sampling_frame$village,type="CR3")
-coef_test(fit.sim, vcov_cluster)
+
+df_balance[i,6] <- round(coef_test(fit.sim, vcov_cluster)$beta[3], digits = 3)
+df_balance[i,7] <- round(coef_test(fit.sim, vcov_cluster)$SE[3], digits = 3)
+df_balance[i,8] <- coef_test(fit.sim, vcov_cluster)$p_Satt[3]
+
+df_balance[i,9] <-  nobs(fit.sim)
+}
+
+##joint orthogonality
+
+### do this with a multinomial model and a Likelihood ration test : -2*L(null model) – (-2*L(fitted model)) 
+library(lmtest)
+library(car)
+library(nnet)
+
+nullMod <- multinom(treatment ~1 , data=na.omit(sampling_frame[ , all.vars(formula(treatment~age_head+male_head+HH_size+land_size_ha+poor))]))
+altMod <- multinom(treatment~age_head+male_head+HH_size+land_size_ha+poor , data = sampling_frame)
+lrtest(altMod, nullMod)
+
+df_balance[6,1] <-round(lrtest(altMod, nullMod)[2,4],digits=3)
+df_balance[6,2] <-round(lrtest(altMod, nullMod)[2,5],digits=3)
+
+##simple F-tests
+
+mod1<- lm((treatment=="T1")~age_head+male_head+HH_size+land_size_ha+poor, data = sampling_frame[sampling_frame$treatment%in%c("T1","C"),])
+test_res <- linearHypothesis(mod1, c("age_head=0","male_headTRUE=0","HH_size=0","land_size_ha=0","poorTRUE=0"))
+
+
+df_balance[7,1] <-round(test_res[2,5],digits=3)
+df_balance[7,2] <-round(test_res[2,6],digits=3)
+
+mod1<- lm((treatment=="T2")~age_head+male_head+HH_size+land_size_ha+poor, data = sampling_frame[sampling_frame$treatment%in%c("T1","T2"),])
+test_res <- linearHypothesis(mod1, c("age_head=0","male_headTRUE=0","HH_size=0","land_size_ha=0","poorTRUE=0"))
+
+
+df_balance[8,1] <-round(test_res[2,5],digits=3)
+df_balance[8,2] <-round(test_res[2,6],digits=3)
+
+
+### save this results DF somewhere
+saveRDS(df_balance, file=paste(path,"balance_2022.Rdata",sep="/")) 
