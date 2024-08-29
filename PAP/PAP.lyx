@@ -9,6 +9,9 @@
 \usepackage{babel}
 \end_preamble
 \use_default_options false
+\begin_modules
+knitr
+\end_modules
 \maintain_unincluded_children false
 \language english
 \language_package default
@@ -975,8 +978,7 @@ literal "false"
 \end_inset
 
 .
- Using this data, we find that average yield is 2,574 kilogram per hectare
- with a standard deviation of 1,145.
+ Using this data, we find that average yield is 2,574 kilogram per 
 \end_layout
 
 \begin_layout Standard
@@ -990,6 +992,56 @@ Outcomes of interest
 \begin_inset CommandInset label
 LatexCommand label
 name "sec:Outcomes-of-interest"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<code,  echo=FALSE, warning = FALSE, message=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+path <- getwd()
+\end_layout
+
+\begin_layout Plain Layout
+
+path <- strsplit(path, "/PAP")[[1]]
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+balance <- readRDS(paste(path,"sampling/balance_2022.Rdata", sep="/"))
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
 
 \end_inset
 
@@ -1097,6 +1149,11 @@ noprefix "false"
 \end_inset
 
 .
+ The table shows not a single significant difference for the five outcomes
+ for pairwise comparisons between the different treatment groups.
+ Joint tests of orthogonality confirm that we have good balance judged by
+ these five outcome variables that were collected before the treatment administr
+ation.
 \end_layout
 
 \begin_layout Standard
@@ -1177,25 +1234,21 @@ cline{2-5}
 
 \begin_layout Plain Layout
 
-\end_layout
-
-\begin_layout Plain Layout
-
-Household head is female & 
+Household head age (years) & 
 \backslash
 Sexpr{balance[1,1]} & 
 \backslash
-Sexpr{balance[1,4]}$^{
+Sexpr{balance[1,3]}$^{
 \backslash
-Sexpr{ifelse(balance[1,6]<.01,"**",ifelse(balance[1,6]<.05,"*",ifelse(balance[1,6]
+Sexpr{ifelse(balance[1,5]<.01,"**",ifelse(balance[1,5]<.05,"*",ifelse(balance[1,5]
 <.1,"+","")))}}$  & 
 \backslash
-Sexpr{balance[1,7]}$^{
+Sexpr{balance[1,6]}$^{
 \backslash
-Sexpr{ifelse(balance[1,9]<.01,"**",ifelse(balance[1,9]<.05,"*",ifelse(balance[1,9]
+Sexpr{ifelse(balance[1,8]<.01,"**",ifelse(balance[1,8]<.05,"*",ifelse(balance[1,8]
 <.1,"+","")))}}$  & 
 \backslash
-Sexpr{balance[1,10]}
+Sexpr{balance[1,9]}
 \end_layout
 
 \begin_layout Plain Layout
@@ -1213,9 +1266,9 @@ Sexpr{balance[1,10]}
 \backslash
 Sexpr{balance[1,2]}) & (
 \backslash
-Sexpr{balance[1,5]})  & (
+Sexpr{balance[1,4]})  & (
 \backslash
-Sexpr{balance[1,8]})
+Sexpr{balance[1,7]})
 \backslash
 
 \backslash
@@ -1228,21 +1281,21 @@ Sexpr{balance[1,8]})
 
 \begin_layout Plain Layout
 
-Household size (number of people) & 
+Household head is male (1=yes) & 
 \backslash
 Sexpr{balance[2,1]} & 
 \backslash
-Sexpr{balance[2,4]}$^{
+Sexpr{balance[2,3]}$^{
 \backslash
-Sexpr{ifelse(balance[2,6]<.01,"**",ifelse(balance[2,6]<.05,"*",ifelse(balance[2,6]
+Sexpr{ifelse(balance[2,5]<.01,"**",ifelse(balance[2,5]<.05,"*",ifelse(balance[2,5]
 <.1,"+","")))}}$  & 
 \backslash
-Sexpr{balance[2,7]}$^{
+Sexpr{balance[2,6]}$^{
 \backslash
-Sexpr{ifelse(balance[2,9]<.01,"**",ifelse(balance[2,9]<.05,"*",ifelse(balance[2,9]
+Sexpr{ifelse(balance[2,8]<.01,"**",ifelse(balance[2,8]<.05,"*",ifelse(balance[2,8]
 <.1,"+","")))}}$  & 
 \backslash
-Sexpr{balance[2,10]}
+Sexpr{balance[2,9]}
 \end_layout
 
 \begin_layout Plain Layout
@@ -1260,9 +1313,9 @@ Sexpr{balance[2,10]}
 \backslash
 Sexpr{balance[2,2]}) & (
 \backslash
-Sexpr{balance[2,5]})  & (
+Sexpr{balance[2,4]})  & (
 \backslash
-Sexpr{balance[2,8]})
+Sexpr{balance[2,7]})
 \backslash
 
 \backslash
@@ -1275,21 +1328,21 @@ Sexpr{balance[2,8]})
 
 \begin_layout Plain Layout
 
-Age of household head (year) & 
+Household size (number) & 
 \backslash
 Sexpr{balance[3,1]} & 
 \backslash
-Sexpr{balance[3,4]}$^{
+Sexpr{balance[3,3]}$^{
 \backslash
-Sexpr{ifelse(balance[3,6]<.01,"**",ifelse(balance[3,6]<.05,"*",ifelse(balance[3,6]
+Sexpr{ifelse(balance[3,5]<.01,"**",ifelse(balance[3,5]<.05,"*",ifelse(balance[3,5]
 <.1,"+","")))}}$  & 
 \backslash
-Sexpr{balance[3,7]}$^{
+Sexpr{balance[3,6]}$^{
 \backslash
-Sexpr{ifelse(balance[3,9]<.01,"**",ifelse(balance[3,9]<.05,"*",ifelse(balance[3,9]
+Sexpr{ifelse(balance[3,8]<.01,"**",ifelse(balance[3,8]<.05,"*",ifelse(balance[3,8]
 <.1,"+","")))}}$  & 
 \backslash
-Sexpr{balance[3,10]}
+Sexpr{balance[3,9]}
 \end_layout
 
 \begin_layout Plain Layout
@@ -1307,9 +1360,9 @@ Sexpr{balance[3,10]}
 \backslash
 Sexpr{balance[3,2]}) & (
 \backslash
-Sexpr{balance[3,5]})  & (
+Sexpr{balance[3,4]})  & (
 \backslash
-Sexpr{balance[3,8]})
+Sexpr{balance[3,7]})
 \backslash
 
 \backslash
@@ -1322,21 +1375,21 @@ Sexpr{balance[3,8]})
 
 \begin_layout Plain Layout
 
-Years of education of household head & 
+Land area (ha) & 
 \backslash
 Sexpr{balance[4,1]} & 
 \backslash
-Sexpr{balance[4,4]}$^{
+Sexpr{balance[4,3]}$^{
 \backslash
-Sexpr{ifelse(balance[4,6]<.01,"**",ifelse(balance[4,6]<.05,"*",ifelse(balance[4,6]
+Sexpr{ifelse(balance[4,5]<.01,"**",ifelse(balance[4,5]<.05,"*",ifelse(balance[4,5]
 <.1,"+","")))}}$  & 
 \backslash
-Sexpr{balance[4,7]}$^{
+Sexpr{balance[4,6]}$^{
 \backslash
-Sexpr{ifelse(balance[4,9]<.01,"**",ifelse(balance[4,9]<.05,"*",ifelse(balance[4,9]
+Sexpr{ifelse(balance[4,8]<.01,"**",ifelse(balance[4,8]<.05,"*",ifelse(balance[4,8]
 <.1,"+","")))}}$  & 
 \backslash
-Sexpr{balance[4,10]}
+Sexpr{balance[4,9]}
 \end_layout
 
 \begin_layout Plain Layout
@@ -1354,9 +1407,9 @@ Sexpr{balance[4,10]}
 \backslash
 Sexpr{balance[4,2]}) & (
 \backslash
-Sexpr{balance[4,5]})  & (
+Sexpr{balance[4,4]})  & (
 \backslash
-Sexpr{balance[4,8]})
+Sexpr{balance[4,7]})
 \backslash
 
 \backslash
@@ -1369,21 +1422,21 @@ Sexpr{balance[4,8]})
 
 \begin_layout Plain Layout
 
-Roof of main building is corrugated iron & 
+Had difficulties feeding familiy in last year (1=yes) & 
 \backslash
 Sexpr{balance[5,1]} & 
 \backslash
-Sexpr{balance[5,4]}$^{
+Sexpr{balance[5,3]}$^{
 \backslash
-Sexpr{ifelse(balance[5,6]<.01,"**",ifelse(balance[5,6]<.05,"*",ifelse(balance[5,6]
+Sexpr{ifelse(balance[5,5]<.01,"**",ifelse(balance[5,5]<.05,"*",ifelse(balance[5,5]
 <.1,"+","")))}}$  & 
 \backslash
-Sexpr{balance[5,7]}$^{
+Sexpr{balance[5,6]}$^{
 \backslash
-Sexpr{ifelse(balance[5,9]<.01,"**",ifelse(balance[5,9]<.05,"*",ifelse(balance[5,9]
+Sexpr{ifelse(balance[5,8]<.01,"**",ifelse(balance[5,8]<.05,"*",ifelse(balance[5,8]
 <.1,"+","")))}}$  & 
 \backslash
-Sexpr{balance[5,10]}
+Sexpr{balance[5,9]}
 \end_layout
 
 \begin_layout Plain Layout
@@ -1401,257 +1454,9 @@ Sexpr{balance[5,10]}
 \backslash
 Sexpr{balance[5,2]}) & (
 \backslash
-Sexpr{balance[5,5]})  & (
+Sexpr{balance[5,4]})  & (
 \backslash
-Sexpr{balance[5,8]})
-\backslash
-
-\backslash
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-Number of rooms in house & 
-\backslash
-Sexpr{balance[6,1]} & 
-\backslash
-Sexpr{balance[6,4]}$^{
-\backslash
-Sexpr{ifelse(balance[6,6]<.01,"**",ifelse(balance[6,6]<.05,"*",ifelse(balance[6,6]
-<.1,"+","")))}}$  & 
-\backslash
-Sexpr{balance[6,7]}$^{
-\backslash
-Sexpr{ifelse(balance[6,9]<.01,"**",ifelse(balance[6,9]<.05,"*",ifelse(balance[6,9]
-<.1,"+","")))}}$  & 
-\backslash
-Sexpr{balance[6,10]}
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-
-\backslash
- &
-\end_layout
-
-\begin_layout Plain Layout
-
-(
-\backslash
-Sexpr{balance[6,2]}) & (
-\backslash
-Sexpr{balance[6,5]})  & (
-\backslash
-Sexpr{balance[6,8]})
-\backslash
-
-\backslash
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-Area of cultivated land (acres) & 
-\backslash
-Sexpr{balance[7,1]} & 
-\backslash
-Sexpr{balance[7,4]}$^{
-\backslash
-Sexpr{ifelse(balance[7,6]<.01,"**",ifelse(balance[7,6]<.05,"*",ifelse(balance[7,6]
-<.1,"+","")))}}$  & 
-\backslash
-Sexpr{balance[7,7]}$^{
-\backslash
-Sexpr{ifelse(balance[7,9]<.01,"**",ifelse(balance[7,9]<.05,"*",ifelse(balance[7,9]
-<.1,"+","")))}}$  & 
-\backslash
-Sexpr{balance[7,10]}
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-
-\backslash
- &
-\end_layout
-
-\begin_layout Plain Layout
-
-(
-\backslash
-Sexpr{balance[7,2]}) & (
-\backslash
-Sexpr{balance[7,5]})  & (
-\backslash
-Sexpr{balance[7,8]})
-\backslash
-
-\backslash
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-Hired labour for maize, soybean or gnut productions? & 
-\backslash
-Sexpr{balance[8,1]} & 
-\backslash
-Sexpr{balance[8,4]}$^{
-\backslash
-Sexpr{ifelse(balance[8,6]<.01,"**",ifelse(balance[8,6]<.05,"*",ifelse(balance[8,6]
-<.1,"+","")))}}$  & 
-\backslash
-Sexpr{balance[8,7]}$^{
-\backslash
-Sexpr{ifelse(balance[8,9]<.01,"**",ifelse(balance[8,9]<.05,"*",ifelse(balance[8,9]
-<.1,"+","")))}}$  & 
-\backslash
-Sexpr{balance[8,10]}
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-
-\backslash
- &
-\end_layout
-
-\begin_layout Plain Layout
-
-(
-\backslash
-Sexpr{balance[8,2]}) & (
-\backslash
-Sexpr{balance[8,5]})  & (
-\backslash
-Sexpr{balance[8,8]})
-\backslash
-
-\backslash
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-Distance to nearest all weather road (km) & 
-\backslash
-Sexpr{balance[9,1]} & 
-\backslash
-Sexpr{balance[9,4]}$^{
-\backslash
-Sexpr{ifelse(balance[9,6]<.01,"**",ifelse(balance[9,6]<.05,"*",ifelse(balance[9,6]
-<.1,"+","")))}}$  & 
-\backslash
-Sexpr{balance[9,7]}$^{
-\backslash
-Sexpr{ifelse(balance[9,9]<.01,"**",ifelse(balance[9,9]<.05,"*",ifelse(balance[9,9]
-<.1,"+","")))}}$  & 
-\backslash
-Sexpr{balance[9,10]}
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-
-\backslash
- &
-\end_layout
-
-\begin_layout Plain Layout
-
-(
-\backslash
-Sexpr{balance[9,2]}) & (
-\backslash
-Sexpr{balance[9,5]})  & (
-\backslash
-Sexpr{balance[9,8]})
-\backslash
-
-\backslash
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-Distance to nearest market (km) & 
-\backslash
-Sexpr{balance[10,1]} & 
-\backslash
-Sexpr{balance[10,4]}$^{
-\backslash
-Sexpr{ifelse(balance[10,6]<.01,"**",ifelse(balance[10,6]<.05,"*",ifelse(balance[10
-,6]<.1,"+","")))}}$  & 
-\backslash
-Sexpr{balance[10,7]}$^{
-\backslash
-Sexpr{ifelse(balance[10,9]<.01,"**",ifelse(balance[10,9]<.05,"*",ifelse(balance[10
-,9]<.1,"+","")))}}$  & 
-\backslash
-Sexpr{balance[10,10]}
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-
-\backslash
- &
-\end_layout
-
-\begin_layout Plain Layout
-
-(
-\backslash
-Sexpr{balance[10,2]}) & (
-\backslash
-Sexpr{balance[10,5]})  & (
-\backslash
-Sexpr{balance[10,8]})
-\backslash
-
-\backslash
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-
+Sexpr{balance[5,7]})
 \backslash
 
 \backslash
@@ -1669,9 +1474,9 @@ hline
 
 F-test C/T1 (p-value) & 
 \backslash
-Sexpr{balance[11,1]} & (
+Sexpr{balance[7,1]} & (
 \backslash
-Sexpr{balance[11,2]})
+Sexpr{balance[7,2]})
 \backslash
 
 \backslash
@@ -1680,33 +1485,16 @@ Sexpr{balance[11,2]})
 
 \begin_layout Plain Layout
 
-F-test C/T2  (p-value) & 
+F-test T1/T2  (p-value) & 
 \backslash
-Sexpr{balance[12,1]} & (
+Sexpr{balance[8,1]} & (
 \backslash
-Sexpr{balance[12,2]})& 
+Sexpr{balance[8,2]})& 
 \backslash
  
 \backslash
 
 \backslash
-
-\end_layout
-
-\begin_layout Plain Layout
-
-Likelihood Ratio Test (p-value) & 
-\backslash
-Sexpr{balance[13,1]} & (
-\backslash
-Sexpr{balance[13,2]})
-\backslash
-
-\backslash
-
-\end_layout
-
-\begin_layout Plain Layout
 
 \end_layout
 
@@ -1747,13 +1535,13 @@ scriptsize
 \begin_layout Plain Layout
 
 Note: First column reports control group means (and standard deviations
- below);  **, * and + denote significance at the 1, 5 and 10 percent levels.
+ below); second column shows different between control and T1 (and standard
+ errors clustered at the village level below); third column shows different
+ between T1 and T2 (and standard errors clustered at the village level below).
  F-test test for joint significance in a regression with treatment status
- on the left hand side (T1/C or T2/C).
+ on the left hand side (T1/C or T2/T1).
  Likelihood ratio test is derived from a multinomial model where the left
- hand side has three levels (T1,T2,C).
- All models include village fixed effects.
- 
+ hand side has three levels (C,T1,T2).
 \end_layout
 
 \end_inset
