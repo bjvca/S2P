@@ -154,7 +154,7 @@ Development Strategy and Governance Division, IFPRI, Malawi
 \end_layout
 
 \begin_layout Title
-Assessing the Relative Importance of Space and Place Components 
+The Impact of Site Specific Soil Fertility Recommendations
 \end_layout
 
 \begin_layout Standard
@@ -205,7 +205,16 @@ IFPRI was tasked in 2023 to do a rigorous impact evaluation of the S2P approach.
 \end_inset
 
 s theory of change.
- 
+\end_layout
+
+\begin_layout Standard
+Building on recent rigorous impact evaluations, we decided to evaluate the
+ impact of a bundled intervention that involves offering farmers a soil
+ test on a plot they select and, using the results of this soil test, providing
+ them with tailored advise on soil management to attain a desired yield
+ for a particular crop the farmer chooses to plant on the plot.
+ Furthermore, we also explore resources constraints as a potential barrier
+ to the adoption of site specific fertilizer blends by adding a subsidy.
 \end_layout
 
 \begin_layout Section
@@ -316,34 +325,10 @@ literal "false"
 \end_layout
 
 \begin_layout Itemize
-the tools often focus too much on in-field heterogeneity, but not socioeconomic
- heterogeneity of users 
-\begin_inset CommandInset citation
-LatexCommand citep
-key "sida2023failure"
-literal "false"
-
-\end_inset
-
-.
- This is partly due to the fact that these tools are developed by agronomists
- who maximize yields.
- However, farmers typically base decisions on cost-benefit considerations.
- In these considerations, a variety of other factors in addition to soil
- characteristics enter the equation.
- For instance, profitability is influence by availability and prices of
- the recommended fertilizers and the price at which farmers can sell the
- crops derived from the fields on which they invested.
-\end_layout
-
-\begin_layout Itemize
-related, the tools and apps we reviewed were mostly focusing on inorganic
- fertilizers.
- However, experts in the field were mostly talking about soil health.
- They argue that gains from using or re-optimizing inorganic fertilizer
- would be much smaller than what is typically found in on-station trials
- if we consider plots that suffer from years of nutrient mining and soil
- erosion.
+just providing information: many of the apps implicitly assume that just
+ providing farmers with information is sufficient for farmers to change
+ behavior.
+ An extension component, with a human intermediary, is missing.
 \end_layout
 
 \begin_layout Itemize
@@ -355,13 +340,6 @@ decision support tools often take a host of pre-conditions for granted,
  DSTs have at least one treatment arm that investigates the importance of
  a particular pre-condition (such as access to insurance, financial resources,
  or information).
-\end_layout
-
-\begin_layout Standard
-The Space2Place approach addresses some of these concerns by combining SPACE
- (top-down information) and PLACE (on-site information) in a singe decision
- support tool to develop practical, profitable, scale-appropriate fertilizer
- and land management recommendations.
 \end_layout
 
 \begin_layout Section
@@ -542,66 +520,6 @@ Treatment Protocols
 \end_layout
 
 \begin_layout Standard
-To answer the 2 research questions above, we develop 2 different treatments.
- 
-\end_layout
-
-\begin_layout Itemize
-Treatment 1 (T1): In a first treatment, a farmer receives a soil report
- (see example in Appendix 1) derived from a soil test on a plot chosen by
- the farmer (See section 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:Sampling-and-data"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
- for more information on the soil tests) , with some key characteristics
- of the soil.
- The report indicates the soil
-\begin_inset Quotes ers
-\end_inset
-
-s texture, pH level, cation exchange capacity, percentage organic matter,
- total nitrogen, carbon to nitrogen ratio, as well as the parts per million
- of available P, exchangeable K, calcium, magnesium, iron, manganese, boron,
- copper and zinc.
- Beyond the exact measurements each soil property is given a score on a
- 4-point Likert scale (very low, low, high, very high), with emojis, color
- coding and bar charts indicating where the soil is deficient and where
- the levels are sound.
- Using a script, a trained enumerator and/or extension worker then discusses
- the soil report with the farmer to derive a recommended nutrient package
- specific to the crop the farmer wants to grow.
- The farmer is then informed where and how to obtain these nutrients (in
- the form of a particular fertilizer blend).
-\end_layout
-
-\begin_layout Itemize
-Treatment 2 (T2): T1 plus a voucher to buy the recommended nutrients at
- a local agro-dealer.
- 
-\end_layout
-
-\begin_layout Itemize
-Comparison 1 (C): A pure control with no soil test, no custom recommendations
- on optimal soil fertility management, and no subsidy.
- They will only provided with a 
-\begin_inset Quotes eld
-\end_inset
-
-blanket
-\begin_inset Quotes erd
-\end_inset
-
- recommendation of the three most important practices that can be used to
- improve soil health.
-\end_layout
-
-\begin_layout Standard
 The study employs a randomized controlled trial (RCT) design involving 113
  villages across four districts in Malawi (Lilongwe, Dowa, Ntchisi, and
  Mchinji).
@@ -610,10 +528,8 @@ The study employs a randomized controlled trial (RCT) design involving 113
 \end_layout
 
 \begin_layout Itemize
-The first group, Treatment 1 (T1), is designed to test the "Space" component
- of the S2P approach.
- Farmers in this group receive a soil report based on a soil test conducted
- on a plot chosen by the farmer.
+The first group, Treatment 1 (T1), in this group receive a soil report based
+ on a soil test conducted on a plot chosen by the farmer.
  This report includes key characteristics of the soil, along with a customized
  recommendation for a fertilizer blend tailored to the specific crop selected
  by the farmer.
@@ -716,10 +632,14 @@ name "sec:Experimental-design"
 \end_layout
 
 \begin_layout Standard
-Households will be randomized at the individual level following a parallel
- design for T1, T2 and T3.
- An extra treatment cell will be added to the T3 treatment cell to measure
- the incremental effect of the subsidy (T4).
+Households will be randomized at the village level following a parallel
+ design with one control and two treatment arms.
+ A first treatment arm will get the soil test and a recommendation based
+ on this soil test which includes a recommended fertilizer blend.
+ A second treatment is added incrementally on the first treatment.
+ In this treatment arm, farmers get get the soil test and a recommendation
+ based on this soil test, and also receive a voucher that partially subsides
+ the recommended fertilizer blend.
  The layout of the experiment is illustrated in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -779,14 +699,13 @@ name "fig:Experimental-layout"
 Due to the random assignment of participants to treatment and control groups,
  comparing outcome variable averages of treated and control participants
  provides unbiased estimates of the average treatment effects.
- For the parallel design, we compare averages using OLS regression of the
- following form:
+ We compare averages using OLS regression of the following form:
 \end_layout
 
 \begin_layout Standard
 \begin_inset Formula 
 \begin{equation}
-Y_{i}=\alpha+\beta_{T1}T1_{i}+\beta_{T2}T1_{i}\centerdot T2_{i}+\varepsilon_{i}\label{eq:simple}
+Y_{i}=\alpha+\beta_{T1}T1_{j}+\beta_{T2}T1_{j}\centerdot T2_{j}+\varepsilon_{i}\label{eq:simple}
 \end{equation}
 
 \end_inset
@@ -823,8 +742,9 @@ i
 \begin_inset Formula $T2_{i}$
 \end_inset
 
- are treatment indicators that take the value of one if the farmer was allocated
- to the respective treatment group, and zero otherwise.
+ are treatment indicators at the village level that take the value of one
+ if the farmer was located in a village that was allocated to the respective
+ treatment group, and zero otherwise.
  The parameter estimate of 
 \begin_inset Formula $\beta_{T1}$
 \end_inset
@@ -843,7 +763,8 @@ To estimate
 \end_inset
 
 , we will also estimate an alternative specification that boosts power by
- exploiting the fact that farmers that received T2 also received T1.
+ exploiting the fact that farmers T2 is provided on top of T1 (that is,
+ farmers in the second treatment arm also receive T1).
  To do so, we consider T2 as covariate and enter it in deviations from its
  mean in the following way 
 \begin_inset CommandInset citation
@@ -859,7 +780,7 @@ literal "false"
 \begin_layout Plain Layout
 \begin_inset Formula 
 \begin{equation}
-Y_{i}=\alpha+\beta_{T1}T1_{i}+\beta_{T2}T1_{i}\left(T2_{i}-\overline{T2}\right)+\beta_{C}\left(T2_{i}-\overline{T2}\right)+\varepsilon_{i}\label{eq:othog}
+Y_{i}=\alpha+\beta_{T1}T1_{j}+\beta_{T2}T1_{j}\left(T2_{j}-\overline{T2}\right)+\beta_{C}\left(T2_{j}-\overline{T2}\right)+\varepsilon_{i}\label{eq:othog}
 \end{equation}
 
 \end_inset
