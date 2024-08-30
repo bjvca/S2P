@@ -570,9 +570,9 @@ s texture, pH level, cation exchange capacity, percentage organic matter,
  4-point Likert scale (very low, low, high, very high), with emojis, color
  coding and bar charts indicating where the soil is deficient and where
  the levels are sound.
- Using a script, a trained enumerator and/or extension worker then discusses
- the soil report with the farmer to derive a recommended nutrient package
- specific to the crop the farmer wants to grow.
+ A private sector-trained extension agents then discusses the soil report
+ with the farmer to derive a recommended nutrient package specific to the
+ crop the farmer wants to grow.
  The farmer is then informed where and how to obtain these nutrients (in
  the form of a particular fertilizer blend).
 \end_layout
@@ -586,51 +586,60 @@ Treatment 2 (T2): T1 plus a voucher to buy the recommended nutrients at
 \begin_layout Itemize
 Comparison 1 (C): A pure control with no soil test, no custom recommendations
  on optimal soil fertility management, and no subsidy.
- They will only provided with a 
-\begin_inset Quotes eld
-\end_inset
-
-blanket
-\begin_inset Quotes erd
-\end_inset
-
- recommendation of the three most important practices that can be used to
- improve soil health.
-\end_layout
-
-\begin_layout Standard
-The study employs a randomized controlled trial (RCT) design involving 113
- villages across four districts in Malawi (Lilongwe, Dowa, Ntchisi, and
- Mchinji).
- The villages are randomly assigned to one of three groups.
  
 \end_layout
 
-\begin_layout Itemize
-The first group, Treatment 1 (T1), is designed to test the "Space" component
- of the S2P approach.
- Farmers in this group receive a soil report based on a soil test conducted
- on a plot chosen by the farmer.
- This report includes key characteristics of the soil, along with a customized
- recommendation for a fertilizer blend tailored to the specific crop selected
- by the farmer.
+\begin_layout Standard
+The soil samples will be collected and tested by a private company called
+ Meridian, whose core business involves the importation, blending, and distribut
+ion of fertilizer in Malawi, Mozambique, Zambia, and Zimbabwe.
+ After the soil tests are conducted, the results will be communicated in
+ a follow up visit to farmers in the randomly assigned T1 and T2 groups,
+ along with nutrient management advice from private sector-trained extension
+ agents, known as "agronauts.” Farmers in the C group will not receive a
+ follow-up visit as there sre in which blanket fertilizer recommendations
+ will be provided instead of the soil test results to avoid contaminating
+ the control group.
+ Farmers in the control group will receive the results of the soil test
+ along with the nutrient management advice as in the treated group during
+ an end-line survey after the 2024/25 growing season.
+ 
 \end_layout
 
-\begin_layout Itemize
-The second group, Treatment 2 (T2), builds on the T1 intervention by examining
- the importance of relaxing resource constraints as an enabling factor.
- In addition to receiving the soil report and fertilizer recommendation
- as in T1, farmers in this group also receive a discount voucher to purchase
- the recommended fertilizer blend from a local agro-dealer.
+\begin_layout Standard
+Some notes:
 \end_layout
 
-\begin_layout Itemize
-The third group serves as the control (C) and provides the counterfactual
- for comparison.
- Farmers in this group receive a soil test, but instead of a site-specific
- fertilizer recommendation, they are provided with a blanket fertilizer
- recommendation that does not account for the specific conditions of their
- plots.
+\begin_layout Standard
+Provide a brief explanation of the expert advice (extension serivuce )
+\end_layout
+
+\begin_layout Standard
+Describe the amount of voucher and the logic behind in relation to the AIP.
+ 
+\end_layout
+
+\begin_layout Standard
+Maybe we can say site and crop specific fertilizer recommendation.
+ 
+\end_layout
+
+\begin_layout Standard
+Johnathan's point on the recommendation being affordable not the most effective
+ in terms of yield 
+\end_layout
+
+\begin_layout Standard
+Are farmers buying the right fertilizer recommended 
+\end_layout
+
+\begin_layout Standard
+Farmers in T1 have the right to buy the fertilizer from anywhere.
+ 
+\end_layout
+
+\begin_layout Standard
+It might be one Argonaut for 3 or 4 villages - Johnathan will confirm.
  
 \end_layout
 
@@ -665,22 +674,6 @@ Based on a thorough power and sample size calculation, we have determined
  In making these selections, all farmers, regardless of treatment assignment,
  will be informed that there is a two-thirds chance they will receive the
  results of the soil test in time for the 2024/25 growing season.
- 
-\end_layout
-
-\begin_layout Standard
-The soil samples will be collected and tested by a private company called
- Meridian, whose core business involves the importation, blending, and distribut
-ion of fertilizer in Malawi, Mozambique, Zambia, and Zimbabwe.
- After the soil tests are conducted, the results will be communicated in
- a follow up visit to farmers in the randomly assigned T1 and T2 groups,
- along with nutrient management advice from private sector-trained extension
- agents, known as "agronauts.” Farmers in the C group will also receive a
- follow-up visit in which blanket fertilizer recommendations will be provided
- instead of the soil test results to avoid contaminating the control group.
- Farmers in the control group will receive the results of the soil test
- along with the nutrient management advice as in the treated group during
- an end-line survey after the 2024/25 growing season.
  
 \end_layout
 
