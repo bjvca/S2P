@@ -9,6 +9,9 @@
 \usepackage{babel}
 \end_preamble
 \use_default_options false
+\begin_modules
+knitr
+\end_modules
 \maintain_unincluded_children false
 \language english
 \language_package default
@@ -776,7 +779,7 @@ Due to the random assignment of participants to treatment and control groups,
 \begin_layout Standard
 \begin_inset Formula 
 \begin{equation}
-Y_{i}=\alpha+\beta_{T1}T1_{i}+\beta_{T4}T1_{i}\centerdot T2_{i}+\varepsilon_{i}\label{eq:simple}
+Y_{i}=\alpha+\beta_{T1}T1_{i}+\beta_{T2}T1_{i}\centerdot T2_{i}+\varepsilon_{i}\label{eq:simple}
 \end{equation}
 
 \end_inset
@@ -823,37 +826,19 @@ i
 \begin_inset Formula $\beta_{T2}$
 \end_inset
 
- is the effect of the treatment that provides tailor made advice on agronomic
- practices and 
-\begin_inset Formula $\beta_{T3}$
-\end_inset
-
- is the effect of the combined treatment.
- Equation 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "eq:simple"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
- also estimates the incremental effect of adding the voucher to the combined
- treatment.
+ is the incremental effect of adding the voucher to the combined treatment.
 \begin_inset Foot
 status open
 
 \begin_layout Plain Layout
 To estimate 
-\begin_inset Formula $\beta_{T3}$
+\begin_inset Formula $\beta_{T1}$
 \end_inset
 
 , we will also estimate an alternative specification that boosts power by
- exploiting the fact that farmers that received the voucher also received
- T3.
- To do so, we consider T4 as covariate and enter it in deviations from its
- mean in the subsample of control and T3 farmers in following way 
+ exploiting the fact that farmers that received T2 also received T1.
+ To do so, we consider T2 as covariate and enter it in deviations from its
+ mean in the following way 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "lin2013agnostic"
@@ -867,7 +852,7 @@ literal "false"
 \begin_layout Plain Layout
 \begin_inset Formula 
 \begin{equation}
-Y_{i}=\alpha+\beta_{T3}T3_{i}+\beta_{T4}T3_{i}\left(T4_{i}-\overline{T4}\right)+\beta_{C}\left(T4_{i}-\overline{T4}\right)+\varepsilon_{i}\label{eq:othog}
+Y_{i}=\alpha+\beta_{T1}T1_{i}+\beta_{T2}T1_{i}\left(T2_{i}-\overline{T2}\right)+\beta_{C}\left(T2_{i}-\overline{T2}\right)+\varepsilon_{i}\label{eq:othog}
 \end{equation}
 
 \end_inset
@@ -986,8 +971,7 @@ literal "false"
 \end_inset
 
 .
- Using this data, we find that average yield is 2,574 kilogram per hectare
- with a standard deviation of 1,145.
+ Using this data, we find that average yield is 2,574 kilogram per 
 \end_layout
 
 \begin_layout Standard
@@ -1001,6 +985,56 @@ Outcomes of interest
 \begin_inset CommandInset label
 LatexCommand label
 name "sec:Outcomes-of-interest"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<code,  echo=FALSE, warning = FALSE, message=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+path <- getwd()
+\end_layout
+
+\begin_layout Plain Layout
+
+path <- strsplit(path, "/PAP")[[1]]
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+balance <- readRDS(paste(path,"sampling/balance_2022.Rdata", sep="/"))
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
 
 \end_inset
 
@@ -1089,13 +1123,437 @@ Outcome
 \end_layout
 
 \begin_layout Standard
-We will also test for balance on ten pre-specified variables.
- While we will not do a dedicated baseline, we will collect data on some
- background characteristics at the time of the treatment administration.
- We will use the following five variables that are unlikely to be affected
- by the treatments: farmer's age (in years), sex of farmer, household size,
- land area for crop production (acres), and AIP recepient in previous year.
- We also include five variables from among the outcomes of interest to test
+We will also test for balance on fifteen pre-specified variables.
+ First, we will use data previously collected to assess balance on the following
+ five variables that are unlikely to be affected by the treatments: farmer's
+ age (in years), sex of farmer, household size, land area for crop production
+ (acres), and whether the household had difficulty in meeting food needs
+ in the year preceding the survey.
+ As this data was collected in May and June 2022, we can already establish
+ balance at this point.
+ Results are in Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Balance_2022"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ The table shows not a single significant difference for the five outcomes
+ for pairwise comparisons between the different treatment groups.
+ Joint tests of orthogonality confirm that we have good balance judged by
+ these five outcome variables that were collected before the treatment administr
+ation.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Balance table
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Balance_2022"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{center}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tabular}{rcccc}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hline
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+& mean ctrl & T1 & T2 & nobs 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+cline{2-5}
+\end_layout
+
+\begin_layout Plain Layout
+
+Household head age (years) & 
+\backslash
+Sexpr{balance[1,1]} & 
+\backslash
+Sexpr{balance[1,3]}$^{
+\backslash
+Sexpr{ifelse(balance[1,5]<.01,"**",ifelse(balance[1,5]<.05,"*",ifelse(balance[1,5]
+<.1,"+","")))}}$  & 
+\backslash
+Sexpr{balance[1,6]}$^{
+\backslash
+Sexpr{ifelse(balance[1,8]<.01,"**",ifelse(balance[1,8]<.05,"*",ifelse(balance[1,8]
+<.1,"+","")))}}$  & 
+\backslash
+Sexpr{balance[1,9]}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+ &
+\end_layout
+
+\begin_layout Plain Layout
+
+(
+\backslash
+Sexpr{balance[1,2]}) & (
+\backslash
+Sexpr{balance[1,4]})  & (
+\backslash
+Sexpr{balance[1,7]})
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Household head is male (1=yes) & 
+\backslash
+Sexpr{balance[2,1]} & 
+\backslash
+Sexpr{balance[2,3]}$^{
+\backslash
+Sexpr{ifelse(balance[2,5]<.01,"**",ifelse(balance[2,5]<.05,"*",ifelse(balance[2,5]
+<.1,"+","")))}}$  & 
+\backslash
+Sexpr{balance[2,6]}$^{
+\backslash
+Sexpr{ifelse(balance[2,8]<.01,"**",ifelse(balance[2,8]<.05,"*",ifelse(balance[2,8]
+<.1,"+","")))}}$  & 
+\backslash
+Sexpr{balance[2,9]}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+ &
+\end_layout
+
+\begin_layout Plain Layout
+
+(
+\backslash
+Sexpr{balance[2,2]}) & (
+\backslash
+Sexpr{balance[2,4]})  & (
+\backslash
+Sexpr{balance[2,7]})
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Household size (number) & 
+\backslash
+Sexpr{balance[3,1]} & 
+\backslash
+Sexpr{balance[3,3]}$^{
+\backslash
+Sexpr{ifelse(balance[3,5]<.01,"**",ifelse(balance[3,5]<.05,"*",ifelse(balance[3,5]
+<.1,"+","")))}}$  & 
+\backslash
+Sexpr{balance[3,6]}$^{
+\backslash
+Sexpr{ifelse(balance[3,8]<.01,"**",ifelse(balance[3,8]<.05,"*",ifelse(balance[3,8]
+<.1,"+","")))}}$  & 
+\backslash
+Sexpr{balance[3,9]}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+ &
+\end_layout
+
+\begin_layout Plain Layout
+
+(
+\backslash
+Sexpr{balance[3,2]}) & (
+\backslash
+Sexpr{balance[3,4]})  & (
+\backslash
+Sexpr{balance[3,7]})
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Land area (ha) & 
+\backslash
+Sexpr{balance[4,1]} & 
+\backslash
+Sexpr{balance[4,3]}$^{
+\backslash
+Sexpr{ifelse(balance[4,5]<.01,"**",ifelse(balance[4,5]<.05,"*",ifelse(balance[4,5]
+<.1,"+","")))}}$  & 
+\backslash
+Sexpr{balance[4,6]}$^{
+\backslash
+Sexpr{ifelse(balance[4,8]<.01,"**",ifelse(balance[4,8]<.05,"*",ifelse(balance[4,8]
+<.1,"+","")))}}$  & 
+\backslash
+Sexpr{balance[4,9]}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+ &
+\end_layout
+
+\begin_layout Plain Layout
+
+(
+\backslash
+Sexpr{balance[4,2]}) & (
+\backslash
+Sexpr{balance[4,4]})  & (
+\backslash
+Sexpr{balance[4,7]})
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Had difficulties feeding familiy in last year (1=yes) & 
+\backslash
+Sexpr{balance[5,1]} & 
+\backslash
+Sexpr{balance[5,3]}$^{
+\backslash
+Sexpr{ifelse(balance[5,5]<.01,"**",ifelse(balance[5,5]<.05,"*",ifelse(balance[5,5]
+<.1,"+","")))}}$  & 
+\backslash
+Sexpr{balance[5,6]}$^{
+\backslash
+Sexpr{ifelse(balance[5,8]<.01,"**",ifelse(balance[5,8]<.05,"*",ifelse(balance[5,8]
+<.1,"+","")))}}$  & 
+\backslash
+Sexpr{balance[5,9]}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+ &
+\end_layout
+
+\begin_layout Plain Layout
+
+(
+\backslash
+Sexpr{balance[5,2]}) & (
+\backslash
+Sexpr{balance[5,4]})  & (
+\backslash
+Sexpr{balance[5,7]})
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+F-test C/T1 (p-value) & 
+\backslash
+Sexpr{balance[7,1]} & (
+\backslash
+Sexpr{balance[7,2]})
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+F-test T1/T2  (p-value) & 
+\backslash
+Sexpr{balance[8,1]} & (
+\backslash
+Sexpr{balance[8,2]})& 
+\backslash
+ 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hline
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tabular}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{center}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+scriptsize
+\end_layout
+
+\begin_layout Plain Layout
+
+Note: First column reports control group means (and standard deviations
+ below); second column shows different between control and T1 (and standard
+ errors clustered at the village level below); third column shows different
+ between T1 and T2 (and standard errors clustered at the village level below).
+ F-test test for joint significance in a regression with treatment status
+ on the left hand side (T1/C or T2/T1).
+ Likelihood ratio test is derived from a multinomial model where the left
+ hand side has three levels (C,T1,T2).
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Second, while we do not plan to do a dedicated baseline, we will collect
+ data on some background characteristics on the previous season a few weeks
+ after treatment administration.
+ This will include wheter the household was and AIP receipient in the previous
+ season, total land size use for cultiviation, number of crops grown, We
+ also include five variables from among the outcomes of interest to test
  balance at baseline, in particular: use of organic fertilizer (yes/no),
  use of Urea (kg), yield, profit, crop in previous season was legume
 \end_layout
@@ -1161,7 +1619,7 @@ In all households, soil tests will be done.
 \begin_layout Standard
 We do not restrict plot or crop, but rather let the farmer decide on which
  plot he or she wants the soil test to be done.
- We do this because the crop chosen is an important outcome
+ We do this because the crop chosen is an important outcome.
 \end_layout
 
 \begin_layout Standard
