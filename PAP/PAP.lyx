@@ -96,7 +96,7 @@ knitr
 \begin_layout Author
 Thomas Assefa
 \begin_inset Foot
-status collapsed
+status open
 
 \begin_layout Plain Layout
 Innovation Policy and Scaling Unit, IFPRI, Kenya
@@ -150,16 +150,42 @@ Development Strategy and Governance Division, IFPRI, Malawi
 
 \end_inset
 
-
+, Richard Ariong
 \end_layout
 
 \begin_layout Title
-The Impact of Site Specific Soil Fertility Recommendations
+Pre-analysis Plan for The Impact of Site Specific Soil Fertility Recommendations
+: Experimental Evidence from Malawi
+\end_layout
+
+\begin_layout Abstract
+Raising agricultural productivity among smallholder farmers in Sub-Saharan
+ Africa is widely recognized as an important component of inclusive wealth
+ creation and structural transformation.
+ Central to this endeavor will be the adoption of sustainable soil and land
+ management to improve the sustainability, resilience and productivity of
+ agriculture.
+ As such, government advise farmers to increase soil productivity by embracing
+ the use of fertilizers and implement proper soil health management practices.
+ However, these recommendations mostly come in the form of blanket one-size-fits
+-all recommendations that ignore heterogeneity in soil characteristics that
+ individual farmers face.
+ Using a cluster randomize control trial, we evaluate the impact of a bundled
+ intervention that involves offering farmers a soil test on a plot they
+ select and, using the results of this soil test, provide them with tailored
+ advise on soil management to attain a desired yield for a particular crop
+ the farmer chooses to plant on the plot.
+ Furthermore, we also explore resources constraints as a potential barrier
+ to the adoption of site specific fertilizer blends by adding a subsidy.
 \end_layout
 
 \begin_layout Standard
-\align center
-A pre-analysis plan 
+keywords: inorganic fertilizer, soil test, decision support tools, agricultural
+ extension, fertilizer subsidies.
+\end_layout
+
+\begin_layout Standard
+O33, Q12,Q16
 \end_layout
 
 \begin_layout Section
@@ -520,6 +546,49 @@ Treatment Protocols
 \end_layout
 
 \begin_layout Standard
+In the first treatment, a random sample of farmers is visited by an enumerator
+ accompanied by an agronaut and is offered the opportunity for a soil on
+ a plot chosen by the farmer.
+ The farmer is also asked what crop the farmer plans to cultivate on this
+ plot, as well as the target yield that the farmer would like to get from
+ the crop on that plot.
+ This information is registered in a CAPI app, and an appointment is made
+ at a later date when the farmer will visit the farmer to go the the plot
+ and take the soil sample.
+ The soil sample is then analyzed, which results in a soil report (see example
+ in Appendix 1) that is provided to the farmer.
+ The report indicates the soil’s texture, pH level, cation exchange capacity,
+ percentage organic matter, total nitrogen, carbon to nitrogen ratio, as
+ well as the parts per million of available P, exchangeable K, calcium,
+ magnesium, iron, manganese, boron, copper and zinc.
+ Beyond the exact measurements each soil property is given a score on a
+ 4-point Likert scale (very low, low, high, very high), with emojis, color
+ coding and bar charts indicating where the soil is deficient and where
+ the levels are sound.
+ An extension worker (agronout) then discusses the soil report with the
+ farmer to derive a recommended nutrient package specific to the crop the
+ farmer wants to grow.
+ The farmer is then informed where and how to obtain these nutrients (in
+ the form of a particular fertilizer blend).
+\end_layout
+
+\begin_layout Standard
+The second treatment consists of a subsidy that the farmer receives in the
+ from of a voucher that can be redeemed at a nearby Farmer World agro-input
+ shop.
+ The subsidy is tied to T1 in that it will be specific for the recommended
+ fertilizer blend.
+ The value of the subsidy will be model on Malawi's Agricultural Input Program
+ (AIP) which allows farmers to buy one bag of fertilizer at a reduced rate
+ (30 percent of full price).
+ In particular, our subsidy will be equal to 70 percent of the AIP fertilizer
+ bag value minus the cost of the soil test.
+ This will allow us to directly compare our bundle as an alternative to
+ Malawi's AIP.
+ 
+\end_layout
+
+\begin_layout Standard
 The study employs a randomized controlled trial (RCT) design involving 113
  villages across four districts in Malawi (Lilongwe, Dowa, Ntchisi, and
  Mchinji).
@@ -554,6 +623,49 @@ The third group serves as the control (C) and provides the counterfactual
 \end_layout
 
 \begin_layout Standard
+In the first treatment, a random sample of farmers is visited by an enumerator
+ accompanied by an agronaut and is offered the opportunity for a soil on
+ a plot chosen by the farmer.
+ The farmer is also asked what crop the farmer plans to cultivate on this
+ plot, as well as the target yield that the farmer would like to get from
+ the crop on that plot.
+ This information is registered in a CAPI app, and an appointment is made
+ at a later date when the farmer will visit the farmer to go the the plot
+ and take the soil sample.
+ The soil sample is then analyzed, which results in a soil report (see example
+ in Appendix 1) that is provided to the farmer.
+ The report indicates the soil
+\begin_inset Quotes ers
+\end_inset
+
+s texture, pH level, cation exchange capacity, percentage organic matter,
+ total nitrogen, carbon to nitrogen ratio, as well as the parts per million
+ of available P, exchangeable K, calcium, magnesium, iron, manganese, boron,
+ copper and zinc.
+ Beyond the exact measurements each soil property is given a score on a
+ 4-point Likert scale (very low, low, high, very high), with emojis, color
+ coding and bar charts indicating where the soil is deficient and where
+ the levels are sound.
+ An extension worker (agronout) then discusses the soil report with the
+ farmer to derive a recommended nutrient package specific to the crop the
+ farmer wants to grow.
+ The farmer is then informed where and how to obtain these nutrients (in
+ the form of a particular fertilizer blend).
+\end_layout
+
+\begin_layout Standard
+For the treatments, we cooperate with Meridian's Farmer Support Unit (FSU).
+ This private-sector player offers farmers spectral soil tests and site-
+ and crop-specific recommendations.
+ The model underlying the test was calibrated on wet-chemistry analyses
+ conducted on 22,000 samples from across Malawi.
+ The tool is part of a private-sector business model in which FSU Meridian
+ forms a recommendation for a package of nutrients, which is then supplied
+ through their network of 400 agrodealers.
+ 
+\end_layout
+
+\begin_layout Standard
 The sample for this study is drawn from a previous longitudinal study that
  involved 113 villages.
  This gives us the opportunity of leveraging two years’ worth of data on
@@ -572,8 +684,8 @@ ty as we are relying on a specific sample drawn for a different purpose.
 Based on a thorough power and sample size calculation, we have determined
  that we will need to sample 16 households per village, resulting in a total
  of 1,808 households.
- Out of the 113 villages, 42 villages will be assigned to Treatment 1 (T1),
- another 42 villages to Treatment 2 (T2), and the remaining 41 villages
+ Out of the 113 villages, 41 villages will be assigned to Treatment 1 (T1),
+ another 42 villages to Treatment 2 (T2), and the remaining 30 villages
  to the control group (C).
  During the initial visit, farmers in all 113 villages will be offered a
  soil test.
@@ -899,7 +1011,8 @@ literal "false"
 \end_inset
 
 .
- Using this data, we find that average yield is 2,574 kilogram per 
+ Using this data, we find that average yield is 2,574 kilogram per hectare
+ (with standard deviation of 1145 kg per hectare).
 \end_layout
 
 \begin_layout Standard
@@ -975,10 +1088,6 @@ Our outcomes of interest are agricultural practices (with a particular focus
  in fertilizer, profitability of the crops and the return on investment
  for the subsidy.
  
-\end_layout
-
-\begin_layout Itemize
-crop chosen on the plot on which the soil test was done
 \end_layout
 
 \begin_layout Itemize
@@ -1526,14 +1635,6 @@ literal "false"
 
 \begin_layout Standard
 In all households, soil tests will be done.
- For this, we cooperate with Meridian's Farmer Support Unit (FSU).
- This private-sector player offers farmers spectral soil tests and site-
- and crop-specific recommendations.
- The model underlying the test was calibrated on wet-chemistry analyses
- conducted on 22,000 samples from across Malawi.
- The tool is part of a private-sector business model in which FSU Meridian
- forms a recommendation for a package of nutrients, which is then supplied
- through their network of 400 agrodealers.
  Similarly, in all households, all necessary information will be collected
  that is needed to generate a recommendation in with the fertilizer optimizer
  application.
