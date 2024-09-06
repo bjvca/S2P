@@ -6,7 +6,7 @@
 \origin unavailable
 \textclass article
 \begin_preamble
-\usepackage{babel}
+
 \end_preamble
 \use_default_options false
 \begin_modules
@@ -1017,7 +1017,8 @@ literal "false"
 
 \begin_layout Standard
 Optimal power at about 30 villages in control, 41 and 42 in T1 and T2.
- Furthermore, in each village we will sample 16 households.
+ Furthermore, in each village we will sample 16 households (plus an extra
+ 2 to account for attrition).
  
 \end_layout
 
@@ -1593,66 +1594,6 @@ Second, while we do not plan to do a dedicated baseline, we will collect
  also include five variables from among the outcomes of interest to test
  balance at baseline, in particular: use of organic fertilizer (yes/no),
  use of Urea (kg), yield, profit, crop in previous season was legume
-\end_layout
-
-\begin_layout Section
-Sampling and data collection
-\begin_inset CommandInset label
-LatexCommand label
-name "sec:Sampling-and-data"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-We took the four districts that are known for maize production (Kasungu,
- Ntchisi, Dowa, and Mchinji).
- To get a nationally representative sampling frame of the smallholder farmer
- population in Malawi, we rely on the list created by the Ministry of Agricultur
-e for their Agricultural Input Programme (AIP).
- The AIP targets smallholder farmers in the villages who mostly registered
- with the village chiefs.
- We used a two-stage sampling procedure where we first sampled villages
- with the likelihood of a village being selected proportionate to the number
- of people that live in this village (such that larger villages are more
- likely to end up in the sample).
- We cluster at village level and selected 30 households per village, resulting
- in 84 villages (of which 22 are pure control villages to measure spillover
- effects).
- Code used to generate the sampling lists can be found 
-\begin_inset CommandInset href
-LatexCommand href
-name "here"
-target "https://github.com/bjvca/S2P/blob/master/sampling/sample_frame.R"
-literal "false"
-
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-In all households, soil tests will be done.
- Similarly, in all households, all necessary information will be collected
- that is needed to generate a recommendation in with the fertilizer optimizer
- application.
- This means that for all households in our sample, irrespective of treatment
- group, we can calculate recommended fertilizer blends and optimal fertilizer
- application.
- This will be useful in defining key outcome variables such as application
- error.
-\end_layout
-
-\begin_layout Standard
-We do not restrict plot or crop, but rather let the farmer decide on which
- plot he or she wants the soil test to be done.
- We do this because the crop chosen is an important outcome.
-\end_layout
-
-\begin_layout Standard
-
 \end_layout
 
 \begin_layout Section
