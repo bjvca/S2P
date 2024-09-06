@@ -564,18 +564,14 @@ In the first treatment, a random sample of farmers is visited by an enumerator
  Beyond the exact measurements each soil property is given a score on a
  4-point Likert scale (very low, low, high, very high), with emojis, color
  coding and bar charts indicating where the soil is deficient and where
- the levels are sound.
-<<<<<<< HEAD
- A private sector-trained extension agents then discusses the soil report
- with the farmer to derive a recommended nutrient package specific to the
- crop the farmer wants to grow.
-=======
- An extension worker (agronout) then discusses the soil report with the
- farmer to derive a recommended nutrient package specific to the crop the
- farmer wants to grow.
->>>>>>> a5e30131cf2e8ef6060dddbfa41800f7ef74c09d
- The farmer is then informed where and how to obtain these nutrients (in
- the form of a particular fertilizer blend).
+ the levels are sound.<<<<<<< HEAD A private sector-trained extension agents
+ then discusses the soil report with the farmer to derive a recommended
+ nutrient package specific to the crop the farmer wants to grow.======= An
+ extension worker (agronout) then discusses the soil report with the farmer
+ to derive a recommended nutrient package specific to the crop the farmer
+ wants to grow.>>>>>>> a5e30131cf2e8ef6060dddbfa41800f7ef74c09d The farmer
+ is then informed where and how to obtain these nutrients (in the form of
+ a particular fertilizer blend).
 \end_layout
 
 \begin_layout Standard
@@ -594,7 +590,6 @@ The second treatment consists of a subsidy that the farmer receives in the
  
 \end_layout
 
-<<<<<<< HEAD
 \begin_layout Itemize
 Comparison 1 (C): A pure control with no soil test, no custom recommendations
  on optimal soil fertility management, and no subsidy.
@@ -615,8 +610,9 @@ ion of fertilizer in Malawi, Mozambique, Zambia, and Zimbabwe.
  Farmers in the control group will receive the results of the soil test
  along with the nutrient management advice as in the treated group during
  an end-line survey after the 2024/25 growing season.
- 
-=======
+ =======
+\end_layout
+
 \begin_layout Standard
 The study employs a randomized controlled trial (RCT) design involving 113
  villages across four districts in Malawi (Lilongwe, Dowa, Ntchisi, and
@@ -630,8 +626,7 @@ The first group, Treatment 1 (T1), in this group receive a soil report based
  on a soil test conducted on a plot chosen by the farmer.
  This report includes key characteristics of the soil, along with a customized
  recommendation for a fertilizer blend tailored to the specific crop selected
- by the farmer.
->>>>>>> a5e30131cf2e8ef6060dddbfa41800f7ef74c09d
+ by the farmer.>>>>>>> a5e30131cf2e8ef6060dddbfa41800f7ef74c09d
 \end_layout
 
 \begin_layout Standard
@@ -667,7 +662,7 @@ Farmers in T1 have the right to buy the fertilizer from anywhere.
 \end_layout
 
 \begin_layout Standard
-It might be one Argonaut for 3 or 4 villages - Johnathan will confirm.
+It might be one Agronout for 3 or 4 villages - Johnathan will confirm.
  
 \end_layout
 
@@ -1223,7 +1218,7 @@ ation.
 \begin_inset Float table
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard

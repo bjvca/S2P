@@ -175,6 +175,8 @@ saveWidget(map, file="map_meridian.html",selfcontained = TRUE)
 
 write.csv(gps, file = "village_list_meridian.csv", row.names = FALSE)
 
+### merge in agro-input shops
+
 #### balance tables
 ##farmer's age (in years), sex of farmer, household size, land area for crop production (acres), and AIP recepient in previous year. We also include five variables from among the outcomes of interest to test balance at baseline, in particular: use of organic fertilizer (yes/no), use of Urea (kg), yield, profit, crop in previous season was legume
 ### may need to be merged in 
