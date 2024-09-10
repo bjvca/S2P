@@ -133,41 +133,65 @@ summary(sampling_frame$q19)
  sampling_frame$poor <- NA
  sampling_frame$poor <- sampling_frame$q69 == 4 | sampling_frame$q69 == 5
 
-
+ sampling_frame$gps_latitude <- as.numeric(as.character(sampling_frame$gps_latitude))
+ sampling_frame$gps_longitude <- as.numeric(as.character(sampling_frame$gps_longitude))
+ 
 sampling_frame <- sampling_frame[c("q1","q2","q3", "village","farmername", "farmer_ID" ,  "q11","age_head","male_head","HH_size","land_size_ha", "poor","treatment", "gps_latitude", "gps_longitude")]
 
+sampling_frame$type <- "farmer"
+### add agroshops to sample frame
+agro_shops <- read.csv("shops_gps.csv")
+agro_shops$type <- "agro_shop"
+names(agro_shops) <- c("farmer_ID","gps_latitude", "gps_longitude","type")
+
+library(dplyr)
+mapper <- full_join(sampling_frame, agro_shops, by = c("farmer_ID","gps_latitude", "gps_longitude","type"))
+
+mapper$treatment[is.na(mapper$treatment)] <- "shop"
 ##create a map for us
 
-pal <- colorFactor(c("black","red", "green"),sampling_frame$treatment)
+greenLeafIcon <- makeIcon(
+  iconUrl = "https://leafletjs.com/examples/custom-icons/leaf-green.png",
+  iconWidth = 38, iconHeight = 95,
+  iconAnchorX = 22, iconAnchorY = 94,
+  shadowUrl = "https://leafletjs.com/examples/custom-icons/leaf-shadow.png",
+  shadowWidth = 50, shadowHeight = 64,
+  shadowAnchorX = 4, shadowAnchorY = 62
+)
 
-map <-  leaflet() %>% setView(lat =mean(as.numeric(as.character(sampling_frame$gps_latitude)),na.rm=T), lng = mean(as.numeric(as.character(sampling_frame$gps_longitude)),na.rm=T), zoom=9)  %>%  addTiles(group="OSM") %>% addTiles(urlTemplate = "https://mts1.google.com/vt/lyrs=s&hl=en&src=app&x={x}&y={y}&z={z}&s=G",  group="Google", attribution = 'Google')  %>% addProviderTiles(providers$OpenTopoMap, group="Topography") %>% addCircleMarkers(data=sampling_frame, lng=~as.numeric(as.character(gps_longitude)), lat=~as.numeric(as.character(gps_latitude)),radius= 2,   color = ~pal(treatment), popup = ~as.character(farmer_ID))   %>%  addLayersControl(baseGroups=c('OSM','Google','Topography')) 
 
-saveWidget(map, file="S2P_sampling.html",selfcontained = TRUE) #traders and farmers 
-write.csv(sampling_frame, file = "sample.csv", row.names = FALSE)
+pal <- colorFactor(c("black","green", "red", "blue"),mapper$treatment)
 
-### map and sampling frame for meridian
+map <-  leaflet() %>% setView(lat =mean(mapper$gps_latitude,na.rm=T), lng = mean(mapper$gps_longitude,na.rm=T), zoom=9)  %>%  addTiles(group="OSM") %>% addTiles(urlTemplate = "https://mts1.google.com/vt/lyrs=s&hl=en&src=app&x={x}&y={y}&z={z}&s=G",  group="Google", attribution = 'Google')  %>% addProviderTiles(providers$OpenTopoMap, group="Topography") %>% addCircleMarkers(data=mapper[mapper$treatment != "shop",], lng=~as.numeric(as.character(gps_longitude)), lat=~as.numeric(as.character(gps_latitude)),radius= 2,   color = ~pal(treatment), popup = ~as.character(farmer_ID))   %>%  addLayersControl(baseGroups=c('OSM','Google','Topography'))  %>%   addMarkers(data=mapper[mapper$treatment == "shop",], lng=~as.numeric(as.character(gps_longitude)), lat=~as.numeric(as.character(gps_latitude)),icon = greenLeafIcon,popup = ~as.character(farmer_ID))
+
+
+
+saveWidget(map, file="S2P_sampling_team.html",selfcontained = TRUE) 
+write.csv(sampling_frame, file = "sample_team.csv", row.names = FALSE)
+
+### map and sampling frame T1 T2
 sample_treats <- subset(sampling_frame, treatment %in% c("T1","T2"))
 
 pal <- colorFactor(c("red", "green"),sample_treats$treatment)
 
 map <-  leaflet() %>% setView(lat =mean(as.numeric(as.character(sample_treats$gps_latitude)),na.rm=T), lng = mean(as.numeric(as.character(sample_treats$gps_longitude)),na.rm=T), zoom=9)  %>%  addTiles(group="OSM") %>% addTiles(urlTemplate = "https://mts1.google.com/vt/lyrs=s&hl=en&src=app&x={x}&y={y}&z={z}&s=G",  group="Google", attribution = 'Google')  %>% addProviderTiles(providers$OpenTopoMap, group="Topography") %>% addCircleMarkers(data=sample_treats, lng=~as.numeric(as.character(gps_longitude)), lat=~as.numeric(as.character(gps_latitude)),radius= 2,   color = ~pal(treatment), popup = ~as.character(farmer_ID))   %>%  addLayersControl(baseGroups=c('OSM','Google','Topography')) 
 
-saveWidget(map, file="S2P_sampling.html",selfcontained = TRUE) #traders and farmers 
+saveWidget(map, file="S2P_sampling_T1_T2.html",selfcontained = TRUE) #traders and farmers 
 write.csv(sample_treats, file = "sample_treats.csv", row.names = FALSE)
 
 
 ### create a map for meridian by aggregating 
-sample_treats$treatment_nr <- NA
+sampling_frame$treatment_nr <- NA
 
-sample_treats$treatment_nr[sample_treats$treatment == "T1"] <- 1
-sample_treats$treatment_nr[sample_treats$treatment == "T2"] <- 2
+sampling_frame$treatment_nr[sampling_frame$treatment == "T1"] <- 1
+sampling_frame$treatment_nr[sampling_frame$treatment == "T2"] <- 2
+sampling_frame$treatment_nr[sampling_frame$treatment == "C"] <- 3
 
-
-gps <- aggregate(cbind(sample_treats$treatment_nr,as.numeric(sample_treats$gps_longitude),as.numeric(sample_treats$gps_latitude)),by=list(sample_treats$q1,sample_treats$q2, sample_treats$q3), FUN=mean, na.rm=TRUE)
+gps <- aggregate(cbind(sampling_frame$treatment_nr,as.numeric(sampling_frame$gps_longitude),as.numeric(sampling_frame$gps_latitude)),by=list(sampling_frame$q1,sampling_frame$q2, sampling_frame$q3), FUN=mean, na.rm=TRUE)
 
 names(gps) <- c("dist","sub","village","treatment", "long","lat")
 
-pal <- colorFactor(c("red", "green"),gps$treatment)
+pal <- colorFactor(c("black","red", "green"),gps$treatment)
 
 map <-  leaflet() %>% setView(lat =mean(as.numeric(as.character(gps$lat)),na.rm=T), lng = mean(as.numeric(as.character(gps$long)),na.rm=T), zoom=9)  %>%  addTiles(group="OSM") %>% addTiles(urlTemplate = "https://mts1.google.com/vt/lyrs=s&hl=en&src=app&x={x}&y={y}&z={z}&s=G",  group="Google", attribution = 'Google')  %>% addProviderTiles(providers$OpenTopoMap, group="Topography") %>% addCircleMarkers(data=gps, lng=~as.numeric(as.character(long)), lat=~as.numeric(as.character(lat)),radius= 2,  color = ~pal(treatment),  , popup = ~as.character(village))   %>%  addLayersControl(baseGroups=c('OSM','Google','Topography')) 
 
@@ -244,3 +268,65 @@ df_balance[8,2] <-round(test_res[2,6],digits=3)
 
 ### save this results DF somewhere
 saveRDS(df_balance, file=paste(path,"balance_2022.Rdata",sep="/")) 
+
+
+library(openrouteservice)
+
+ors_api_key("5b3ce3597851110001cf6248e919ccc8ccf945298c3fd514ec6858c9")
+
+
+coordinates <- list(c(33.40764, -13.26216), c(   33.47920 ,-12.9436 ))
+
+x <- ors_directions(coordinates, radiuses = 500, ors_profile("bike"))
+
+print(x$features[[1]]$properties$summary$distance[1]/1000)
+
+library(leaflet)
+
+leaflet() %>%
+  addTiles() %>%
+  addGeoJSON(x, fill=FALSE) %>%
+  fitBBox(x$bbox)
+#### assigningn villates to closest agro-dealer 
+
+library(httr)
+library(jsonlite)
+
+# Assuming you have data frames 'villages' and 'agro_shops' with 'lat' and 'long' columns
+villages <- gps
+names(agro_shops) <- c("shop", "lat" ,"long","type")
+library(geosphere)
+
+# Function to calculate shortest walking distance using Openrouteservice
+get_shortest_walking_distance_ors <- function(lat1, lon1, lat2, lon2) {
+  
+  coordinates <- list(c(lon1, lat1), c(   lon2 ,lat2 ))
+  
+  x <- ors_directions(coordinates, radiuses = 1000, ors_profile("bike"))
+  
+  if (!is.null(x$features[[1]]$properties$summary$distance[1]/1000)) {
+    return(x$features[[1]]$properties$summary$distance[1]/1000)
+  } else {
+    return(NA)  # Handle cases where no route is found
+  }
+}
+
+distances <- matrix(NA, nrow = nrow(villages), ncol = nrow(agro_shops))
+
+
+
+# Calculate distances for each village-agro-shop pair
+for (i in 1:nrow(villages)) {
+  for (j in 1:nrow(agro_shops)) {
+    distances[i, j] <- get_shortest_walking_distance_ors(villages$lat[i], villages$long[i],
+                                                         agro_shops$lat[j], agro_shops$long[j])
+  }
+}
+
+
+
+# Find the nearest agro-shop for each village
+nearest_shop_index <- apply(distances, 1, which.min)
+
+# Assign each village to its nearest agro-shop
+villages$nearest_shop <- agro_shops$shop[nearest_shop_index]

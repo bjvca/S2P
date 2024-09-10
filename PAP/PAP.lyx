@@ -729,7 +729,12 @@ We will visit farmers three times during the duration of this study between
  indicators using the attached questionnaire, prior to implementing the
  interventions.
  During the third and final visit we will collect endline data on key outcome
- indicators as in the baseline 
+ indicators as in the baseline.
+\end_layout
+
+\begin_layout Standard
+We use openrouteservice to link sample villages to the nearest agro-dealer.
+ We assume farmers go to agro-dealers by motorbike or bicycle.
 \end_layout
 
 \begin_layout Section
@@ -1016,10 +1021,168 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-Optimal power at about 30 villages in control, 41 and 42 in T1 and T2.
- Furthermore, in each village we will sample 16 households (plus an extra
- 2 to account for attrition).
- 
+Power is determined in the following way.
+ We set the number of villages to the maximum, as this is a clustered design
+ and we want to exploit inter-cluster variation to the maxim extent.
+ We then search in two dimentions.
+ First, we vary the share of villages that is allocated to the control (and
+ equally divide the remaining villages to T1 and T2).
+ In the second dimension, we vary the number of households that will be
+ interviewed in each village.
+ We model similar effects for T1 and T2 (a 13 percent increase over baseline
+ yield).
+ We run 1000 simulations and use 5 percent significance level and .8 is our
+ target for power.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+(a)
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename code/contour_plot.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+(b)
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename code/contour_plot_one.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+(c) 
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename code/contour_plot_comp.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Power Plots
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Power-Plots"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Power-Plots"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+(a) shows that when we allocate 25 percent of villages to the control group
+ (and 75 percent to the treatments) and include about 16 households per
+ village, we hit the 80 percent power level for the joint hypothesis that
+ both 
+\begin_inset Formula $\beta_{T1}$
+\end_inset
+
+ and 
+\begin_inset Formula $\beta_{T2}$
+\end_inset
+
+ are significantly different from zero.
+ However, to avoid that we are focusing on an isolated peak in the distribution,
+ it seemed safer to move closer toward 30 percent in control (and hence
+ 35 percent in T1 and 35 percent in T2) and aim for about 18 households
+ per village.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Power-Plots"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+(b) shows that at such a sample, we will get 85 to 90 percent power to identify
+ a significant effect on T1.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Power-Plots"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+(c) shows power to detect a significant difference between T1 and T2.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Power-Plots"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+30 percent in control (and hence 35 percent in T1 and 35 percent in T2)
+ and aim for about 18 households per village.
 \end_layout
 
 \begin_layout Section
