@@ -272,22 +272,8 @@ saveRDS(df_balance, file=paste(path,"balance_2022.Rdata",sep="/"))
 
 library(openrouteservice)
 
-ors_api_key("5b3ce3597851110001cf6248e919ccc8ccf945298c3fd514ec6858c9")
 
-
-coordinates <- list(c(33.40764, -13.26216), c(   33.47920 ,-12.9436 ))
-
-x <- ors_directions(coordinates, radiuses = 500, ors_profile("bike"))
-
-print(x$features[[1]]$properties$summary$distance[1]/1000)
-
-library(leaflet)
-
-leaflet() %>%
-  addTiles() %>%
-  addGeoJSON(x, fill=FALSE) %>%
-  fitBBox(x$bbox)
-#### assigningn villates to closest agro-dealer 
+#### code to match each village to the nearest agro-dealer using travel by bicycle
 
 library(httr)
 library(jsonlite)
@@ -296,6 +282,7 @@ library(jsonlite)
 villages <- gps
 names(agro_shops) <- c("shop", "lat" ,"long","type")
 library(geosphere)
+options(openrouteservice.url = "http://localhost:8080/ors")
 
 # Function to calculate shortest walking distance using Openrouteservice
 get_shortest_walking_distance_ors <- function(lat1, lon1, lat2, lon2) {
@@ -329,4 +316,19 @@ for (i in 1:nrow(villages)) {
 nearest_shop_index <- apply(distances, 1, which.min)
 
 # Assign each village to its nearest agro-shop
-villages$nearest_shop <- agro_shops$shop[nearest_shop_index]
+villages$nearest_shop <- agro_shops$shop[unlist(nearest_shop_index)]
+villages <- villages[c("dist","sub","village","treatment", "lat", "long", "nearest_shop")]      
+### merge in shop gps again
+names(agro_shops) <- c("shop", "shop_lat",  "shop_long", "type")
+villages <- merge(villages,agro_shops,  by.y = "shop", by.x = "nearest_shop")
+
+write.csv(villages, file = "village_agro_shop_matched.csv", row.names = FALSE)
+
+###now merge this into the farmer level data to get sampling frame to be uploaded in ODK
+sampling_ODK  <- merge(sampling_frame,  villages,  by.x = c("q1", "q2","q3") , by.y=c("dist","sub",	"village"))
+sampling_ODK <- sampling_ODK[c("nearest_shop","shop_lat","shop_long","q1","q2","q3", "farmer_ID", "farmername", "q11", "gps_latitude","gps_longitude", "treatment.x")] 
+names(sampling_ODK) <- c("agro_shop","shop_lat","shop_long","dist","sub","vil", "farmer_ID", "farmer_name", "farmer_tel", "farmer_gps_latitude","farmer_gps_longitude", "treatment")
+write.csv(sampling_ODK, file = "sampling_ODK.csv", row.names = FALSE)
+write.csv(sampling_ODK[sampling_ODK$treatment !="C",], file = "sampling_ODK_only_T.csv", row.names = FALSE)
+
+

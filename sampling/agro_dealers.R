@@ -14,5 +14,6 @@ sel_shops <- agro_shops[c("Address","Latitude",  "Longitude") ]
 
 ###issue with naming (weird character)
 sel_shops[56,1] <- "Suza (Kasungu)"
+### also there are 3 in Kasungu that have the same name
 
 write.csv(sel_shops, file = "shops_gps.csv", row.names = FALSE)
