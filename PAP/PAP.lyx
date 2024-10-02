@@ -531,17 +531,20 @@ Add Murphy et al 2019: Underground knowledge: Estimating the impact of soil
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Add corral et all: Autonomy and specificity in agricultural technology adoption:
- evidence from Mexico
-\end_layout
+\begin_inset CommandInset citation
+LatexCommand citet
+key "corral2020appropriate"
+literal "false"
 
 \end_inset
 
-
+ implement a field experiment that combines tailored input recommendations
+ based on soil sample tests, extension services and an in-kind grant.
+ The grant comes in two flavors: in one treatment arm, the grant can only
+ be spent on the recommended fertilizer blend; in the second treatment arm,
+ the farmer can decide what inputs to get.
+ The find that the intervention reduces overuse of fertilizer, and the effect
+ us sustained more if the farmer was free to choose how to spend the grant.
 \end_layout
 
 \begin_layout Section
@@ -626,10 +629,10 @@ es for the analysis.
  soil quality.
  We have thought hard about ways to assure a comparable plot level counterfactua
 l, such as also doing soil tests in the control group but keeping farmers
- in the dark about when they will receive feedback or randomly choosing
- a plot for the soil test, but eventually decided to keep the treatment
- as realistic as possible, which gives the farmer substantial agency in
- terms of what plot to choose and crops to cultivate.
+ in the dark about when they will receive feedback (as is done in Corral
+ et al) or randomly choosing a plot for the soil test, but eventually decided
+ to keep the treatment as realistic as possible, which gives the farmer
+ substantial agency in terms of what plot to choose and crops to cultivate.
  The trade-off is that it will become harder to compare plot level outcomes
  (eg fertilizer use on the plot on which the soil test was done versus control).
  At the same time, there are now also interesting household level outcomes
