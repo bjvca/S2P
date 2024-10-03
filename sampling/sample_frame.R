@@ -1,5 +1,5 @@
 ### script to draw sampling frame as input of ODK for baseline data collection and treatments
-### Bjorn Van Campenout August 12th 2024
+### Bjorn Van Campenhout August 12th 2024
 
 #run in /RCT/sampling
 
@@ -133,41 +133,65 @@ summary(sampling_frame$q19)
  sampling_frame$poor <- NA
  sampling_frame$poor <- sampling_frame$q69 == 4 | sampling_frame$q69 == 5
 
+ sampling_frame$gps_latitude <- as.numeric(as.character(sampling_frame$gps_latitude))
+ sampling_frame$gps_longitude <- as.numeric(as.character(sampling_frame$gps_longitude))
+ 
+sampling_frame <- sampling_frame[c("q1","q2","q3", "village","name", "farmer_ID" ,  "q11","age_head","male_head","HH_size","land_size_ha", "poor","treatment", "gps_latitude", "gps_longitude")]
 
-sampling_frame <- sampling_frame[c("q1","q2","q3", "village","farmername", "farmer_ID" ,  "q11","age_head","male_head","HH_size","land_size_ha", "poor","treatment", "gps_latitude", "gps_longitude")]
+sampling_frame$type <- "farmer"
+### add agroshops to sample frame
+agro_shops <- read.csv("shops_gps.csv")
+agro_shops$type <- "agro_shop"
+names(agro_shops) <- c("farmer_ID","gps_latitude", "gps_longitude","type")
 
+library(dplyr)
+mapper <- full_join(sampling_frame, agro_shops, by = c("farmer_ID","gps_latitude", "gps_longitude","type"))
+
+mapper$treatment[is.na(mapper$treatment)] <- "shop"
 ##create a map for us
 
-pal <- colorFactor(c("black","red", "green"),sampling_frame$treatment)
+greenLeafIcon <- makeIcon(
+  iconUrl = "https://leafletjs.com/examples/custom-icons/leaf-green.png",
+  iconWidth = 38, iconHeight = 95,
+  iconAnchorX = 22, iconAnchorY = 94,
+  shadowUrl = "https://leafletjs.com/examples/custom-icons/leaf-shadow.png",
+  shadowWidth = 50, shadowHeight = 64,
+  shadowAnchorX = 4, shadowAnchorY = 62
+)
 
-map <-  leaflet() %>% setView(lat =mean(as.numeric(as.character(sampling_frame$gps_latitude)),na.rm=T), lng = mean(as.numeric(as.character(sampling_frame$gps_longitude)),na.rm=T), zoom=9)  %>%  addTiles(group="OSM") %>% addTiles(urlTemplate = "https://mts1.google.com/vt/lyrs=s&hl=en&src=app&x={x}&y={y}&z={z}&s=G",  group="Google", attribution = 'Google')  %>% addProviderTiles(providers$OpenTopoMap, group="Topography") %>% addCircleMarkers(data=sampling_frame, lng=~as.numeric(as.character(gps_longitude)), lat=~as.numeric(as.character(gps_latitude)),radius= 2,   color = ~pal(treatment), popup = ~as.character(farmer_ID))   %>%  addLayersControl(baseGroups=c('OSM','Google','Topography')) 
 
-saveWidget(map, file="S2P_sampling.html",selfcontained = TRUE) #traders and farmers 
-write.csv(sampling_frame, file = "sample.csv", row.names = FALSE)
+pal <- colorFactor(c("green", "red", "blue"),mapper$treatment)
 
-### map and sampling frame for meridian
+map <-  leaflet() %>% setView(lat =mean(mapper$gps_latitude,na.rm=T), lng = mean(mapper$gps_longitude,na.rm=T), zoom=9)  %>%  addTiles(group="OSM") %>% addTiles(urlTemplate = "https://mts1.google.com/vt/lyrs=s&hl=en&src=app&x={x}&y={y}&z={z}&s=G",  group="Google", attribution = 'Google')  %>% addProviderTiles(providers$OpenTopoMap, group="Topography") %>% addCircleMarkers(data=mapper[mapper$treatment != "shop",], lng=~as.numeric(as.character(gps_longitude)), lat=~as.numeric(as.character(gps_latitude)),radius= 2,   color = ~pal(treatment), popup = ~as.character(farmer_ID))   %>%  addLayersControl(baseGroups=c('OSM','Google','Topography'))  %>%   addMarkers(data=mapper[mapper$treatment == "shop",], lng=~as.numeric(as.character(gps_longitude)), lat=~as.numeric(as.character(gps_latitude)),icon = greenLeafIcon,popup = ~as.character(farmer_ID))
+
+
+
+saveWidget(map, file="S2P_sampling_team.html",selfcontained = TRUE) 
+write.csv(sampling_frame, file = "sample_team.csv", row.names = FALSE)
+
+### map and sampling frame T1 T2
 sample_treats <- subset(sampling_frame, treatment %in% c("T1","T2"))
 
 pal <- colorFactor(c("red", "green"),sample_treats$treatment)
 
 map <-  leaflet() %>% setView(lat =mean(as.numeric(as.character(sample_treats$gps_latitude)),na.rm=T), lng = mean(as.numeric(as.character(sample_treats$gps_longitude)),na.rm=T), zoom=9)  %>%  addTiles(group="OSM") %>% addTiles(urlTemplate = "https://mts1.google.com/vt/lyrs=s&hl=en&src=app&x={x}&y={y}&z={z}&s=G",  group="Google", attribution = 'Google')  %>% addProviderTiles(providers$OpenTopoMap, group="Topography") %>% addCircleMarkers(data=sample_treats, lng=~as.numeric(as.character(gps_longitude)), lat=~as.numeric(as.character(gps_latitude)),radius= 2,   color = ~pal(treatment), popup = ~as.character(farmer_ID))   %>%  addLayersControl(baseGroups=c('OSM','Google','Topography')) 
 
-saveWidget(map, file="S2P_sampling.html",selfcontained = TRUE) #traders and farmers 
+saveWidget(map, file="S2P_sampling_T1_T2.html",selfcontained = TRUE) #traders and farmers 
 write.csv(sample_treats, file = "sample_treats.csv", row.names = FALSE)
 
 
 ### create a map for meridian by aggregating 
-sample_treats$treatment_nr <- NA
+sampling_frame$treatment_nr <- NA
 
-sample_treats$treatment_nr[sample_treats$treatment == "T1"] <- 1
-sample_treats$treatment_nr[sample_treats$treatment == "T2"] <- 2
+sampling_frame$treatment_nr[sampling_frame$treatment == "T1"] <- 1
+sampling_frame$treatment_nr[sampling_frame$treatment == "T2"] <- 2
+sampling_frame$treatment_nr[sampling_frame$treatment == "C"] <- 3
 
-
-gps <- aggregate(cbind(sample_treats$treatment_nr,as.numeric(sample_treats$gps_longitude),as.numeric(sample_treats$gps_latitude)),by=list(sample_treats$q1,sample_treats$q2, sample_treats$q3), FUN=mean, na.rm=TRUE)
+gps <- aggregate(cbind(sampling_frame$treatment_nr,as.numeric(sampling_frame$gps_longitude),as.numeric(sampling_frame$gps_latitude)),by=list(sampling_frame$q1,sampling_frame$q2, sampling_frame$q3), FUN=mean, na.rm=TRUE)
 
 names(gps) <- c("dist","sub","village","treatment", "long","lat")
 
-pal <- colorFactor(c("red", "green"),gps$treatment)
+pal <- colorFactor(c("black","red", "green"),gps$treatment)
 
 map <-  leaflet() %>% setView(lat =mean(as.numeric(as.character(gps$lat)),na.rm=T), lng = mean(as.numeric(as.character(gps$long)),na.rm=T), zoom=9)  %>%  addTiles(group="OSM") %>% addTiles(urlTemplate = "https://mts1.google.com/vt/lyrs=s&hl=en&src=app&x={x}&y={y}&z={z}&s=G",  group="Google", attribution = 'Google')  %>% addProviderTiles(providers$OpenTopoMap, group="Topography") %>% addCircleMarkers(data=gps, lng=~as.numeric(as.character(long)), lat=~as.numeric(as.character(lat)),radius= 2,  color = ~pal(treatment),  , popup = ~as.character(village))   %>%  addLayersControl(baseGroups=c('OSM','Google','Topography')) 
 
@@ -244,3 +268,116 @@ df_balance[8,2] <-round(test_res[2,6],digits=3)
 
 ### save this results DF somewhere
 saveRDS(df_balance, file=paste(path,"balance_2022.Rdata",sep="/")) 
+
+
+library(openrouteservice)
+
+
+#### code to match each village to the nearest agro-dealer using travel by bicycle
+### to do this I had to set up open route server instance locally - https://giscience.github.io/openrouteservice/run-instance/
+### this was helpful - https://www.youtube.com/watch?v=VQXlbqKArFk&t=291s
+### once installed, start the server like this:
+###sudo docker compose up -d
+###which should return: Container ors-app  Started 
+
+library(httr)
+library(jsonlite)
+
+# Assuming you have data frames 'villages' and 'agro_shops' with 'lat' and 'long' columns
+villages <- gps
+names(agro_shops) <- c("shop", "lat" ,"long","type")
+library(geosphere)
+options(openrouteservice.url = "http://localhost:8080/ors")
+
+# Function to calculate shortest walking distance using Openrouteservice
+get_shortest_walking_distance_ors <- function(lat1, lon1, lat2, lon2) {
+  
+  coordinates <- list(c(lon1, lat1), c(   lon2 ,lat2 ))
+  
+  x <- ors_directions(coordinates, radiuses = 1000, ors_profile("bike"))
+  
+  if (!is.null(x$features[[1]]$properties$summary$distance[1]/1000)) {
+    return(x$features[[1]]$properties$summary$distance[1]/1000)
+  } else {
+    return(NA)  # Handle cases where no route is found
+  }
+}
+
+distances <- matrix(NA, nrow = nrow(villages), ncol = nrow(agro_shops))
+
+
+
+# Calculate distances for each village-agro-shop pair
+for (i in 1:nrow(villages)) {
+  for (j in 1:nrow(agro_shops)) {
+    distances[i, j] <- get_shortest_walking_distance_ors(villages$lat[i], villages$long[i],
+                                                         agro_shops$lat[j], agro_shops$long[j])
+  }
+}
+
+
+
+# Find the nearest agro-shop for each village
+nearest_shop_index <- apply(distances, 1, which.min)
+
+# Assign each village to its nearest agro-shop
+villages$nearest_shop <- agro_shops$shop[unlist(nearest_shop_index)]
+villages <- villages[c("dist","sub","village","treatment", "lat", "long", "nearest_shop")]      
+### merge in shop gps again
+names(agro_shops) <- c("shop", "shop_lat",  "shop_long", "type")
+villages <- merge(villages,agro_shops,  by.y = "shop", by.x = "nearest_shop")
+
+villages$treat <- NA
+villages$treat[villages$treatment == "1"] <- "T1"
+villages$treat[villages$treatment == "2"] <- "T2"
+villages$treat[villages$treatment == "3"] <- "C"
+
+villages$treatment <- NULL
+villages$type <- NULL
+
+names(villages)[names(villages) == 'long'] <- 'village_long'
+names(villages)[names(villages) == 'lat'] <- 'village_lat'
+names(villages)[names(villages) == 'sub'] <- 'ta'
+
+write.csv(villages, file = "village_agro_shop_matched.csv", row.names = FALSE)
+
+write.csv(villages[villages$treat!="C",], file = "village_agro_shop_matched_only_T.csv", row.names = FALSE)
+
+###now merge this into the farmer level data to get sampling frame to be uploaded in ODK
+sampling_frame$treatment_nr <- NULL
+sampling_frame$village <- NULL
+sampling_frame$treatment1 <- NULL
+sampling_frame$treatment2 <- NULL
+sampling_frame$type <- NULL
+sampling_frame$poor <- NULL
+sampling_frame$age_head <- NULL
+sampling_frame$male_head <- NULL
+sampling_frame$HH_size <- NULL
+sampling_frame$land_size_ha <- NULL
+sampling_frame$treatment <- NULL
+
+names(sampling_frame)[names(sampling_frame) == 'q11'] <- 'tel'
+names(sampling_frame)[names(sampling_frame) == 'name'] <- 'farmer_name'
+names(sampling_frame)[names(sampling_frame) == 'q1'] <- 'dist'
+names(sampling_frame)[names(sampling_frame) == 'q2'] <- 'ta'
+names(sampling_frame)[names(sampling_frame) == 'q3'] <- 'village'
+
+
+sampling_ODK  <- merge(sampling_frame,  villages,  by.x = c("dist", "ta","village") , by.y=c("dist","ta",	"village"))
+names(sampling_ODK)[names(sampling_ODK) == 'nearest_shop'] <- 'linked_shop'
+
+
+### merge in shop districts
+
+shops_dist <- read.csv("shops_gps2.csv")
+
+names(shops_dist)[names(shops_dist) == 'dis'] <- 'shop_dist'
+
+sampling_ODK <- merge(sampling_ODK,shops_dist[c("shop","shop_dist","shop_ODK")], by.x="linked_shop",by.y="shop"  )
+
+sampling_ODK <- sampling_ODK[c("shop_dist",  "shop_ODK", "shop_lat", "shop_long", "village", "village_lat",  "village_long","farmer_name","dist","ta","farmer_ID","tel","gps_latitude","gps_longitude","treat") ]
+#sorting
+sampling_ODK <- sampling_ODK[with(sampling_ODK, order(sampling_ODK[,1], sampling_ODK[,2], sampling_ODK[,5], sampling_ODK[,8])), ]
+
+write.csv(sampling_ODK, file = "sampling_ODK.csv", row.names = FALSE)
+write.csv(sampling_ODK[sampling_ODK$treat !="C",], file = "sampling_ODK_only_T.csv", row.names = FALSE)

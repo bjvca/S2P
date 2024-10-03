@@ -6,7 +6,7 @@
 \origin unavailable
 \textclass article
 \begin_preamble
-\usepackage{babel}
+
 \end_preamble
 \use_default_options false
 \begin_modules
@@ -493,7 +493,7 @@ literal "false"
 status open
 
 \begin_layout Plain Layout
-Add the MSU paper on reflectometers?
+Add the MSU paper on reflectometers? 
 \end_layout
 
 \end_inset
@@ -506,13 +506,45 @@ Add the MSU paper on reflectometers?
 status open
 
 \begin_layout Plain Layout
-add: The joint effects of information and financing constraints on technology
- adoption: Evidence from a field experiment in rural Tanzania
+add Harou et all (2018) : The joint effects of information and financing
+ constraints on technology adoption: Evidence from a field experiment in
+ rural Tanzania
 \end_layout
 
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Add Murphy et al 2019: Underground knowledge: Estimating the impact of soil
+ information transfers through experimental auctions
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset citation
+LatexCommand citet
+key "corral2020appropriate"
+literal "false"
+
+\end_inset
+
+ implement a field experiment that combines tailored input recommendations
+ based on soil sample tests, extension services and an in-kind grant.
+ The grant comes in two flavors: in one treatment arm, the grant can only
+ be spent on the recommended fertilizer blend; in the second treatment arm,
+ the farmer can decide what inputs to get.
+ The find that the intervention reduces overuse of fertilizer, and the effect
+ us sustained more if the farmer was free to choose how to spend the grant.
 \end_layout
 
 \begin_layout Section
@@ -527,18 +559,52 @@ Our research aims to look at a prototype S2P intervention, as well as assess
  In particular, we will answer the following research questions:
 \end_layout
 
-\begin_layout Enumerate
-Does the provision of site-specific soil nutrient information derived from
+\begin_layout Standard
+1.
+ Does the provision of site-specific soil nutrient information derived from
  a soil test and the recommendation of a specific fertilizer blend based
  on this information change outcomes of interest?
 \end_layout
 
-\begin_layout Enumerate
-Does the provision of site-specific nutrient recommendations combined with
+\begin_layout Standard
+2.
+ Does the provision of site-specific nutrient recommendations combined with
  a subsidy to buy these nutrients at a local agro-dealer, change the outcomes
  of interest? This research question looks at the importance of cash/credit
  constraints in the effectiveness of S2P.
  
+\end_layout
+
+\begin_layout Standard
+Other issues we will investigate are:
+\end_layout
+
+\begin_layout Standard
+3.
+ Do farmers face substantial heterogeneity in soil nutrient profiles? This
+ will be done by comparing variability in soil macro and micro-nutrients
+ across different areas (eg within villages, between village and between
+ regions).
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+This can be done through standard analysis of variance or multilevel modeling.
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+4.
+ Do farmers know their soils? This will be done by asking farmers what they
+ think their soil is missing and comparing this with results from the soil
+ tests.
+ We also can use the revealed version of this by comparing what farmers
+ are actually putting on their fields and what would be recommended by the
+ soil tests.
 \end_layout
 
 \begin_layout Section
@@ -549,12 +615,35 @@ Treatment Protocols
 In the first treatment, a random sample of farmers is visited by an enumerator
  accompanied by an agronaut and is offered the opportunity for a soil on
  a plot chosen by the farmer.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+The fact that the farmer can choose the plot themselves (as opposed to the
+ experimenter choosing the plot in some systematic way) has important consequenc
+es for the analysis.
+ In particular, it makes it hard to compare information at the plot level,
+ as the choice of the plot may be influenced by the treatment, and so the
+ plot on which outcomes are collected for the treated farmers may differ
+ in more respects from those of control farmers than just information about
+ soil quality.
+ We have thought hard about ways to assure a comparable plot level counterfactua
+l, such as also doing soil tests in the control group but keeping farmers
+ in the dark about when they will receive feedback (as is done in Corral
+ et al) or randomly choosing a plot for the soil test, but eventually decided
+ to keep the treatment as realistic as possible, which gives the farmer
+ substantial agency in terms of what plot to choose and crops to cultivate.
+ The trade-off is that it will become harder to compare plot level outcomes
+ (eg fertilizer use on the plot on which the soil test was done versus control).
+ At the same time, there are now also interesting household level outcomes
+ that we can investigate, such as crops cultivated.
+\end_layout
+
+\end_inset
+
  The farmer is also asked what crop the farmer plans to cultivate on this
  plot, as well as the target yield that the farmer would like to get from
  the crop on that plot.
- This information is registered in a CAPI app, and an appointment is made
- at a later date when the farmer will visit the farmer to go the the plot
- and take the soil sample.
  The soil sample is then analyzed, which results in a soil report (see example
  in Appendix 1) that is provided to the farmer.
  The report indicates the soil’s texture, pH level, cation exchange capacity,
@@ -690,7 +779,7 @@ s texture, pH level, cation exchange capacity, percentage organic matter,
  4-point Likert scale (very low, low, high, very high), with emojis, color
  coding and bar charts indicating where the soil is deficient and where
  the levels are sound.
- An extension worker (agronout) then discusses the soil report with the
+ An extension worker (agronaut) then discusses the soil report with the
  farmer to derive a recommended nutrient package specific to the crop the
  farmer wants to grow.
  The farmer is then informed where and how to obtain these nutrients (in
@@ -757,7 +846,12 @@ We will visit farmers three times during the duration of this study between
  indicators using the attached questionnaire, prior to implementing the
  interventions.
  During the third and final visit we will collect endline data on key outcome
- indicators as in the baseline 
+ indicators as in the baseline.
+\end_layout
+
+\begin_layout Standard
+We use openrouteservice to link sample villages to the nearest agro-dealer.
+ We assume farmers go to agro-dealers by motorbike or bicycle.
 \end_layout
 
 \begin_layout Section
@@ -1044,9 +1138,179 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-Optimal power at about 30 villages in control, 41 and 42 in T1 and T2.
- Furthermore, in each village we will sample 16 households.
- 
+Power is determined in the following way.
+ Using this data, we find that average yield is 2,574 kilogram per hectare
+ (with standard deviation of 1145 kg per hectare).
+\end_layout
+
+\begin_layout Standard
+Power is determined in the following way.
+ Our sampling frame is drawn from the previous study on smallholder market
+ participation 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "de2024expecting"
+literal "false"
+
+\end_inset
+
+.
+ We set the number of villages to the maximum number of villages that was
+ used in this study, as this is a clustered design and we want to exploit
+ inter-cluster variation to the maximum extent.
+ We then search in two dimensions.
+ First, we vary the share of villages that is allocated to the control (and
+ equally divide the remaining villages to T1 and T2).
+ In the second dimension, we vary the number of households that will be
+ interviewed in each village.
+ We model similar effects for T1 and T2 (a 13 percent increase over baseline
+ yield).
+ We run 1000 simulations and use 5 percent significance level and .8 is our
+ target for power.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+(a)
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename code/contour_plot.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+(b)
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename code/contour_plot_one.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+(c) 
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename code/contour_plot_comp.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Power Plots
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Power-Plots"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Power-Plots"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+(a) shows that when we allocate 25 percent of villages to the control group
+ (and 75 percent to the treatments) and include about 16 households per
+ village, we hit the 80 percent power level for the joint hypothesis that
+ both 
+\begin_inset Formula $\beta_{T1}$
+\end_inset
+
+ and 
+\begin_inset Formula $\beta_{T2}$
+\end_inset
+
+ are significantly different from zero.
+ However, to avoid that we are focusing on an isolated peak in the distribution,
+ it seemed safer to move closer toward 30 percent in control (and hence
+ 35 percent in T1 and 35 percent in T2) and aim for about 18 households
+ per village.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Power-Plots"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+(b) shows that at such a sample, we will get 85 to 90 percent power to identify
+ a significant effect on T1.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Power-Plots"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+(c) shows power to detect a significant difference between T1 and T2.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Power-Plots"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ From this, we conclude that we need about 30 percent in control (and hence
+ 35 percent in T1 and 35 percent in T2) and aim for about 18 households
+ per village.
 \end_layout
 
 \begin_layout Section
@@ -1115,39 +1379,61 @@ Our outcomes of interest are agricultural practices (with a particular focus
  on the use of recommended inputs and practices), yields, return on investment
  in fertilizer, profitability of the crops and the return on investment
  for the subsidy.
- 
+ Focus will be on household level outcomes (as opposed to a narrow focus
+ on the plot where the soil test was done), as the intervention may also
+ affect the choice of the plot for testing, crop mix, allocation of crops
+ to plots etc.
 \end_layout
 
 \begin_layout Itemize
-use of inorganic fertilizer on the plot on which the soil test was done.
+use of inorganic fertilizer on the different plots.
  In particular, we will make sure we cover the 4 Rs (4 Rs: source, place,
  timing and rate) 
 \end_layout
 
 \begin_layout Itemize
-use of organic fertilizer on the plot on which the soil test was done (quantity)
+use of organic fertilizer on different plots (quantity) 
 \end_layout
 
 \begin_layout Itemize
-labour use on main plot
+labour use in agricultural production 
 \end_layout
 
 \begin_layout Itemize
-yield on main plot (gps and subjectively measured plot area, estimated yield
- in bags and in kg)
+yield on main plots (gps and subjectively measured plot area, estimated
+ yield in bags and in kg) 
 \end_layout
 
 \begin_layout Itemize
-complementary input use and costs (seed used, chemical used)
+complementary input use and costs (seed used, chemical used) 
 \end_layout
 
 \begin_layout Itemize
-complementary agronomic practices, in particular those that also adress
+complementary agronomic practices, in particular those that also address
  soil health
 \end_layout
 
+\begin_layout Standard
+We will also measure a range of intermediary outcomes to check uptake of
+ the treatment, such that we can correct for differential uptake statistically
+ if needed:
+\end_layout
+
 \begin_layout Itemize
-a range of outcomes at the farm household level (crop mix, overall profits)
+was soil test done? 
+\end_layout
+
+\begin_layout Itemize
+did farmer receive tailored advice 
+\end_layout
+
+\begin_layout Itemize
+did the farmer receive a voucher? 
+\end_layout
+
+\begin_layout Itemize
+did the farmer redeem the voucher at a Farmers World nearby and if so, what
+ transpired (was the blend available)
 \end_layout
 
 \begin_layout Standard
@@ -1616,70 +1902,28 @@ Note: First column reports control group means (and standard deviations
 Second, while we do not plan to do a dedicated baseline, we will collect
  data on some background characteristics on the previous season a few weeks
  after treatment administration.
- This will include wheter the household was and AIP receipient in the previous
- season, total land size use for cultiviation, number of crops grown, We
+ This will include whether the household was and AIP receipient in the previous
+ season, total land size use for cultivation, number of crops grown, We
  also include five variables from among the outcomes of interest to test
  balance at baseline, in particular: use of organic fertilizer (yes/no),
- use of Urea (kg), yield, profit, crop in previous season was legume
-\end_layout
+ use of Urea (kg), yield, profit, crop in previous season was legume.
+ At this time, we will also collect detailed information on the use of fertilize
+r in the preceding season on the plot that was selected for testing and
+ we will ask detailed questions on what the farmer thinks the soil quality
+ is to answer the fourth research question.
+ This will help us in establishing if farmers under or overuse fertilizer
+ when the do not know the soil quality.
+\begin_inset Foot
+status open
 
-\begin_layout Section
-Sampling and data collection
-\begin_inset CommandInset label
-LatexCommand label
-name "sec:Sampling-and-data"
+\begin_layout Plain Layout
+Note that we can not use treatment versus control to answer this question
+ given the fact that the farmer can select the plot on which the soil test
+ is performed making it hard to identify an appropriate counterfactual.
+\end_layout
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
-We took the four districts that are known for maize production (Kasungu,
- Ntchisi, Dowa, and Mchinji).
- To get a nationally representative sampling frame of the smallholder farmer
- population in Malawi, we rely on the list created by the Ministry of Agricultur
-e for their Agricultural Input Programme (AIP).
- The AIP targets smallholder farmers in the villages who mostly registered
- with the village chiefs.
- We used a two-stage sampling procedure where we first sampled villages
- with the likelihood of a village being selected proportionate to the number
- of people that live in this village (such that larger villages are more
- likely to end up in the sample).
- We cluster at village level and selected 30 households per village, resulting
- in 84 villages (of which 22 are pure control villages to measure spillover
- effects).
- Code used to generate the sampling lists can be found 
-\begin_inset CommandInset href
-LatexCommand href
-name "here"
-target "https://github.com/bjvca/S2P/blob/master/sampling/sample_frame.R"
-literal "false"
-
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-In all households, soil tests will be done.
- Similarly, in all households, all necessary information will be collected
- that is needed to generate a recommendation in with the fertilizer optimizer
- application.
- This means that for all households in our sample, irrespective of treatment
- group, we can calculate recommended fertilizer blends and optimal fertilizer
- application.
- This will be useful in defining key outcome variables such as application
- error.
-\end_layout
-
-\begin_layout Standard
-We do not restrict plot or crop, but rather let the farmer decide on which
- plot he or she wants the soil test to be done.
- We do this because the crop chosen is an important outcome.
-\end_layout
-
-\begin_layout Standard
 
 \end_layout
 
