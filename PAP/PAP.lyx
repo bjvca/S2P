@@ -220,7 +220,7 @@ y to maintain or surpass current productivity levels, and reduce fertilizer
 
 \begin_layout Standard
 IFPRI was tasked in 2023 to do a rigorous impact evaluation of the S2P approach.
- However, at the start of the project if quickly became clear that the S2P
+ However, at the start of the project it quickly became clear that the S2P
  application was not going to be ready in the first operational year of
  the evaluation (during the 2024/25 growing season).
  A full and rigorous evaluation of the S2P approach was therefore deferred
@@ -612,11 +612,74 @@ Treatment Protocols
 \end_layout
 
 \begin_layout Standard
-In the first treatment, a random sample of farmers is visited by an enumerator
- accompanied by an agronaut and is offered the opportunity for a soil on
- a plot chosen by the farmer.
+The study employs a randomized controlled trial (RCT) design involving 113
+ villages across four districts in Malawi (Lilongwe, Dowa, Ntchisi, and
+ Mchinji).
+ The villages are randomly assigned to one of three groups.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Farmers in the first group, Treatment 1 (T1)
+\series default
+, receives a soil report based on a soil test conducted on a plot chosen
+ by the farmer for a specific crop the farmer plans to grow on the selected
+ plot.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Farmers in the second group, Treatment 2 (T2)
+\series default
+, receives everything farmers in T1 get in addition to a voucher that can
+ be redeemed to buy the recommended fertilizer blend.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Farmers in the third group, Control (C)
+\series default
+, do not receive a soil test offer, a customized fertilizer recommendation,
+ and a voucher.
+ 
+\end_layout
+
+\begin_layout Standard
+For the treatments, (T1 and T2) we cooperate with Meridian's Farmer Support
+ Unit (FSU).
+ This private-sector player offers farmers spectral soil tests and site-
+ and crop-specific recommendations.
+ The model underlying the test was calibrated on wet-chemistry analyses
+ conducted on 22,000 samples from across Malawi.
+ The tool is part of a private-sector business model in which FSU Meridian
+ forms a recommendation for a package of nutrients, which is then supplied
+ through their network of 400 agrodealers.
+ After the soil tests are conducted by Meridian, the results are communicated
+ in a follow up visit to farmers, along with an agricultural extension/advice
+ service on the proper use (the 4 Rs ) of the recommended fertilizer blend
+ from a private sector-trained extension agents, known as "agronauts.
+\end_layout
+
+\begin_layout Standard
+Specifically, farmers in the T1 group of villages are visited by an enumerator
+ accompanied by a private sector trained extension agents called 
+\begin_inset Quotes eld
+\end_inset
+
+agronaut
+\begin_inset Quotes erd
+\end_inset
+
+ and is offered the opportunity for a soil test on a plot chosen by the
+ farmer.
 \begin_inset Foot
-status open
+status collapsed
 
 \begin_layout Plain Layout
 The fact that the farmer can choose the plot themselves (as opposed to the
@@ -641,9 +704,9 @@ l, such as also doing soil tests in the control group but keeping farmers
 
 \end_inset
 
- The farmer is also asked what crop the farmer plans to cultivate on this
- plot, as well as the target yield that the farmer would like to get from
- the crop on that plot.
+ The farmer is also asked what crop he/she plans to cultivate on this plot,
+ as well as the target yield that the farmer would like to get from the
+ crop on that plot.
  The soil sample is then analyzed, which results in a soil report (see example
  in Appendix 1) that is provided to the farmer.
  The report indicates the soil’s texture, pH level, cation exchange capacity,
@@ -653,25 +716,24 @@ l, such as also doing soil tests in the control group but keeping farmers
  Beyond the exact measurements each soil property is given a score on a
  4-point Likert scale (very low, low, high, very high), with emojis, color
  coding and bar charts indicating where the soil is deficient and where
- the levels are sound.<<<<<<< HEAD A private sector-trained extension agents
- then discusses the soil report with the farmer to derive a recommended
- nutrient package specific to the crop the farmer wants to grow.======= An
- extension worker (agronout) then discusses the soil report with the farmer
- to derive a recommended nutrient package specific to the crop the farmer
- wants to grow.>>>>>>> a5e30131cf2e8ef6060dddbfa41800f7ef74c09d The farmer
- is then informed where and how to obtain these nutrients (in the form of
- a particular fertilizer blend).
+ the levels are sound.
+ After the results the soil test are communicated with extension service
+ on the proper use of the recommended fertilizer, farmers are then informed
+ where and how to obtain these nutrients (in the form of a particular fertilizer
+ blend).
+ We use open route service to link sample villages to the nearest agro-dealer.
+ We assume farmers go to agro-dealers by motorbike or bicycle.
 \end_layout
 
 \begin_layout Standard
-The second treatment consists of a subsidy that the farmer receives in the
+Farmers in the T2 group of villages receive a subsidy that they get in the
  from of a voucher that can be redeemed at a nearby Farmer World agro-input
  shop.
  The subsidy is tied to T1 in that it will be specific for the recommended
  fertilizer blend.
- The value of the subsidy will be model on Malawi's Agricultural Input Program
- (AIP) which allows farmers to buy one bag of fertilizer at a reduced rate
- (30 percent of full price).
+ The amount of the subsidy is determined based on Malawi's Agricultural
+ Input Program (AIP) subsidy which allows farmers to buy one bag of fertilizer
+ at a reduced rate (30 percent of full price).
  In particular, our subsidy will be equal to 70 percent of the AIP fertilizer
  bag value minus the cost of the soil test.
  This will allow us to directly compare our bundle as an alternative to
@@ -679,51 +741,26 @@ The second treatment consists of a subsidy that the farmer receives in the
  
 \end_layout
 
-\begin_layout Itemize
-Comparison 1 (C): A pure control with no soil test, no custom recommendations
- on optimal soil fertility management, and no subsidy.
+\begin_layout Standard
+Farmers in the C group of villages do not receive any of the treatments
+ that T1 and T2 groups of farmers get.
+ This group serves as a pure comparison group with which the T1 and T2 groups
+ are compared to arrive at the estimates of the impact of the treatments.
  
 \end_layout
 
 \begin_layout Standard
-The soil samples will be collected and tested by a private company called
- Meridian, whose core business involves the importation, blending, and distribut
-ion of fertilizer in Malawi, Mozambique, Zambia, and Zimbabwe.
- After the soil tests are conducted, the results will be communicated in
- a follow up visit to farmers in the randomly assigned T1 and T2 groups,
- along with nutrient management advice from private sector-trained extension
- agents, known as "agronauts.” Farmers in the C group will not receive a
- follow-up visit as there sre in which blanket fertilizer recommendations
- will be provided instead of the soil test results to avoid contaminating
- the control group.
- Farmers in the control group will receive the results of the soil test
- along with the nutrient management advice as in the treated group during
- an end-line survey after the 2024/25 growing season.
- =======
+
 \end_layout
 
 \begin_layout Standard
-The study employs a randomized controlled trial (RCT) design involving 113
- villages across four districts in Malawi (Lilongwe, Dowa, Ntchisi, and
- Mchinji).
- The villages are randomly assigned to one of three groups.
- 
-\end_layout
 
-\begin_layout Itemize
-The first group, Treatment 1 (T1), in this group receive a soil report based
- on a soil test conducted on a plot chosen by the farmer.
- This report includes key characteristics of the soil, along with a customized
- recommendation for a fertilizer blend tailored to the specific crop selected
- by the farmer.>>>>>>> a5e30131cf2e8ef6060dddbfa41800f7ef74c09d
-\end_layout
-
-\begin_layout Standard
+\series bold
 Some notes:
 \end_layout
 
 \begin_layout Standard
-Provide a brief explanation of the expert advice (extension serivuce )
+Provide a brief explanation of the expert advice (extension service )
 \end_layout
 
 \begin_layout Standard
@@ -751,107 +788,12 @@ Farmers in T1 have the right to buy the fertilizer from anywhere.
 \end_layout
 
 \begin_layout Standard
-It might be one Agronout for 3 or 4 villages - Johnathan will confirm.
+It might be one Agronaut for 3 or 4 villages - Johnathan will confirm.
  
 \end_layout
 
 \begin_layout Standard
-In the first treatment, a random sample of farmers is visited by an enumerator
- accompanied by an agronaut and is offered the opportunity for a soil on
- a plot chosen by the farmer.
- The farmer is also asked what crop the farmer plans to cultivate on this
- plot, as well as the target yield that the farmer would like to get from
- the crop on that plot.
- This information is registered in a CAPI app, and an appointment is made
- at a later date when the farmer will visit the farmer to go the the plot
- and take the soil sample.
- The soil sample is then analyzed, which results in a soil report (see example
- in Appendix 1) that is provided to the farmer.
- The report indicates the soil
-\begin_inset Quotes ers
-\end_inset
-
-s texture, pH level, cation exchange capacity, percentage organic matter,
- total nitrogen, carbon to nitrogen ratio, as well as the parts per million
- of available P, exchangeable K, calcium, magnesium, iron, manganese, boron,
- copper and zinc.
- Beyond the exact measurements each soil property is given a score on a
- 4-point Likert scale (very low, low, high, very high), with emojis, color
- coding and bar charts indicating where the soil is deficient and where
- the levels are sound.
- An extension worker (agronaut) then discusses the soil report with the
- farmer to derive a recommended nutrient package specific to the crop the
- farmer wants to grow.
- The farmer is then informed where and how to obtain these nutrients (in
- the form of a particular fertilizer blend).
-\end_layout
-
-\begin_layout Standard
-For the treatments, we cooperate with Meridian's Farmer Support Unit (FSU).
- This private-sector player offers farmers spectral soil tests and site-
- and crop-specific recommendations.
- The model underlying the test was calibrated on wet-chemistry analyses
- conducted on 22,000 samples from across Malawi.
- The tool is part of a private-sector business model in which FSU Meridian
- forms a recommendation for a package of nutrients, which is then supplied
- through their network of 400 agrodealers.
- 
-\end_layout
-
-\begin_layout Standard
-The sample for this study is drawn from a previous longitudinal study that
- involved 113 villages.
- This gives us the opportunity of leveraging two years’ worth of data on
- Maize, Groundnut, and Soyabean growing famers for our study design and
- analysis.
- In doing so, we ensure that we do not lose external validity and generalizabili
-ty as we are relying on a specific sample drawn for a different purpose.
- Since the sample for the previous study was selected using the same approach
- we would have applied for this study—randomly drawing districts, villages,
- and households within villages—we believe that using this sample does not
- compromise external validity.
- 
-\end_layout
-
-\begin_layout Standard
-Based on a thorough power and sample size calculation, we have determined
- that we will need to sample 16 households per village, resulting in a total
- of 1,808 households.
- Out of the 113 villages, 41 villages will be assigned to Treatment 1 (T1),
- another 42 villages to Treatment 2 (T2), and the remaining 30 villages
- to the control group (C).
- During the initial visit, farmers in all 113 villages will be offered a
- soil test.
- Those who accept the offer will be asked to select a plot of their choice
- for the soil test.
- Additionally, they will be asked to specify the crop for which they would
- like to receive recommendations, as well as their target yield.
- In making these selections, all farmers, regardless of treatment assignment,
- will be informed that there is a two-thirds chance they will receive the
- results of the soil test in time for the 2024/25 growing season.
- 
-\end_layout
-
-\begin_layout Standard
-We will visit farmers three times during the duration of this study between
- September 2024 and June 2025: first, when we visit them to collect soil
- samples; second, before the 2024/25 growing season to gather baseline data;
- and third, after the 2024/25 growing season to collect endline data.
- During the initial visit, we will begin by obtaining farmers' consent to
- participate in the study after providing them with complete information
- (see the attached consent letter).
- Farmers will then be asked to provide the location of the plot from which
- soil samples will be collected for testing.
- During the second visit, baseline data will be collected on key outcome
- indicators using the attached questionnaire, prior to implementing the
- interventions.
- During the third and final visit we will collect endline data on key outcome
- indicators as in the baseline.
-\end_layout
-
-\begin_layout Standard
-We use openrouteservice to link sample villages to the nearest agro-dealer.
- We assume farmers go to agro-dealers by motorbike or bicycle.
+Data 
 \end_layout
 
 \begin_layout Section
@@ -1311,6 +1253,40 @@ noprefix "false"
  From this, we conclude that we need about 30 percent in control (and hence
  35 percent in T1 and 35 percent in T2) and aim for about 18 households
  per village.
+\end_layout
+
+\begin_layout Standard
+The sample for this study is drawn from a previous longitudinal study that
+ involved 113 villages.
+ This gives us the opportunity of leveraging two years’ worth of data on
+ Maize, Groundnut, and Soyabean growing farmers for our study design and
+ analysis.
+ In doing so, we ensure that we do not lose external validity and generalizabili
+ty as we are relying on a specific sample drawn for a different purpose.
+ Since the sample for the previous study was selected using the same approach
+ we would have applied for this study—randomly drawing districts, villages,
+ and households within villages—we believe that using this sample does not
+ compromise external validity.
+ 
+\end_layout
+
+\begin_layout Standard
+Based on a thorough power and sample size calculation, we have determined
+ that we will need to sample 16 households per village, resulting in a total
+ of 1,808 households.
+ Out of the 113 villages, 41 villages will be assigned to Treatment 1 (T1),
+ another 42 villages to Treatment 2 (T2), and the remaining 30 villages
+ to the control group (C).
+ During the initial visit, farmers in all 113 villages will be offered a
+ soil test.
+ Those who accept the offer will be asked to select a plot of their choice
+ for the soil test.
+ Additionally, they will be asked to specify the crop for which they would
+ like to receive recommendations, as well as their target yield.
+ In making these selections, all farmers, regardless of treatment assignment,
+ will be informed that there is a two-thirds chance they will receive the
+ results of the soil test in time for the 2024/25 growing season.
+ 
 \end_layout
 
 \begin_layout Section
