@@ -251,9 +251,9 @@ Motivation
 \end_layout
 
 \begin_layout Standard
-Governments in developing countries are trying to increase adoption of Green
- Revolution technologies, seed of improved varieties and mineral fertilizer
- in particular, through agricultural extension advice.
+Governments in developing co[luntries are trying to increase adoption of
+ Green Revolution technologies, seed of improved varieties and mineral fertilize
+r in particular, through agricultural extension advice.
  In general, these extension systems provide blanket recommendations.
  One important reason why farmers fail to adopt seemingly profitable yield
  improving technologies is heterogeneity in the farmer's ability and context.
@@ -312,8 +312,8 @@ literal "false"
 \begin_layout Standard
 However, decision support tools for tailored nutrient recommendations have
  generally fallen short of expectations.
- This is illustrated by the numerous apps and tools that are out there but
- fail to scale 
+ This is illustrated by the numerous apps and tools available that fail
+ to scale effectively 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "sida2023failure"
@@ -322,16 +322,16 @@ literal "false"
 \end_inset
 
 .
- Some of the reasons why such tools do not have more impact may be related
- to the following open questions:
+ Several factors may explain why these tools have not had more impact, and
+ they relate to some unresolved questions:
 \end_layout
 
-\begin_layout Itemize
-the issue of spatial resolution, or how site specific these tools really
+\begin_layout Standard
+One such issue is spatial resolution, or how site specific these tools really
  are.
- Many of the tools rely on models that predict soil composition and nutrients
- in fairly large areas.
- As such, it has been argued that, often, 
+ Many rely on models that predict soil composition and nutrients availability
+ over relatively large area.
+ As a result, it has been argued that, often, 
 \begin_inset Quotes eld
 \end_inset
 
@@ -353,22 +353,23 @@ literal "false"
  
 \end_layout
 
-\begin_layout Itemize
-just providing information: many of the apps implicitly assume that just
- providing farmers with information is sufficient for farmers to change
- behavior.
- An extension component, with a human intermediary, is missing.
+\begin_layout Standard
+Another limitation is that many of these apps implicitly assume that providing
+ farmers with information alone is sufficient to change their behavior.
+ What is missing is an en extension component - specifically, a human intermedia
+ry who can help guide farmers through the decision-making process.
+ 
 \end_layout
 
-\begin_layout Itemize
-decision support tools often take a host of pre-conditions for granted,
- the most critical probably being the fact that the recommended blend of
- soil macro- and micro nutrients is available to the farmer at reasonable
+\begin_layout Standard
+Moreover, decision support tools often take several pre-conditions for granted,
+ with one of the most critical probably being that the recommended blend
+ of soil macro- and micro-nutrients are available to the farmer at reasonable
  cost.
- Indeed, as we will see below, most RCTs that study the effectiveness of
- DSTs have at least one treatment arm that investigates the importance of
- a particular pre-condition (such as access to insurance, financial resources,
- or information).
+ Indeed, as we will discuss below, most RCTs that study the effectiveness
+ of DSTs include at least one treatment arm to investigate the importance
+ of a particular pre-condition, such as access to insurance, financial resources
+, or information.
 \end_layout
 
 \begin_layout Section
