@@ -13,7 +13,7 @@ dta <- subset(dta, dta$Farmer_ID != "n/a") ### and only keep those with valid id
 dta_nas <-  merge(dta_nas,dta_list_old, by="farmer_name", all.x=TRUE)
 dta_nas$Farmer_ID <- dta_nas$farmer_ID
 dta_nas$farmer_ID <- NULL
-
+dta_nas$treat <- dta_nas$treat.y
 dta_nas$treat.y <- NULL
 dta_nas$treat.x <- NULL
 dta_nas$village <- dta_nas$village.x
@@ -49,6 +49,7 @@ dta$farmer_name.y <- NULL
 
 
 ### treat seems to be missing - pull from latest list
+dta$treat <- NULL
 dta <- merge(dta, dta_list[c("farmer_ID","treat")], by.x = "Farmer_ID", by.y="farmer_ID")
 
 write.csv(dta,paste(path,"", sep="/data/clean/linkfile.csv"), row.names = FALSE)
