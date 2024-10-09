@@ -377,12 +377,9 @@ Related literature
 \end_layout
 
 \begin_layout Standard
-Recently, various studies have been done on site specific nutrient management
- recommendations.
- Below, we review some of the most relevant studies.
-\end_layout
-
-\begin_layout Standard
+Recent literature on site-specific nutrient management has focused on providing
+ tailored fertilizer recommendations to improve agricultural productivity.
+ Among the studies employing plot-level soil tests, 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "beg2024information"
@@ -390,22 +387,23 @@ literal "false"
 
 \end_inset
 
- is one of the few studies that has a treatment arm with a soil test (which
- is similar to one of the treatment arms in our study, see below).
- In particular, using rice farmers in Bangladesh as a case, they compare
- two types of site-specific fertilizer recommendations—community-level recommend
-ations and plot-specific recommendations based on individual soil tests—and
- compare this to government provided recommendations.
- They find limited effects, except perhaps for a reduction in application
- error (difference between recommended quantity of a particular nutrient
- and quantity used).
- That is, some farmers were using more than the recommended TSP and as a
- result of the intervention cut back.
+ examined rice farmers in Bangladesh, comparing three types of fertilizer
+ recommendations: community-level, plot-specific based on individual soil
+ tests, and standard government recommendations.
+ They find limited effects on quantity of fertilizer use, except perhaps
+ for a reduction in application error (difference between recommended quantity
+ of a particular nutrient and quantity used).
+ That is, some farmers were using more than the recommended TSP (phosphate
+ fertilizer) and as a result of the intervention cut back.
  Some even appear to over-react and stop using TSP altogether, leading to
  lower yield.
  They also find indications that farmers adapt seed use to match baseline
  fertilizer use.
- Another study with a soil test treatment are is 
+ 
+\end_layout
+
+\begin_layout Standard
+Similarly, 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "gars2015confidence"
@@ -413,13 +411,57 @@ literal "false"
 
 \end_inset
 
-, which shows that plot-level soil testing and tailored input recommendations
+ demonstrated that plot-level soil testing and tailored input recommendations
  changed farmers’ fertilizer usage and increased the adoption of recommended
  practices, leading to improved yields.
+ This aligns with findings by [Harou et all (2018)] who studied maize farmers
+ in Tanzania.
+ Their study testes the joint effects of information and financing constraints
+ on fertilizer adoption.
+ Specifically, they investigated if farmers use more fertilizer with site-specif
+ic soil test provided and they also investigated if only this information
+ is not sufficient due to financing constraints.
+ They have three treatment arms: an arm which receives site-specific soil
+ test information, another arm which also receives a subsidy with the site-speci
+fic soil test information and a third arm which receives only a subsidy.
+ The found that only those who received both the site-specific soil test
+ information and the subsidy increase fertilizer application and yields.
+ Their study is comparable to ours, except that we additionally offer agricultur
+al extension services alongside the soil test results (don't they?).
  
 \end_layout
 
 \begin_layout Standard
+\begin_inset CommandInset citation
+LatexCommand citet
+key "corral2020appropriate"
+literal "false"
+
+\end_inset
+
+ implement a field experiment that combines tailored input recommendations
+ based on soil sample tests, extension services and an in-kind grant.
+ The grant comes in two flavors: in one treatment arm, the grant can only
+ be spent on the recommended fertilizer blend; in the second treatment arm,
+ the farmer can decide what inputs to get.
+ They find that the intervention reduces overuse of fertilizer, and the
+ effect is sustained more if the farmer was free to choose how to spend
+ the grant.
+ 
+\end_layout
+
+\begin_layout Standard
+Murphy et al.
+ (2019) investigated whether site-specific soil testing, using a low-cost
+ testing kit, influenced farmer's demand for inorganic and organic fertilizers.
+ Their auction-based study before and after disseminating soil test information
+ revealed significant impacts on farmer's willingness to pay for fertilizers.
+\end_layout
+
+\begin_layout Standard
+Other studies on site-specific nutrient management did not rely on soil
+ test but still provided insights into the potential of customized approaches.
+ 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "arouna2021one"
@@ -433,7 +475,6 @@ literal "false"
  provide personalized recommendations on nutrient management (type, quantity,
  and timing of fertilizer) in rice production.
  They find that the intervention increases yields by 7 percent.
- No soil tests are done.
  They also have a treatment that combines personalized advice with a grant
  that provides the recommended level of fertilizer.
  Here they estimate a treatment effect of 20 percent.
@@ -442,6 +483,7 @@ literal "false"
  The mechanism behind the increase in yield and profitability seems to be
  a reallocation in the fertilizer mix, with farmers using less NPK and more
  Urea.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -476,12 +518,17 @@ literal "false"
  advice through the Nutrient Expert tool.
  They have two treatment arms and one business-as-usual blanket recommendations
  control.
- T1 farmers who are exposed to SSNM information interventions on nutrient
- application rates and fertilizer management, and T2 farmers who are exposed
- to the same SSNM information and additional information on the variability
- of expected returns to fertilizer investment under different price scenarios.
+ One treatment arm with farmers who are exposed to SSNM information intervention
+s on nutrient application rates and fertilizer management, and anther treatment
+ arm with farmers who are exposed to the same SSNM information and additional
+ information on the variability of expected returns to fertilizer investment
+ under different price scenarios.
  They find modest effects on yields and profits.
- See also 
+ 
+\end_layout
+
+\begin_layout Standard
+Others to include: 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "maertens2023sustainable"
@@ -489,66 +536,8 @@ literal "false"
 
 \end_inset
 
-.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Add the MSU paper on reflectometers? 
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-add Harou et all (2018) : The joint effects of information and financing
- constraints on technology adoption: Evidence from a field experiment in
- rural Tanzania
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Add Murphy et al 2019: Underground knowledge: Estimating the impact of soil
- information transfers through experimental auctions
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset citation
-LatexCommand citet
-key "corral2020appropriate"
-literal "false"
-
-\end_inset
-
- implement a field experiment that combines tailored input recommendations
- based on soil sample tests, extension services and an in-kind grant.
- The grant comes in two flavors: in one treatment arm, the grant can only
- be spent on the recommended fertilizer blend; in the second treatment arm,
- the farmer can decide what inputs to get.
- The find that the intervention reduces overuse of fertilizer, and the effect
- us sustained more if the farmer was free to choose how to spend the grant.
+ and Fishman et al 2016.
+ 
 \end_layout
 
 \begin_layout Section
@@ -1319,6 +1308,12 @@ Our outcomes of interest are agricultural practices (with a particular focus
 \end_layout
 
 \begin_layout Itemize
+Farmers intention to buy fertilizer based on data during the first survey
+ as in a simplified version of the Murphy 2019 paper.
+ 
+\end_layout
+
+\begin_layout Itemize
 use of inorganic fertilizer on the different plots.
  In particular, we will make sure we cover the 4 Rs (4 Rs: source, place,
  timing and rate) 
@@ -1344,6 +1339,10 @@ complementary input use and costs (seed used, chemical used)
 \begin_layout Itemize
 complementary agronomic practices, in particular those that also address
  soil health
+\end_layout
+
+\begin_layout Itemize
+seed variety use as in Beg et al 2024
 \end_layout
 
 \begin_layout Standard
