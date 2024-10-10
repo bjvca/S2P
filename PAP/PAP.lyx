@@ -548,7 +548,7 @@ Research Questions
 Our research aims to look at a prototype S2P intervention, as well as assess
  the relative importance of two of the key components.
  It will also investigate the role of resources constraints as a potential
- enabling factor and look into peer learning.
+ enabling factor.
  In particular, we will answer the following research questions:
 \end_layout
 
@@ -601,15 +601,67 @@ This can be done through standard analysis of variance or multilevel modeling.
 \end_layout
 
 \begin_layout Section
-Treatment Protocols 
+Experimental Design 
 \end_layout
 
 \begin_layout Standard
 The study employs a randomized controlled trial (RCT) design involving 113
  villages across four districts in Malawi (Lilongwe, Dowa, Ntchisi, and
  Mchinji).
- The villages are randomly assigned to one of three groups.
+ The villages are randomly assigned to one of the following three groups
+ and the layout of the experiment is illustrated in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Experimental-layout"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
  
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename design.png
+	scale 20
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Experimental layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Experimental-layout"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -739,78 +791,14 @@ Farmers in the C group of villages do not receive any of the treatments
  that T1 and T2 groups of farmers get.
  This group serves as a pure comparison group with which the T1 and T2 groups
  are compared to arrive at the estimates of the impact of the treatments.
- 
+ T
 \end_layout
 
 \begin_layout Section
-Experimental Setup and Empirical Specifications
+Empirical Specifications
 \begin_inset CommandInset label
 LatexCommand label
 name "sec:Experimental-design"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Households will be randomized at the village level following a parallel
- design with one control and two treatment arms.
- A first treatment arm will get the soil test and a recommendation based
- on this soil test which includes a recommended fertilizer blend.
- A second treatment is added incrementally on the first treatment.
- In this treatment arm, farmers get get the soil test and a recommendation
- based on this soil test, and also receive a voucher that partially subsides
- the recommended fertilizer blend.
- The layout of the experiment is illustrated in Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Experimental-layout"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-.
- 
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename design.png
-	scale 20
-
-\end_inset
-
- 
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Experimental layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:Experimental-layout"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
 
 \end_inset
 
@@ -827,7 +815,7 @@ Due to the random assignment of participants to treatment and control groups,
 \begin_layout Standard
 \begin_inset Formula 
 \begin{equation}
-Y_{i}=\alpha+\beta_{T1}T1_{j}+\beta_{T2}T1_{j}\centerdot T2_{j}+\varepsilon_{i}\label{eq:simple}
+Y_{i}=\alpha+\beta_{T1}T1_{i}+\beta_{T2}T2_{i}+\varepsilon_{i}\label{eq:simple}
 \end{equation}
 
 \end_inset
@@ -876,54 +864,6 @@ i
 \end_inset
 
  is the incremental effect of adding the voucher to the combined treatment.
-\begin_inset Foot
-status open
-
-\begin_layout Plain Layout
-To estimate 
-\begin_inset Formula $\beta_{T1}$
-\end_inset
-
-, we will also estimate an alternative specification that boosts power by
- exploiting the fact that farmers T2 is provided on top of T1 (that is,
- farmers in the second treatment arm also receive T1).
- To do so, we consider T2 as covariate and enter it in deviations from its
- mean in the following way 
-\begin_inset CommandInset citation
-LatexCommand citep
-key "lin2013agnostic"
-literal "false"
-
-\end_inset
-
-: 
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Formula 
-\begin{equation}
-Y_{i}=\alpha+\beta_{T1}T1_{j}+\beta_{T2}T1_{j}\left(T2_{j}-\overline{T2}\right)+\beta_{C}\left(T2_{j}-\overline{T2}\right)+\varepsilon_{i}\label{eq:othog}
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-See also this blog post: 
-\begin_inset CommandInset href
-LatexCommand href
-target "https://blogs.worldbank.org/en/impactevaluations/what-should-you-do-experiments-factorial-designs"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -966,8 +906,8 @@ name "sec:Statistical-Power-and"
 \end_layout
 
 \begin_layout Standard
-We will run a simulation analysis to determine sample size for the design
- presented in section 
+We run a simulation analysis to determine sample size for the design presented
+ in section 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "sec:Experimental-design"
@@ -1021,12 +961,6 @@ literal "false"
 \end_inset
 
 .
- Using this data, we find that average yield is 2,574 kilogram per hectare
- (with standard deviation of 1145 kg per hectare).
-\end_layout
-
-\begin_layout Standard
-Power is determined in the following way.
  Using this data, we find that average yield is 2,574 kilogram per hectare
  (with standard deviation of 1145 kg per hectare).
 \end_layout
@@ -1199,6 +1133,9 @@ noprefix "false"
  From this, we conclude that we need about 30 percent in control (and hence
  35 percent in T1 and 35 percent in T2) and aim for about 18 households
  per village.
+ This results in a total of 2034 households with 738 households in T1, 756
+ households in T2, and 540 households in C.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -1207,31 +1144,17 @@ The sample for this study is drawn from a previous longitudinal study that
  This gives us the opportunity of leveraging two years’ worth of data on
  Maize, Groundnut, and Soyabean growing farmers for our study design and
  analysis.
- In doing so, we ensure that we do not lose external validity and generalizabili
-ty as we are relying on a specific sample drawn for a different purpose.
- Since the sample for the previous study was selected using the same approach
+ In doing so, we ensure that we do not lose external validity as we are
+ relying on a specific sample drawn for a different purpose.
+ The sample for the previous study was selected using the same approach
  we would have applied for this study—randomly drawing districts, villages,
  and households within villages—we believe that using this sample does not
  compromise external validity.
- 
-\end_layout
-
-\begin_layout Standard
-Based on a thorough power and sample size calculation, we have determined
- that we will need to sample 16 households per village, resulting in a total
- of 1,808 households.
- Out of the 113 villages, 41 villages will be assigned to Treatment 1 (T1),
- another 42 villages to Treatment 2 (T2), and the remaining 30 villages
- to the control group (C).
- During the initial visit, farmers in all 113 villages will be offered a
- soil test.
- Those who accept the offer will be asked to select a plot of their choice
- for the soil test.
- Additionally, they will be asked to specify the crop for which they would
- like to receive recommendations, as well as their target yield.
- In making these selections, all farmers, regardless of treatment assignment,
- will be informed that there is a two-thirds chance they will receive the
- results of the soil test in time for the 2024/25 growing season.
+ Additionally, we ensure that an intervention that was conducted during
+ the previous survey doesn't compromise the effect of our treatments.
+ Specifically, we are assigning our treatments at the village level while
+ the previous survey had a light touch intervention randomly assigned to
+ individuals within a village.
  
 \end_layout
 
