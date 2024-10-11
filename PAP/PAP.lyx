@@ -1158,17 +1158,6 @@ The sample for this study is drawn from a previous longitudinal study that
  
 \end_layout
 
-\begin_layout Section
-Outcomes of interest
-\begin_inset CommandInset label
-LatexCommand label
-name "sec:Outcomes-of-interest"
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Standard
 \begin_inset ERT
 status open
@@ -1220,159 +1209,13 @@ balance <- readRDS(paste(path,"sampling/balance_2022.Rdata", sep="/"))
 \end_layout
 
 \begin_layout Standard
-Our outcomes of interest are agricultural practices (with a particular focus
- on the use of recommended inputs and practices), yields, return on investment
- in fertilizer, profitability of the crops and the return on investment
- for the subsidy.
- Focus will be on household level outcomes (as opposed to a narrow focus
- on the plot where the soil test was done), as the intervention may also
- affect the choice of the plot for testing, crop mix, allocation of crops
- to plots etc.
-\end_layout
-
-\begin_layout Standard
-1st set of outcomes:
-\end_layout
-
-\begin_layout Itemize
-Farmer's intention to buy the recommended fertilizer based on data during
- the first survey as in a simplified version of the Murphy 2019 paper.
- 
-\end_layout
-
-\begin_layout Itemize
-Use of fertilizer (Y/N) 
-\end_layout
-
-\begin_layout Itemize
-Use the recommended fertilizer
-\end_layout
-
-\begin_layout Itemize
-Application rate - amount of fertilizer used per ha.
-\end_layout
-
-\begin_layout Itemize
-Yield and/or value of production (estimated yield in bags and in kg)
-\end_layout
-
-\begin_layout Itemize
-Profits 
-\end_layout
-
-\begin_layout Itemize
-Returns to investment in fertilizer 
-\end_layout
-
-\begin_layout Itemize
-Farmer's subjective assessment of the results of the recommended fertilizer
-\end_layout
-
-\begin_layout Itemize
-Proper application of fertilizer: do farmers use the fertilizer at the right
- place, at the right time, and at the right rate - application error.
- (I am not sure what we will be measuring for the right source)
-\end_layout
-
-\begin_layout Standard
-2nd set of outcomes: 
-\end_layout
-
-\begin_layout Itemize
-Crop mix (may be farmers plant more of the crop selected for the experimental
- plot given they are getting crop specific fertilizer recommendation)
-\end_layout
-
-\begin_layout Itemize
-Farming labor (may be they put now more labor given the intervention) -
- family and hired.
- 
-\end_layout
-
-\begin_layout Itemize
-Complementary input use and costs (improved seed variety used (as in Beg
- et al 2024), chemical (pesticide, fungicide ) used.
- 
-\end_layout
-
-\begin_layout Itemize
-Complementary soil nutrient management practices (Use of manure, EMBIA,
- mulching, crop rotation, residue incorporation ) 
-\end_layout
-
-\begin_layout Standard
-We will also measure a range of intermediary outcomes to check uptake of
- the treatment, such that we can correct for differential uptake statistically
- if needed:
-\end_layout
-
-\begin_layout Itemize
-was soil test done? 
-\end_layout
-
-\begin_layout Itemize
-did farmer receive tailored advice 
-\end_layout
-
-\begin_layout Itemize
-did the farmer receive a voucher? 
-\end_layout
-
-\begin_layout Itemize
-did the farmer redeem the voucher at a Farmers World nearby and if so, what
- transpired (was the blend available)
-\end_layout
-
-\begin_layout Itemize
-did farmers already bought fertilizer for the season?
-\end_layout
-
-\begin_layout Standard
-
-\series bold
-Outcome
-\series default
-: Amount of fertilizer used by type, application error (gap from recommended
- rate, Yield, Farm revenue, Farm expenditure.
- We need to make sure that we also ask all questions needed to generate
- a recommendation via the fertilizer optimizer app.
-\end_layout
-
-\begin_layout Standard
-
-\series bold
-Outcome
-\series default
-: Fertilizer adoption, Amount of fertilizer used, Yield, profit.
- 
-\end_layout
-
-\begin_layout Standard
-
-\series bold
-Outcome
-\series default
-: Fertilizer adoption rates, Yield, Profit.
-\end_layout
-
-\begin_layout Standard
-
-\series bold
-Outcome
-\series default
-: Fertilizer application rates, fertilizer management practices, maize yields,
- and revenues
-\end_layout
-
-\begin_layout Standard
-We will also test for balance on fifteen pre-specified variables.
- First, we will use data previously collected to assess balance on the following
- five variables that are unlikely to be affected by the treatments: farmer's
- age (in years), sex of farmer, household size, land area for crop production
- (acres), and whether the household had difficulty in meeting food needs
- in the year preceding the survey.
- As this data was collected in May and June 2022, we can already establish
- balance at this point.
+Using the data from the previous study, which was collected in May and June
+ 2022, we can already test balance on fifteen pre-specified variables.
+ First, we assess balance on the following five variables that are unlikely
+ to be affected by the treatments: farmer's age (in years), sex of farmer,
+ household size, land area for crop production (acres), and whether the
+ household had difficulty in meeting food needs in the year preceding the
+ survey.
  Results are in Table 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -1793,18 +1636,16 @@ Note: First column reports control group means (and standard deviations
 Second, while we do not plan to do a dedicated baseline, we will collect
  data on some background characteristics on the previous season a few weeks
  after treatment administration.
- This will include whether the household was and AIP receipient in the previous
- season, total land size use for cultivation, number of crops grown, We
- also include five variables from among the outcomes of interest to test
+ This will include whether the household was AIP recipient in the previous
+ season, total land size use for cultivation, and number of crops grown.
+ We also include five variables from among the outcomes of interest to test
  balance at baseline, in particular: use of organic fertilizer (yes/no),
  amount of fertilizer by type (kg), yield, profit, crop in previous season
  was legume.
- At this time, we will also collect detailed information on the use of fertilize
-r in the preceding season on the plot that was selected for testing and
- we will ask detailed questions on what the farmer thinks the soil quality
- is to answer the fourth research question.
+ At this time, we will also ask detailed questions on what the farmer thinks
+ the soil quality is to answer the fourth research question.
  This will help us in establishing if farmers under or overuse fertilizer
- when the do not know the soil quality.
+ when they do not know the soil quality.
 \begin_inset Foot
 status open
 
@@ -1820,15 +1661,99 @@ Note that we can not use treatment versus control to answer this question
 \end_layout
 
 \begin_layout Section
-Timeline
+Outcomes of interest
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Outcomes-of-interest"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-Soil tests will be done in September 2024.
- Treatment administration (+ baseline data collection) will happen once
- results from the soil tests are available, which should be after about
- 2 weeks.
- In April 2025, endline data will be collected.
+We plan to assess the impact of the intervention on household-level agricultural
+ outcomes, with a focus on the adoption of recommended inputs and practices,
+ crop yields, profitability, and returns on investment in fertilizer and
+ subsidies.
+ Rather than limiting the analysis to plot-level data from the experimental
+ site, we will capture broader effects on household decision-making processes,
+ including crop mix adjustments, and the allocation of crops across different
+ plots.
+ The primary set of outcomes focuses on direct impacts related to fertilizer
+ use and associated agricultural practices.
+ Key measures will include whether farmers used any fertilizer, the extent
+ to which they adopted the recommended type, and the rate of application
+ (amount of fertilizer applied per hectare).
+ We will also evaluate the impact on proper fertilizer application practices,
+ defined as applying the fertilizer at the right place, right time, and
+ right rate.
+ These will be measured as a deviation from recommended practices, e.g., the
+ gap between recommended application rates and actual application rates
+ will be used to arrive at an “application error” outcome.
+ In addition, we will assess outcomes related to yield and value of production,
+ profitability, and returns on fertilizer investment.
+ Additionally, we will evaluate the impact of the intervention on farmers’
+ subjective assessments of the effectiveness of the fertilizer type they
+ used on yield.
+ 
+\end_layout
+
+\begin_layout Standard
+A secondary set of outcomes explores complementary practices and broader
+ changes in agricultural behavior that may arise as a result of the intervention.
+ This includes potential shifts in the crop mix farmers are planting.
+ The intervention may also affect labor allocation, prompting increased
+ use of both family and hired labor as farming intensity changes.
+ Furthermore, changes in the use and costs of complementary inputs, such
+ as improved seed varieties or agricultural chemicals (e.g., pesticides, fungicide
+s), will be assessed.
+ The study will also explore shifts in soil nutrient management practices,
+ including the use of organic fertilizer (e.g., manure), or techniques like
+ minimum tillage, mulching, crop rotation, and residue incorporation.
+ 
+\end_layout
+
+\begin_layout Standard
+To understand the implementation and uptake of the intervention, we will
+ collect data on several intermediary outcomes.
+ This will include whether soil testing was conducted, if tailored fertilizer
+ advice was received, and whether vouchers were distributed and redeemed
+ at local outlets, such as Farmers World.
+ We will gather details about the farmers' experiences at agro-input dealers,
+ including whether the recommended fertilizer blend was available, any issues
+ encountered with the subsidy amount, and the process for paying for fertilizer
+ beyond what was covered by the voucher.
+ 
+\end_layout
+
+\begin_layout Section
+Timeline
+\end_layout
+
+\begin_layout Itemize
+September/October - taking soil samples, conducting soil test and disseminating
+ the soil test results.
+\end_layout
+
+\begin_layout Itemize
+End of October (or right after the treatment administration is completed)
+ - we will conduct the 
+\begin_inset Quotes eld
+\end_inset
+
+first survey
+\begin_inset Quotes erd
+\end_inset
+
+ in which we validate treatment administration and collect information about
+ the previous season on fertilizer use, agricultural practices and other
+ key outcomes.
+ 
+\end_layout
+
+\begin_layout Itemize
+April 2025 - endline data will be collected.
 \end_layout
 
 \begin_layout Standard
