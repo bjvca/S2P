@@ -1230,42 +1230,74 @@ Our outcomes of interest are agricultural practices (with a particular focus
  to plots etc.
 \end_layout
 
+\begin_layout Standard
+1st set of outcomes:
+\end_layout
+
 \begin_layout Itemize
-Farmers intention to buy fertilizer based on data during the first survey
- as in a simplified version of the Murphy 2019 paper.
+Farmer's intention to buy the recommended fertilizer based on data during
+ the first survey as in a simplified version of the Murphy 2019 paper.
  
 \end_layout
 
 \begin_layout Itemize
-use of inorganic fertilizer on the different plots.
- In particular, we will make sure we cover the 4 Rs (4 Rs: source, place,
- timing and rate) 
+Use of fertilizer (Y/N) 
 \end_layout
 
 \begin_layout Itemize
-use of organic fertilizer on different plots (quantity) 
+Use the recommended fertilizer
 \end_layout
 
 \begin_layout Itemize
-labour use in agricultural production 
+Application rate - amount of fertilizer used per ha.
 \end_layout
 
 \begin_layout Itemize
-yield on main plots (gps and subjectively measured plot area, estimated
- yield in bags and in kg) 
+Yield and/or value of production (estimated yield in bags and in kg)
 \end_layout
 
 \begin_layout Itemize
-complementary input use and costs (seed used, chemical used) 
+Profits 
 \end_layout
 
 \begin_layout Itemize
-complementary agronomic practices, in particular those that also address
- soil health
+Returns to investment in fertilizer 
 \end_layout
 
 \begin_layout Itemize
-seed variety use as in Beg et al 2024
+Farmer's subjective assessment of the results of the recommended fertilizer
+\end_layout
+
+\begin_layout Itemize
+Proper application of fertilizer: do farmers use the fertilizer at the right
+ place, at the right time, and at the right rate - application error.
+ (I am not sure what we will be measuring for the right source)
+\end_layout
+
+\begin_layout Standard
+2nd set of outcomes: 
+\end_layout
+
+\begin_layout Itemize
+Crop mix (may be farmers plant more of the crop selected for the experimental
+ plot given they are getting crop specific fertilizer recommendation)
+\end_layout
+
+\begin_layout Itemize
+Farming labor (may be they put now more labor given the intervention) -
+ family and hired.
+ 
+\end_layout
+
+\begin_layout Itemize
+Complementary input use and costs (improved seed variety used (as in Beg
+ et al 2024), chemical (pesticide, fungicide ) used.
+ 
+\end_layout
+
+\begin_layout Itemize
+Complementary soil nutrient management practices (Use of manure, EMBIA,
+ mulching, crop rotation, residue incorporation ) 
 \end_layout
 
 \begin_layout Standard
@@ -1289,6 +1321,10 @@ did the farmer receive a voucher?
 \begin_layout Itemize
 did the farmer redeem the voucher at a Farmers World nearby and if so, what
  transpired (was the blend available)
+\end_layout
+
+\begin_layout Itemize
+did farmers already bought fertilizer for the season?
 \end_layout
 
 \begin_layout Standard
@@ -1761,7 +1797,8 @@ Second, while we do not plan to do a dedicated baseline, we will collect
  season, total land size use for cultivation, number of crops grown, We
  also include five variables from among the outcomes of interest to test
  balance at baseline, in particular: use of organic fertilizer (yes/no),
- use of Urea (kg), yield, profit, crop in previous season was legume.
+ amount of fertilizer by type (kg), yield, profit, crop in previous season
+ was legume.
  At this time, we will also collect detailed information on the use of fertilize
 r in the preceding season on the plot that was selected for testing and
  we will ask detailed questions on what the farmer thinks the soil quality
