@@ -864,6 +864,54 @@ i
 \end_inset
 
  is the incremental effect of adding the voucher to the combined treatment.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+To estimate 
+\begin_inset Formula $\beta_{T1}$
+\end_inset
+
+, we will also estimate an alternative specification that boosts power by
+ exploiting the fact that farmers T2 is provided on top of T1 (that is,
+ farmers in the second treatment arm also receive T1).
+ To do so, we consider T2 as covariate and enter it in deviations from its
+ mean in the following way 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "lin2013agnostic"
+literal "false"
+
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{equation}
+Y_{i}=\alpha+\beta_{T1}T1_{j}+\beta_{T2}T1_{j}\left(T2_{j}-\overline{T2}\right)+\beta_{C}\left(T2_{j}-\overline{T2}\right)+\varepsilon_{i}\label{eq:othog}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+See also this blog post: 
+\begin_inset CommandInset href
+LatexCommand href
+target "https://blogs.worldbank.org/en/impactevaluations/what-should-you-do-experiments-factorial-designs"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
