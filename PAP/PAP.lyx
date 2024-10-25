@@ -1,5 +1,5 @@
-#LyX 2.3 created this file. For more info see http://www.lyx.org/
-\lyxformat 544
+#LyX 2.4 created this file. For more info see https://www.lyx.org/
+\lyxformat 620
 \begin_document
 \begin_header
 \save_transient_properties true
@@ -12,7 +12,7 @@
 \begin_modules
 knitr
 \end_modules
-\maintain_unincluded_children false
+\maintain_unincluded_children no
 \language english
 \language_package default
 \inputencoding iso8859-15
@@ -24,7 +24,9 @@ knitr
 \font_default_family default
 \use_non_tex_fonts false
 \font_sc false
-\font_osf false
+\font_roman_osf false
+\font_sans_osf false
+\font_typewriter_osf false
 \font_sf_scale 100 100
 \font_tt_scale 100 100
 \use_microtype false
@@ -68,7 +70,9 @@ knitr
 \suppress_date false
 \justification true
 \use_refstyle 0
+\use_formatted_ref 0
 \use_minted 0
+\use_lineno 0
 \index Index
 \shortcut idx
 \color #008000
@@ -84,110 +88,115 @@ knitr
 \papercolumns 1
 \papersides 1
 \paperpagestyle default
+\tablestyle default
 \tracking_changes false
 \output_changes false
+\change_bars false
+\postpone_fragile_content false
 \html_math_output 0
 \html_css_as_file 0
 \html_be_strict false
+\docbook_table_output 0
+\docbook_mathml_prefix 1
 \end_header
 
 \begin_body
 
-\begin_layout Author
-Thomas Assefa
-\begin_inset Foot
+\begin_layout Title
+\begin_inset Preview
+
+\begin_layout Standard
+\begin_inset ERT
 status open
 
 \begin_layout Plain Layout
-Innovation Policy and Scaling Unit, IFPRI, Kenya
+
+
+\backslash
+author{Richard Ariong
+\backslash
+thanks{Innovation Policy and Scaling Unit,
+ IFPRI,
+ Kampala},
+ Thomas Assefa
+\backslash
+thanks{Innovation Policy and Scaling Unit,
+ IFPRI,
+ Nairobi},
+ Jonathan Atkinson
+\backslash
+thanks{Farm Service Unit,
+ Meridian,
+ Lilongwe},
+\backslash
+
+\backslash
+Joachim De Weerdt
+\backslash
+thanks{Development Strategy and Governance Division,IFPRI,
+ Lilongwe},
+ Edwin Siyame
+\backslash
+thanks{Development Strategy and Governance Division,IFPRI,
+ Lilongwe},
+ David J.
+ Spielman
+\backslash
+thanks{Innovation Policy and Scaling Unit,
+ IFPRI,
+ Washington,
+ D.C.},
+\backslash
+
+\backslash
+Bjorn Van Campenhout
+\backslash
+thanks{Innovation Policy and Scaling Unit,
+ IFPRI,
+ Leuven;
+ corresponding author:
+ b.vancampenhout@cgiar.org}}
 \end_layout
 
 \end_inset
 
-, Joachim De Weerdt
-\begin_inset Foot
-status collapsed
 
-\begin_layout Plain Layout
-Development Strategy and Governance Division, IFPRI, Malawi
 \end_layout
 
 \end_inset
 
-,
-\begin_inset Newline newline
-\end_inset
-
- David Spielman
-\begin_inset Foot
-status collapsed
-
-\begin_layout Plain Layout
-Innovation Policy and Scaling Unit, IFPRI, United States
-\end_layout
-
-\end_inset
-
-, Bjorn Van Campenhout
-\begin_inset Foot
-status collapsed
-
-\begin_layout Plain Layout
-Innovation Policy and Scaling Unit, IFPRI and LICOS Centre for Institutions
- and Economic Performance KU Leuven, Belgium - corresponding author: b.vancampenh
-out@cgiar.org
-\end_layout
-
-\end_inset
-
-, Edwin Siyame
-\begin_inset Foot
-status collapsed
-
-\begin_layout Plain Layout
-Development Strategy and Governance Division, IFPRI, Malawi
-\end_layout
-
-\end_inset
-
-, Richard Ariong
-\end_layout
-
-\begin_layout Title
-Pre-analysis Plan - The impact of hyper-localized fertilizer recommendations
- based on site-specific soil tests: Experimental Evidence from Malawi
+Pre-analysis Plan - The impact of hyper-localized fertilizer recommendations based on site-specific soil tests:
+ Experimental Evidence from Malawi
 \end_layout
 
 \begin_layout Abstract
-Raising agricultural productivity among smallholder farmers in Sub-Saharan
- Africa is widely recognized as an important component of inclusive wealth
- creation and structural transformation.
- Central to this endeavor will be the adoption of sustainable soil and land
- management to improve the sustainability, resilience and productivity of
- agriculture.
- As such, government advise farmers to increase soil productivity by embracing
- the use of fertilizers and implement proper soil health management practices.
- However, these recommendations mostly come in the form of blanket one-size-fits
--all recommendations that ignore heterogeneity in soil characteristics that
- individual farmers face.
- Using a cluster randomize control trial, we evaluate the impact of a bundled
- intervention that involves offering farmers a soil test on a plot they
- select and, using the results of this soil test, provide them with tailored
- fertilizer recommendation and access to agricultural advice on the proper
- application of the recommended fertilizer to attain a desired yield for
- a particular crop the farmer chooses to plant on the plot.
- Furthermore, we also explore resources constraints as a potential barrier
- to the adoption of site specific fertilizer blends by providing a subsidy
- tied to the recommended fertilizer blend.
+Raising agricultural productivity among smallholder farmers in Sub-Saharan Africa is widely recognized as an important component of inclusive wealth creation and structural transformation.
+ Central to this endeavor will be the adoption of sustainable soil and land management to improve the sustainability,
+ resilience and productivity of agriculture.
+ As such,
+ government advise farmers to increase soil productivity by embracing the use of fertilizers and implement proper soil health management practices.
+ However,
+ these recommendations mostly come in the form of blanket one-size-fits-all recommendations that ignore heterogeneity in soil characteristics that individual farmers face.
+ Using a cluster randomize control trial,
+ we evaluate the impact of a bundled intervention that involves offering farmers a soil test on a plot they select and,
+ using the results of this soil test,
+ provide them with tailored fertilizer recommendation and access to agricultural advice on the proper application of the recommended fertilizer to attain a desired yield for a particular crop the farmer chooses to plant on the plot.
+ Furthermore,
+ we also explore resources constraints as a potential barrier to the adoption of site specific fertilizer blends by providing a subsidy tied to the recommended fertilizer blend.
 \end_layout
 
 \begin_layout Standard
-keywords: inorganic fertilizer, soil test, decision support tools, agricultural
- extension, fertilizer subsidies.
+keywords:
+ inorganic fertilizer,
+ soil test,
+ decision support tools,
+ agricultural extension,
+ fertilizer subsidies.
 \end_layout
 
 \begin_layout Standard
-O33, Q12,Q16
+O33,
+ Q12,Q16
 \end_layout
 
 \begin_layout Section
@@ -195,13 +204,10 @@ Introduction
 \end_layout
 
 \begin_layout Standard
-Increasing agricultural productivity in Sub-Saharan Africa’s smallholder
- farms is vital for inclusive economic growth and transformation.
- Sustainable soil and land management practices are essential for improving
- the sustainability, resilience and productivity of agriculture.
- The USAID Bureau for Resilience and Food Security (RFS) has led a partnership
- with the International Fertilizer Development Center (IFDC) and other partners
- to build a low-cost 
+Increasing agricultural productivity in Sub-Saharan Africa’s smallholder farms is vital for inclusive economic growth and transformation.
+ Sustainable soil and land management practices are essential for improving the sustainability,
+ resilience and productivity of agriculture.
+ The USAID Bureau for Resilience and Food Security (RFS) has led a partnership with the International Fertilizer Development Center (IFDC) and other partners to build a low-cost 
 \begin_inset Quotes eld
 \end_inset
 
@@ -210,23 +216,19 @@ Space to Place
 \end_inset
 
  (S2P) approach for developing and disseminating localized fertilizer guidance.
- The S2P approach revolves around the delivery of spatially appropriate
- soil fertility management recommendations, guided by digitized soil maps
- (Space) combined with farm(er)-level characteristics (Place), for effective
- agronomic and fertilizer recommendations that increase fertilizer use efficienc
-y to maintain or surpass current productivity levels, and reduce fertilizer
- wastage.
+ The S2P approach revolves around the delivery of spatially appropriate soil fertility management recommendations,
+ guided by digitized soil maps (Space) combined with farm(er)-level characteristics (Place),
+ for effective agronomic and fertilizer recommendations that increase fertilizer use efficiency to maintain or surpass current productivity levels,
+ and reduce fertilizer wastage.
 \end_layout
 
 \begin_layout Standard
 IFPRI was tasked in 2023 to do a rigorous impact evaluation of the S2P approach.
- However, at the start of the project it quickly became clear that the S2P
- application was not going to be ready in the first operational year of
- the evaluation (during the 2024/25 growing season).
- A full and rigorous evaluation of the S2P approach was therefore deferred
- to the 2025/26 growing seasons and beyond.
- As such, we decided that the 2024/25 growing season could be used to generate
- learning to inform S2P
+ However,
+ at the start of the project it quickly became clear that the S2P application was not going to be ready in the first operational year of the evaluation (during the 2024/25 growing season).
+ A full and rigorous evaluation of the S2P approach was therefore deferred to the 2025/26 growing seasons and beyond.
+ As such,
+ we decided that the 2024/25 growing season could be used to generate learning to inform S2P
 \begin_inset Quotes ers
 \end_inset
 
@@ -234,16 +236,14 @@ s theory of change.
 \end_layout
 
 \begin_layout Standard
-Building on recent rigorous impact evaluations, we decided to assess the
- impact of a bundled intervention.
- This intervention offers farmers a soil test on a selected plot, followed
- by tailored fertilizer recommendations based on the test results.
- In addition, farmers receive agricultural advice on the proper application
- of the recommended fertilizer to achieve a desired yield for the crop they
- choose to plant on that plot.
- Furthermore, we also explore resources constraints as a potential barrier
- to the adoption of site specific fertilizer blends by providing a subsidy
- tied to the recommended fertilizer blend.
+Building on recent rigorous impact evaluations,
+ we decided to assess the impact of a bundled intervention.
+ This intervention offers farmers a soil test on a selected plot,
+ followed by tailored fertilizer recommendations based on the test results.
+ In addition,
+ farmers receive agricultural advice on the proper application of the recommended fertilizer to achieve a desired yield for the crop they choose to plant on that plot.
+ Furthermore,
+ we also explore resources constraints as a potential barrier to the adoption of site specific fertilizer blends by providing a subsidy tied to the recommended fertilizer blend.
 \end_layout
 
 \begin_layout Section
@@ -251,15 +251,14 @@ Motivation
 \end_layout
 
 \begin_layout Standard
-Governments in developing countries are trying to increase adoption of Green
- Revolution technologies, seed of improved varieties and mineral fertilizer
- in particular, through agricultural extension advice.
- In general, these extension systems provide blanket recommendations.
- One important reason why farmers fail to adopt seemingly profitable yield
- improving technologies is heterogeneity in the farmer's ability and context.
- For instance, high transacting costs may make a technology unprofitable
- for a farmer even though on average the technology would be profitable
- 
+Governments in developing countries are trying to increase adoption of Green Revolution technologies,
+ seed of improved varieties and mineral fertilizer in particular,
+ through agricultural extension advice.
+ In general,
+ these extension systems provide blanket recommendations.
+ One important reason why farmers fail to adopt seemingly profitable yield improving technologies is heterogeneity in the farmer's ability and context.
+ For instance,
+ high transacting costs may make a technology unprofitable for a farmer even though on average the technology would be profitable 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "suri2011selection"
@@ -268,8 +267,8 @@ literal "false"
 \end_inset
 
 .
- A similar argument can be made for soil—another key production factor in
- agricultural production 
+ A similar argument can be made for soil—
+another key production factor in agricultural production 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "arouna2021one"
@@ -278,15 +277,13 @@ literal "false"
 \end_inset
 
 .
- Also here, differences in soil composition and nutrient content may mean
- that blanket fertilizer recommendations are sub-optimal.
+ Also here,
+ differences in soil composition and nutrient content may mean that blanket fertilizer recommendations are sub-optimal.
  
 \end_layout
 
 \begin_layout Standard
-Information and Communication Technologies (ICTs) provide an opportunity
- to deliver advisory services that are more tailored to the specific needs
- of farmers 
+Information and Communication Technologies (ICTs) provide an opportunity to deliver advisory services that are more tailored to the specific needs of farmers 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "spielman2021information"
@@ -295,10 +292,8 @@ literal "false"
 \end_inset
 
 .
- Numerous Site Specific Nutrient Management (SSNM) Decision Support Tools
- (DST) have been developed with the promise to reduce inefficiencies coming
- from grossly simplified recommendations, thereby raising the productivity
- and profitability from adopting improved inputs 
+ Numerous Site Specific Nutrient Management (SSNM) Decision Support Tools (DST) have been developed with the promise to reduce inefficiencies coming from grossly simplified recommendations,
+ thereby raising the productivity and profitability from adopting improved inputs 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "arouna2021one"
@@ -310,10 +305,9 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-However, decision support tools for tailored nutrient recommendations have
- generally fallen short of expectations.
- This is illustrated by the numerous apps and tools available that fail
- to scale effectively 
+However,
+ decision support tools for tailored nutrient recommendations have generally fallen short of expectations.
+ This is illustrated by the numerous apps and tools available that fail to scale effectively 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "sida2023failure"
@@ -322,22 +316,22 @@ literal "false"
 \end_inset
 
 .
- Several factors may explain why these tools have not had more impact, and
- they relate to some unresolved questions:
+ Several factors may explain why these tools have not had more impact,
+ and they relate to some unresolved questions:
 \end_layout
 
 \begin_layout Standard
-One such issue is spatial resolution, or how site specific these tools really
- are.
- Many rely on models that predict soil composition and nutrients availability
- over relatively large area.
- As a result, it has been argued that, often, 
+One such issue is spatial resolution,
+ or how site specific these tools really are.
+ Many rely on models that predict soil composition and nutrients availability over relatively large area.
+ As a result,
+ it has been argued that,
+ often,
+ 
 \begin_inset Quotes eld
 \end_inset
 
-...the numerous laboratory services and digital applications providing field-specif
-ic recommendations appear to promise more accuracy than soil analysis can
- realistically deliver
+...the numerous laboratory services and digital applications providing field-specific recommendations appear to promise more accuracy than soil analysis can realistically deliver
 \begin_inset Quotes erd
 \end_inset
 
@@ -354,22 +348,22 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-Another limitation is that many of these apps implicitly assume that providing
- farmers with information alone is sufficient to change their behavior.
- What is missing is an en extension component - specifically, a human intermedia
-ry who can help guide farmers through the decision-making process.
+Another limitation is that many of these apps implicitly assume that providing farmers with information alone is sufficient to change their behavior.
+ What is missing is an en extension component - specifically,
+ a human intermediary who can help guide farmers through the decision-making process.
  
 \end_layout
 
 \begin_layout Standard
-Moreover, decision support tools often take several pre-conditions for granted,
- with one of the most critical probably being that the recommended blend
- of soil macro- and micro-nutrients are available to the farmer at reasonable
- cost.
- Indeed, as we will discuss below, most RCTs that study the effectiveness
- of DSTs include at least one treatment arm to investigate the importance
- of a particular pre-condition, such as access to insurance, financial resources
-, or information.
+Moreover,
+ decision support tools often take several pre-conditions for granted,
+ with one of the most critical probably being that the recommended blend of soil macro- and micro-nutrients are available to the farmer at reasonable cost.
+ Indeed,
+ as we will discuss below,
+ most RCTs that study the effectiveness of DSTs include at least one treatment arm to investigate the importance of a particular pre-condition,
+ such as access to insurance,
+ financial resources,
+ or information.
 \end_layout
 
 \begin_layout Section
@@ -377,9 +371,9 @@ Related literature
 \end_layout
 
 \begin_layout Standard
-Recent literature on site-specific nutrient management has focused on providing
- tailored fertilizer recommendations to improve agricultural productivity.
- Among the studies employing plot-level soil tests, 
+Recent literature on site-specific nutrient management has focused on providing tailored fertilizer recommendations to improve agricultural productivity.
+ Among the studies employing plot-level soil tests,
+ 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "beg2024information"
@@ -387,23 +381,24 @@ literal "false"
 
 \end_inset
 
- examined rice farmers in Bangladesh, comparing three types of fertilizer
- recommendations: community-level, plot-specific based on individual soil
- tests, and standard government recommendations.
- They find limited effects on quantity of fertilizer use, except perhaps
- for a reduction in application error (difference between recommended quantity
- of a particular nutrient and quantity used).
- That is, some farmers were using more than the recommended TSP (phosphate
- fertilizer) and as a result of the intervention cut back.
- Some even appear to over-react and stop using TSP altogether, leading to
- lower yield.
- They also find indications that farmers adapt seed use to match baseline
- fertilizer use.
+ examined rice farmers in Bangladesh,
+ comparing three types of fertilizer recommendations:
+ community-level,
+ plot-specific based on individual soil tests,
+ and standard government recommendations.
+ They find limited effects on quantity of fertilizer use,
+ except perhaps for a reduction in application error (difference between recommended quantity of a particular nutrient and quantity used).
+ That is,
+ some farmers were using more than the recommended TSP (phosphate fertilizer) and as a result of the intervention cut back.
+ Some even appear to over-react and stop using TSP altogether,
+ leading to lower yield.
+ They also find indications that farmers adapt seed use to match baseline fertilizer use.
  
 \end_layout
 
 \begin_layout Standard
-Similarly, 
+Similarly,
+ 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "gars2015confidence"
@@ -440,28 +435,28 @@ literal "false"
 
 \end_inset
 
- implement a field experiment that combines tailored input recommendations
- based on soil sample tests, extension services and an in-kind grant.
- The grant comes in two flavors: in one treatment arm, the grant can only
- be spent on the recommended fertilizer blend; in the second treatment arm,
+ implement a field experiment that combines tailored input recommendations based on soil sample tests,
+ extension services and an in-kind grant.
+ The grant comes in two flavors:
+ in one treatment arm,
+ the grant can only be spent on the recommended fertilizer blend;
+ in the second treatment arm,
  the farmer can decide what inputs to get.
- They find that the intervention reduces overuse of fertilizer, and the
- effect is sustained more if the farmer was free to choose how to spend
- the grant.
+ They find that the intervention reduces overuse of fertilizer,
+ and the effect is sustained more if the farmer was free to choose how to spend the grant.
  
 \end_layout
 
 \begin_layout Standard
 Murphy et al.
- (2019) investigated whether site-specific soil testing, using a low-cost
- testing kit, influenced farmer's demand for inorganic and organic fertilizers.
- Their auction-based study before and after disseminating soil test information
- revealed significant impacts on farmer's willingness to pay for fertilizers.
+ (2019) investigated whether site-specific soil testing,
+ using a low-cost testing kit,
+ influenced farmer's demand for inorganic and organic fertilizers.
+ Their auction-based study before and after disseminating soil test information revealed significant impacts on farmer's willingness to pay for fertilizers.
 \end_layout
 
 \begin_layout Standard
-Other studies on site-specific nutrient management did not rely on soil
- test but still provided insights into the potential of customized approaches.
+Other studies on site-specific nutrient management did not rely on soil test but still provided insights into the potential of customized approaches.
  
 \begin_inset CommandInset citation
 LatexCommand citet
@@ -470,20 +465,18 @@ literal "false"
 
 \end_inset
 
- evaluate the effectiveness of a mobile application that provides personalized
- advice on rice nutrient management in Nigeria.
- In particular, they evaluate RiceAdvice, an Android-based application to
- provide personalized recommendations on nutrient management (type, quantity,
+ evaluate the effectiveness of a mobile application that provides personalized advice on rice nutrient management in Nigeria.
+ In particular,
+ they evaluate RiceAdvice,
+ an Android-based application to provide personalized recommendations on nutrient management (type,
+ quantity,
  and timing of fertilizer) in rice production.
  They find that the intervention increases yields by 7 percent.
- They also have a treatment that combines personalized advice with a grant
- that provides the recommended level of fertilizer.
+ They also have a treatment that combines personalized advice with a grant that provides the recommended level of fertilizer.
  Here they estimate a treatment effect of 20 percent.
- They also found a 10% increase from the intervention on profit which increased
- to 23% when the intervention is combined with the grant.
- The mechanism behind the increase in yield and profitability seems to be
- a reallocation in the fertilizer mix, with farmers using less NPK and more
- Urea.
+ They also found a 10% increase from the intervention on profit which increased to 23% when the intervention is combined with the grant.
+ The mechanism behind the increase in yield and profitability seems to be a reallocation in the fertilizer mix,
+ with farmers using less NPK and more Urea.
  
 \end_layout
 
@@ -495,15 +488,15 @@ literal "false"
 
 \end_inset
 
- evaluate the impact of targeted site-specific fertilizer blend recommendations
- to Ethiopian smallholder farmers on fertilizer usage, farm productivity,
- profits from maize production, and household welfare using a cluster randomized
- control trial.
+ evaluate the impact of targeted site-specific fertilizer blend recommendations to Ethiopian smallholder farmers on fertilizer usage,
+ farm productivity,
+ profits from maize production,
+ and household welfare using a cluster randomized control trial.
  They also have a treatment arm that adds insurance to the recommendation.
- They find significant reduction of the application error, which in turn
- affects yields.
- In particular, they report a 13 percent increase in yield (437 on baseline
- yield of 3250 kg/ha) and a very similar increase in farmer profit.
+ They find significant reduction of the application error,
+ which in turn affects yields.
+ In particular,
+ they report a 13 percent increase in yield (437 on baseline yield of 3250 kg/ha) and a very similar increase in farmer profit.
 \end_layout
 
 \begin_layout Standard
@@ -515,21 +508,17 @@ literal "false"
 \end_inset
 
  study maize in Nigeria.
- They study the impact of Site Specific Soil Nutrient Management extension
- advice through the Nutrient Expert tool.
- They have two treatment arms and one business-as-usual blanket recommendations
- control.
- One treatment arm with farmers who are exposed to SSNM information intervention
-s on nutrient application rates and fertilizer management, and anther treatment
- arm with farmers who are exposed to the same SSNM information and additional
- information on the variability of expected returns to fertilizer investment
- under different price scenarios.
+ They study the impact of Site Specific Soil Nutrient Management extension advice through the Nutrient Expert tool.
+ They have two treatment arms and one business-as-usual blanket recommendations control.
+ One treatment arm with farmers who are exposed to SSNM information interventions on nutrient application rates and fertilizer management,
+ and anther treatment arm with farmers who are exposed to the same SSNM information and additional information on the variability of expected returns to fertilizer investment under different price scenarios.
  They find modest effects on yields and profits.
  
 \end_layout
 
 \begin_layout Standard
-Others to include: 
+Others to include:
+ 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "maertens2023sustainable"
@@ -550,26 +539,23 @@ Research Questions
 \end_layout
 
 \begin_layout Standard
-Our research aims to look at a prototype S2P intervention, as well as assess
- the relative importance of two of the key components.
- It will also investigate the role of resources constraints as a potential
- enabling factor.
- In particular, we will answer the following research questions:
+Our research aims to look at a prototype S2P intervention,
+ as well as assess the relative importance of two of the key components.
+ It will also investigate the role of resources constraints as a potential enabling factor.
+ In particular,
+ we will answer the following research questions:
 \end_layout
 
 \begin_layout Standard
 1.
- Does the provision of site-specific soil nutrient information derived from
- a soil test and the recommendation of a specific fertilizer blend based
- on this information change outcomes of interest?
+ Does the provision of site-specific soil nutrient information derived from a soil test and the recommendation of a specific fertilizer blend based on this information change outcomes of interest?
 \end_layout
 
 \begin_layout Standard
 2.
- Does the provision of site-specific nutrient recommendations combined with
- a subsidy to buy these nutrients at a local agro-dealer, change the outcomes
- of interest? This research question looks at the importance of cash/credit
- constraints in the effectiveness of S2P.
+ Does the provision of site-specific nutrient recommendations combined with a subsidy to buy these nutrients at a local agro-dealer,
+ change the outcomes of interest?
+ This research question looks at the importance of cash/credit constraints in the effectiveness of S2P.
  
 \end_layout
 
@@ -579,10 +565,9 @@ Other issues we will investigate are:
 
 \begin_layout Standard
 3.
- Do farmers face substantial heterogeneity in soil nutrient profiles? This
- will be done by comparing variability in soil macro and micro-nutrients
- across different areas (eg within villages, between village and between
- regions).
+ Do farmers face substantial heterogeneity in soil nutrient profiles?
+ This will be done by comparing variability in soil macro and micro-nutrients across different areas (eg within villages,
+ between village and between regions).
 \begin_inset Foot
 status collapsed
 
@@ -597,12 +582,9 @@ This can be done through standard analysis of variance or multilevel modeling.
 
 \begin_layout Standard
 4.
- Do farmers know their soils? This will be done by asking farmers what they
- think their soil is missing and comparing this with results from the soil
- tests.
- We also can use the revealed version of this by comparing what farmers
- are actually putting on their fields and what would be recommended by the
- soil tests.
+ Do farmers know their soils?
+ This will be done by asking farmers what they think their soil is missing and comparing this with results from the soil tests.
+ We also can use the revealed version of this by comparing what farmers are actually putting on their fields and what would be recommended by the soil tests.
 \end_layout
 
 \begin_layout Section
@@ -610,17 +592,18 @@ Experimental Design
 \end_layout
 
 \begin_layout Standard
-The study employs a randomized controlled trial (RCT) design involving 113
- villages across four districts in Malawi (Lilongwe, Dowa, Ntchisi, and
- Mchinji).
- The villages are randomly assigned to one of the following three groups
- and the layout of the experiment is illustrated in Figure 
+The study employs a randomized controlled trial (RCT) design involving 113 villages across four districts in Malawi (Lilongwe,
+ Dowa,
+ Ntchisi,
+ and Mchinji).
+ The villages are randomly assigned to one of the following three groups and the layout of the experiment is illustrated in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Experimental-layout"
 plural "false"
 caps "false"
 noprefix "false"
+nolink "false"
 
 \end_inset
 
@@ -630,6 +613,8 @@ noprefix "false"
 
 \begin_layout Standard
 \begin_inset Float figure
+placement document
+alignment document
 wide false
 sideways false
 status open
@@ -672,53 +657,54 @@ name "fig:Experimental-layout"
 \begin_layout Itemize
 
 \series bold
-Farmers in the first group, Treatment 1 (T1)
+Farmers in the first group,
+ Treatment 1 (T1)
 \series default
-, receives a soil report based on a soil test conducted on a plot chosen
- by the farmer for a specific crop the farmer plans to grow on the selected
- plot.
+,
+ receives a soil report based on a soil test conducted on a plot chosen by the farmer for a specific crop the farmer plans to grow on the selected plot.
  
 \end_layout
 
 \begin_layout Itemize
 
 \series bold
-Farmers in the second group, Treatment 2 (T2)
+Farmers in the second group,
+ Treatment 2 (T2)
 \series default
-, receives everything farmers in T1 get in addition to a voucher that can
- be redeemed to buy the recommended fertilizer blend.
+,
+ receives everything farmers in T1 get in addition to a voucher that can be redeemed to buy the recommended fertilizer blend.
  
 \end_layout
 
 \begin_layout Itemize
 
 \series bold
-Farmers in the third group, Control (C)
+Farmers in the third group,
+ Control (C)
 \series default
-, do not receive a soil test offer, a customized fertilizer recommendation,
+,
+ do not receive a soil test offer,
+ a customized fertilizer recommendation,
  and a voucher.
  
 \end_layout
 
 \begin_layout Standard
-For the treatments, (T1 and T2) we cooperate with Meridian's Farmer Support
- Unit (FSU).
- This private-sector player offers farmers spectral soil tests and site-
- and crop-specific recommendations.
- The model underlying the test was calibrated on wet-chemistry analyses
- conducted on 22,000 samples from across Malawi.
- The tool is part of a private-sector business model in which FSU Meridian
- forms a recommendation for a package of nutrients, which is then supplied
- through their network of 400 agrodealers.
- After the soil tests are conducted by Meridian, the results are communicated
- in a follow up visit to farmers, along with an agricultural extension/advice
- service on the proper use (the 4 Rs ) of the recommended fertilizer blend
- from a private sector-trained extension agents, known as "agronauts.
+For the treatments,
+ (T1 and T2) we cooperate with Meridian's Farmer Support Unit (FSU).
+ This private-sector player offers farmers spectral soil tests and site- and crop-specific recommendations.
+ The model underlying the test was calibrated on wet-chemistry analyses conducted on 22,000 samples from across Malawi.
+ The tool is part of a private-sector business model in which FSU Meridian forms a recommendation for a package of nutrients,
+ which is then supplied through their network of 400 agrodealers.
+ After the soil tests are conducted by Meridian,
+ the results are communicated in a follow up visit to farmers,
+ along with an agricultural extension/advice service on the proper use (the 4 Rs ) of the recommended fertilizer blend from a private sector-trained extension agents,
+ known as "agronauts.
 \end_layout
 
 \begin_layout Standard
-Specifically, farmers in the T1 group of villages are visited by an enumerator
- accompanied by a private sector trained extension agents called 
+Specifically,
+ farmers in the T1 group of villages are visited by an enumerator accompanied by a private sector trained extension agents called 
 \begin_inset Quotes eld
 \end_inset
 
@@ -726,76 +712,71 @@ agronaut
 \begin_inset Quotes erd
 \end_inset
 
- and is offered the opportunity for a soil test on a plot chosen by the
- farmer.
+ and is offered the opportunity for a soil test on a plot chosen by the farmer.
 \begin_inset Foot
 status collapsed
 
 \begin_layout Plain Layout
-The fact that the farmer can choose the plot themselves (as opposed to the
- experimenter choosing the plot in some systematic way) has important consequenc
-es for the analysis.
- In particular, it makes it hard to compare information at the plot level,
- as the choice of the plot may be influenced by the treatment, and so the
- plot on which outcomes are collected for the treated farmers may differ
- in more respects from those of control farmers than just information about
- soil quality.
- We have thought hard about ways to assure a comparable plot level counterfactua
-l, such as also doing soil tests in the control group but keeping farmers
- in the dark about when they will receive feedback (as is done in Corral
- et al) or randomly choosing a plot for the soil test, but eventually decided
- to keep the treatment as realistic as possible, which gives the farmer
- substantial agency in terms of what plot to choose and crops to cultivate.
- The trade-off is that it will become harder to compare plot level outcomes
- (eg fertilizer use on the plot on which the soil test was done versus control).
- At the same time, there are now also interesting household level outcomes
- that we can investigate, such as crops cultivated.
+The fact that the farmer can choose the plot themselves (as opposed to the experimenter choosing the plot in some systematic way) has important consequences for the analysis.
+ In particular,
+ it makes it hard to compare information at the plot level,
+ as the choice of the plot may be influenced by the treatment,
+ and so the plot on which outcomes are collected for the treated farmers may differ in more respects from those of control farmers than just information about soil quality.
+ We have thought hard about ways to assure a comparable plot level counterfactual,
+ such as also doing soil tests in the control group but keeping farmers in the dark about when they will receive feedback (as is done in Corral et al) or randomly choosing a plot for the soil test,
+ but eventually decided to keep the treatment as realistic as possible,
+ which gives the farmer substantial agency in terms of what plot to choose and crops to cultivate.
+ The trade-off is that it will become harder to compare plot level outcomes (eg fertilizer use on the plot on which the soil test was done versus control).
+ At the same time,
+ there are now also interesting household level outcomes that we can investigate,
+ such as crops cultivated.
 \end_layout
 
 \end_inset
 
  The farmer is also asked what crop he/she plans to cultivate on this plot,
- as well as the target yield that the farmer would like to get from the
- crop on that plot.
- The soil sample is then analyzed, which results in a soil report (see example
- in Appendix 1) that is provided to the farmer.
- The report indicates the soil’s texture, pH level, cation exchange capacity,
- percentage organic matter, total nitrogen, carbon to nitrogen ratio, as
- well as the parts per million of available P, exchangeable K, calcium,
- magnesium, iron, manganese, boron, copper and zinc.
- Beyond the exact measurements each soil property is given a score on a
- 4-point Likert scale (very low, low, high, very high), with emojis, color
- coding and bar charts indicating where the soil is deficient and where
- the levels are sound.
- After the results the soil test are communicated with extension service
- on the proper use of the recommended fertilizer, farmers are then informed
- where and how to obtain these nutrients (in the form of a particular fertilizer
- blend).
+ as well as the target yield that the farmer would like to get from the crop on that plot.
+ The soil sample is then analyzed,
+ which results in a soil report (see example in Appendix 1) that is provided to the farmer.
+ The report indicates the soil’s texture,
+ pH level,
+ cation exchange capacity,
+ percentage organic matter,
+ total nitrogen,
+ carbon to nitrogen ratio,
+ as well as the parts per million of available P,
+ exchangeable K,
+ calcium,
+ magnesium,
+ iron,
+ manganese,
+ boron,
+ copper and zinc.
+ Beyond the exact measurements each soil property is given a score on a 4-point Likert scale (very low,
+ low,
+ high,
+ very high),
+ with emojis,
+ color coding and bar charts indicating where the soil is deficient and where the levels are sound.
+ After the results the soil test are communicated with extension service on the proper use of the recommended fertilizer,
+ farmers are then informed where and how to obtain these nutrients (in the form of a particular fertilizer blend).
  We use open route service to link sample villages to the nearest agro-dealer.
  We assume farmers go to agro-dealers by motorbike or bicycle.
 \end_layout
 
 \begin_layout Standard
-Farmers in the T2 group of villages receive a subsidy that they get in the
- from of a voucher that can be redeemed at a nearby Farmer World agro-input
- shop.
- The subsidy is tied to T1 in that it will be specific for the recommended
- fertilizer blend.
- The amount of the subsidy is determined based on Malawi's Agricultural
- Input Program (AIP) subsidy which allows farmers to buy one bag of fertilizer
- at a reduced rate (30 percent of full price).
- In particular, our subsidy will be equal to 70 percent of the AIP fertilizer
- bag value minus the cost of the soil test.
- This will allow us to directly compare our bundle as an alternative to
- Malawi's AIP.
+Farmers in the T2 group of villages receive a subsidy that they get in the from of a voucher that can be redeemed at a nearby Farmer World agro-input shop.
+ The subsidy is tied to T1 in that it will be specific for the recommended fertilizer blend.
+ The amount of the subsidy is determined based on Malawi's Agricultural Input Program (AIP) subsidy which allows farmers to buy one bag of fertilizer at a reduced rate (30 percent of full price).
+ In particular,
+ our subsidy will be equal to 70 percent of the AIP fertilizer bag value minus the cost of the soil test.
+ This will allow us to directly compare our bundle as an alternative to Malawi's AIP.
  
 \end_layout
 
 \begin_layout Standard
-Farmers in the C group of villages do not receive any of the treatments
- that T1 and T2 groups of farmers get.
- This group serves as a pure comparison group with which the T1 and T2 groups
- are compared to arrive at the estimates of the impact of the treatments.
+Farmers in the C group of villages do not receive any of the treatments that T1 and T2 groups of farmers get.
+ This group serves as a pure comparison group with which the T1 and T2 groups are compared to arrive at the estimates of the impact of the treatments.
  T
 \end_layout
 
@@ -812,8 +793,7 @@ name "sec:Experimental-design"
 
 \begin_layout Standard
 Due to the random assignment of participants to treatment and control groups,
- comparing outcome variable averages of treated and control participants
- provides unbiased estimates of the average treatment effects.
+ comparing outcome variable averages of treated and control participants provides unbiased estimates of the average treatment effects.
  We compare averages using OLS regression of the following form:
 \end_layout
 
@@ -833,14 +813,18 @@ where
 \begin_inset Formula $Y_{i}$
 \end_inset
 
- is the outcome of interest (agronomic practices, profits, return on investment,
- etc—see Section 
+ is the outcome of interest (agronomic practices,
+ profits,
+ return on investment,
+ etc—
+see Section 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "sec:Outcomes-of-interest"
 plural "false"
 caps "false"
 noprefix "false"
+nolink "false"
 
 \end_inset
 
@@ -857,14 +841,14 @@ i
 \begin_inset Formula $T2_{i}$
 \end_inset
 
- are treatment indicators at the village level that take the value of one
- if the farmer was located in a village that was allocated to the respective
- treatment group, and zero otherwise.
+ are treatment indicators at the village level that take the value of one if the farmer was located in a village that was allocated to the respective treatment group,
+ and zero otherwise.
  The parameter estimate of 
 \begin_inset Formula $\beta_{T1}$
 \end_inset
 
- is the treatment effect of the soil test treatment, 
+ is the treatment effect of the soil test treatment,
+ 
 \begin_inset Formula $\beta_{T2}$
 \end_inset
 
@@ -877,11 +861,11 @@ To estimate
 \begin_inset Formula $\beta_{T1}$
 \end_inset
 
-, we will also estimate an alternative specification that boosts power by
- exploiting the fact that farmers T2 is provided on top of T1 (that is,
+,
+ we will also estimate an alternative specification that boosts power by exploiting the fact that farmers T2 is provided on top of T1 (that is,
  farmers in the second treatment arm also receive T1).
- To do so, we consider T2 as covariate and enter it in deviations from its
- mean in the following way 
+ To do so,
+ we consider T2 as covariate and enter it in deviations from its mean in the following way 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "lin2013agnostic"
@@ -904,7 +888,8 @@ Y_{i}=\alpha+\beta_{T1}T1_{j}+\beta_{T2}T1_{j}\left(T2_{j}-\overline{T2}\right)+
 \end_layout
 
 \begin_layout Plain Layout
-See also this blog post: 
+See also this blog post:
+ 
 \begin_inset CommandInset href
 LatexCommand href
 target "https://blogs.worldbank.org/en/impactevaluations/what-should-you-do-experiments-factorial-designs"
@@ -920,10 +905,14 @@ target "https://blogs.worldbank.org/en/impactevaluations/what-should-you-do-expe
 \end_layout
 
 \begin_layout Standard
-For outcome families with more than one outcome (knowledge, adoption, input
- use, and effort), we compute outcome indices, which is a common way to
- account for multiple hypothesis testing.
- To do so, we follow 
+For outcome families with more than one outcome (knowledge,
+ adoption,
+ input use,
+ and effort),
+ we compute outcome indices,
+ which is a common way to account for multiple hypothesis testing.
+ To do so,
+ we follow 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "doi:10.1198/016214508000000841"
@@ -931,12 +920,12 @@ literal "false"
 
 \end_inset
 
-, where each index is computed as a weighted mean of the standardized values
- of the outcome variables.
- The weights are derived from the (inverse) covariance matrix, such that
- less weight is given to outcomes that are highly correlated with each other.
- For these indices, signs of outcomes were switched where necessary so that
- the positive direction always indicates a 
+,
+ where each index is computed as a weighted mean of the standardized values of the outcome variables.
+ The weights are derived from the (inverse) covariance matrix,
+ such that less weight is given to outcomes that are highly correlated with each other.
+ For these indices,
+ signs of outcomes were switched where necessary so that the positive direction always indicates a 
 \begin_inset Quotes eld
 \end_inset
 
@@ -959,27 +948,27 @@ name "sec:Statistical-Power-and"
 \end_layout
 
 \begin_layout Standard
-We run a simulation analysis to determine sample size for the design presented
- in section 
+We run a simulation analysis to determine sample size for the design presented in section 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "sec:Experimental-design"
 plural "false"
 caps "false"
 noprefix "false"
+nolink "false"
 
 \end_inset
 
 .
- Simulation, which involves instructing a computer to conduct an experiment
- thousands of times and tallying the frequency of significant outcomes under
- specific assumptions, is a considerably more flexible and intuitive approach
- to conceptualizing power analysis.
+ Simulation,
+ which involves instructing a computer to conduct an experiment thousands of times and tallying the frequency of significant outcomes under specific assumptions,
+ is a considerably more flexible and intuitive approach to conceptualizing power analysis.
 \begin_inset Foot
 status open
 
 \begin_layout Plain Layout
-See also this methods guide: 
+See also this methods guide:
+ 
 \begin_inset CommandInset href
 LatexCommand href
 target "https://egap.org/resource/10-things-to-know-about-statistical-power/"
@@ -997,15 +986,15 @@ literal "false"
 
 \begin_layout Standard
 Power calculations require the choice of an outcome variable.
- Normally, this outcome is assumed to be normally distributed, with a particular
- mean and standard deviation.
- However, when simulation is used, it is possible to draw from an actual
- distribution of the outcome variable if data is available.
- The outcome we consider in this study for our power calculations is maize
- yield.
- As such, we draw random samples from farmer level data that was collected
- for a study on smallholder market participation in the central region of
- Malawi 
+ Normally,
+ this outcome is assumed to be normally distributed,
+ with a particular mean and standard deviation.
+ However,
+ when simulation is used,
+ it is possible to draw from an actual distribution of the outcome variable if data is available.
+ The outcome we consider in this study for our power calculations is maize yield.
+ As such,
+ we draw random samples from farmer level data that was collected for a study on smallholder market participation in the central region of Malawi 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "de2024expecting"
@@ -1014,14 +1003,13 @@ literal "false"
 \end_inset
 
 .
- Using this data, we find that average yield is 2,574 kilogram per hectare
- (with standard deviation of 1145 kg per hectare).
+ Using this data,
+ we find that average yield is 2,574 kilogram per hectare (with standard deviation of 1145 kg per hectare).
 \end_layout
 
 \begin_layout Standard
 Power is determined in the following way.
- Our sampling frame is drawn from the previous study on smallholder market
- participation 
+ Our sampling frame is drawn from the previous study on smallholder market participation 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "de2024expecting"
@@ -1030,22 +1018,21 @@ literal "false"
 \end_inset
 
 .
- We set the number of villages to the maximum number of villages that was
- used in this study, as this is a clustered design and we want to exploit
- inter-cluster variation to the maximum extent.
+ We set the number of villages to the maximum number of villages that was used in this study,
+ as this is a clustered design and we want to exploit inter-cluster variation to the maximum extent.
  We then search in two dimensions.
- First, we vary the share of villages that is allocated to the control (and
- equally divide the remaining villages to T1 and T2).
- In the second dimension, we vary the number of households that will be
- interviewed in each village.
- We model similar effects for T1 and T2 (a 13 percent increase over baseline
- yield).
- We run 1000 simulations and use 5 percent significance level and .8 is our
- target for power.
+ First,
+ we vary the share of villages that is allocated to the control (and equally divide the remaining villages to T1 and T2).
+ In the second dimension,
+ we vary the number of households that will be interviewed in each village.
+ We model similar effects for T1 and T2 (a 13 percent increase over baseline yield).
+ We run 1000 simulations and use 5 percent significance level and .8 is our target for power.
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float figure
+placement document
+alignment document
 wide false
 sideways false
 status open
@@ -1130,13 +1117,12 @@ reference "fig:Power-Plots"
 plural "false"
 caps "false"
 noprefix "false"
+nolink "false"
 
 \end_inset
 
-(a) shows that when we allocate 25 percent of villages to the control group
- (and 75 percent to the treatments) and include about 16 households per
- village, we hit the 80 percent power level for the joint hypothesis that
- both 
+(a) shows that when we allocate 25 percent of villages to the control group (and 75 percent to the treatments) and include about 16 households per village,
+ we hit the 80 percent power level for the joint hypothesis that both 
 \begin_inset Formula $\beta_{T1}$
 \end_inset
 
@@ -1145,10 +1131,9 @@ noprefix "false"
 \end_inset
 
  are significantly different from zero.
- However, to avoid that we are focusing on an isolated peak in the distribution,
- it seemed safer to move closer toward 30 percent in control (and hence
- 35 percent in T1 and 35 percent in T2) and aim for about 18 households
- per village.
+ However,
+ to avoid that we are focusing on an isolated peak in the distribution,
+ it seemed safer to move closer toward 30 percent in control (and hence 35 percent in T1 and 35 percent in T2) and aim for about 18 households per village.
  Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -1156,11 +1141,12 @@ reference "fig:Power-Plots"
 plural "false"
 caps "false"
 noprefix "false"
+nolink "false"
 
 \end_inset
 
-(b) shows that at such a sample, we will get 85 to 90 percent power to identify
- a significant effect on T1.
+(b) shows that at such a sample,
+ we will get 85 to 90 percent power to identify a significant effect on T1.
  Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -1168,15 +1154,16 @@ reference "fig:Power-Plots"
 plural "false"
 caps "false"
 noprefix "false"
+nolink "false"
 
 \end_inset
 
 (c) shows power to detect a significant difference between T1 and T2.
- From this, we conclude that we need about 30 percent in control (and hence
- 35 percent in T1 and 35 percent in T2) and aim for about 18 households
- per village.
- This results in a total of 2034 households with 738 households in T1, 756
- households in T2, and 540 households in C.
+ From this,
+ we conclude that we need about 30 percent in control (and hence 35 percent in T1 and 35 percent in T2) and aim for about 18 households per village.
+ This results in a total of 2034 households with 738 households in T1,
+ 756 households in T2,
+ and 540 households in C.
  
 \end_layout
 
@@ -1206,7 +1193,7 @@ This is also the case in Beg et al.
  the previous survey doesn't compromise the effect of our treatments.
  Specifically, we are assigning our treatments at the village level while
  the previous survey had a light touch intervention randomly assigned to
- individuals within a village.
+
  
 \end_layout
 
@@ -1216,7 +1203,10 @@ status open
 
 \begin_layout Plain Layout
 
-<<code,  echo=FALSE, warning = FALSE, message=FALSE>>=
+<<code,
+  echo=FALSE,
+ warning = FALSE,
+ message=FALSE>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -1230,7 +1220,8 @@ path <- getwd()
 
 \begin_layout Plain Layout
 
-path <- strsplit(path, "/PAP")[[1]]
+path <- strsplit(path,
+ "/PAP")[[1]]
 \end_layout
 
 \begin_layout Plain Layout
@@ -1239,7 +1230,8 @@ path <- strsplit(path, "/PAP")[[1]]
 
 \begin_layout Plain Layout
 
-balance <- readRDS(paste(path,"sampling/balance_2022.Rdata", sep="/"))
+balance <- readRDS(paste(path,"sampling/balance_2022.Rdata",
+ sep="/"))
 \end_layout
 
 \begin_layout Plain Layout
@@ -1261,13 +1253,16 @@ balance <- readRDS(paste(path,"sampling/balance_2022.Rdata", sep="/"))
 \end_layout
 
 \begin_layout Standard
-Using the data from the previous study, which was collected in May and June
- 2022, we can already test balance on fifteen pre-specified variables.
- First, we assess balance on the following five variables that are unlikely
- to be affected by the treatments: farmer's age (in years), sex of farmer,
- household size, land area for crop production (acres), and whether the
- household had difficulty in meeting food needs in the year preceding the
- survey.
+Using the data from the previous study,
+ which was collected in May and June 2022,
+ we can already test balance on fifteen pre-specified variables.
+ First,
+ we assess balance on the following five variables that are unlikely to be affected by the treatments:
+ farmer's age (in years),
+ sex of farmer,
+ household size,
+ land area for crop production (acres),
+ and whether the household had difficulty in meeting food needs in the year preceding the survey.
  Results are in Table 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -1275,19 +1270,19 @@ reference "tab:Balance_2022"
 plural "false"
 caps "false"
 noprefix "false"
+nolink "false"
 
 \end_inset
 
 .
- The table shows not a single significant difference for the five outcomes
- for pairwise comparisons between the different treatment groups.
- Joint tests of orthogonality confirm that we have good balance judged by
- these five outcome variables that were collected before the treatment administr
-ation.
+ The table shows not a single significant difference for the five outcomes for pairwise comparisons between the different treatment groups.
+ Joint tests of orthogonality confirm that we have good balance judged by these five outcome variables that were collected before the treatment administration.
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float table
+placement document
+alignment document
 wide false
 sideways false
 status collapsed
@@ -1370,13 +1365,11 @@ Sexpr{balance[1,1]} &
 \backslash
 Sexpr{balance[1,3]}$^{
 \backslash
-Sexpr{ifelse(balance[1,5]<.01,"**",ifelse(balance[1,5]<.05,"*",ifelse(balance[1,5]
-<.1,"+","")))}}$  & 
+Sexpr{ifelse(balance[1,5]<.01,"**",ifelse(balance[1,5]<.05,"*",ifelse(balance[1,5]<.1,"+","")))}}$  & 
 \backslash
 Sexpr{balance[1,6]}$^{
 \backslash
-Sexpr{ifelse(balance[1,8]<.01,"**",ifelse(balance[1,8]<.05,"*",ifelse(balance[1,8]
-<.1,"+","")))}}$  & 
+Sexpr{ifelse(balance[1,8]<.01,"**",ifelse(balance[1,8]<.05,"*",ifelse(balance[1,8]<.1,"+","")))}}$  & 
 \backslash
 Sexpr{balance[1,9]}
 \end_layout
@@ -1417,13 +1410,11 @@ Sexpr{balance[2,1]} &
 \backslash
 Sexpr{balance[2,3]}$^{
 \backslash
-Sexpr{ifelse(balance[2,5]<.01,"**",ifelse(balance[2,5]<.05,"*",ifelse(balance[2,5]
-<.1,"+","")))}}$  & 
+Sexpr{ifelse(balance[2,5]<.01,"**",ifelse(balance[2,5]<.05,"*",ifelse(balance[2,5]<.1,"+","")))}}$  & 
 \backslash
 Sexpr{balance[2,6]}$^{
 \backslash
-Sexpr{ifelse(balance[2,8]<.01,"**",ifelse(balance[2,8]<.05,"*",ifelse(balance[2,8]
-<.1,"+","")))}}$  & 
+Sexpr{ifelse(balance[2,8]<.01,"**",ifelse(balance[2,8]<.05,"*",ifelse(balance[2,8]<.1,"+","")))}}$  & 
 \backslash
 Sexpr{balance[2,9]}
 \end_layout
@@ -1464,13 +1455,11 @@ Sexpr{balance[3,1]} &
 \backslash
 Sexpr{balance[3,3]}$^{
 \backslash
-Sexpr{ifelse(balance[3,5]<.01,"**",ifelse(balance[3,5]<.05,"*",ifelse(balance[3,5]
-<.1,"+","")))}}$  & 
+Sexpr{ifelse(balance[3,5]<.01,"**",ifelse(balance[3,5]<.05,"*",ifelse(balance[3,5]<.1,"+","")))}}$  & 
 \backslash
 Sexpr{balance[3,6]}$^{
 \backslash
-Sexpr{ifelse(balance[3,8]<.01,"**",ifelse(balance[3,8]<.05,"*",ifelse(balance[3,8]
-<.1,"+","")))}}$  & 
+Sexpr{ifelse(balance[3,8]<.01,"**",ifelse(balance[3,8]<.05,"*",ifelse(balance[3,8]<.1,"+","")))}}$  & 
 \backslash
 Sexpr{balance[3,9]}
 \end_layout
@@ -1511,13 +1500,11 @@ Sexpr{balance[4,1]} &
 \backslash
 Sexpr{balance[4,3]}$^{
 \backslash
-Sexpr{ifelse(balance[4,5]<.01,"**",ifelse(balance[4,5]<.05,"*",ifelse(balance[4,5]
-<.1,"+","")))}}$  & 
+Sexpr{ifelse(balance[4,5]<.01,"**",ifelse(balance[4,5]<.05,"*",ifelse(balance[4,5]<.1,"+","")))}}$  & 
 \backslash
 Sexpr{balance[4,6]}$^{
 \backslash
-Sexpr{ifelse(balance[4,8]<.01,"**",ifelse(balance[4,8]<.05,"*",ifelse(balance[4,8]
-<.1,"+","")))}}$  & 
+Sexpr{ifelse(balance[4,8]<.01,"**",ifelse(balance[4,8]<.05,"*",ifelse(balance[4,8]<.1,"+","")))}}$  & 
 \backslash
 Sexpr{balance[4,9]}
 \end_layout
@@ -1558,13 +1545,11 @@ Sexpr{balance[5,1]} &
 \backslash
 Sexpr{balance[5,3]}$^{
 \backslash
-Sexpr{ifelse(balance[5,5]<.01,"**",ifelse(balance[5,5]<.05,"*",ifelse(balance[5,5]
-<.1,"+","")))}}$  & 
+Sexpr{ifelse(balance[5,5]<.01,"**",ifelse(balance[5,5]<.05,"*",ifelse(balance[5,5]<.1,"+","")))}}$  & 
 \backslash
 Sexpr{balance[5,6]}$^{
 \backslash
-Sexpr{ifelse(balance[5,8]<.01,"**",ifelse(balance[5,8]<.05,"*",ifelse(balance[5,8]
-<.1,"+","")))}}$  & 
+Sexpr{ifelse(balance[5,8]<.01,"**",ifelse(balance[5,8]<.05,"*",ifelse(balance[5,8]<.1,"+","")))}}$  & 
 \backslash
 Sexpr{balance[5,9]}
 \end_layout
@@ -1664,14 +1649,12 @@ scriptsize
 
 \begin_layout Plain Layout
 
-Note: First column reports control group means (and standard deviations
- below); second column shows different between control and T1 (and standard
- errors clustered at the village level below); third column shows different
- between T1 and T2 (and standard errors clustered at the village level below).
- F-test test for joint significance in a regression with treatment status
- on the left hand side (T1/C or T2/T1).
- Likelihood ratio test is derived from a multinomial model where the left
- hand side has three levels (C,T1,T2).
+Note:
+ First column reports control group means (and standard deviations below);
+ second column shows different between control and T1 (and standard errors clustered at the village level below);
+ third column shows different between T1 and T2 (and standard errors clustered at the village level below).
+ F-test test for joint significance in a regression with treatment status on the left hand side (T1/C or T2/T1).
+ Likelihood ratio test is derived from a multinomial model where the left hand side has three levels (C,T1,T2).
 \end_layout
 
 \end_inset
@@ -1685,26 +1668,27 @@ Note: First column reports control group means (and standard deviations
 \end_layout
 
 \begin_layout Standard
-Second, while we do not plan to do a dedicated baseline, we will collect
- data on some background characteristics on the previous season a few weeks
- after treatment administration.
- This will include whether the household was AIP recipient in the previous
- season, total land size use for cultivation, and number of crops grown.
- We also include five variables from among the outcomes of interest to test
- balance at baseline, in particular: use of organic fertilizer (yes/no),
- amount of fertilizer by type (kg), yield, profit, crop in previous season
- was legume.
- At this time, we will also ask detailed questions on what the farmer thinks
- the soil quality is to answer the fourth research question.
- This will help us in establishing if farmers under or overuse fertilizer
- when they do not know the soil quality.
+Second,
+ while we do not plan to do a dedicated baseline,
+ we will collect data on some background characteristics on the previous season a few weeks after treatment administration.
+ This will include whether the household was AIP recipient in the previous season,
+ total land size use for cultivation,
+ and number of crops grown.
+ We also include five variables from among the outcomes of interest to test balance at baseline,
+ in particular:
+ use of organic fertilizer (yes/no),
+ amount of fertilizer by type (kg),
+ yield,
+ profit,
+ crop in previous season was legume.
+ At this time,
+ we will also ask detailed questions on what the farmer thinks the soil quality is to answer the fourth research question.
+ This will help us in establishing if farmers under or overuse fertilizer when they do not know the soil quality.
 \begin_inset Foot
 status open
 
 \begin_layout Plain Layout
-Note that we can not use treatment versus control to answer this question
- given the fact that the farmer can select the plot on which the soil test
- is performed making it hard to identify an appropriate counterfactual.
+Note that we can not use treatment versus control to answer this question given the fact that the farmer can select the plot on which the soil test is performed making it hard to identify an appropriate counterfactual.
 \end_layout
 
 \end_inset
@@ -2042,16 +2026,18 @@ Key measures will include whether farmers used any fertilizer, the extent
  to which they adopted the recommended type, and the rate of application
  (amount of fertilizer applied per hectare).
  We will also evaluate the impact on proper fertilizer application practices,
- defined as applying the fertilizer at the right place, right time, and
- right rate.
- These will be measured as a deviation from recommended practices, e.g., the
- gap between recommended application rates and actual application rates
- will be used to arrive at an “application error” outcome.
- In addition, we will assess outcomes related to yield and value of production,
- profitability, and returns on fertilizer investment.
- Additionally, we will evaluate the impact of the intervention on farmers’
- subjective assessments of the effectiveness of the fertilizer type they
- used on yield.
+ defined as applying the fertilizer at the right place,
+ right time,
+ and right rate.
+ These will be measured as a deviation from recommended practices,
+ e.g.,
+ the gap between recommended application rates and actual application rates will be used to arrive at an “application error” outcome.
+ In addition,
+ we will assess outcomes related to yield and value of production,
+ profitability,
+ and returns on fertilizer investment.
+ Additionally,
+ we will evaluate the impact of the intervention on farmers’ subjective assessments of the effectiveness of the fertilizer type they used on yield.
  
 \end_layout
 
@@ -2059,14 +2045,21 @@ Key measures will include whether farmers used any fertilizer, the extent
 A secondary set of outcomes explores complementary practices and broader
  changes in agricultural behavior that may arise as a result of the intervention.
  This includes potential shifts in the crop mix farmers are planting.
- The intervention may also affect labor allocation, prompting increased
- use of both family and hired labor as farming intensity changes.
- Furthermore, changes in the use and costs of complementary inputs, such
- as improved seed varieties or agricultural chemicals (e.g., pesticides, fungicide
-s), will be assessed.
+ The intervention may also affect labor allocation,
+ prompting increased use of both family and hired labor as farming intensity changes.
+ Furthermore,
+ changes in the use and costs of complementary inputs,
+ such as improved seed varieties or agricultural chemicals (e.g.,
+ pesticides,
+ fungicides),
+ will be assessed.
  The study will also explore shifts in soil nutrient management practices,
- including the use of organic fertilizer (e.g., manure), or techniques like
- minimum tillage, mulching, crop rotation, and residue incorporation.
+ including the use of organic fertilizer (e.g.,
+ manure),
+ or techniques like minimum tillage,
+ mulching,
+ crop rotation,
+ and residue incorporation.
  
 \end_layout
 
@@ -2076,10 +2069,11 @@ To understand the implementation and uptake of the intervention, we will
  This will include whether soil testing was conducted, if tailored fertilizer
  advice was received, and whether vouchers were distributed and redeemed
  at local outlets, such as Farmers World.
+
  We will gather details about the farmers' experiences at agro-input dealers,
- including whether the recommended fertilizer blend was available, any issues
- encountered with the subsidy amount, and the process for paying for fertilizer
- beyond what was covered by the voucher.
+ including whether the recommended fertilizer blend was available,
+ any issues encountered with the subsidy amount,
+ and the process for paying for fertilizer beyond what was covered by the voucher.
  
 \end_layout
 
@@ -2093,8 +2087,8 @@ Timeline
 \end_layout
 
 \begin_layout Itemize
-September/October - taking soil samples, conducting soil test and disseminating
- the soil test results.
+September/October - taking soil samples,
+ conducting soil test and disseminating the soil test results.
 \end_layout
 
 \begin_layout Itemize
@@ -2107,9 +2101,8 @@ first survey
 \begin_inset Quotes erd
 \end_inset
 
- in which we validate treatment administration and collect information about
- the previous season on fertilizer use, agricultural practices and other
- key outcomes.
+ in which we validate treatment administration and collect information about the previous season on fertilizer use,
+ agricultural practices and other key outcomes.
  
 \end_layout
 
