@@ -406,23 +406,18 @@ literal "false"
 
 \end_inset
 
- demonstrated that plot-level soil testing and tailored input recommendations
- changed farmers’ fertilizer usage and increased the adoption of recommended
- practices, leading to improved yields.
- This aligns with findings by [Harou et all (2018)] who studied maize farmers
- in Tanzania.
- Their study testes the joint effects of information and financing constraints
- on fertilizer adoption.
- Specifically, they investigated if farmers use more fertilizer with site-specif
-ic soil test provided and they also investigated if only this information
- is not sufficient due to financing constraints.
- They have three treatment arms: an arm which receives site-specific soil
- test information, another arm which also receives a subsidy with the site-speci
-fic soil test information and a third arm which receives only a subsidy.
- The found that only those who received both the site-specific soil test
- information and the subsidy increase fertilizer application and yields.
- Their study is comparable to ours, except that we additionally offer agricultur
-al extension services alongside the soil test results as in Bag et al.
+ demonstrated that plot-level soil testing and tailored input recommendations changed farmers’ fertilizer usage and increased the adoption of recommended practices,
+ leading to improved yields.
+ This aligns with findings by [Harou et all (2018)] who studied maize farmers in Tanzania.
+ Their study testes the joint effects of information and financing constraints on fertilizer adoption.
+ Specifically,
+ they investigated if farmers use more fertilizer with site-specific soil test provided and they also investigated if only this information is not sufficient due to financing constraints.
+ They have three treatment arms:
+ an arm which receives site-specific soil test information,
+ another arm which also receives a subsidy with the site-specific soil test information and a third arm which receives only a subsidy.
+ The found that only those who received both the site-specific soil test information and the subsidy increase fertilizer application and yields.
+ Their study is comparable to ours,
+ except that we additionally offer agricultural extension services alongside the soil test results as in Bag et al.
  (2024) and gars(2022).
  
 \end_layout
@@ -1168,8 +1163,7 @@ nolink "false"
 \end_layout
 
 \begin_layout Standard
-The sample for this study is drawn from a previous longitudinal study that
- involved 113 villages.
+The sample for this study is drawn from a previous longitudinal study that involved 113 villages.
 \begin_inset Foot
 status collapsed
 
@@ -1180,21 +1174,20 @@ This is also the case in Beg et al.
 
 \end_inset
 
- This gives us the opportunity of leveraging two years’ worth of data on
- Maize, Groundnut, and Soyabean growing farmers for our study design and
- analysis.
- In doing so, we ensure that we do not lose external validity as we are
- relying on a specific sample drawn for a different purpose.
- The sample for the previous study was selected using the same approach
- we would have applied for this study—randomly drawing districts, villages,
- and households within villages—we believe that using this sample does not
- compromise external validity.
- Additionally, we ensure that an intervention that was conducted during
- the previous survey doesn't compromise the effect of our treatments.
- Specifically, we are assigning our treatments at the village level while
- the previous survey had a light touch intervention randomly assigned to
-
- 
+ This gives us the opportunity of leveraging two years’ worth of data on Maize,
+ Groundnut,
+ and Soyabean growing farmers for our study design and analysis.
+ In doing so,
+ we ensure that we do not lose external validity as we are relying on a specific sample drawn for a different purpose.
+ The sample for the previous study was selected using the same approach we would have applied for this study—
+randomly drawing districts,
+ villages,
+ and households within villages—
+we believe that using this sample does not compromise external validity.
+ Additionally,
+ we ensure that an intervention that was conducted during the previous survey doesn't compromise the effect of our treatments.
+ Specifically,
+ we are assigning our treatments at the village level while the previous survey had a light touch intervention randomly assigned to 
 \end_layout
 
 \begin_layout Standard
@@ -1710,20 +1703,23 @@ name "sec:Outcomes-of-interest"
 \begin_layout Standard
 We plan to assess the impact of the intervention on 
 \series bold
-fertilizer use, production, and farm profit outcomes.
+fertilizer use,
+ production,
+ and farm profit outcomes.
 \end_layout
 
 \begin_layout Itemize
 
 \series bold
-Fertilizer use: 
+Fertilizer use:
+ 
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
-Primary indicator: application error - measured by the difference between
- the quantity used and quantity recommended (Beg et al (2024), Corral et
- al.
+Primary indicator:
+ application error - measured by the difference between the quantity used and quantity recommended (Beg et al (2024),
+ Corral et al.
  (2020)).
 \end_layout
 
@@ -1733,15 +1729,16 @@ Secondary indicators
 
 \begin_deeper
 \begin_layout Itemize
-Fertilizer adoption - measured by a binary indicator with a 1 for Yes, 0
- otherwise.
- (Beg et al 2024, Gars et al.
- (2022)), 
+Fertilizer adoption - measured by a binary indicator with a 1 for Yes,
+ 0 otherwise.
+ (Beg et al 2024,
+ Gars et al.
+ (2022)),
+ 
 \end_layout
 
 \begin_layout Itemize
-Proper application of fertilizer - measured by indicator with 1 for yes
- on applying on time and 0 otherwise (Gars et al (2022) 
+Proper application of fertilizer - measured by indicator with 1 for yes on applying on time and 0 otherwise (Gars et al (2022) 
 \end_layout
 
 \end_deeper
@@ -1751,7 +1748,8 @@ Proper application of fertilizer - measured by indicator with 1 for yes
 status open
 
 \begin_layout Plain Layout
-Notes on application error: 
+Notes on application error:
+ 
 \end_layout
 
 \begin_layout Plain Layout
@@ -1765,9 +1763,8 @@ Notes on application error:
 \begin_layout Plain Layout
 - Beg et al.
  2020 has recommendation for the five most commonly used fertilizers.
- In our case, if we get recommendation for a specific fertilizer type and
- the farmer used another fertilizer type we can only compute differences
- in nutrient amounts.
+ In our case,
+ if we get recommendation for a specific fertilizer type and the farmer used another fertilizer type we can only compute differences in nutrient amounts.
  
 \end_layout
 
@@ -1781,8 +1778,8 @@ Notes on application error:
 status open
 
 \begin_layout Plain Layout
-Note: Gar's et al (2022) has an outcome on timing of fertilizer application
- - a binary indicating if farmers applied 50% at the time of sowing.
+Note:
+ Gar's et al (2022) has an outcome on timing of fertilizer application - a binary indicating if farmers applied 50% at the time of sowing.
  
 \end_layout
 
@@ -1800,13 +1797,14 @@ Other inputs and crop choice
 \begin_deeper
 \begin_layout Itemize
 Farm expenditure:
+
 \series bold
  
 \series default
-measured by the sum of expenditure on seeds, pesticides and fungicides,
+measured by the sum of expenditure on seeds,
+ pesticides and fungicides,
  irrigation and hired labor.
- Expenditures including fertilizer can also be computed to see if agricultural
- intensification happened due to the treatment
+ Expenditures including fertilizer can also be computed to see if agricultural intensification happened due to the treatment
 \series bold
  (Beg et al.
  (2024))
@@ -1820,9 +1818,12 @@ Adoption of other SNM practices
 \series bold
  
 \series default
-- measured by a binary indicator with a 1 for Yes if farmers uses organic
- fertilizer (e.g., manure), 0 otherwise and similarly for other SNM practices
- like minimum tillage, mulching, crop rotation, and residue incorporation.
+- measured by a binary indicator with a 1 for Yes if farmers uses organic fertilizer (e.g.,
+ manure),
+ 0 otherwise and similarly for other SNM practices like minimum tillage,
+ mulching,
+ crop rotation,
+ and residue incorporation.
  
 \begin_inset Note Note
 status open
@@ -1845,8 +1846,7 @@ Crop mix
 \series bold
  - 
 \series default
-measured by share of area on which site and crop specific fertilizer recommendat
-ions are made
+measured by share of area on which site and crop specific fertilizer recommendations are made
 \series bold
 .
  
@@ -1860,8 +1860,7 @@ status open
 \series bold
 Beg et al (2024)
 \series default
- showed a shift from one rice variety to the other because farmers found
- their plot more suitable to high yielding rice variety.
+ showed a shift from one rice variety to the other because farmers found their plot more suitable to high yielding rice variety.
  
 \end_layout
 
@@ -1878,28 +1877,28 @@ Production
 \end_layout
 
 \begin_deeper
-\begin_layout Itemize
+\begin_layout Standard
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Itemize
 Yield (Kg/ha) (
 \series bold
 Beg et al.
- (2024), 
+ (2024),
+ 
 \series default
 but
 \series bold
  Corral et al.
  (2020)
 \series default
- weighted production themselves and measured areas using GPS - but at the
- end used self-reported yield),
+ weighted production themselves and measured areas using GPS - but at the end used self-reported yield),
 \end_layout
 
 \end_inset
 
- 
+
 \end_layout
 
 \begin_layout Itemize
@@ -1925,10 +1924,11 @@ used farm revenue)
 \begin_layout Itemize
 
 \series bold
-Profits: 
+Profits:
+ 
 \series default
-measured by total value of production less the total farm expenditures (Beg
- et al 2024), 
+measured by total value of production less the total farm expenditures (Beg et al 2024),
+ 
 \end_layout
 
 \begin_layout Standard
@@ -1937,8 +1937,7 @@ status open
 
 \begin_layout Plain Layout
 a ratio of the total value of production and total cost of inputs.
- Corral et al (2020) collected expenditure on a comprehensive set of agricultura
-l inputs using frequent and detailed survey during the year.
+ Corral et al (2020) collected expenditure on a comprehensive set of agricultural inputs using frequent and detailed survey during the year.
 \end_layout
 
 \begin_layout Plain Layout
@@ -1975,7 +1974,8 @@ Comments from USAID
 \end_layout
 
 \begin_layout Plain Layout
-- Power calculation for Application error? 
+- Power calculation for Application error?
+ 
 \end_layout
 
 \begin_layout Plain Layout
@@ -1984,8 +1984,7 @@ Comments from USAID
 \end_layout
 
 \begin_layout Plain Layout
-- Anything in Gender related outcomes - dis aggregate by receiver of the
- information - subsidy may make women more power full in decision making.
+- Anything in Gender related outcomes - dis aggregate by receiver of the information - subsidy may make women more power full in decision making.
  - maybe empowred women has more impact on outcomes.
  
 \end_layout
@@ -1995,36 +1994,34 @@ Comments from USAID
 \end_layout
 
 \begin_layout Plain Layout
--optimal fertilizer us, long run profitability, cost to farmers and the
- environment, brief training instead extension from agrnotous, show how
- community level variations in soil test justify plot specific soil tests
- as in Beg etal where individual and community (council) level recommendations
- are compared, soil test results are relatively batter although they suffer
- from measurement error, the simpler the recommendation the more effect
- we see (beg et al.
- has recommendations for 5 rice verities and for 5 fertilizers and insignificant
- effect while Islam 2021 with leaf colors and rule of thumb has significant
- impact ), Beg et al stratified by farmer yield as well, recommendations
- can be exactly for the size of the land since we know the size, let us
- do control group soil test to get plot slection of similar criteria and
- computation of application error.
+-optimal fertilizer us,
+ long run profitability,
+ cost to farmers and the environment,
+ brief training instead extension from agrnotous,
+ show how community level variations in soil test justify plot specific soil tests as in Beg etal where individual and community (council) level recommendations are compared,
+ soil test results are relatively batter although they suffer from measurement error,
+ the simpler the recommendation the more effect we see (beg et al.
+ has recommendations for 5 rice verities and for 5 fertilizers and insignificant effect while Islam 2021 with leaf colors and rule of thumb has significant impact ),
+ Beg et al stratified by farmer yield as well,
+ recommendations can be exactly for the size of the land since we know the size,
+ let us do control group soil test to get plot slection of similar criteria and computation of application error.
  Community level recommendations were based on plot depth.
- Plot selection, Beg at al is random , Gars et al is recommended level.
+ Plot selection,
+ Beg at al is random ,
+ Gars et al is recommended level.
  Maybe we can limit our analysis to farmers wit just one plot.
- Correl sowed it doesn't matter whether the subsidy is tied to the recommended
- fertilizer or not.
+ Correl sowed it doesn't matter whether the subsidy is tied to the recommended fertilizer or not.
  Corroal also found impacts for the extension advice.
  Target yield on Corral is 4.5 metric tonnes pr ha for maize.
- Should we also tell farmers the cost of the fertilizer we are recommending
- to them - Corral et al 2020 does that.
+ Should we also tell farmers the cost of the fertilizer we are recommending to them - Corral et al 2020 does that.
  We need the recommendations imputed.
  
 \end_layout
 
 \begin_layout Plain Layout
-Key measures will include whether farmers used any fertilizer, the extent
- to which they adopted the recommended type, and the rate of application
- (amount of fertilizer applied per hectare).
+Key measures will include whether farmers used any fertilizer,
+ the extent to which they adopted the recommended type,
+ and the rate of application (amount of fertilizer applied per hectare).
  We will also evaluate the impact on proper fertilizer application practices,
  defined as applying the fertilizer at the right place,
  right time,
@@ -2042,8 +2039,7 @@ Key measures will include whether farmers used any fertilizer, the extent
 \end_layout
 
 \begin_layout Plain Layout
-A secondary set of outcomes explores complementary practices and broader
- changes in agricultural behavior that may arise as a result of the intervention.
+A secondary set of outcomes explores complementary practices and broader changes in agricultural behavior that may arise as a result of the intervention.
  This includes potential shifts in the crop mix farmers are planting.
  The intervention may also affect labor allocation,
  prompting increased use of both family and hired labor as farming intensity changes.
@@ -2064,12 +2060,12 @@ A secondary set of outcomes explores complementary practices and broader
 \end_layout
 
 \begin_layout Plain Layout
-To understand the implementation and uptake of the intervention, we will
- collect data on several intermediary outcomes.
- This will include whether soil testing was conducted, if tailored fertilizer
- advice was received, and whether vouchers were distributed and redeemed
- at local outlets, such as Farmers World.
-
+To understand the implementation and uptake of the intervention,
+ we will collect data on several intermediary outcomes.
+ This will include whether soil testing was conducted,
+ if tailored fertilizer advice was received,
+ and whether vouchers were distributed and redeemed at local outlets,
+ such as Farmers World.
  We will gather details about the farmers' experiences at agro-input dealers,
  including whether the recommended fertilizer blend was available,
  any issues encountered with the subsidy amount,
@@ -2092,8 +2088,7 @@ September/October - taking soil samples,
 \end_layout
 
 \begin_layout Itemize
-End of October (or after the treatment administration is completed) - we
- will conduct the 
+End of October (or after the treatment administration is completed) - we will conduct the 
 \begin_inset Quotes eld
 \end_inset
 
