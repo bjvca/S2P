@@ -5,17 +5,17 @@ path <- getwd()
 dta <- read.csv("latest.csv")
 path <- strsplit(path,"raw")[[1]]
 
-# names(dta) <- sub("checkx.", "",names(dta))
-# names(dta) <- sub("group4.", "",names(dta))
-# names(dta) <- sub("value.", "",names(dta))
-# names(dta) <- sub("garden.", "",names(dta))
+names(dta) <- sub("check.maize.", "",names(dta))
+names(dta) <- sub("grp1.", "test_plot.",names(dta))
+names(dta) <- sub("grp2.", "rnd_plot.",names(dta))
 
 ###  we started with a different form and as a result of variable name change, we need to retreive data from randomly selected plot from a dataset that was exported using a different from
-dta_first <- read.csv("first_form.csv")
-# names(dta_first) <- sub("checkx.", "",names(dta_first))
-# names(dta_first) <- sub("group4.", "",names(dta_first))
-# names(dta_first) <- sub("value.", "",names(dta_first))
-# names(dta_first) <- sub("garden.", "",names(dta_first))
+dta_first <- read.csv("latest_first_form.csv")
+names(dta_first) <- sub("check.maize.", "",names(dta_first))
+names(dta_first) <- sub("groupx1.", "",names(dta_first))
+names(dta_first) <- sub("grp1.", "test_plot.",names(dta_first))
+names(dta_first) <- sub("grp2.", "rnd_plot.",names(dta_first))
+
 
 
 # dta_first$ID[dta_first$X_uuid =="63c1f5f7-a882-4937-93a9-22fbdab6d02a"] <- "F_685"
@@ -216,80 +216,29 @@ dta_first <- read.csv("first_form.csv")
 # aggregate(bse_col$count,list(c(bse_col$village)), sum)
 
 
-##these are the variables:
-garden_vector <- c("crop_inter", 
-                   "crop_type.1", 
-                   "crop_type.2", 
-                   "crop_type.3", 
-                   "crop_type.4", 
-                   "crop_type.5", 
-                   "crop_type.6", 
-                   "crop_type.7", 
-                   "crop_type.8", 
-                   "crop_type.96", 
-                   "crop_perc", 
-                   "who1", 
-                   "long_var", 
-                   "who2", 
-                   "seed_qty", 
-                   "seed_cst", 
-                   "org_ap", 
-                   "dap_ap", 
-                   "ur_ap", 
-                   "pest_ap", 
-                   "bag_harv", 
-                   "bag_kg", 
-                   "harv_kgs", 
-                   "yield", 
-                   "seed_use_again", 
-                   "used_yield_rate", 
-                   "used_drt_tol", 
-                   "used_dies_tol", 
-                   "used_erly_mat", 
-                   "used_mrkt_dem", 
-                   "used_cons_taste", 
-                   "used_biomass", 
-                   "used_germ_rate", 
-                   "used_portions", 
-                   "used_cons_appear", 
-                   "used_process", 
-                   "used_cons_cook", 
-                   "used_happy", 
-                   "maize_sell", 
-                   "bag_sell", 
-                   "bag_charge", 
-                   "bag_keep", 
-                   "seed_keep")
+##these are the variables that need to be replaced
+garden_vector <- c("hh_size",                                                          
+                   "hh_age" ,                                                          
+                   "hh_educ"  ,                                                        
+                   "hh_gender"  ,                                                      
+                   "ttl_area" ,                                                        
+                   "ttl_area_t_1"  ,                                                   
+                   "AIP_rec"   ,                                                       
+                   "AIP_rec_t_1"   ,                                                   
+                   "feed_diff" ,                                                       
+                   "dist_agro",                                                        
+                   "is_FW"    ,                                                        
+                   "dist_FWS"   )
 
-dta[dta$ID  %in% dta_first$ID, garden_vector] <- dta_first[dta_first$ID %in% dta_first$ID,garden_vector]
+dta[dta$X_uuid  %in% dta_first$X_uuid, garden_vector] <- dta_first[dta$X_uuid %in% dta_first$X_uuid,garden_vector]
 
-to_drop <- c("start", "end", "deviceid", "simserial", "phonenumber", "subscriberid", "enumerator", "district", "sub", "village", "farmer_name", 
-             "phone1", "phone2", "nick", "lat", "long", "plot.1..plot_name", "plot.2..plot_name", "plot.3..plot_name", "plot.4..plot_name", "plot.5..plot_name","plot_select_name",
+to_drop <- c("start", "end", "deviceid", "simserial", "phonenumber", "subscriberid", "enumerator", "district",   "q2","q3", "farmer_name", 
+             "phone1", "phone2", "nick", "lat", "long", "plot.1..plot_name", "plot.2..plot_name", "plot.3..plot_name", "plot.4..plot_name", "plot.5..plot_name","plot_select_name","test_plot.plot_samp",
               "location", "_location_latitude", "_location_longitude", "_location_altitude", "_location_precision", "meta.instanceID", 
              "X_id", "X_uuid", "X_submission_time", "X_date_modified", "X_tags", "X_notes", "X_version", "X_duration", "X_submitted_by", 
              "X_total_media", "X_media_count", "X_media_all_received", "X_xform_id")
 
 dta <- dta[ , !(names(dta) %in% to_drop)]
-
-## [1] "F_1785" "F_584"  "F_553"  "F_810"  "F_1150" "F_573"  "F_827"  "F_830"  "F_824"  "F_2241" "F_855"  "F_879"  "F_857"  "F_592"  "F_1010" "F_2255" "F_1650" "F_1839" "F_1941" "F_1950"
-## [21] "F_663"  "F_2012" "F_1874" "F_1939" "F_1048" "F_1179"
-dta$plot_select[dta$maize_var_selected == "n/a"] <- NA
-
-# List of variables to be assigned NA based on the condition
-vars_to_update <- c("size_selected", "order1", "crop_inter", "crop_type.1", "crop_type.2", 
-                    "crop_type.3", "crop_type.4", "crop_type.5", "crop_type.6", "crop_type.7", 
-                    "crop_type.8", "crop_type.96", "crop_perc", "who1", "long_var", "who2", 
-                    "seed_qty", "seed_cst", "org_ap", "dap_ap", "ur_ap", "pest_ap", "bag_harv",
-                    "bag_kg", "harv_kgs", "yield", "seed_use_again", "used_yield_rate", 
-                    "used_drt_tol", "used_dies_tol", "used_erly_mat", "used_mrkt_dem", 
-                    "used_cons_taste", "used_biomass", "used_germ_rate", "used_portions", 
-                    "used_cons_appear", "used_process", "used_cons_cook", "used_happy", 
-                    "maize_sell", "bag_sell", "bag_charge", "bag_keep", "seed_keep")
-
-# Check if maize_var_selected is "n/a" and assign NA to selected variables
-for (var in vars_to_update) {
-  dta[[var]][dta$maize_var_selected == "n/a"] <- NA
-}
 
 
 
