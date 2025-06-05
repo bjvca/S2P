@@ -80,11 +80,15 @@ dta$farmer_name[dta$q1=="No"] <- dta$New_farmer_name[dta$q1=="No"]
 dta$New_farmer_name <- NULL
 
 dta$farmer_name[dta$check.dec_maker=="No"] <- dta$check.name_dec_maker[dta$check.dec_maker=="No"] 
+
+
+
+
 column_names <- c(
   "Farmer_ID",
   "farmer_name", "enumerator", "district", "shop_name", 
   "farmer_dist", "TA", "village", "check.maize.mer_farm_ID", 
-  "check.maize.phone_1", "check.maize.phone_2", "check.maize.test_date", 
+  "check.maize.phone_1", "check.maize.phone_2", 
   "check.maize._location_latitude", "check.maize._location_longitude", "treat","today"
 )
 
@@ -95,7 +99,7 @@ dta <- dta[column_names]
 #and give them sensible names
 names(dta) <-  c(  "Farmer_ID",  "farmer_name", "enumerator", "district", "shop_name", 
   "farmer_dist", "TA", "village", "soil_sample_ID", 
-  "phone_1", "phone_2", "test_date", 
+  "phone_1", "phone_2", 
   "hh_location_latitude", "hh_location_longitude", "treat","today"
 )
 
@@ -119,4 +123,48 @@ write.csv(dta[dta$soil_sample_ID %in% dta$soil_sample_ID[duplicated(dta$soil_sam
 
 write.csv(dta,paste(path,"", sep="/data/clean/linkfile.csv"), row.names = FALSE)
 
+### now for control
+dta_ctrl <- read.csv(paste(path,"data/raw/latest_ctrl.csv", sep="/"))
+
+dta_ctrl$soil_sample_ID <- dta_ctrl$check.maize.mer_farm_ID 
+
+dta_ctrl$treat <- "C"
+
+dta_ctrl <- subset(dta_ctrl, Farmer_ID != "n/a") #drop 6 n/a's
+dta_ctrl <- subset(dta_ctrl, Farmer_ID != dta_ctrl$Farmer_ID[duplicated(dta_ctrl$Farmer_ID)])
+
+## get latest names if farmers were replaced
+##if q1 = no
+dta_ctrl$farmer_name[dta_ctrl$q1=="No"] <- dta_ctrl$New_farmer_name[dta_ctrl$q1=="No"] 
+dta_ctrl$New_farmer_name <- NULL
+
+dta_ctrl$farmer_name[dta_ctrl$check.dec_maker=="No"] <- dta_ctrl$check.name_dec_maker[dta_ctrl$check.dec_maker=="No"] 
+
+column_names <- c(
+  "Farmer_ID",
+  "farmer_name", "enumerator", "district", "shop_name", 
+  "farmer_dist", "TA", "village", "soil_sample_ID", 
+  "check.maize.phone_1", "check.maize.phone_2", 
+  "check.maize._location_latitude", "check.maize._location_longitude", "treat","today"
+)
+
+
+###select variables we want to keep
+dta_ctrl <- dta_ctrl[column_names]
+
+#and give them sensible names
+names(dta_ctrl) <-  c(  "Farmer_ID",  "farmer_name", "enumerator", "district", "shop_name", 
+                   "farmer_dist", "TA", "village", "soil_sample_ID", 
+                   "phone_1", "phone_2", 
+                   "hh_location_latitude", "hh_location_longitude", "treat","today"
+)
+
+dta <- rbind(dta,dta_ctrl)
+dta$farmer_name[dta$Farmer_ID =="F_849"] <- "Letala Mathews Phiri"
+dta$farmer_name[dta$Farmer_ID =="F_1106"] <- "LIYANA M'BWANA"
+dta$farmer_name <- trimws(dta$farmer_name)
+dta[] <- lapply(dta, function(x) {
+  if (is.character(x)) trimws(x) else x
+})
+write.csv(dta,paste(path,"", sep="/data/clean/linkfile.csv"), row.names = FALSE)
 
