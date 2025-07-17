@@ -82,16 +82,77 @@ dta$farmer_ID[dta$X_uuid  == "2de803f6-4bfa-4efd-8e13-1c1ce2ba806a"] <-  "F_531"
 
 write.csv(dta,file=paste(path,"raw/interim.csv",sep="/"), row.names=FALSE)
 
+dta$cluster <- paste(paste(dta$q1,dta$q2, sep="_"),dta$q3, sep = ")")
+# Step 2: Convert to a factor, then to a numeric ID
+dta$cluster_id_num <- as.integer(factor(dta$cluster))
 
+# Step 3: Create final cluster ID with "C_" prefix
+dta$cluster_id <- paste0("C_", dta$cluster_id_num)
 
-to_drop <- c("start", "end", "deviceid", "simserial", "phonenumber", "subscriberid", "enumerator", "district",   "q2","q3", "farmer_name", 
+to_drop <- c("start", "end", "deviceid", "simserial", "phonenumber", "subscriberid", "enumerator", "district", "cluster","q2","q3", "farmer_name", 
              "phone1", "phone2", "nick", "lat", "long", "plot.1..plot_name", "plot.2..plot_name", "plot.3..plot_name", "plot.4..plot_name", "plot.5..plot_name","plot_select_name","test_plot.plot_samp",
               "location", "_location_latitude", "_location_longitude", "_location_altitude", "_location_precision", "meta.instanceID", 
              "X_id", "X_uuid", "X_submission_time", "X_date_modified", "X_tags", "X_notes", "X_version", "X_duration", "X_submitted_by", 
              "X_total_media", "X_media_count", "X_media_all_received", "X_xform_id")
 
 dta <- dta[ , !(names(dta) %in% to_drop)]
-
+###merge in treatment status
+dta$treatment <- NULL
+dta <- merge(dta, read.csv("~/IFPRI Dropbox/Bjorn Van Campenhout/Space2Place/sampling/sampling_ODK.csv")[c("farmer_ID","treat")] )
 
 
 write.csv(dta,file=paste(path,"public/endline.csv",sep="/"), row.names=FALSE)
+
+
+### some quick checks:
+duplicated(dta$farmer_ID)  # still 21 duplicates
+### yield on experimental plot
+
+dta$sample_kg <- as.numeric(dta$test_plot.bags_Mcrp)
+dta$sample_kg[dta$sample_kg == 999] <- NA
+dta$sample_size <- as.numeric(dta$test_plot.plot_siz)
+
+dta$sample_yield <- dta$sample_kg/dta$sample_size
+
+dta$sample_crop <- dta$test_plot.main_crp
+dta$sample_crop[dta$sample_crop == "n/a"] <- NA
+
+library(lmtest)
+library(sandwich)
+
+library(dplyr)
+
+## keep only crops with more than 10 records
+dta <- dta %>%
+  group_by(sample_crop) %>%
+  filter(n() >= 10) %>%
+  ungroup()
+
+# Estimate the model
+model <- lm(sample_yield ~ treat+sample_crop , data = dta)
+
+# Clustered standard errors at the cluster_id level
+cluster_se <- vcovCL(model, cluster = ~cluster_id)
+
+# Display results with clustered SEs
+coeftest(model, vcov = cluster_se)
+
+##keep only maize
+
+# Estimate the model
+model <- lm(sample_yield ~ treat , data = dta[dta$sample_crop=="MAIZE",])
+
+# Clustered standard errors at the cluster_id level
+cluster_se <- vcovCL(model, cluster = dta[dta$sample_crop=="MAIZE",]$cluster_id)
+
+# Display results with clustered SEs
+coeftest(model, vcov = cluster_se)
+
+# Estimate the model
+model <- lm(sample_yield ~ treat , data = dta[dta$sample_crop=="SOYABEAN",])
+
+# Clustered standard errors at the cluster_id level
+cluster_se <- vcovCL(model, cluster = dta[dta$sample_crop=="SOYABEAN",]$cluster_id)
+
+# Display results with clustered SEs
+coeftest(model, vcov = cluster_se)
