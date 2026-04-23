@@ -3,6 +3,18 @@ clear all
 set more off
 
 * Reproduce Table 1: baseline balance table.
+*
+* Input:
+*   data/analysis/baseline_balance_sample.csv
+*
+* This is an independent Stata cross-check of the R table-generation script.
+* It reconstructs the five baseline covariates from the same de-identified raw
+* fields and reports T1-Control and T2-Control differences.
+*
+* Outputs:
+*   output/tables/table1_balance_stata.tex
+*   output/logs/table1_balance_stata_matrix.csv
+*
 * Run from the replication_package folder:
 *   stata -b do code/stata/01_table1_balance.do
 
@@ -17,6 +29,8 @@ capture mkdir "`out_logs'"
 
 import delimited using "`data'", clear varnames(1) stringcols(_all)
 
+* Convert survey fields stored as strings. "n/a" and other nonnumeric values
+* become Stata missing values.
 destring q14 q17 q19 q54a q58a q62a q69 clusterID, replace force
 
 rename treat treatment
@@ -26,6 +40,8 @@ foreach v in q54a q58a q62a {
     replace `v' = . if `v' >= 100
 }
 
+* Land size follows sampling/sample_frame.R: sum three land components, remove
+* implausible totals above 50 acres, and convert acres to hectares.
 egen land_size = rowtotal(q54a q58a q62a)
 replace land_size = . if land_size > 50
 gen land_size_ha = land_size / 2.471
@@ -36,6 +52,8 @@ replace q17 = . if q17 == 999
 replace q14 = . if q14 == 999
 gen age_head = cond(missing(q17), q14, q17)
 
+* Household-head sex uses the reported household-head sex where available and
+* respondent sex otherwise.
 gen q16_male = .
 replace q16_male = 1 if q16 == "Male"
 replace q16_male = 0 if q16 == "Female"
@@ -49,6 +67,9 @@ gen HH_size = q19
 gen poor = q69 == 4 | q69 == 5
 replace poor = . if missing(q69)
 
+* Additive indicators are kept for the original pairwise joint tests. Mutually
+* exclusive arm indicators are used for the displayed treatment-control
+* contrasts.
 gen treatment1 = treatment == "T1" | treatment == "T2"
 gen treatment2 = treatment == "T2"
 gen t1_arm = treatment == "T1"
