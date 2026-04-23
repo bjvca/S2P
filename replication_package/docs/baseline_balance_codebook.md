@@ -11,6 +11,8 @@ This codebook documents `data/analysis/baseline_balance_sample.csv`, the de-iden
 
 The file contains only the fields needed to reconstruct the five baseline covariates used in the balance table, plus treatment assignment and cluster identifiers. Names, phone numbers, GPS coordinates, and other private raw fields are excluded.
 
+This codebook is self-contained. It does not require the original XLSForm questionnaire workbook to remain in the replication package.
+
 # Dataset Summary
 
 | Item | Value |
