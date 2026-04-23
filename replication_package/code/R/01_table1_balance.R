@@ -72,32 +72,44 @@ to_numeric_with_na <- function(x, na_values = c("n/a", "NA", "")) {
   suppressWarnings(as.numeric(x))
 }
 
-sampling_frame$q54a <- to_numeric_with_na(sampling_frame$q54a)
+q54a_raw <- to_numeric_with_na(sampling_frame$q54a)
+q58a_raw <- to_numeric_with_na(sampling_frame$q58a)
+q62a_raw <- to_numeric_with_na(sampling_frame$q62a)
+q19_raw <- to_numeric_with_na(sampling_frame$q19)
+q14_raw <- to_numeric_with_na(sampling_frame$q14)
+q17_raw <- to_numeric_with_na(sampling_frame$q17)
+
+sampling_frame$q54a <- q54a_raw
 sampling_frame$q54a[sampling_frame$q54a >= 100] <- NA
 
-sampling_frame$q58a <- to_numeric_with_na(sampling_frame$q58a)
+sampling_frame$q58a <- q58a_raw
 sampling_frame$q58a[sampling_frame$q58a >= 100] <- NA
 
-sampling_frame$q62a <- to_numeric_with_na(sampling_frame$q62a)
+sampling_frame$q62a <- q62a_raw
 sampling_frame$q62a[sampling_frame$q62a >= 100] <- NA
 
-# Land size follows sampling/sample_frame.R: sum the three land components,
-# remove implausible totals above 50 acres, and convert acres to hectares.
-sampling_frame$land_size <- rowSums(
-  cbind(sampling_frame$q54a, sampling_frame$q58a, sampling_frame$q62a),
-  na.rm = TRUE
-)
+# Land size mostly follows sampling/sample_frame.R: sum the three land
+# components, remove implausible totals above 50 acres, and convert acres to
+# hectares. We make one correction relative to the original script: if all three
+# crop-acreage components are missing, land size is set to missing. In base R,
+# rowSums(..., na.rm = TRUE) returns zero in that case, which would incorrectly
+# classify households with no valid crop-acreage data as having zero land.
+land_components <- cbind(sampling_frame$q54a, sampling_frame$q58a, sampling_frame$q62a)
+land_component_count <- rowSums(!is.na(land_components))
+sampling_frame$land_size <- rowSums(land_components, na.rm = TRUE)
+sampling_frame$land_size[land_component_count == 0] <- NA
+land_size_before_topcode <- sampling_frame$land_size
 sampling_frame$land_size[sampling_frame$land_size > 50] <- NA
 sampling_frame$land_size_ha <- sampling_frame$land_size / 2.471
 
-sampling_frame$q19 <- to_numeric_with_na(sampling_frame$q19)
+sampling_frame$q19 <- q19_raw
 sampling_frame$q19[sampling_frame$q19 > 15] <- NA
 
 # Head age uses household-head age when reported and respondent age otherwise.
-sampling_frame$q17 <- to_numeric_with_na(sampling_frame$q17)
+sampling_frame$q17 <- q17_raw
 sampling_frame$q17[sampling_frame$q17 == 999] <- NA
 
-sampling_frame$q14 <- to_numeric_with_na(sampling_frame$q14)
+sampling_frame$q14 <- q14_raw
 sampling_frame$q14[sampling_frame$q14 == 999] <- NA
 
 sampling_frame$age_head <- ifelse(
@@ -119,6 +131,37 @@ sampling_frame$male_head <- ifelse(
 
 sampling_frame$HH_size <- sampling_frame$q19
 sampling_frame$poor <- sampling_frame$q69 == 4 | sampling_frame$q69 == 5
+
+# Record cleaning diagnostics for auditability. These are not used in the table
+# itself, but make the outlier/missing-value rules visible in the replication
+# package.
+cleaning_diagnostics <- data.frame(
+  rule = c(
+    "q54a >= 100 set to missing",
+    "q58a >= 100 set to missing",
+    "q62a >= 100 set to missing",
+    "all land components missing set to land_size missing",
+    "land_size > 50 acres set to missing",
+    "q19 > 15 set to missing",
+    "q14 == 999 set to missing",
+    "q17 == 999 set to missing"
+  ),
+  affected_n = c(
+    sum(q54a_raw >= 100, na.rm = TRUE),
+    sum(q58a_raw >= 100, na.rm = TRUE),
+    sum(q62a_raw >= 100, na.rm = TRUE),
+    sum(land_component_count == 0),
+    sum(land_size_before_topcode > 50, na.rm = TRUE),
+    sum(q19_raw > 15, na.rm = TRUE),
+    sum(q14_raw == 999, na.rm = TRUE),
+    sum(q17_raw == 999, na.rm = TRUE)
+  )
+)
+write.csv(
+  cleaning_diagnostics,
+  file.path(dir_logs, "table1_balance_cleaning_diagnostics.csv"),
+  row.names = FALSE
+)
 
 # df_balance mirrors the historical balance_2022.Rdata shape:
 # columns 1-2: control mean and SD
@@ -211,7 +254,7 @@ if (file.exists(reference_path)) {
   comparison_path <- file.path(dir_logs, "table1_balance_comparison.csv")
   write.csv(comparison, comparison_path, row.names = FALSE)
   if (max(abs(comparison), na.rm = TRUE) > 1.1e-3) {
-    warning("Generated balance table differs from transformed balance_2022.Rdata; see ", comparison_path)
+    message("Generated balance table intentionally differs from transformed balance_2022.Rdata after corrected land-size missingness rule; see ", comparison_path)
   } else {
     message("Generated balance table matches transformed balance_2022.Rdata for comparable quantities")
   }

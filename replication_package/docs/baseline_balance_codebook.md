@@ -65,7 +65,8 @@ The file contains only the fields needed to reconstruct the five baseline covari
 - Household-head age and sex use respondent age/sex when the respondent is the household head and household-head-specific fields are therefore not asked.
 - Household size values above 15 are treated as outliers in the original balance-table construction, even though the questionnaire allowed values up to 40 or 999.
 - Crop acreage variables are top-coded by setting values greater than or equal to 100 to missing before summing maize, groundnut, and soybean acreage.
-- The original balance-table code used `rowSums(..., na.rm = TRUE)` for land size. If all crop acreage components are missing, this returns zero. This should be treated as a coding issue to review before finalizing the replication package.
+- If all crop acreage components are missing after top-coding, land area is set to missing. This corrects the original `rowSums(..., na.rm = TRUE)` behavior, which would otherwise return zero for all-missing rows.
+- A cleaning diagnostics file is written to `output/logs/table1_balance_cleaning_diagnostics.csv` when Table 1 is regenerated.
 
 # Relationship To Table 1
 

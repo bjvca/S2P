@@ -40,9 +40,13 @@ foreach v in q54a q58a q62a {
     replace `v' = . if `v' >= 100
 }
 
-* Land size follows sampling/sample_frame.R: sum three land components, remove
-* implausible totals above 50 acres, and convert acres to hectares.
+* Land size mostly follows sampling/sample_frame.R: sum three land components,
+* remove implausible totals above 50 acres, and convert acres to hectares. We
+* make one correction relative to the original script: if all three land
+* components are missing, land size is set to missing rather than zero.
+egen land_component_count = rownonmiss(q54a q58a q62a)
 egen land_size = rowtotal(q54a q58a q62a)
+replace land_size = . if land_component_count == 0
 replace land_size = . if land_size > 50
 gen land_size_ha = land_size / 2.471
 

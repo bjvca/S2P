@@ -1,0 +1,9 @@
+"rule","affected_n"
+"q54a >= 100 set to missing",1
+"q58a >= 100 set to missing",0
+"q62a >= 100 set to missing",27
+"all land components missing set to land_size missing",4
+"land_size > 50 acres set to missing",1
+"q19 > 15 set to missing",2
+"q14 == 999 set to missing",29
+"q17 == 999 set to missing",48

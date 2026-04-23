@@ -35,6 +35,7 @@ The current output is:
 
 ```text
 output/tables/table1_balance.tex
+output/logs/table1_balance_cleaning_diagnostics.csv
 ```
 
 To copy generated paper-ready tables into the Overleaf manuscript repository:
