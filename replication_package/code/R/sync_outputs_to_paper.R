@@ -1,3 +1,12 @@
+# Copy generated table fragments into the Overleaf manuscript repository.
+#
+# Overleaf does not run R/Stata during LaTeX compilation. The replication
+# package is therefore the source of truth for statistical outputs, while the
+# paper repository receives generated .tex fragments that Overleaf can input.
+#
+# Run after Rscript run_all.R:
+#   Rscript code/R/sync_outputs_to_paper.R
+
 if (!exists("replication_root")) {
   args <- commandArgs(trailingOnly = FALSE)
   file_arg <- grep("^--file=", args, value = TRUE)
