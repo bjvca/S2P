@@ -37,6 +37,30 @@ The current output is:
 output/tables/table1_balance.tex
 ```
 
+To copy generated paper-ready tables into the Overleaf manuscript repository:
+
+```bash
+Rscript code/R/sync_outputs_to_paper.R
+```
+
+This copies generated `.tex` tables from:
+
+```text
+replication_package/output/tables/
+```
+
+to:
+
+```text
+paper/tables/
+```
+
+The manuscript should include synced tables using paths such as:
+
+```latex
+\input{tables/table1_balance.tex}
+```
+
 The Stata version of Table 1 can be run from the same folder if Stata is installed:
 
 ```bash
