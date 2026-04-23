@@ -79,6 +79,21 @@ means, standard deviations, and sample sizes should match the R output. Some p-v
 may differ because the R script uses `clubSandwich` CR3/Satterthwaite standard errors
 for the row-level balance regressions.
 
+## Codebooks
+
+The baseline balance dataset codebook is generated from the XLSForm questionnaire:
+
+```bash
+Rscript code/R/create_baseline_codebook.R
+```
+
+Outputs:
+
+```text
+docs/baseline_balance_codebook.md
+docs/baseline_balance_codebook.pdf
+```
+
 ## Rules
 
 - Include only data needed to reproduce paper outputs.
