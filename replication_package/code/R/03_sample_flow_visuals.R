@@ -38,7 +38,7 @@ stage_labels <- c(
   "Endline\ntarget",
   "Found",
   "Interview\ncompleted",
-  "Matched to soil test/\nrecommendation"
+  "Matched to\nsoil test data"
 )
 
 stage_counts <- rbind(
@@ -200,7 +200,7 @@ legend(
   "topright",
   inset = c(-0.27, 0),
   legend = c(
-    "Matched to recommendation",
+    "Matched to soil test data",
     "Interviewed but unmatched",
     "Found but not interviewed",
     "Not found",

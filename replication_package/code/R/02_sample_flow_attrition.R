@@ -178,7 +178,7 @@ write.csv(using_only_summary,
 latex_lines <- c(
   "\\begin{tabular}{lrrrrr}",
   "\\hline",
-  "Treatment arm & Baseline sample & Endline target & Found & Interview completed & Matched to recommendation \\\\",
+  "Treatment arm & Baseline sample & Endline target & Found & Interview completed & Matched to soil test data \\\\",
   "\\hline"
 )
 
