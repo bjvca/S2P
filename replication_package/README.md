@@ -82,18 +82,15 @@ for the row-level balance regressions.
 
 ## Codebooks
 
-The baseline balance dataset codebook is generated from the XLSForm questionnaire:
-
-```bash
-Rscript code/R/create_baseline_codebook.R
-```
-
-Outputs:
+The replication package includes a static codebook for the baseline balance dataset:
 
 ```text
 docs/baseline_balance_codebook.md
 docs/baseline_balance_codebook.pdf
 ```
+
+The generator script is not kept in this package. The package should contain the
+artifacts needed to reproduce paper outputs, not auxiliary documentation code.
 
 ## Rules
 
