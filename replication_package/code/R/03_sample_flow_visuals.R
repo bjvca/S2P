@@ -34,11 +34,11 @@ arm_levels <- c("C", "T1", "T2")
 sample_flow <- sample_flow[match(arm_levels, sample_flow$treatment), ]
 
 stage_labels <- c(
-  "Baseline sampled",
-  "Endline target",
+  "Baseline\nsampled",
+  "Endline\ntarget",
   "Found",
-  "Interview completed",
-  "Matched to recommendation"
+  "Interview\ncompleted",
+  "Matched to soil test/\nrecommendation"
 )
 
 stage_counts <- rbind(
@@ -61,7 +61,7 @@ retention_png <- file.path(dir_figures, "sample_flow_retention_plot.png")
 png(retention_png, width = 1600, height = 1000, res = 180)
 
 old_mar <- par("mar")
-par(mar = c(5, 6, 3, 5))
+par(mar = c(7, 6, 3, 5))
 
 x <- seq_along(stage_labels)
 cols <- c("C" = "#4E79A7", "T1" = "#F28E2B", "T2" = "#59A14F")
@@ -72,13 +72,21 @@ plot(
   x, stage_pct[, "C"],
   type = "n",
   xaxt = "n",
-  xlim = c(min(x), max(x) + 0.65),
+  xlim = c(min(x), max(x) + 0.95),
   ylim = c(60, 102),
   xlab = "",
   ylab = "Percent of baseline sampled households",
   las = 1
 )
-axis(1, at = x, labels = stage_labels, cex.axis = 0.9)
+axis(1, at = x, labels = FALSE)
+usr <- par("usr")
+text(
+  x = x,
+  y = usr[3] - 2.8,
+  labels = stage_labels,
+  cex = 0.85,
+  xpd = NA
+)
 abline(h = seq(60, 100, by = 10), col = "grey90", lwd = 1)
 
 for (arm in arm_levels) {
