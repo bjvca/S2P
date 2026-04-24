@@ -19,10 +19,11 @@ dir_data <- file.path(replication_root, "data", "analysis")
 dir_output <- file.path(replication_root, "output")
 dir_tables <- file.path(dir_output, "tables")
 dir_logs <- file.path(dir_output, "logs")
+dir_figures <- file.path(dir_output, "figures")
 
 # Create output folders on demand. Generated outputs are committed only when
 # they correspond to tables/figures used in the manuscript.
-for (d in c(dir_output, dir_tables, dir_logs)) {
+for (d in c(dir_output, dir_tables, dir_logs, dir_figures)) {
   if (!dir.exists(d)) dir.create(d, recursive = TRUE)
 }
 
