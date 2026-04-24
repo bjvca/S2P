@@ -1,0 +1,6 @@
+"metric","value"
+"interview_completion_control_mean","0.942470389170897"
+"interview_completion_t1_minus_control","-0.000248166948675157"
+"interview_completion_t2_minus_control","0.0415179659964976"
+"interview_completion_t1_equals_t2_pvalue","0.0016296260423884"
+"lee_bounds_triggered","No: differential interview attrition is statistically detectable but modest in magnitude"
