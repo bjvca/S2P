@@ -11,7 +11,8 @@ The package currently reproduces:
 - the sample-retention figure used in the main text;
 - the appendix table of differential attrition by survey stage;
 - the appendix retained-sample balance table;
-- the treatment-fidelity table.
+- the treatment-fidelity table;
+- the first fertilizer-use impact table.
 
 At present, the package uses two kinds of inputs.
 
@@ -73,6 +74,7 @@ output/tables/sample_flow_counts_pct.tex
 output/tables/attrition_stage_regressions.tex
 output/tables/retained_sample_balance.tex
 output/tables/table_first_stage.tex
+output/tables/table2_fertilizer_use.tex
 
 output/figures/sample_flow_retention_plot.png
 
@@ -84,9 +86,7 @@ output/logs/retained_sample_balance.csv
 output/logs/lee_bounds_trigger_note.csv
 output/logs/table_first_stage.csv
 output/logs/table_first_stage_conditional_stats.csv
-output/logs/table2_fertilizer_use_audit.csv
-output/logs/table2_fertilizer_outliers.csv
-output/logs/table2_fertilizer_sensitivity.csv
+output/logs/table2_fertilizer_use.csv
 ```
 
 To copy generated paper-ready tables into the Overleaf manuscript repository:
@@ -195,7 +195,7 @@ artifacts needed to reproduce paper outputs, not auxiliary documentation code.
   Produces the treatment-fidelity table. Its main outcomes are defined on the full interviewed sample so that treatment arms remain comparable despite questionnaire skip logic.
 
 - `06_table2_fertilizer_use_audit.R`  
-  Independently audits the first fertilizer-use impact table from the public merged analysis file, writes the candidate replications, and logs the outliers and trimming sensitivity that currently prevent a clean reproduction of the all-crops controlled column.
+  Generates the first fertilizer-use impact table from the public merged analysis file. The preferred adjusted columns include pre-treatment household and plot covariates only, and enter education level, slope, soil structure, and seed type as categorical controls. The script keeps the earlier mistaken control block in comments to document why post-treatment controls and linearized categorical controls were dropped.
 
 ## Rules
 
@@ -210,7 +210,7 @@ artifacts needed to reproduce paper outputs, not auxiliary documentation code.
 
 To audit and reproduce the remaining paper tables, this package still needs:
 
-- the cleaned analysis dataset and source code used for the main fertilizer-use, nutrient-use, yield, expenditure, profit, and SNM-practice tables;
-- the Stata or R scripts used by coauthors to generate `Table 2.tex`, `Table 3.tex`, `Table 4.tex`, `Table 5.tex`, `total_farm_exp.tex`, `farm_profits.tex`, and `SNM_practices*.tex`;
+- the cleaned analysis dataset and source code used for the nutrient-use, yield, expenditure, profit, and SNM-practice tables;
+- the Stata or R scripts used by coauthors to generate `Table 3.tex`, `Table 4.tex`, `Table 5.tex`, `total_farm_exp.tex`, `farm_profits.tex`, and `SNM_practices*.tex`;
 - a variable dictionary or codebook for treatment variables, outcomes, controls, cluster identifiers, and sample restrictions used in the main outcome analysis;
 - a documented rule for how recommendation-linked outcomes should treat unmatched observations and recommendation-file-only records.

@@ -14,7 +14,8 @@ scripts <- c(
   "code/R/02_sample_flow_attrition.R",
   "code/R/03_sample_flow_visuals.R",
   "code/R/04_attrition_diagnostics.R",
-  "code/R/05_table_first_stage.R"
+  "code/R/05_table_first_stage.R",
+  "code/R/06_table2_fertilizer_use_audit.R"
 )
 
 for (script in scripts) {
