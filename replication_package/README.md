@@ -4,13 +4,31 @@ This folder is the working replication package for the S2P paper. It should cont
 
 ## Current Scope
 
-The package currently reproduces Table 1, the baseline balance table, using the saved object:
+The package currently reproduces:
+
+- the baseline balance table;
+- the sample-flow appendix table;
+- the sample-retention figure used in the main text;
+- the appendix table of differential attrition by survey stage;
+- the appendix retained-sample balance table;
+- the treatment-fidelity table.
+
+At present, the package uses two kinds of inputs.
+
+1. Compact analysis data stored inside the replication package:
 
 ```text
+data/analysis/baseline_balance_sample.csv
 data/analysis/balance_2022.Rdata
 ```
 
-This object is copied from `sampling/balance_2022.Rdata`. It contains the balance-table results used in the PAP and current manuscript. It is enough to reproduce the displayed table, but not enough to audit the construction from household-level baseline microdata.
+2. Cleaned public analysis data stored in the main repository and read by relative path:
+
+```text
+../endline/data/public/clear_merged_data.csv
+```
+
+The baseline balance table is reproduced from the de-identified sampled baseline frame, not from the original 2022 raw source file. The endline sample-flow, attrition, and treatment-fidelity outputs are reproduced from the cleaned merged endline analysis extract.
 
 ## Structure
 
@@ -19,6 +37,7 @@ code/R/            R scripts for paper outputs
 code/stata/        Stata scripts for cross-checks where available
 data/analysis/     analysis datasets or compact table inputs
 output/tables/     generated LaTeX tables
+output/figures/    generated figures
 output/logs/       logs and diagnostics
 run_all.R          runs all current replication scripts
 ```
@@ -31,11 +50,35 @@ From this folder:
 Rscript run_all.R
 ```
 
-The current output is:
+The current scripts are:
+
+```text
+code/R/01_table1_balance.R
+code/R/02_sample_flow_attrition.R
+code/R/03_sample_flow_visuals.R
+code/R/04_attrition_diagnostics.R
+code/R/05_table_first_stage.R
+```
+
+The current generated outputs include:
 
 ```text
 output/tables/table1_balance.tex
+output/tables/sample_flow_counts_pct.tex
+output/tables/attrition_stage_regressions.tex
+output/tables/retained_sample_balance.tex
+output/tables/table_first_stage.tex
+
+output/figures/sample_flow_retention_plot.png
+
 output/logs/table1_balance_cleaning_diagnostics.csv
+output/logs/sample_flow_attrition.csv
+output/logs/sample_flow_merge_diagnostics.csv
+output/logs/attrition_stage_regressions.csv
+output/logs/retained_sample_balance.csv
+output/logs/lee_bounds_trigger_note.csv
+output/logs/table_first_stage.csv
+output/logs/table_first_stage_conditional_stats.csv
 ```
 
 To copy generated paper-ready tables into the Overleaf manuscript repository:
@@ -60,6 +103,12 @@ The manuscript should include synced tables using paths such as:
 
 ```latex
 \input{tables/table1_balance.tex}
+```
+
+Figures are copied separately when needed. The current paper uses:
+
+```text
+paper/figures/sample_flow_retention_plot.png
 ```
 
 The Stata version of Table 1 can be run from the same folder if Stata is installed:
@@ -92,6 +141,23 @@ docs/baseline_balance_codebook.pdf
 The generator script is not kept in this package. The package should contain the
 artifacts needed to reproduce paper outputs, not auxiliary documentation code.
 
+## Current Outputs And Their Purpose
+
+- `01_table1_balance.R`  
+  Reproduces the baseline balance table from the de-identified sampled baseline frame.
+
+- `02_sample_flow_attrition.R`  
+  Builds the sample-flow counts used for the sample-realization appendix table and merge diagnostics.
+
+- `03_sample_flow_visuals.R`  
+  Produces the retention figure used in the main text and the counts-plus-percentages appendix table.
+
+- `04_attrition_diagnostics.R`  
+  Estimates differential attrition by survey stage and constructs the retained-sample balance table. It also writes a Lee-bounds trigger note rather than mechanically computing bounds.
+
+- `05_table_first_stage.R`  
+  Produces the treatment-fidelity table. Its main outcomes are defined on the full interviewed sample so that treatment arms remain comparable despite questionnaire skip logic.
+
 ## Rules
 
 - Include only data needed to reproduce paper outputs.
@@ -99,11 +165,13 @@ artifacts needed to reproduce paper outputs, not auxiliary documentation code.
 - Prefer final analysis datasets over raw data when raw data cannot be made public.
 - Each paper table or figure should have one script with a stable name, for example `02_table2_fertilizer_use.R`.
 - Scripts should write outputs to `output/tables/` or `output/figures/`, not into the manuscript folder.
+- When a paper output depends on data outside the replication package, document that dependency explicitly in script comments and in this README.
 
 ## Missing Inputs
 
 To audit and reproduce the remaining paper tables, this package still needs:
 
-- the cleaned analysis dataset used for the current results tables;
+- the cleaned analysis dataset and source code used for the main fertilizer-use, nutrient-use, yield, expenditure, profit, and SNM-practice tables;
 - the Stata or R scripts used by coauthors to generate `Table 2.tex`, `Table 3.tex`, `Table 4.tex`, `Table 5.tex`, `total_farm_exp.tex`, `farm_profits.tex`, and `SNM_practices*.tex`;
-- a variable dictionary or codebook for treatment variables, outcomes, controls, cluster identifiers, and sample restrictions.
+- a variable dictionary or codebook for treatment variables, outcomes, controls, cluster identifiers, and sample restrictions used in the main outcome analysis;
+- a documented rule for how recommendation-linked outcomes should treat unmatched observations and recommendation-file-only records.
