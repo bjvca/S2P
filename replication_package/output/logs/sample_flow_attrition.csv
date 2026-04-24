@@ -1,0 +1,4 @@
+"treatment","baseline_sample_n","endline_target_n","found_n","not_found_n","interview_completed_n","interview_refused_n","matched_recommendation_n","unmatched_endline_n","endline_target_rate","found_rate","interview_completed_rate","matched_recommendation_rate_baseline","matched_recommendation_rate_endline"
+"C",612,591,559,32,557,1,407,184,0.965686274509804,0.913398692810457,0.910130718954248,0.665032679738562,0.688663282571912
+"T1",720,675,636,39,636,0,607,68,0.9375,0.883333333333333,0.883333333333333,0.843055555555556,0.899259259259259
+"T2",702,687,678,9,676,0,620,67,0.978632478632479,0.965811965811966,0.962962962962963,0.883190883190883,0.902474526928675
