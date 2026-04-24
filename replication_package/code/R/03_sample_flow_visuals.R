@@ -3,7 +3,6 @@
 # This script turns the audit outputs from 02_sample_flow_attrition.R into:
 #   1. A main-text retention plot in percentages by treatment arm and stage.
 #   2. A manuscript table that combines counts and percentages.
-#   3. An appendix-style decomposition bar chart showing where sample losses occur.
 #
 # The percentages are always expressed relative to the original sampled baseline
 # frame. That keeps denominators constant across stages and makes treatment-arm
@@ -157,64 +156,5 @@ table_lines <- c(
 
 writeLines(table_lines, file.path(dir_tables, "sample_flow_counts_pct.tex"))
 
-# -----------------------------------------------------------------------------
-# Appendix figure: decomposition of sample losses
-# -----------------------------------------------------------------------------
-
-loss_components <- rbind(
-  matched = sample_flow$matched_recommendation_n,
-  interviewed_unmatched = sample_flow$interview_completed_n - sample_flow$matched_recommendation_n,
-  found_not_interviewed = sample_flow$found_n - sample_flow$interview_completed_n,
-  not_found = sample_flow$not_found_n,
-  not_in_endline_target = sample_flow$baseline_sample_n - sample_flow$endline_target_n
-)
-colnames(loss_components) <- sample_flow$treatment
-loss_pct <- sweep(loss_components, 2, sample_flow$baseline_sample_n, "/") * 100
-
-decomp_png <- file.path(dir_figures, "sample_flow_decomposition_bar.png")
-png(decomp_png, width = 1600, height = 1000, res = 180)
-
-old_mar <- par("mar")
-par(mar = c(5, 6, 3, 8), xpd = NA)
-
-bar_cols <- c(
-  matched = "#59A14F",
-  interviewed_unmatched = "#76B7B2",
-  found_not_interviewed = "#EDC948",
-  not_found = "#E15759",
-  not_in_endline_target = "#B07AA1"
-)
-
-barplot(
-  loss_pct,
-  beside = FALSE,
-  col = bar_cols[rownames(loss_pct)],
-  ylim = c(0, 100),
-  names.arg = c("Control", "Treatment 1", "Treatment 2"),
-  ylab = "Percent of baseline sampled households",
-  las = 1
-)
-abline(h = seq(0, 100, by = 10), col = "grey90", lwd = 1)
-
-legend(
-  "topright",
-  inset = c(-0.27, 0),
-  legend = c(
-    "Matched to soil test data",
-    "Interviewed but unmatched",
-    "Found but not interviewed",
-    "Not found",
-    "Not in endline target"
-  ),
-  fill = bar_cols[c("matched", "interviewed_unmatched", "found_not_interviewed", "not_found", "not_in_endline_target")],
-  bty = "n",
-  cex = 0.95
-)
-
-title("Where sample loss occurs by treatment arm")
-par(mar = old_mar)
-dev.off()
-
 message("Wrote retention plot to: ", retention_png)
 message("Wrote counts-plus-percentages table to: ", file.path(dir_tables, "sample_flow_counts_pct.tex"))
-message("Wrote decomposition bar chart to: ", decomp_png)
