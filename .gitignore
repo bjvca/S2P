@@ -1,4 +1,6 @@
 paper/
 .DS_Store
 
-literature/
+literature
+endline/data/public/endline_data_merged.csv
+endline/data/public/anonymized_merged_data.csv
