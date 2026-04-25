@@ -1,0 +1,21 @@
+{
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{8}{c}}
+\toprule
+& \multicolumn{8}{c}{Nutrient application on maize plots (kg/ha)} \\
+\cmidrule(lr){2-9}
+& \multicolumn{2}{c}{Nitrogen} & \multicolumn{2}{c}{Phosphorus} & \multicolumn{2}{c}{Potassium} & \multicolumn{2}{c}{Total nutrients} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7} \cmidrule(lr){8-9}
+& (1) & (2) & (3) & (4) & (5) & (6) & (7) & (8) \\
+\midrule
+Treatment one & 0.64 & 0.61 & 0.13 & 0.14 & 0.08 & 0.08 & 0.85 & 0.83 \\
+& (1.97) & (1.73) & (0.20) & (0.19) & (0.10) & (0.10) & (2.12) & (1.89) \\
+Treatment two & 10.38\sym{***} & 9.10\sym{***} & 1.63\sym{***} & 1.50\sym{***} & 0.83\sym{***} & 0.77\sym{***} & 12.84\sym{***} & 11.38\sym{***} \\
+& (1.19) & (1.23) & (0.18) & (0.17) & (0.09) & (0.08) & (1.44) & (1.45) \\
+Control mean & 18.41 & 18.40 & 2.50 & 2.50 & 1.26 & 1.26 & 22.17 & 22.15 \\
+\midrule
+Pre-treatment controls & No & Yes & No & Yes & No & Yes & No & Yes \\
+Number of observations & 1626 & 1595 & 1626 & 1595 & 1626 & 1595 & 1626 & 1595 \\
+\bottomrule
+\end{tabular}
+}
