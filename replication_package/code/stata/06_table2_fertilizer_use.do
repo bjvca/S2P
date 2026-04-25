@@ -22,6 +22,8 @@ set more off
 *     categorical controls.
 *   - agronaut visits and extension contact are excluded from the preferred
 *     adjusted specification because they can be affected by treatment.
+*   - Two implausibly large tobacco observations (farmer_id F_546 and F_387)
+*     are excluded explicitly because they dominate the all-crops means.
 
 local root "`c(pwd)'"
 local data_endline "`root'/../endline/data/public/clear_merged_data.csv"
@@ -69,6 +71,7 @@ end
 
 import delimited using "`data_endline'", clear varnames(1) stringcols(_all)
 keep if inlist(treat, "C", "T1", "T2")
+drop if inlist(farmer_id, "F_546", "F_387")
 
 * Numeric variables arrive from CSV as strings. Convert only the fields used by
 * the fertilizer-use table and leave the questionnaire text variables untouched.

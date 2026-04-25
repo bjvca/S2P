@@ -206,7 +206,7 @@ artifacts needed to reproduce paper outputs, not auxiliary documentation code.
   Produces the treatment-fidelity table. Its main outcomes are defined on the full interviewed sample so that treatment arms remain comparable despite questionnaire skip logic.
 
 - `06_table2_fertilizer_use_audit.R`  
-  Generates the first fertilizer-use impact table from the public merged analysis file. The preferred adjusted columns include pre-treatment household and plot covariates only, and enter education level, slope, soil structure, and seed type as categorical controls. The script keeps the earlier mistaken control block in comments to document why post-treatment controls and linearized categorical controls were dropped.
+  Generates the first fertilizer-use impact table from the public merged analysis file. The preferred adjusted columns include pre-treatment household and plot covariates only, and enter education level, slope, soil structure, and seed type as categorical controls. The script keeps the earlier mistaken control block in comments to document why post-treatment controls and linearized categorical controls were dropped. It also excludes two implausibly large tobacco observations (`farmer_id` `F_546` and `F_387`) that otherwise dominate the all-crops treatment means.
 
 ## Rules
 

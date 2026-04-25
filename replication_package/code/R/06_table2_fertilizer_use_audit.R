@@ -18,6 +18,8 @@
 #   2. It passed hh_educ, slope, soil_str, and seed_typ_num as if they were
 #      continuous, even though the questionnaire and the exported CSV make clear
 #      that they are categorical.
+#   3. It left in two implausibly large tobacco observations (farmer_id F_546
+#      and F_387) that dominated the all-crops treatment means.
 #
 # Original control block kept for documentation only:
 # mistaken_controls <- c(
@@ -62,6 +64,11 @@ endline_path <- file.path(dir_repo, "endline", "data", "public", "clear_merged_d
 
 df <- read.csv(endline_path, stringsAsFactors = FALSE)
 df <- subset(df, treat %in% c("C", "T1", "T2"))
+
+# Drop two implausibly large tobacco observations that dominate the all-crops
+# fertilizer results. These cases do not affect the maize-only columns because
+# neither household's main crop is maize.
+df <- subset(df, !(farmer_id %in% c("F_546", "F_387")))
 
 df$treat_num <- factor(df$treat_num, levels = c("C", "T1", "T2"))
 df$main_maize <- df$main_crp == "MAIZE"
