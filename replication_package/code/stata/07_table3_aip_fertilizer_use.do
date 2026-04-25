@@ -53,9 +53,12 @@ program define post_spec
         local t2_p = 2 * ttail(e(df_r), abs(`t2_coef' / `t2_se'))
     }
 
+    quietly test 2.treat_num = 3.treat_num
+    local p_equal = r(p)
+
     post `handle' ("`label'") ("`sample'") ("`controls'") (`n') (`clusters') ///
         (`control_mean') (`t1_coef') (`t1_se') (`t1_p') ///
-        (`t2_coef') (`t2_se') (`t2_p')
+        (`t2_coef') (`t2_se') (`t2_p') (`p_equal')
 end
 
 import delimited using "`data_endline'", clear varnames(1) stringcols(_all)
@@ -83,7 +86,7 @@ local fert_controls hh_size hh_age i.hh_educ_cat dist_agro plot_siz ///
 
 tempname handle
 postfile `handle' str3 column str12 sample str3 controls double n clusters ///
-    control_mean t1_coef t1_se t1_p t2_coef t2_se t2_p using "`results'", replace
+    control_mean t1_coef t1_se t1_p t2_coef t2_se t2_p p_equal using "`results'", replace
 
 quietly regress total_qty_fert_AIP i.treat_num, vce(cluster cluster_id)
 post_spec, label("(1)") sample("All crops") controls("No") handle(`handle')
@@ -114,6 +117,7 @@ gen str16 t1_se_fmt = cond(missing(t1_se), "", ///
 gen str16 t2_se_fmt = cond(missing(t2_se), "", ///
     strtrim(string(cond(abs(t2_se) < 0.0005, 0, t2_se), "%9.2f")))
 gen str16 n_fmt = cond(missing(n), "", strtrim(string(n, "%9.0f")))
+gen str16 p_equal_fmt = cond(missing(p_equal), "", strtrim(string(p_equal, "%9.3f")))
 
 gen str12 t1_star = ""
 replace t1_star = "\\sym{***}" if t1_p < 0.01
@@ -140,6 +144,7 @@ file write tex "Treatment one & `=t1_cell[1]' & `=t1_cell[2]' & `=t1_cell[3]' & 
 file write tex "& (`=t1_se_fmt[1]') & (`=t1_se_fmt[2]') & (`=t1_se_fmt[3]') & (`=t1_se_fmt[4]') \\" _n
 file write tex "Treatment two & `=t2_cell[1]' & `=t2_cell[2]' & `=t2_cell[3]' & `=t2_cell[4]' \\" _n
 file write tex "& (`=t2_se_fmt[1]') & (`=t2_se_fmt[2]') & (`=t2_se_fmt[3]') & (`=t2_se_fmt[4]') \\" _n
+file write tex "p-value: T2 = T1 & `=p_equal_fmt[1]' & `=p_equal_fmt[2]' & `=p_equal_fmt[3]' & `=p_equal_fmt[4]' \\" _n
 file write tex "Control mean & `=control_mean_fmt[1]' & `=control_mean_fmt[2]' & `=control_mean_fmt[3]' & `=control_mean_fmt[4]' \\" _n
 file write tex "\midrule" _n
 file write tex "Pre-treatment controls & `=controls[1]' & `=controls[2]' & `=controls[3]' & `=controls[4]' \\" _n

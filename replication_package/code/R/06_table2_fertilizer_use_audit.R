@@ -121,6 +121,13 @@ fit_spec <- function(data, rhs_terms, sample_label, column_label) {
   df_cluster <- cluster_count - 1
   t1_p <- 2 * pt(abs(t1_beta / t1_se), df = df_cluster, lower.tail = FALSE)
   t2_p <- 2 * pt(abs(t2_beta / t2_se), df = df_cluster, lower.tail = FALSE)
+  diff_beta <- t2_beta - t1_beta
+  diff_se <- sqrt(
+    vcov_stage["treat_numT2", "treat_numT2"] +
+      vcov_stage["treat_numT1", "treat_numT1"] -
+      2 * vcov_stage["treat_numT2", "treat_numT1"]
+  )
+  p_equal <- 2 * pt(abs(diff_beta / diff_se), df = df_cluster, lower.tail = FALSE)
 
   data.frame(
     column = column_label,
@@ -134,6 +141,7 @@ fit_spec <- function(data, rhs_terms, sample_label, column_label) {
     t2 = t2_beta,
     t2_se = t2_se,
     t2_p = t2_p,
+    p_equal = p_equal,
     uses_controls = ifelse(length(rhs_terms) > 1, "Yes", "No"),
     stringsAsFactors = FALSE
   )
@@ -220,6 +228,13 @@ table_lines <- c(
     fmt_num(spec_results$t2_se[2], 2),
     fmt_num(spec_results$t2_se[3], 2),
     fmt_num(spec_results$t2_se[4], 2)
+  ),
+  sprintf(
+    "p-value: T2 = T1 & %s & %s & %s & %s \\\\",
+    fmt_num(spec_results$p_equal[1], 3),
+    fmt_num(spec_results$p_equal[2], 3),
+    fmt_num(spec_results$p_equal[3], 3),
+    fmt_num(spec_results$p_equal[4], 3)
   ),
   sprintf(
     "Control mean & %s & %s & %s & %s \\\\",
