@@ -1,0 +1,19 @@
+{
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{4}{c}}
+\toprule
+&\multicolumn{2}{c}{All crops} & \multicolumn{2}{c}{Maize only} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+& (1) & (2) & (3) & (4) \\
+\midrule
+Treatment one & -1.44 & -1.78 & -1.14 & -1.40 \\
+& (1.60) & (1.75) & (2.01) & (2.03) \\
+Treatment two & -7.49\sym{***} & -7.79\sym{***} & -9.00\sym{***} & -8.72\sym{***} \\
+& (1.38) & (1.52) & (1.64) & (1.71) \\
+Control mean & 10.23 & 11.11 & 12.00 & 12.24 \\
+\midrule
+Pre-treatment controls & No & Yes & No & Yes \\
+Number of observations & 1953 & 1831 & 1626 & 1595 \\
+\bottomrule
+\end{tabular}
+}

@@ -12,7 +12,8 @@ The package currently reproduces:
 - the appendix table of differential attrition by survey stage;
 - the appendix retained-sample balance table;
 - the treatment-fidelity table;
-- the first fertilizer-use impact table.
+- the first fertilizer-use impact table;
+- the AIP fertilizer-use impact table.
 
 At present, the package uses two kinds of inputs.
 
@@ -60,11 +61,13 @@ code/R/03_sample_flow_visuals.R
 code/R/04_attrition_diagnostics.R
 code/R/05_table_first_stage.R
 code/R/06_table2_fertilizer_use_audit.R
+code/R/07_table3_aip_fertilizer_use.R
 
 code/stata/01_table1_balance.do
 code/stata/04_attrition_diagnostics.do
 code/stata/05_table_first_stage.do
 code/stata/06_table2_fertilizer_use.do
+code/stata/07_table3_aip_fertilizer_use.do
 ```
 
 The current generated outputs include:
@@ -76,6 +79,7 @@ output/tables/attrition_stage_regressions.tex
 output/tables/retained_sample_balance.tex
 output/tables/table_first_stage.tex
 output/tables/table2_fertilizer_use.tex
+output/tables/table3_aip_fertilizer_use.tex
 
 output/figures/sample_flow_retention_plot.png
 
@@ -88,6 +92,7 @@ output/logs/lee_bounds_trigger_note.csv
 output/logs/table_first_stage.csv
 output/logs/table_first_stage_conditional_stats.csv
 output/logs/table2_fertilizer_use.csv
+output/logs/table3_aip_fertilizer_use.csv
 ```
 
 To copy generated paper-ready tables into the Overleaf manuscript repository:
@@ -157,6 +162,9 @@ output/logs/table_first_stage_conditional_stats_stata.csv
 
 output/tables/table2_fertilizer_use_stata.tex
 output/logs/table2_fertilizer_use_stata.csv
+
+output/tables/table3_aip_fertilizer_use_stata.tex
+output/logs/table3_aip_fertilizer_use_stata.csv
 ```
 
 These Stata scripts are independent reproductions of the survey-stage attrition
@@ -175,6 +183,10 @@ controls only and enter education level, slope, soil structure, and seed type
 as categorical controls. It excludes agronaut visits and extension contact from
 the preferred adjusted specification for the same reason as the R code: those
 variables can be treatment-affected.
+
+The AIP fertilizer-use scripts use the same control strategy. Unlike total
+fertilizer use, the AIP fertilizer outcome does not show an extreme-outlier
+problem, so no case-level exclusion is applied.
 
 ## Codebooks
 
@@ -208,6 +220,9 @@ artifacts needed to reproduce paper outputs, not auxiliary documentation code.
 - `06_table2_fertilizer_use_audit.R`  
   Generates the first fertilizer-use impact table from the public merged analysis file. The preferred adjusted columns include pre-treatment household and plot covariates only, and enter education level, slope, soil structure, and seed type as categorical controls. The script keeps the earlier mistaken control block in comments to document why post-treatment controls and linearized categorical controls were dropped. It also excludes two implausibly large tobacco observations (`farmer_id` `F_546` and `F_387`) that otherwise dominate the all-crops treatment means.
 
+- `07_table3_aip_fertilizer_use.R`  
+  Generates the AIP fertilizer-use table from the public merged analysis file using the same preferred control strategy as the total fertilizer-use table. No fertilizer outlier exclusion is applied to this outcome.
+
 ## Rules
 
 - Include only data needed to reproduce paper outputs.
@@ -222,6 +237,6 @@ artifacts needed to reproduce paper outputs, not auxiliary documentation code.
 To audit and reproduce the remaining paper tables, this package still needs:
 
 - the cleaned analysis dataset and source code used for the nutrient-use, yield, expenditure, profit, and SNM-practice tables;
-- the Stata or R scripts used by coauthors to generate `Table 3.tex`, `Table 4.tex`, `Table 5.tex`, `total_farm_exp.tex`, `farm_profits.tex`, and `SNM_practices*.tex`;
+- the Stata or R scripts used by coauthors to generate `Table 4.tex`, `Table 5.tex`, `total_farm_exp.tex`, `farm_profits.tex`, and `SNM_practices*.tex`;
 - a variable dictionary or codebook for treatment variables, outcomes, controls, cluster identifiers, and sample restrictions used in the main outcome analysis;
 - a documented rule for how recommendation-linked outcomes should treat unmatched observations and recommendation-file-only records.
