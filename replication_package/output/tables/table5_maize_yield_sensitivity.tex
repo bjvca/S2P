@@ -1,0 +1,14 @@
+{
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{lcccc}
+\toprule
+Scenario & N & T1 & T2 & p-value: T2 = T1 \\
+\midrule
+Preferred adjusted specification & 1565 & -0.12 & 0.29\sym{***} & 0.000 \\
+Drop largest yield observation & 1564 & -0.12 & 0.28\sym{***} & 0.001 \\
+Drop yield above 10,000 kg/acre & 1561 & -0.13 & 0.27\sym{***} & 0.000 \\
+Drop yield above 5,000 kg/acre & 1551 & -0.13 & 0.28\sym{***} & 0.000 \\
+Drop maize area below 0.1 acre & 1563 & -0.12 & 0.29\sym{***} & 0.000 \\
+\bottomrule
+\end{tabular}
+}

@@ -170,6 +170,49 @@ write.csv(
   row.names = FALSE
 )
 
+sens_rows <- c(
+  "preferred_adjusted",
+  "drop_top_yield_F_3183",
+  "drop_yield_above_10000",
+  "drop_yield_above_5000",
+  "drop_maize_area_below_0.1"
+)
+sens_labels <- c(
+  "Preferred adjusted specification",
+  "Drop largest yield observation",
+  "Drop yield above 10,000 kg/acre",
+  "Drop yield above 5,000 kg/acre",
+  "Drop maize area below 0.1 acre"
+)
+sens <- sensitivity_results[match(sens_rows, sensitivity_results$scenario), ]
+sensitivity_table_lines <- c(
+  "{",
+  "\\def\\sym#1{\\ifmmode^{#1}\\else\\(^{#1}\\)\\fi}",
+  "\\begin{tabular}{lcccc}",
+  "\\toprule",
+  "Scenario & N & T1 & T2 & p-value: T2 = T1 \\\\",
+  "\\midrule",
+  paste0(
+    sens_labels,
+    " & ",
+    fmt_num(sens$n, 0),
+    " & ",
+    mapply(fmt_coef, sens$t1, sens$t1_p),
+    " & ",
+    mapply(fmt_coef, sens$t2, sens$t2_p),
+    " & ",
+    fmt_num(sens$p_equal, 3),
+    " \\\\"
+  ),
+  "\\bottomrule",
+  "\\end{tabular}",
+  "}"
+)
+writeLines(
+  sensitivity_table_lines,
+  file.path(dir_tables, "table5_maize_yield_sensitivity.tex")
+)
+
 table_lines <- c(
   "{",
   "\\def\\sym#1{\\ifmmode^{#1}\\else\\(^{#1}\\)\\fi}",
@@ -236,3 +279,4 @@ message("Wrote maize-yield table to: ", file.path(dir_tables, "table5_maize_yiel
 message("Wrote maize-yield log to: ", file.path(dir_logs, "table5_maize_yield.csv"))
 message("Wrote top-yield diagnostics to: ", file.path(dir_logs, "table5_maize_yield_top_values.csv"))
 message("Wrote yield sensitivity checks to: ", file.path(dir_logs, "table5_maize_yield_sensitivity.csv"))
+message("Wrote yield sensitivity table to: ", file.path(dir_tables, "table5_maize_yield_sensitivity.tex"))

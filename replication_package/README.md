@@ -15,7 +15,8 @@ The package currently reproduces:
 - the first fertilizer-use impact table;
 - the AIP fertilizer-use impact table;
 - the nutrient-use impact table;
-- the maize-yield impact table.
+- the maize-yield impact table;
+- the expenditure/profit audit outputs.
 
 At present, the package uses two kinds of inputs.
 
@@ -66,6 +67,7 @@ code/R/06_table2_fertilizer_use_audit.R
 code/R/07_table3_aip_fertilizer_use.R
 code/R/08_table4_nutrient_use.R
 code/R/09_table5_maize_yield.R
+code/R/10_expenditure_profit_audit.R
 
 code/stata/01_table1_balance.do
 code/stata/04_attrition_diagnostics.do
@@ -87,6 +89,8 @@ output/tables/table2_fertilizer_use.tex
 output/tables/table3_aip_fertilizer_use.tex
 output/tables/table4_nutrient_use.tex
 output/tables/table5_maize_yield.tex
+output/tables/table5_maize_yield_sensitivity.tex
+output/tables/expenditure_profit_audit.tex
 
 output/figures/sample_flow_retention_plot.png
 
@@ -104,6 +108,8 @@ output/logs/table4_nutrient_use.csv
 output/logs/table5_maize_yield.csv
 output/logs/table5_maize_yield_top_values.csv
 output/logs/table5_maize_yield_sensitivity.csv
+output/logs/expenditure_profit_audit.csv
+output/logs/expenditure_profit_sample_diagnostics.csv
 ```
 
 To copy generated paper-ready tables into the Overleaf manuscript repository:
@@ -212,6 +218,11 @@ strategy as the fertilizer tables and excludes agronaut visits and extension
 contact from the adjusted specification because those variables can respond to
 treatment.
 
+The expenditure/profit audit script is diagnostic rather than final. It compares
+the existing logged expenditure and profit outcomes with alternative codings
+that handle zero expenditure and non-positive profits differently. These checks
+should be resolved before replacing the manuscript expenditure and profit tables.
+
 ## Codebooks
 
 The replication package includes a static codebook for the baseline balance dataset:
@@ -253,6 +264,9 @@ artifacts needed to reproduce paper outputs, not auxiliary documentation code.
 - `09_table5_maize_yield.R`
   Generates the maize-yield table from the public merged analysis file. The outcome is log maize yield, and the preferred adjusted column uses pre-treatment controls only. The script also writes top-yield and sensitivity diagnostic logs for auditing extreme yield values.
 
+- `10_expenditure_profit_audit.R`
+  Audits the expenditure and profit outcomes. It estimates the preferred no-post-treatment-control specification for the current logged outcomes and diagnostic alternatives, and writes sample-composition diagnostics for zero expenditure and non-positive profits.
+
 ## Rules
 
 - Include only data needed to reproduce paper outputs.
@@ -266,7 +280,7 @@ artifacts needed to reproduce paper outputs, not auxiliary documentation code.
 
 To audit and reproduce the remaining paper tables, this package still needs:
 
-- the cleaned analysis dataset and source code used for the expenditure, profit, and SNM-practice tables;
-- the Stata or R scripts used by coauthors to generate `total_farm_exp.tex`, `farm_profits.tex`, and `SNM_practices*.tex`;
+- the cleaned analysis dataset and source code used for the SNM-practice tables;
+- the Stata or R scripts used by coauthors to generate `SNM_practices*.tex`;
 - a variable dictionary or codebook for treatment variables, outcomes, controls, cluster identifiers, and sample restrictions used in the main outcome analysis;
 - a documented rule for how recommendation-linked outcomes should treat unmatched observations and recommendation-file-only records.
