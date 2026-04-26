@@ -17,7 +17,8 @@ scripts <- c(
   "code/R/05_table_first_stage.R",
   "code/R/06_table2_fertilizer_use_audit.R",
   "code/R/07_table3_aip_fertilizer_use.R",
-  "code/R/08_table4_nutrient_use.R"
+  "code/R/08_table4_nutrient_use.R",
+  "code/R/09_table5_maize_yield.R"
 )
 
 for (script in scripts) {
