@@ -19,7 +19,8 @@ scripts <- c(
   "code/R/07_table3_aip_fertilizer_use.R",
   "code/R/08_table4_nutrient_use.R",
   "code/R/09_table5_maize_yield.R",
-  "code/R/10_expenditure_profit_audit.R"
+  "code/R/10_expenditure_profit_audit.R",
+  "code/R/11_table6_economic_outcomes_levels.R"
 )
 
 for (script in scripts) {

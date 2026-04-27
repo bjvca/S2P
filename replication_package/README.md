@@ -16,7 +16,8 @@ The package currently reproduces:
 - the AIP fertilizer-use impact table;
 - the nutrient-use impact table;
 - the maize-yield impact table;
-- the expenditure/profit audit outputs.
+- the expenditure/profit audit outputs;
+- the level economic-outcome table separating value of production, costs, and profits.
 
 At present, the package uses two kinds of inputs.
 
@@ -68,6 +69,7 @@ code/R/07_table3_aip_fertilizer_use.R
 code/R/08_table4_nutrient_use.R
 code/R/09_table5_maize_yield.R
 code/R/10_expenditure_profit_audit.R
+code/R/11_table6_economic_outcomes_levels.R
 
 code/stata/01_table1_balance.do
 code/stata/04_attrition_diagnostics.do
@@ -77,6 +79,7 @@ code/stata/07_table3_aip_fertilizer_use.do
 code/stata/08_table4_nutrient_use.do
 code/stata/09_table5_maize_yield.do
 code/stata/10_expenditure_profit_audit.do
+code/stata/11_table6_economic_outcomes_levels.do
 ```
 
 The current generated outputs include:
@@ -93,6 +96,7 @@ output/tables/table4_nutrient_use.tex
 output/tables/table5_maize_yield.tex
 output/tables/table5_maize_yield_sensitivity.tex
 output/tables/expenditure_profit_audit.tex
+output/tables/table6_economic_outcomes_levels.tex
 
 output/figures/sample_flow_retention_plot.png
 
@@ -112,6 +116,9 @@ output/logs/table5_maize_yield_top_values.csv
 output/logs/table5_maize_yield_sensitivity.csv
 output/logs/expenditure_profit_audit.csv
 output/logs/expenditure_profit_sample_diagnostics.csv
+output/logs/table6_economic_outcomes_levels.csv
+output/logs/table6_economic_price_diagnostics.csv
+output/logs/table6_economic_sample_diagnostics.csv
 ```
 
 To copy generated paper-ready tables into the Overleaf manuscript repository:
@@ -172,6 +179,7 @@ stata -b do code/stata/07_table3_aip_fertilizer_use.do
 stata -b do code/stata/08_table4_nutrient_use.do
 stata -b do code/stata/09_table5_maize_yield.do
 stata -b do code/stata/10_expenditure_profit_audit.do
+stata -b do code/stata/11_table6_economic_outcomes_levels.do
 ```
 
 They write:
@@ -202,6 +210,11 @@ output/logs/table5_maize_yield_sensitivity_stata.csv
 output/tables/expenditure_profit_audit_stata.tex
 output/logs/expenditure_profit_audit_stata.csv
 output/logs/expenditure_profit_sample_diagnostics_stata.csv
+
+output/tables/table6_economic_outcomes_levels_stata.tex
+output/logs/table6_economic_outcomes_levels_stata.csv
+output/logs/table6_economic_price_diagnostics_stata.csv
+output/logs/table6_economic_sample_diagnostics_stata.csv
 ```
 
 These Stata scripts are independent cross-checks of the R replication scripts.
@@ -240,11 +253,11 @@ the existing logged expenditure and profit outcomes with alternative codings
 that handle zero expenditure and non-positive profits differently. These checks
 should be resolved before replacing the manuscript expenditure and profit tables.
 
-Stata versions of the maize-yield and expenditure/profit audit scripts are
-included as independent cross-checks. They use Stata's built-in clustered
-standard errors and `test` command, so coefficients and sample sizes should
-match the R outputs closely while standard errors and p-values may differ
-slightly.
+Stata versions of the maize-yield, expenditure/profit audit, and level
+economic-outcome scripts are included as independent cross-checks. They use
+Stata's built-in clustered standard errors and `test` command, so coefficients
+and sample sizes should match the R outputs closely while standard errors and
+p-values may differ slightly.
 
 ## Codebooks
 
@@ -289,6 +302,9 @@ artifacts needed to reproduce paper outputs, not auxiliary documentation code.
 
 - `10_expenditure_profit_audit.R`
   Audits the expenditure and profit outcomes. It estimates the preferred no-post-treatment-control specification for the current logged outcomes and diagnostic alternatives, and writes sample-composition diagnostics for zero expenditure and non-positive profits.
+
+- `11_table6_economic_outcomes_levels.R`
+  Generates the manuscript economic-outcome table in levels. It reports value of production, costs, and profits, each in total and per acre, for all sampled main crops and for maize-main-crop households. "All sampled main crops" is not whole-farm all-crop revenue: the public file supports valuation of the sampled/test plot's main crop only. Value of production is imputed as harvested quantity times the crop-specific median observed sale price among sellers of that crop.
 
 ## Rules
 
