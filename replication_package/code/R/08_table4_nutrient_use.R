@@ -136,60 +136,32 @@ write.csv(
   row.names = FALSE
 )
 
-cols <- seq_len(nrow(spec_results))
-
 table_lines <- c(
   "{",
   "\\def\\sym#1{\\ifmmode^{#1}\\else\\(^{#1}\\)\\fi}",
-  "\\begin{tabular}{l*{8}{c}}",
+  "\\begin{tabular}{lccccc}",
   "\\toprule",
-  "& \\multicolumn{8}{c}{Nutrient application on maize plots (kg/ha)} \\\\",
-  "\\cmidrule(lr){2-9}",
-  "& \\multicolumn{2}{c}{Nitrogen} & \\multicolumn{2}{c}{Phosphorus} & \\multicolumn{2}{c}{Potassium} & \\multicolumn{2}{c}{Total nutrients} \\\\",
-  "\\cmidrule(lr){2-3} \\cmidrule(lr){4-5} \\cmidrule(lr){6-7} \\cmidrule(lr){8-9}",
-  "& (1) & (2) & (3) & (4) & (5) & (6) & (7) & (8) \\\\",
+  "Outcome and specification & Control mean & T1 $-$ Control & T2 $-$ Control & p-value: T2 = T1 & N \\\\",
   "\\midrule",
-  paste0(
-    "Treatment one & ",
-    paste(mapply(fmt_coef, spec_results$t1[cols], spec_results$t1_p[cols]), collapse = " & "),
-    " \\\\"
-  ),
-  paste0(
-    "& (",
-    paste(fmt_num(spec_results$t1_se[cols], 2), collapse = ") & ("),
-    ") \\\\"
-  ),
-  paste0(
-    "Treatment two & ",
-    paste(mapply(fmt_coef, spec_results$t2[cols], spec_results$t2_p[cols]), collapse = " & "),
-    " \\\\"
-  ),
-  paste0(
-    "& (",
-    paste(fmt_num(spec_results$t2_se[cols], 2), collapse = ") & ("),
-    ") \\\\"
-  ),
-  paste0(
-    "p-value: T2 = T1 & ",
-    paste(fmt_num(spec_results$p_equal[cols], 3), collapse = " & "),
-    " \\\\"
-  ),
-  paste0(
-    "Control mean & ",
-    paste(fmt_num(spec_results$control_mean[cols], 2), collapse = " & "),
-    " \\\\"
-  ),
-  "\\midrule",
-  paste0(
-    "Pre-treatment controls & ",
-    paste(spec_results$controls[cols], collapse = " & "),
-    " \\\\"
-  ),
-  paste0(
-    "Number of observations & ",
-    paste(fmt_num(spec_results$n[cols], 0), collapse = " & "),
-    " \\\\"
-  ),
+  unlist(lapply(seq_len(nrow(spec_results)), function(i) {
+    c(
+      sprintf(
+        "%s, controls: %s & %s & %s & %s & %s & %s \\\\",
+        spec_results$outcome_label[i],
+        spec_results$controls[i],
+        fmt_num(spec_results$control_mean[i], 2),
+        fmt_coef(spec_results$t1[i], spec_results$t1_p[i]),
+        fmt_coef(spec_results$t2[i], spec_results$t2_p[i]),
+        fmt_num(spec_results$p_equal[i], 3),
+        fmt_num(spec_results$n[i], 0)
+      ),
+      sprintf(
+        "& & (%s) & (%s) & & \\\\",
+        fmt_num(spec_results$t1_se[i], 2),
+        fmt_num(spec_results$t2_se[i], 2)
+      )
+    )
+  })),
   "\\bottomrule",
   "\\end{tabular}",
   "}"

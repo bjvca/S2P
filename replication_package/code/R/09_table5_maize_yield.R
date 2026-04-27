@@ -216,58 +216,29 @@ writeLines(
 table_lines <- c(
   "{",
   "\\def\\sym#1{\\ifmmode^{#1}\\else\\(^{#1}\\)\\fi}",
-  "\\begin{tabular}{l*{2}{c}}",
+  "\\begin{tabular}{lcccccc}",
   "\\toprule",
-  "& \\multicolumn{2}{c}{Log maize yield} \\\\",
-  "\\cmidrule(lr){2-3}",
-  "& (1) & (2) \\\\",
+  "Specification & Ctrl. mean (log) & Ctrl. mean (kg/acre) & T1 $-$ Control & T2 $-$ Control & p: T2 = T1 & N \\\\",
   "\\midrule",
-  sprintf(
-    "Treatment one & %s & %s \\\\",
-    fmt_coef(spec_results$t1[1], spec_results$t1_p[1]),
-    fmt_coef(spec_results$t1[2], spec_results$t1_p[2])
-  ),
-  sprintf(
-    "& (%s) & (%s) \\\\",
-    fmt_num(spec_results$t1_se[1], 2),
-    fmt_num(spec_results$t1_se[2], 2)
-  ),
-  sprintf(
-    "Treatment two & %s & %s \\\\",
-    fmt_coef(spec_results$t2[1], spec_results$t2_p[1]),
-    fmt_coef(spec_results$t2[2], spec_results$t2_p[2])
-  ),
-  sprintf(
-    "& (%s) & (%s) \\\\",
-    fmt_num(spec_results$t2_se[1], 2),
-    fmt_num(spec_results$t2_se[2], 2)
-  ),
-  sprintf(
-    "p-value: T2 = T1 & %s & %s \\\\",
-    fmt_num(spec_results$p_equal[1], 3),
-    fmt_num(spec_results$p_equal[2], 3)
-  ),
-  sprintf(
-    "Control mean, log yield & %s & %s \\\\",
-    fmt_num(spec_results$control_mean_log[1], 2),
-    fmt_num(spec_results$control_mean_log[2], 2)
-  ),
-  sprintf(
-    "Control mean, yield & %s & %s \\\\",
-    fmt_num(spec_results$control_mean_level[1], 1),
-    fmt_num(spec_results$control_mean_level[2], 1)
-  ),
-  "\\midrule",
-  sprintf(
-    "Pre-treatment controls & %s & %s \\\\",
-    spec_results$uses_controls[1],
-    spec_results$uses_controls[2]
-  ),
-  sprintf(
-    "Number of observations & %s & %s \\\\",
-    fmt_num(spec_results$n[1], 0),
-    fmt_num(spec_results$n[2], 0)
-  ),
+  unlist(lapply(seq_len(nrow(spec_results)), function(i) {
+    c(
+      sprintf(
+        "Controls: %s & %s & %s & %s & %s & %s & %s \\\\",
+        spec_results$uses_controls[i],
+        fmt_num(spec_results$control_mean_log[i], 2),
+        fmt_num(spec_results$control_mean_level[i], 1),
+        fmt_coef(spec_results$t1[i], spec_results$t1_p[i]),
+        fmt_coef(spec_results$t2[i], spec_results$t2_p[i]),
+        fmt_num(spec_results$p_equal[i], 3),
+        fmt_num(spec_results$n[i], 0)
+      ),
+      sprintf(
+        "& & & (%s) & (%s) & & \\\\",
+        fmt_num(spec_results$t1_se[i], 2),
+        fmt_num(spec_results$t2_se[i], 2)
+      )
+    )
+  })),
   "\\bottomrule",
   "\\end{tabular}",
   "}"

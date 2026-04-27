@@ -195,69 +195,29 @@ write.csv(
 table_lines <- c(
   "{",
   "\\def\\sym#1{\\ifmmode^{#1}\\else\\(^{#1}\\)\\fi}",
-  "\\begin{tabular}{l*{4}{c}}",
+  "\\begin{tabular}{lccccc}",
   "\\toprule",
-  "&\\multicolumn{2}{c}{All crops} & \\multicolumn{2}{c}{Maize only} \\\\",
-  "\\cmidrule(lr){2-3}\\cmidrule(lr){4-5}",
-  "& (1) & (2) & (3) & (4) \\\\",
+  "Sample and specification & Control mean & T1 $-$ Control & T2 $-$ Control & p-value: T2 = T1 & N \\\\",
   "\\midrule",
-  sprintf(
-    "Treatment one & %s & %s & %s & %s \\\\",
-    fmt_coef(spec_results$t1[1], spec_results$t1_p[1]),
-    fmt_coef(spec_results$t1[2], spec_results$t1_p[2]),
-    fmt_coef(spec_results$t1[3], spec_results$t1_p[3]),
-    fmt_coef(spec_results$t1[4], spec_results$t1_p[4])
-  ),
-  sprintf(
-    "& (%s) & (%s) & (%s) & (%s) \\\\",
-    fmt_num(spec_results$t1_se[1], 2),
-    fmt_num(spec_results$t1_se[2], 2),
-    fmt_num(spec_results$t1_se[3], 2),
-    fmt_num(spec_results$t1_se[4], 2)
-  ),
-  sprintf(
-    "Treatment two & %s & %s & %s & %s \\\\",
-    fmt_coef(spec_results$t2[1], spec_results$t2_p[1]),
-    fmt_coef(spec_results$t2[2], spec_results$t2_p[2]),
-    fmt_coef(spec_results$t2[3], spec_results$t2_p[3]),
-    fmt_coef(spec_results$t2[4], spec_results$t2_p[4])
-  ),
-  sprintf(
-    "& (%s) & (%s) & (%s) & (%s) \\\\",
-    fmt_num(spec_results$t2_se[1], 2),
-    fmt_num(spec_results$t2_se[2], 2),
-    fmt_num(spec_results$t2_se[3], 2),
-    fmt_num(spec_results$t2_se[4], 2)
-  ),
-  sprintf(
-    "p-value: T2 = T1 & %s & %s & %s & %s \\\\",
-    fmt_num(spec_results$p_equal[1], 3),
-    fmt_num(spec_results$p_equal[2], 3),
-    fmt_num(spec_results$p_equal[3], 3),
-    fmt_num(spec_results$p_equal[4], 3)
-  ),
-  sprintf(
-    "Control mean & %s & %s & %s & %s \\\\",
-    fmt_num(spec_results$control_mean[1], 2),
-    fmt_num(spec_results$control_mean[2], 2),
-    fmt_num(spec_results$control_mean[3], 2),
-    fmt_num(spec_results$control_mean[4], 2)
-  ),
-  "\\midrule",
-  sprintf(
-    "Pre-treatment controls & %s & %s & %s & %s \\\\",
-    spec_results$uses_controls[1],
-    spec_results$uses_controls[2],
-    spec_results$uses_controls[3],
-    spec_results$uses_controls[4]
-  ),
-  sprintf(
-    "Number of observations & %s & %s & %s & %s \\\\",
-    fmt_num(spec_results$n[1], 0),
-    fmt_num(spec_results$n[2], 0),
-    fmt_num(spec_results$n[3], 0),
-    fmt_num(spec_results$n[4], 0)
-  ),
+  unlist(lapply(seq_len(nrow(spec_results)), function(i) {
+    c(
+      sprintf(
+        "%s, controls: %s & %s & %s & %s & %s & %s \\\\",
+        spec_results$sample[i],
+        spec_results$uses_controls[i],
+        fmt_num(spec_results$control_mean[i], 2),
+        fmt_coef(spec_results$t1[i], spec_results$t1_p[i]),
+        fmt_coef(spec_results$t2[i], spec_results$t2_p[i]),
+        fmt_num(spec_results$p_equal[i], 3),
+        fmt_num(spec_results$n[i], 0)
+      ),
+      sprintf(
+        "& & (%s) & (%s) & & \\\\",
+        fmt_num(spec_results$t1_se[i], 2),
+        fmt_num(spec_results$t2_se[i], 2)
+      )
+    )
+  })),
   "\\bottomrule",
   "\\end{tabular}",
   "}"

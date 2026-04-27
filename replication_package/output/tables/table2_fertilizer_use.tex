@@ -1,20 +1,17 @@
 {
 \def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
-\begin{tabular}{l*{4}{c}}
+\begin{tabular}{lccccc}
 \toprule
-&\multicolumn{2}{c}{All crops} & \multicolumn{2}{c}{Maize only} \\
-\cmidrule(lr){2-3}\cmidrule(lr){4-5}
-& (1) & (2) & (3) & (4) \\
+Sample and specification & Control mean & T1 $-$ Control & T2 $-$ Control & p-value: T2 = T1 & N \\
 \midrule
-Treatment one & 2.24 & 2.16 & 3.37 & 2.50 \\
-& (7.29) & (6.80) & (6.87) & (6.20) \\
-Treatment two & 30.51\sym{***} & 35.13\sym{***} & 28.60\sym{***} & 33.43\sym{***} \\
-& (6.40) & (4.99) & (6.01) & (5.35) \\
-p-value: T2 = T1 & 0.000 & 0.000 & 0.000 & 0.000 \\
-Control mean & 78.46 & 82.87 & 83.36 & 83.05 \\
-\midrule
-Pre-treatment controls & No & Yes & No & Yes \\
-Number of observations & 1951 & 1829 & 1626 & 1595 \\
+All crops, controls: No & 78.46 & 2.24 & 30.51\sym{***} & 0.000 & 1951 \\
+& & (7.29) & (6.40) & & \\
+All crops, controls: Yes & 82.87 & 2.16 & 35.13\sym{***} & 0.000 & 1829 \\
+& & (6.80) & (4.99) & & \\
+Maize only, controls: No & 83.36 & 3.37 & 28.60\sym{***} & 0.000 & 1626 \\
+& & (6.87) & (6.01) & & \\
+Maize only, controls: Yes & 83.05 & 2.50 & 33.43\sym{***} & 0.000 & 1595 \\
+& & (6.20) & (5.35) & & \\
 \bottomrule
 \end{tabular}
 }
