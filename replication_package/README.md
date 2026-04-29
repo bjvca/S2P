@@ -17,7 +17,8 @@ The package currently reproduces:
 - the nutrient-use impact table;
 - the maize-yield impact table;
 - the expenditure/profit audit outputs;
-- the level economic-outcome table separating value of production, costs, and profits.
+- the level economic-outcome table separating value of production, costs, and profits;
+- the soil nutrient management practice table.
 
 At present, the package uses two kinds of inputs.
 
@@ -70,6 +71,7 @@ code/R/08_table4_nutrient_use.R
 code/R/09_table5_maize_yield.R
 code/R/10_expenditure_profit_audit.R
 code/R/11_table6_economic_outcomes_levels.R
+code/R/12_table7_snm_practices.R
 
 code/stata/01_table1_balance.do
 code/stata/04_attrition_diagnostics.do
@@ -80,6 +82,7 @@ code/stata/08_table4_nutrient_use.do
 code/stata/09_table5_maize_yield.do
 code/stata/10_expenditure_profit_audit.do
 code/stata/11_table6_economic_outcomes_levels.do
+code/stata/12_table7_snm_practices.do
 ```
 
 The current generated outputs include:
@@ -97,6 +100,7 @@ output/tables/table5_maize_yield.tex
 output/tables/table5_maize_yield_sensitivity.tex
 output/tables/expenditure_profit_audit.tex
 output/tables/table6_economic_outcomes_levels.tex
+output/tables/table7_snm_practices.tex
 
 output/figures/sample_flow_retention_plot.png
 
@@ -119,6 +123,8 @@ output/logs/expenditure_profit_sample_diagnostics.csv
 output/logs/table6_economic_outcomes_levels.csv
 output/logs/table6_economic_price_diagnostics.csv
 output/logs/table6_economic_sample_diagnostics.csv
+output/logs/table7_snm_practices.csv
+output/logs/table7_snm_response_diagnostics.csv
 ```
 
 To copy generated paper-ready tables into the Overleaf manuscript repository:
@@ -180,6 +186,7 @@ stata -b do code/stata/08_table4_nutrient_use.do
 stata -b do code/stata/09_table5_maize_yield.do
 stata -b do code/stata/10_expenditure_profit_audit.do
 stata -b do code/stata/11_table6_economic_outcomes_levels.do
+stata -b do code/stata/12_table7_snm_practices.do
 ```
 
 They write:
@@ -215,6 +222,10 @@ output/tables/table6_economic_outcomes_levels_stata.tex
 output/logs/table6_economic_outcomes_levels_stata.csv
 output/logs/table6_economic_price_diagnostics_stata.csv
 output/logs/table6_economic_sample_diagnostics_stata.csv
+
+output/tables/table7_snm_practices_stata.tex
+output/logs/table7_snm_practices_stata.csv
+output/logs/table7_snm_response_diagnostics_stata.csv
 ```
 
 These Stata scripts are independent cross-checks of the R replication scripts.
@@ -254,10 +265,11 @@ that handle zero expenditure and non-positive profits differently. These checks
 should be resolved before replacing the manuscript expenditure and profit tables.
 
 Stata versions of the maize-yield, expenditure/profit audit, and level
-economic-outcome scripts are included as independent cross-checks. They use
-Stata's built-in clustered standard errors and `test` command, so coefficients
-and sample sizes should match the R outputs closely while standard errors and
-p-values may differ slightly.
+economic-outcome scripts are included as independent cross-checks. The SNM
+Stata script similarly replaces the old probit output with linear probability
+models. They use Stata's built-in clustered standard errors and `test` command,
+so coefficients and sample sizes should match the R outputs closely while
+standard errors and p-values may differ slightly.
 
 ## Codebooks
 
@@ -306,6 +318,9 @@ artifacts needed to reproduce paper outputs, not auxiliary documentation code.
 - `11_table6_economic_outcomes_levels.R`
   Generates the manuscript economic-outcome table in levels. It reports value of production, costs, and profits, each in total and per acre, for all sampled main crops and for maize-main-crop households. "All sampled main crops" is not whole-farm all-crop revenue: the public file supports valuation of the sampled/test plot's main crop only. Value of production is imputed as harvested quantity times the crop-specific median observed sale price among sellers of that crop.
 
+- `12_table7_snm_practices.R`
+  Generates the soil nutrient management practice table. It recodes sampled-plot Yes/No outcomes to binary indicators, treats blank responses as missing, and reports preferred adjusted linear probability ITT estimates. The CSV log includes both unadjusted and adjusted estimates for auditability.
+
 ## Rules
 
 - Include only data needed to reproduce paper outputs.
@@ -319,7 +334,5 @@ artifacts needed to reproduce paper outputs, not auxiliary documentation code.
 
 To audit and reproduce the remaining paper tables, this package still needs:
 
-- the cleaned analysis dataset and source code used for the SNM-practice tables;
-- the Stata or R scripts used by coauthors to generate `SNM_practices*.tex`;
 - a variable dictionary or codebook for treatment variables, outcomes, controls, cluster identifiers, and sample restrictions used in the main outcome analysis;
 - a documented rule for how recommendation-linked outcomes should treat unmatched observations and recommendation-file-only records.
