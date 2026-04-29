@@ -91,17 +91,19 @@ gen treat_t2 = treat == "T2"
 
 * Clean recommendation product quantities. Blank cells mean zero for that
 * product when a valid recommendation record exists.
-foreach pair in ///
-    tr_plantingnpk1414204s2m rec_npk141420 ///
-    tr_topdresscalciumammoniumnitra rec_can ///
-    tr_topdresspotassiumsulphate rec_potassium_sulphate ///
-    tr_plantingnpk231056s1zn rec_npk23105 ///
-    tr_plantingnpk818156s01b rec_npk81815 ///
-    tr_topdresssop rec_sop ///
-    tr_topdressmop rec_mop ///
-    tr_topdressurea rec_urea ///
-    tr_soilcorrectionmaptechnicalg rec_map ///
-    tr_plantingnpk1523166s05zn0 rec_npk152316 {
+local recommendation_pairs ///
+    `"tr_plantingnpk1414204s2m rec_npk141420"' ///
+    `"tr_topdresscalciumammoniumnitra rec_can"' ///
+    `"tr_topdresspotassiumsulphate rec_potassium_sulphate"' ///
+    `"tr_plantingnpk231056s1zn rec_npk23105"' ///
+    `"tr_plantingnpk818156s01b rec_npk81815"' ///
+    `"tr_topdresssop rec_sop"' ///
+    `"tr_topdressmop rec_mop"' ///
+    `"tr_topdressurea rec_urea"' ///
+    `"tr_soilcorrectionmaptechnicalg rec_map"' ///
+    `"tr_plantingnpk1523166s05zn0 rec_npk152316"'
+
+foreach pair of local recommendation_pairs {
     gettoken source rest : pair
     gettoken target rest : rest
     gen `target' = real(subinstr(lower(trim(`source')), "kg/ha", "", .))

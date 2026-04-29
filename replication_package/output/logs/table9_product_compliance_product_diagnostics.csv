@@ -1,0 +1,9 @@
+"product","label","recommended_n","applied_n","applied_rate","t1_recommended_n","t1_applied_rate","t2_recommended_n","t2_applied_rate"
+"npk23105","Recommended NPK 23:10:5 applied",987,737,0.746707193515704,493,0.60446247464503,494,0.888663967611336
+"urea","Recommended urea applied",96,77,0.802083333333333,46,0.652173913043478,50,0.94
+"can","Recommended CAN applied",101,17,0.168316831683168,42,0.238095238095238,59,0.11864406779661
+"npk141420","Recommended NPK 14:14:20 applied",113,2,0.0176991150442478,46,0.0434782608695652,67,0
+"npk81815","Recommended NPK 8:18:15 applied",122,2,0.0163934426229508,64,0.015625,58,0.0172413793103448
+"potassium_product","Recommended potassium product applied",963,9,0.00934579439252336,465,0.0193548387096774,498,0
+"lime","Recommended lime applied",142,0,0,47,0,95,0
+"map","Recommended MAP applied",52,0,0,22,0,30,0
