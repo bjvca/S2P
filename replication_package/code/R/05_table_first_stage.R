@@ -67,19 +67,19 @@ df$voucher_enough <- yes_indicator(df$vou_en)
 
 outcome_specs <- data.frame(
   var = c(
+    "agronaut_visited",
     "received_recommendation",
     "received_and_easy",
     "received_and_followed",
-    "agronaut_visited",
     "received_voucher",
     "redeemed_voucher",
     "voucher_enough"
   ),
   label = c(
+    "Agronaut visited household",
     "Received recommendation",
     "Received recommendation and found it easy/very easy",
     "Received recommendation and followed it",
-    "Agronaut visited household",
     "Received voucher",
     "Redeemed voucher",
     "Voucher enough for full recommended purchase"
