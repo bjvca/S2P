@@ -18,7 +18,8 @@ The package currently reproduces:
 - the maize-yield impact table;
 - the expenditure/profit audit outputs;
 - the level economic-outcome table separating value of production, costs, and profits;
-- the soil nutrient management practice table.
+- the soil nutrient management practice table;
+- the recommendation-compliance and application-error table for treated households.
 
 At present, the package uses two kinds of inputs.
 
@@ -72,6 +73,7 @@ code/R/09_table5_maize_yield.R
 code/R/10_expenditure_profit_audit.R
 code/R/11_table6_economic_outcomes_levels.R
 code/R/12_table7_snm_practices.R
+code/R/13_table8_application_compliance.R
 
 code/stata/01_table1_balance.do
 code/stata/04_attrition_diagnostics.do
@@ -83,6 +85,7 @@ code/stata/09_table5_maize_yield.do
 code/stata/10_expenditure_profit_audit.do
 code/stata/11_table6_economic_outcomes_levels.do
 code/stata/12_table7_snm_practices.do
+code/stata/13_table8_application_compliance.do
 ```
 
 The current generated outputs include:
@@ -101,6 +104,7 @@ output/tables/table5_maize_yield_sensitivity.tex
 output/tables/expenditure_profit_audit.tex
 output/tables/table6_economic_outcomes_levels.tex
 output/tables/table7_snm_practices.tex
+output/tables/table8_application_compliance.tex
 
 output/figures/sample_flow_retention_plot.png
 
@@ -125,6 +129,9 @@ output/logs/table6_economic_price_diagnostics.csv
 output/logs/table6_economic_sample_diagnostics.csv
 output/logs/table7_snm_practices.csv
 output/logs/table7_snm_response_diagnostics.csv
+output/logs/table8_application_compliance.csv
+output/logs/table8_application_compliance_diagnostics.csv
+output/logs/table8_application_compliance_exclusions.csv
 ```
 
 To copy generated paper-ready tables into the Overleaf manuscript repository:
@@ -187,6 +194,7 @@ stata -b do code/stata/09_table5_maize_yield.do
 stata -b do code/stata/10_expenditure_profit_audit.do
 stata -b do code/stata/11_table6_economic_outcomes_levels.do
 stata -b do code/stata/12_table7_snm_practices.do
+stata -b do code/stata/13_table8_application_compliance.do
 ```
 
 They write:
@@ -226,6 +234,10 @@ output/logs/table6_economic_sample_diagnostics_stata.csv
 output/tables/table7_snm_practices_stata.tex
 output/logs/table7_snm_practices_stata.csv
 output/logs/table7_snm_response_diagnostics_stata.csv
+
+output/tables/table8_application_compliance_stata.tex
+output/logs/table8_application_compliance_stata.csv
+output/logs/table8_application_compliance_exclusions_stata.csv
 ```
 
 These Stata scripts are independent cross-checks of the R replication scripts.
@@ -320,6 +332,9 @@ artifacts needed to reproduce paper outputs, not auxiliary documentation code.
 
 - `12_table7_snm_practices.R`
   Generates the soil nutrient management practice table. It recodes sampled-plot Yes/No outcomes to binary indicators, treats blank responses as missing, and reports preferred adjusted linear probability ITT estimates. The CSV log includes both unadjusted and adjusted estimates for auditability.
+
+- `13_table8_application_compliance.R`
+  Generates the recommendation-compliance and application-error table. The main table restricts to treated households with valid treatment recommendation records and reports Treatment 2 minus Treatment 1 because the control-group shadow recommendations are not comparable enough for the main application-error estimand. Nutrients are reported as N, P2O5, and K2O to match the fertilizer-grade units in the cleaned actual-use variables.
 
 ## Rules
 
