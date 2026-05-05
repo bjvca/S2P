@@ -21,7 +21,8 @@ The package currently reproduces:
 - the maize-profit robustness appendix table;
 - the soil nutrient management practice table;
 - the recommendation-compliance and application-error table for treated households.
-- the product-level recommendation-compliance table for treated households.
+- the product-level recommendation-compliance table for treated households;
+- the multiple-testing appendix diagnostic for preferred outcome-family contrasts.
 
 At present, the package uses two kinds of inputs.
 
@@ -78,6 +79,7 @@ code/R/11b_table6_economic_robustness.R
 code/R/12_table7_snm_practices.R
 code/R/13_table8_application_compliance.R
 code/R/14_table9_product_compliance.R
+code/R/15_multiple_testing_summary.R
 
 code/stata/01_table1_balance.do
 code/stata/04_attrition_diagnostics.do
@@ -112,6 +114,7 @@ output/tables/table6_economic_profit_robustness.tex
 output/tables/table7_snm_practices.tex
 output/tables/table8_application_compliance.tex
 output/tables/table9_product_compliance.tex
+output/tables/multiple_testing_summary.tex
 
 output/figures/sample_flow_retention_plot.png
 
@@ -145,7 +148,13 @@ output/logs/table8_application_compliance_exclusions.csv
 output/logs/table9_product_compliance.csv
 output/logs/table9_product_compliance_exclusions.csv
 output/logs/table9_product_compliance_product_diagnostics.csv
+output/logs/multiple_testing_summary.csv
 ```
+
+The multiple-testing diagnostic applies Holm adjustments within the outcome
+families used in the paper. The main tables continue to report raw p-values
+because the families correspond to distinct steps in the causal chain rather
+than repeated measures of one latent outcome.
 
 To copy generated paper-ready tables into the Overleaf manuscript repository:
 

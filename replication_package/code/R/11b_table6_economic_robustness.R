@@ -98,7 +98,9 @@ df$profit_med_wyield_cost <- df$value_med_wyield - df$cost_total_w
 df$value_winmean <- df$bags_Mcrp * maize_price_winsor_mean
 df$profit_winmean <- df$value_winmean - df$cost_total
 
-df$ln_profit_med_positive <- ifelse(df$profit_med > 0, log(df$profit_med), NA_real_)
+df$ln_profit_med_positive <- NA_real_
+positive_profit <- !is.na(df$profit_med) & df$profit_med > 0
+df$ln_profit_med_positive[positive_profit] <- log(df$profit_med[positive_profit])
 
 fit_spec <- function(data, outcome, label, control_mean_label) {
   vars_needed <- unique(c(outcome, "treat_num", "cluster_id_num", preferred_controls))

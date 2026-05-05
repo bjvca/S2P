@@ -1,0 +1,44 @@
+"family","outcome","contrast","raw_p","holm_p"
+"Delivery and adherence","Received recommendation and followed it","T2 = T1",3.72852833894298e-25,1.86426416947149e-24
+"Delivery and adherence","Voucher enough for full recommended purchase","T2 = T1",1.6239211752078e-07,6.4956847008312e-07
+"Delivery and adherence","Received recommendation and found it easy/very easy","T2 = T1",5.23618007194751e-07,1.57085402158425e-06
+"Delivery and adherence","Received recommendation","T2 = T1",0.0954286429617599,0.19085728592352
+"Delivery and adherence","Agronaut visited household","T2 = T1",0.770668319160204,0.770668319160204
+"Fertilizer and nutrient use","Maize nutrient use: Potassium","T2 - control",3.71493018697501e-15,2.22895811218501e-14
+"Fertilizer and nutrient use","Maize nutrient use: Phosphorus","T2 - control",6.10698852363465e-15,3.05349426181733e-14
+"Fertilizer and nutrient use","Maize nutrient use: Total nutrients","T2 - control",2.56215375424359e-12,1.02486150169744e-11
+"Fertilizer and nutrient use","Maize nutrient use: Nitrogen","T2 - control",2.62175828643141e-11,7.86527485929423e-11
+"Fertilizer and nutrient use","Total fertilizer use: All crops","T2 - control",1.65928960003181e-10,3.31857920006362e-10
+"Fertilizer and nutrient use","Total fertilizer use: Maize only","T2 - control",7.89314152945629e-09,7.89314152945629e-09
+"Nutrient compliance","Actual N applied","T2 - T1",3.9855662073572e-16,3.58700958662148e-15
+"Nutrient compliance","Actual P$_2$O$_5$ applied","T2 - T1",5.43362585792783e-10,4.34690068634226e-09
+"Nutrient compliance","Actual K$_2$O applied","T2 - T1",2.26828272052737e-06,1.58779790436916e-05
+"Nutrient compliance","Absolute N application error","T2 - T1",0.000670300097670749,0.00402180058602449
+"Nutrient compliance","N shortfall","T2 - T1",0.000812429515546125,0.00406214757773062
+"Nutrient compliance","K$_2$O shortfall","T2 - T1",0.240265317383578,0.961061269534312
+"Nutrient compliance","Absolute K$_2$O application error","T2 - T1",0.240469356024357,0.961061269534312
+"Nutrient compliance","P$_2$O$_5$ shortfall","T2 - T1",0.681010938508231,1
+"Nutrient compliance","Absolute P$_2$O$_5$ application error","T2 - T1",0.683464935852219,1
+"Product compliance","Recommended NPK 23:10:5 applied","T2 - T1",7.74336096793206e-12,5.42035267755244e-11
+"Product compliance","Any recommended product applied","T2 - T1",3.0660907301655e-05,0.00018396544380993
+"Product compliance","Share of recommended products applied","T2 - T1",0.00342817089580986,0.0171408544790493
+"Product compliance","Recommended urea applied","T2 - T1",0.00947790968486179,0.0379116387394472
+"Product compliance","Recommended potassium product applied","T2 - T1",0.0282698236395241,0.0848094709185723
+"Product compliance","Exact recommended product bundle applied","T2 - T1",0.0695341082590378,0.139068216518076
+"Product compliance","All recommended products applied","T2 - T1",0.574998285473637,0.574998285473637
+"Production and economic outcomes","Total costs","T2 - control",0.00206541639892055,0.0144579147924438
+"Production and economic outcomes","Log maize yield","T2 - control",0.00299437099658055,0.0179662259794833
+"Production and economic outcomes","Costs per acre","T2 - control",0.00564879033794784,0.0282439516897392
+"Production and economic outcomes","Value of production","T2 - control",0.0154200080264476,0.0616800321057904
+"Production and economic outcomes","Value per acre","T2 - control",0.0500551034495275,0.150165310348582
+"Production and economic outcomes","Profits per acre","T2 - control",0.241049848900806,0.482099697801612
+"Production and economic outcomes","Profits","T2 - control",0.262847497701279,0.482099697801612
+"Secondary SNM practices","Dairy or poultry manure","T2 - control",0.0037004201523109,0.0333037813707981
+"Secondary SNM practices","Ridges/check dams","T2 - control",0.00418867671343931,0.0335094137075145
+"Secondary SNM practices","Fresh vegetative material","T2 - control",0.00896869148968711,0.0627808404278098
+"Secondary SNM practices","Mbeya fertilizer","T2 - control",0.046089100923494,0.276534605540964
+"Secondary SNM practices","Green legume incorporation","T2 - control",0.221060878358949,1
+"Secondary SNM practices","Farmyard manure","T2 - control",0.262297322850599,1
+"Secondary SNM practices","Pit planting","T2 - control",0.632426034321131,1
+"Secondary SNM practices","Minimum tillage","T2 - control",0.75455437732827,1
+"Secondary SNM practices","Compost","T2 - control",0.826043761991894,1

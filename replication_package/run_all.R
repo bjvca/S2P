@@ -24,7 +24,8 @@ scripts <- c(
   "code/R/11b_table6_economic_robustness.R",
   "code/R/12_table7_snm_practices.R",
   "code/R/13_table8_application_compliance.R",
-  "code/R/14_table9_product_compliance.R"
+  "code/R/14_table9_product_compliance.R",
+  "code/R/15_multiple_testing_summary.R"
 )
 
 for (script in scripts) {
