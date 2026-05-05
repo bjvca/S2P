@@ -21,6 +21,7 @@ scripts <- c(
   "code/R/09_table5_maize_yield.R",
   "code/R/10_expenditure_profit_audit.R",
   "code/R/11_table6_economic_outcomes_levels.R",
+  "code/R/11b_table6_economic_robustness.R",
   "code/R/12_table7_snm_practices.R",
   "code/R/13_table8_application_compliance.R",
   "code/R/14_table9_product_compliance.R"

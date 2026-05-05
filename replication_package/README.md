@@ -18,6 +18,7 @@ The package currently reproduces:
 - the maize-yield impact table;
 - the expenditure/profit audit outputs;
 - the level economic-outcome table separating value of production, costs, and profits;
+- the maize-profit robustness appendix table;
 - the soil nutrient management practice table;
 - the recommendation-compliance and application-error table for treated households.
 - the product-level recommendation-compliance table for treated households.
@@ -73,6 +74,7 @@ code/R/08_table4_nutrient_use.R
 code/R/09_table5_maize_yield.R
 code/R/10_expenditure_profit_audit.R
 code/R/11_table6_economic_outcomes_levels.R
+code/R/11b_table6_economic_robustness.R
 code/R/12_table7_snm_practices.R
 code/R/13_table8_application_compliance.R
 code/R/14_table9_product_compliance.R
@@ -106,6 +108,7 @@ output/tables/table5_maize_yield.tex
 output/tables/table5_maize_yield_sensitivity.tex
 output/tables/expenditure_profit_audit.tex
 output/tables/table6_economic_outcomes_levels.tex
+output/tables/table6_economic_profit_robustness.tex
 output/tables/table7_snm_practices.tex
 output/tables/table8_application_compliance.tex
 output/tables/table9_product_compliance.tex
@@ -129,6 +132,9 @@ output/logs/table5_maize_yield_sensitivity.csv
 output/logs/expenditure_profit_audit.csv
 output/logs/expenditure_profit_sample_diagnostics.csv
 output/logs/table6_economic_outcomes_levels.csv
+output/logs/table6_economic_profit_robustness.csv
+output/logs/table6_economic_maize_price_diagnostics.csv
+output/logs/table6_economic_maize_top_profit_observations.csv
 output/logs/table6_economic_price_diagnostics.csv
 output/logs/table6_economic_sample_diagnostics.csv
 output/logs/table7_snm_practices.csv

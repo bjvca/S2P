@@ -1,0 +1,17 @@
+{
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{lccccc}
+\toprule
+Robustness check & Control mean & T1 & T2 & p-value: T2 = T1 & N \\
+\midrule
+Level profits, baseline valuation & 385,096 & -45,718 & 54,854 & 0.067 & 1581 \\
+& & (43,655) & (48,744) & & \\
+Level profits, winsorized harvest quantity & 359,412 & -43,818 & 55,561 & 0.051 & 1581 \\
+& & (40,793) & (46,816) & & \\
+Level profits, winsorized harvest and costs & 373,839 & -52,248 & 44,542 & 0.057 & 1581 \\
+& & (39,274) & (45,031) & & \\
+Log profits, positive-profit sample only & 12.391 & -0.051 & 0.326\sym{***} & 0.001 & 1354 \\
+& & (0.105) & (0.101) & & \\
+\bottomrule
+\end{tabular}
+}
