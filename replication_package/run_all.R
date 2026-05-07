@@ -24,8 +24,11 @@ scripts <- c(
   "code/R/11b_table6_economic_robustness.R",
   "code/R/12_table7_snm_practices.R",
   "code/R/13_table8_application_compliance.R",
-  "code/R/14_table9_product_compliance.R",
-  "code/R/15_multiple_testing_summary.R"
+  "code/R/14_table9_product_compliance.R"
+  # "code/R/15_multiple_testing_summary.R"  # First-draft MHT diagnostic — disabled
+  # 2026-05-07. Multiple-testing strategy (Anderson indices vs Holm vs
+  # Romano-Wolf, family definitions) to be revisited with co-authors before
+  # re-enabling. Output is not currently used by the manuscript.
 )
 
 for (script in scripts) {

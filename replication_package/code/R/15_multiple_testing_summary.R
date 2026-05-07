@@ -1,3 +1,16 @@
+# =============================================================================
+# FIRST DRAFT — NOT INCORPORATED IN THE CURRENT MANUSCRIPT
+# =============================================================================
+# Status (2026-05-07): This script is a first-pass multiple-testing diagnostic
+# (Holm within outcome families). It is disabled in run_all.R and its output
+# (paper/tables/multiple_testing_summary.tex) is no longer \input{}-ed by the
+# manuscript. The MHT strategy — Anderson (2008) inverse-covariance-weighted
+# indices vs Holm vs Romano-Wolf, family definitions, primary-outcome
+# demarcation — will be revisited with co-authors before MHT material is
+# re-introduced into the paper. Treat any output produced here as preliminary
+# and do not cite it from the manuscript until that revision is complete.
+# =============================================================================
+#
 # Multiple-testing diagnostics for the preferred manuscript contrasts.
 #
 # The main tables report raw p-values because the outcome families describe
