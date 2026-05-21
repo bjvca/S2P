@@ -176,9 +176,9 @@ write.csv(using_only_summary,
 # sample realization in the text, but generating the table now keeps that option
 # open.
 latex_lines <- c(
-  "\\begin{tabular}{lrrrrr}",
+  "\\begin{tabular}{lrrrr}",
   "\\hline",
-  "Treatment arm & Baseline sample & Endline target & Found & Interview completed & Matched to soil test data \\\\",
+  "Treatment arm & Baseline sample & Endline target & Interview completed & Matched to soil test data \\\\",
   "\\hline"
 )
 
@@ -187,11 +187,10 @@ for (i in seq_len(nrow(sample_flow))) {
   latex_lines <- c(
     latex_lines,
     sprintf(
-      "%s & %s & %s & %s & %s & %s \\\\",
+      "%s & %s & %s & %s & %s \\\\",
       row$treatment,
       fmt_num(row$baseline_sample_n, 0),
       fmt_num(row$endline_target_n, 0),
-      fmt_num(row$found_n, 0),
       fmt_num(row$interview_completed_n, 0),
       fmt_num(row$matched_recommendation_n, 0)
     )

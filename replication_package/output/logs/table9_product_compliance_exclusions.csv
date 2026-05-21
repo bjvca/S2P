@@ -2,6 +2,7 @@
 "Treatment-arm observations before exclusions",1362
 "Dropped implausible fertilizer records: F_546 and F_387",2
 "Missing treatment recommendation record",135
+"Did not report receiving recommendation",61
 "Missing/sentinel total fertilizer quantity",1
 "No positive product recommendation in parsed fields",1
-"Usable product-compliance sample",1223
+"Usable product-compliance sample",1162

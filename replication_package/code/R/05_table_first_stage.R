@@ -69,20 +69,12 @@ outcome_specs <- data.frame(
   var = c(
     "agronaut_visited",
     "received_recommendation",
-    "received_and_easy",
-    "received_and_followed",
-    "received_voucher",
-    "redeemed_voucher",
-    "voucher_enough"
+    "received_voucher"
   ),
   label = c(
     "Agronaut visited household",
     "Received recommendation",
-    "Received recommendation and found it easy/very easy",
-    "Received recommendation and followed it",
-    "Received voucher",
-    "Redeemed voucher",
-    "Voucher enough for full recommended purchase"
+    "Received voucher"
   ),
   stringsAsFactors = FALSE
 )
@@ -97,9 +89,11 @@ run_first_stage <- function(var_name, label) {
   data.frame(
     outcome = label,
     control_mean = mean(df[df$treat == "C", var_name], na.rm = TRUE),
+    t1_mean = mean(df[df$treat == "T1", var_name], na.rm = TRUE),
     t1_coef = ct["t1", "beta"],
     t1_se = ct["t1", "SE"],
     t1_p = ct["t1", "p_Satt"],
+    t2_mean = mean(df[df$treat == "T2", var_name], na.rm = TRUE),
     t2_coef = ct["t2", "beta"],
     t2_se = ct["t2", "SE"],
     t2_p = ct["t2", "p_Satt"],
@@ -116,6 +110,109 @@ first_stage_results <- do.call(
   })
 )
 
+df_received <- subset(df, treat %in% c("T1", "T2") & get_rec == "Yes")
+easy_cond_model <- lm(received_and_easy ~ t2, data = df_received)
+easy_cond_vcov <- vcovCR(easy_cond_model, cluster = df_received$cluster_id_num, type = "CR2")
+easy_cond_test <- as.data.frame(coef_test(easy_cond_model, vcov = easy_cond_vcov, test = "Satterthwaite"))
+rownames(easy_cond_test) <- easy_cond_test$Coef
+
+easy_conditional <- data.frame(
+  outcome = "Found recommendation easy/very easy, conditional on receipt",
+  control_mean = NA_real_,
+  t1_mean = mean(df_received$received_and_easy[df_received$treat == "T1"], na.rm = TRUE),
+  t1_coef = NA_real_,
+  t1_se = NA_real_,
+  t1_p = NA_real_,
+  t2_mean = mean(df_received$received_and_easy[df_received$treat == "T2"], na.rm = TRUE),
+  t2_coef = easy_cond_test["t2", "beta"],
+  t2_se = easy_cond_test["t2", "SE"],
+  t2_p = easy_cond_test["t2", "p_Satt"],
+  p_equal = easy_cond_test["t2", "p_Satt"],
+  n = nrow(df_received),
+  stringsAsFactors = FALSE
+)
+
+followed_cond_model <- lm(received_and_followed ~ t2, data = df_received)
+followed_cond_vcov <- vcovCR(followed_cond_model, cluster = df_received$cluster_id_num, type = "CR2")
+followed_cond_test <- as.data.frame(coef_test(followed_cond_model, vcov = followed_cond_vcov, test = "Satterthwaite"))
+rownames(followed_cond_test) <- followed_cond_test$Coef
+
+followed_conditional <- data.frame(
+  outcome = "Followed recommendation, conditional on receipt",
+  control_mean = NA_real_,
+  t1_mean = mean(df_received$received_and_followed[df_received$treat == "T1"], na.rm = TRUE),
+  t1_coef = NA_real_,
+  t1_se = NA_real_,
+  t1_p = NA_real_,
+  t2_mean = mean(df_received$received_and_followed[df_received$treat == "T2"], na.rm = TRUE),
+  t2_coef = followed_cond_test["t2", "beta"],
+  t2_se = followed_cond_test["t2", "SE"],
+  t2_p = followed_cond_test["t2", "p_Satt"],
+  p_equal = followed_cond_test["t2", "p_Satt"],
+  n = nrow(df_received),
+  stringsAsFactors = FALSE
+)
+
+insert_after <- match("Received voucher", first_stage_results$outcome)
+tail_rows <- if (insert_after < nrow(first_stage_results)) {
+  first_stage_results[(insert_after + 1):nrow(first_stage_results), ]
+} else {
+  first_stage_results[FALSE, ]
+}
+first_stage_results <- rbind(
+  first_stage_results[seq_len(insert_after), ],
+  easy_conditional,
+  followed_conditional,
+  tail_rows
+)
+
+df_voucher <- subset(df, treat == "T2" & got_voucher == "Yes")
+redeemed_conditional <- data.frame(
+  outcome = "Redeemed voucher, conditional on receipt",
+  control_mean = NA_real_,
+  t1_mean = NA_real_,
+  t1_coef = NA_real_,
+  t1_se = NA_real_,
+  t1_p = NA_real_,
+  t2_mean = mean(df_voucher$redeemed_voucher, na.rm = TRUE),
+  t2_coef = NA_real_,
+  t2_se = NA_real_,
+  t2_p = NA_real_,
+  p_equal = NA_real_,
+  n = nrow(df_voucher),
+  stringsAsFactors = FALSE
+)
+
+df_redeemed <- subset(df, treat == "T2" & redeem == "Yes")
+voucher_enough_conditional <- data.frame(
+  outcome = "Voucher enough for full recommended purchase, conditional on redemption",
+  control_mean = NA_real_,
+  t1_mean = NA_real_,
+  t1_coef = NA_real_,
+  t1_se = NA_real_,
+  t1_p = NA_real_,
+  t2_mean = mean(df_redeemed$voucher_enough, na.rm = TRUE),
+  t2_coef = NA_real_,
+  t2_se = NA_real_,
+  t2_p = NA_real_,
+  p_equal = NA_real_,
+  n = nrow(df_redeemed),
+  stringsAsFactors = FALSE
+)
+
+voucher_insert_after <- match("Followed recommendation, conditional on receipt", first_stage_results$outcome)
+tail_rows <- if (voucher_insert_after < nrow(first_stage_results)) {
+  first_stage_results[(voucher_insert_after + 1):nrow(first_stage_results), ]
+} else {
+  first_stage_results[FALSE, ]
+}
+first_stage_results <- rbind(
+  first_stage_results[seq_len(voucher_insert_after), ],
+  redeemed_conditional,
+  voucher_enough_conditional,
+  tail_rows
+)
+
 write.csv(
   first_stage_results,
   file.path(dir_logs, "table_first_stage.csv"),
@@ -125,27 +222,46 @@ write.csv(
 table_lines <- c(
   "\\begin{tabular}{lrrrrr}",
   "\\hline",
-  "Outcome & Control mean & T1 $-$ Control & T2 $-$ Control & $p$-value: T1 = T2 & N \\\\",
+  "Outcome & Control & T1 & T2 & $p$-value: T1 = T2 & N \\\\",
   "\\hline"
 )
 
 for (i in seq_len(nrow(first_stage_results))) {
   row <- first_stage_results[i, ]
+  if (i == 1) {
+    table_lines <- c(
+      table_lines,
+      "\\multicolumn{6}{l}{\\textit{Panel A: Delivery among interviewed households}} \\\\"
+    )
+  }
+  if (row$outcome == "Found recommendation easy/very easy, conditional on receipt") {
+    table_lines <- c(
+      table_lines,
+      "\\hline",
+      "\\multicolumn{6}{l}{\\textit{Panel B: Recommendation comprehension and adherence, conditional on receipt}} \\\\"
+    )
+    row$outcome <- "Found recommendation easy/very easy"
+  }
+  if (row$outcome == "Followed recommendation, conditional on receipt") {
+    row$outcome <- "Followed recommendation"
+  }
+  if (row$outcome == "Redeemed voucher, conditional on receipt") {
+    table_lines <- c(
+      table_lines,
+      "\\hline",
+      "\\multicolumn{6}{l}{\\textit{Panel C: Voucher implementation, T2 only}} \\\\"
+    )
+  }
   table_lines <- c(
     table_lines,
     sprintf(
       "%s & %s & %s & %s & %s & %s \\\\",
       row$outcome,
       fmt_num(row$control_mean, 3),
-      fmt_num(row$t1_coef, 3),
-      fmt_num(row$t2_coef, 3),
+      fmt_num(row$t1_mean, 3),
+      fmt_num(row$t2_mean, 3),
       fmt_p(row$p_equal, 3),
       fmt_num(row$n, 0)
-    ),
-    sprintf(
-      " &  & (%s) & (%s) &  &  \\\\",
-      fmt_num(row$t1_se, 3),
-      fmt_num(row$t2_se, 3)
     )
   )
 }

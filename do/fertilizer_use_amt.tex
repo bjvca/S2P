@@ -1,0 +1,40 @@
+{
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{4}{c}}
+\hline\hline
+                    &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}\\
+                    &\multicolumn{1}{c}{Total fertilizer quantity in Kg}&\multicolumn{1}{c}{Total fertilizer quantity in Kg}&\multicolumn{1}{c}{Total fertilizer quantity in Kg}&\multicolumn{1}{c}{Total fertilizer quantity in Kg}\\
+\hline
+C                   &        0.00         &        0.00         &        0.00         &        0.00         \\
+                    &         (.)         &         (.)         &         (.)         &         (.)         \\
+[1em]
+T1                  &      150.57         &      164.45         &        3.37         &        2.50         \\
+                    &    (147.71)         &    (157.32)         &      (6.87)         &      (6.37)         \\
+[1em]
+T2                  &      249.05         &      251.89         &       28.60\sym{***}&       34.71\sym{***}\\
+                    &    (217.73)         &    (223.04)         &      (6.01)         &      (5.47)         \\
+[1em]
+Household size      &                     &       19.43         &                     &        1.57         \\
+                    &                     &     (19.50)         &                     &      (1.51)         \\
+[1em]
+Age of household head&                     &       -0.15         &                     &       -0.02\sym{*}  \\
+                    &                     &      (0.16)         &                     &      (0.01)         \\
+[1em]
+Education level of head&                     &      -10.97         &                     &        1.13         \\
+                    &                     &     (12.52)         &                     &      (1.24)         \\
+[1em]
+Time to nearest agro-dealer (min)&                     &        0.05         &                     &        0.00         \\
+                    &                     &      (0.12)         &                     &      (0.01)         \\
+[1em]
+Size of plot (acres)&                     &        0.58         &                     &       35.36\sym{***}\\
+                    &                     &      (0.45)         &                     &      (4.22)         \\
+[1em]
+Constant            &       78.46\sym{***}&        5.49         &       83.36\sym{***}&       15.30         \\
+                    &      (5.84)         &    (113.01)         &      (5.59)         &     (12.07)         \\
+\hline
+Number of  Obs.     &        1953         &        1869         &        1626         &        1626         \\
+\hline\hline
+\multicolumn{5}{l}{\footnotesize Standard errors in parentheses}\\
+\multicolumn{5}{l}{\footnotesize \sym{*} \(p<0.10\), \sym{**} \(p<0.05\), \sym{***} \(p<0.01\)}\\
+\end{tabular}
+}

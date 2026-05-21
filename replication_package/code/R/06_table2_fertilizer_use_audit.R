@@ -1,7 +1,7 @@
 # Generate the first main fertilizer-use table for the manuscript.
 #
 # This script replaces the earlier "audit-only" version with a table generator
-# that uses the specification we can defend in the paper:
+# that uses the specifications we can defend in the paper:
 #   - unadjusted ITT columns for all crops and maize only;
 #   - adjusted columns that include pre-treatment household and plot covariates
 #     only;
@@ -163,25 +163,25 @@ spec_results <- rbind(
   fit_spec(
     data = df,
     rhs_terms = "treat_num",
-    sample_label = "All crops",
+    sample_label = "All soil-test plots",
     column_label = "(1)"
   ),
   fit_spec(
     data = df,
     rhs_terms = c("treat_num", preferred_controls),
-    sample_label = "All crops",
+    sample_label = "All soil-test plots",
     column_label = "(2)"
   ),
   fit_spec(
     data = subset(df, main_maize),
     rhs_terms = "treat_num",
-    sample_label = "Maize only",
+    sample_label = "Maize soil-test plots",
     column_label = "(3)"
   ),
   fit_spec(
     data = subset(df, main_maize),
     rhs_terms = c("treat_num", preferred_controls),
-    sample_label = "Maize only",
+    sample_label = "Maize soil-test plots",
     column_label = "(4)"
   )
 )
@@ -192,29 +192,30 @@ write.csv(
   row.names = FALSE
 )
 
+preferred_results <- subset(spec_results, uses_controls == "No")
+
 table_lines <- c(
   "{",
   "\\def\\sym#1{\\ifmmode^{#1}\\else\\(^{#1}\\)\\fi}",
   "\\begin{tabular}{lccccc}",
   "\\toprule",
-  "Sample and specification & Control mean & T1 $-$ Control & T2 $-$ Control & p-value: T2 = T1 & N \\\\",
+  "Sample & Control mean & T1 $-$ Control & T2 $-$ Control & p-value: T2 = T1 & N \\\\",
   "\\midrule",
-  unlist(lapply(seq_len(nrow(spec_results)), function(i) {
+  unlist(lapply(seq_len(nrow(preferred_results)), function(i) {
     c(
       sprintf(
-        "%s, controls: %s & %s & %s & %s & %s & %s \\\\",
-        spec_results$sample[i],
-        spec_results$uses_controls[i],
-        fmt_num(spec_results$control_mean[i], 2),
-        fmt_coef(spec_results$t1[i], spec_results$t1_p[i]),
-        fmt_coef(spec_results$t2[i], spec_results$t2_p[i]),
-        fmt_num(spec_results$p_equal[i], 3),
-        fmt_num(spec_results$n[i], 0)
+        "%s & %s & %s & %s & %s & %s \\\\",
+        preferred_results$sample[i],
+        fmt_num(preferred_results$control_mean[i], 2),
+        fmt_coef(preferred_results$t1[i], preferred_results$t1_p[i]),
+        fmt_coef(preferred_results$t2[i], preferred_results$t2_p[i]),
+        fmt_num(preferred_results$p_equal[i], 3),
+        fmt_num(preferred_results$n[i], 0)
       ),
       sprintf(
         "& & (%s) & (%s) & & \\\\",
-        fmt_num(spec_results$t1_se[i], 2),
-        fmt_num(spec_results$t2_se[i], 2)
+        fmt_num(preferred_results$t1_se[i], 2),
+        fmt_num(preferred_results$t2_se[i], 2)
       )
     )
   })),

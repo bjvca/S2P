@@ -63,8 +63,8 @@ df$interview_completed <- as.integer(df$checkq9 == "Yes")
 df$matched_soil <- as.integer(df$Merging_Recommendation == "Matched (3)")
 
 stage_specs <- data.frame(
-  var = c("endline_target", "found", "interview_completed", "matched_soil"),
-  label = c("Endline target", "Found", "Interview completed", "Matched to soil test data"),
+  var = c("endline_target", "interview_completed", "matched_soil"),
+  label = c("Endline target", "Interview completed", "Matched to soil test data"),
   stringsAsFactors = FALSE
 )
 

@@ -142,7 +142,8 @@ names(rec_matrix) <- product_order
 act_matrix <- as.data.frame(lapply(product_order, function(p) df[[paste0("act_", p)]]))
 names(act_matrix) <- product_order
 
-valid_product <- !is.na(df$TR_N_Req) &
+valid_product <- df$get_rec == "Yes" &
+  !is.na(df$TR_N_Req) &
   !is.na(df$total_qty_fert) &
   rowSums(rec_matrix) > 0
 
@@ -167,6 +168,7 @@ exclusion_log <- data.frame(
     "Treatment-arm observations before exclusions",
     "Dropped implausible fertilizer records: F_546 and F_387",
     "Missing treatment recommendation record",
+    "Did not report receiving recommendation",
     "Missing/sentinel total fertilizer quantity",
     "No positive product recommendation in parsed fields",
     "Usable product-compliance sample"
@@ -175,6 +177,7 @@ exclusion_log <- data.frame(
     n_before_case_exclusions,
     n_dropped_implausible,
     sum(is.na(df$TR_N_Req)),
+    sum(!is.na(df$TR_N_Req) & df$get_rec != "Yes"),
     sum(is.na(df$total_qty_fert)),
     sum(!is.na(df$TR_N_Req) & rowSums(rec_matrix) == 0),
     nrow(df_valid)
@@ -253,10 +256,10 @@ outcomes <- rbind(
       "exact_recommended_product_bundle"
     ),
     label = c(
-      "Any recommended product applied",
+      "Applied at least one recommended product",
       "Share of recommended products applied",
-      "All recommended products applied",
-      "Exact recommended product bundle applied"
+      "Applied all recommended products",
+      "Applied exact recommended product set"
     ),
     stringsAsFactors = FALSE
   ),
@@ -334,22 +337,42 @@ table_lines <- c(
   "\\begin{tabular}{lccc}",
   "\\toprule",
   "Outcome & T1 mean & T2 $-$ T1 & N \\\\",
-  "\\midrule",
-  unlist(lapply(seq_len(nrow(preferred)), function(i) {
+  "\\midrule"
+)
+
+summary_rows <- preferred[preferred$outcome %in% c(
+  "any_recommended_product_applied",
+  "share_recommended_products_applied",
+  "all_recommended_products_applied",
+  "exact_recommended_product_bundle"
+), ]
+product_rows <- preferred[!(preferred$outcome %in% summary_rows$outcome), ]
+
+format_rows <- function(rows) {
+  unlist(lapply(seq_len(nrow(rows)), function(i) {
     c(
       sprintf(
         "%s & %s & %s & %s \\\\",
-        preferred$outcome_label[i],
-        fmt_num(preferred$t1_mean[i], 3),
-        fmt_coef(preferred$t2_minus_t1[i], preferred$t2_minus_t1_p[i]),
-        fmt_num(preferred$n[i], 0)
+        rows$outcome_label[i],
+        fmt_num(rows$t1_mean[i], 3),
+        fmt_coef(rows$t2_minus_t1[i], rows$t2_minus_t1_p[i]),
+        fmt_num(rows$n[i], 0)
       ),
       sprintf(
         "& & (%s) & \\\\",
-        fmt_num(preferred$t2_minus_t1_se[i], 3)
+        fmt_num(rows$t2_minus_t1_se[i], 3)
       )
     )
-  })),
+  }))
+}
+
+table_lines <- c(
+  table_lines,
+  "\\multicolumn{4}{l}{\\textit{Panel A: Product-set compliance summary}} \\\\",
+  format_rows(summary_rows),
+  "\\midrule",
+  "\\multicolumn{4}{l}{\\textit{Panel B: Product-specific compliance, conditional on product recommendation}} \\\\",
+  format_rows(product_rows),
   "\\bottomrule",
   "\\end{tabular}",
   "}"

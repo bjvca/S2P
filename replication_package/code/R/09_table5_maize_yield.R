@@ -216,24 +216,25 @@ writeLines(
 table_lines <- c(
   "{",
   "\\def\\sym#1{\\ifmmode^{#1}\\else\\(^{#1}\\)\\fi}",
-  "\\begin{tabular}{lcccccc}",
+  "\\begin{tabular}{lccccccc}",
   "\\toprule",
-  "Specification & Ctrl. mean (log) & Ctrl. mean (kg/acre) & T1 $-$ Control & T2 $-$ Control & p: T2 = T1 & N \\\\",
+  "Specification & Ctrl. mean (log) & Ctrl. mean (kg/ac) & T1 $-$ C & T2 $-$ C & T2 \\% effect & $p$: T2 = T1 & N \\\\",
   "\\midrule",
   unlist(lapply(seq_len(nrow(spec_results)), function(i) {
     c(
       sprintf(
-        "Controls: %s & %s & %s & %s & %s & %s & %s \\\\",
-        spec_results$uses_controls[i],
+        "%s & %s & %s & %s & %s & %s & %s & %s \\\\",
+        ifelse(spec_results$uses_controls[i] == "Yes", "Preferred adjusted", "Unadjusted"),
         fmt_num(spec_results$control_mean_log[i], 2),
         fmt_num(spec_results$control_mean_level[i], 1),
         fmt_coef(spec_results$t1[i], spec_results$t1_p[i]),
         fmt_coef(spec_results$t2[i], spec_results$t2_p[i]),
+        fmt_num(100 * (exp(spec_results$t2[i]) - 1), 1),
         fmt_num(spec_results$p_equal[i], 3),
         fmt_num(spec_results$n[i], 0)
       ),
       sprintf(
-        "& & & (%s) & (%s) & & \\\\",
+        "& & & (%s) & (%s) & & & \\\\",
         fmt_num(spec_results$t1_se[i], 2),
         fmt_num(spec_results$t2_se[i], 2)
       )

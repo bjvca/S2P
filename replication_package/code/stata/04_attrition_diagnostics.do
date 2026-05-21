@@ -106,7 +106,6 @@ postfile `handle' str40 stage double control_mean t1_coef t1_se t1_p ///
     t2_coef t2_se t2_p p_equal n using "`results'", replace
 
 post_stage endline_target, label("Endline target") handle(`handle') n(`sample_n')
-post_stage found, label("Found") handle(`handle') n(`sample_n')
 post_stage interview_completed, label("Interview completed") handle(`handle') n(`sample_n')
 post_stage matched_soil, label("Matched to soil test data") handle(`handle') n(`sample_n')
 

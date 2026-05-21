@@ -1,9 +1,10 @@
 # Generate the nutrient-use table for the manuscript.
 #
 # The table follows the Stata analysis structure: nutrient outcomes are
-# measured in kg/ha and restricted to households whose main crop is maize. The
-# adjusted columns use the preferred pre-treatment controls only and enter
-# categorical controls as factors.
+# measured in kg/ha and restricted to households whose main crop is maize.
+# Plot size is recorded in acres, so total nutrient kg must be divided by
+# acres converted to hectares. The adjusted columns use the preferred
+# pre-treatment controls only and enter categorical controls as factors.
 
 if (!exists("replication_root")) {
   args <- commandArgs(trailingOnly = FALSE)
@@ -29,10 +30,6 @@ df <- read.csv(endline_path, stringsAsFactors = FALSE)
 df <- subset(df, treat %in% c("C", "T1", "T2") & main_crp == "MAIZE")
 
 df$treat_num <- factor(df$treat_num, levels = c("C", "T1", "T2"))
-df$N_kgha <- df$total_N / df$plot_siz
-df$P_kgha <- df$total_P / df$plot_siz
-df$K_kgha <- df$total_K / df$plot_siz
-df$totalnutrient_kgha <- df$total_nutrient / df$plot_siz
 
 df$dist_agro[df$dist_agro == 999] <- NA
 df$plot_siz[df$plot_siz == 999] <- NA
@@ -45,6 +42,13 @@ df$hh_educ <- factor(df$hh_educ)
 df$slope <- factor(df$slope)
 df$soil_str <- factor(df$soil_str)
 df$seed_typ_num <- factor(df$seed_typ_num)
+
+acre_to_hectare <- 0.40468564224
+plot_area_ha <- df$plot_siz * acre_to_hectare
+df$N_kgha <- df$total_N / plot_area_ha
+df$P_kgha <- df$total_P / plot_area_ha
+df$K_kgha <- df$total_K / plot_area_ha
+df$totalnutrient_kgha <- df$total_nutrient / plot_area_ha
 
 preferred_controls <- c(
   "hh_size",
@@ -136,29 +140,30 @@ write.csv(
   row.names = FALSE
 )
 
+preferred_results <- subset(spec_results, controls == "Yes")
+
 table_lines <- c(
   "{",
   "\\def\\sym#1{\\ifmmode^{#1}\\else\\(^{#1}\\)\\fi}",
   "\\begin{tabular}{lccccc}",
   "\\toprule",
-  "Outcome and specification & Control mean & T1 $-$ Control & T2 $-$ Control & p-value: T2 = T1 & N \\\\",
+  "Outcome & Control mean & T1 $-$ Control & T2 $-$ Control & p-value: T2 = T1 & N \\\\",
   "\\midrule",
-  unlist(lapply(seq_len(nrow(spec_results)), function(i) {
+  unlist(lapply(seq_len(nrow(preferred_results)), function(i) {
     c(
       sprintf(
-        "%s, controls: %s & %s & %s & %s & %s & %s \\\\",
-        spec_results$outcome_label[i],
-        spec_results$controls[i],
-        fmt_num(spec_results$control_mean[i], 2),
-        fmt_coef(spec_results$t1[i], spec_results$t1_p[i]),
-        fmt_coef(spec_results$t2[i], spec_results$t2_p[i]),
-        fmt_num(spec_results$p_equal[i], 3),
-        fmt_num(spec_results$n[i], 0)
+        "%s & %s & %s & %s & %s & %s \\\\",
+        preferred_results$outcome_label[i],
+        fmt_num(preferred_results$control_mean[i], 2),
+        fmt_coef(preferred_results$t1[i], preferred_results$t1_p[i]),
+        fmt_coef(preferred_results$t2[i], preferred_results$t2_p[i]),
+        fmt_num(preferred_results$p_equal[i], 3),
+        fmt_num(preferred_results$n[i], 0)
       ),
       sprintf(
         "& & (%s) & (%s) & & \\\\",
-        fmt_num(spec_results$t1_se[i], 2),
-        fmt_num(spec_results$t2_se[i], 2)
+        fmt_num(preferred_results$t1_se[i], 2),
+        fmt_num(preferred_results$t2_se[i], 2)
       )
     )
   })),

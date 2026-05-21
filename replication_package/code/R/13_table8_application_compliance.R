@@ -12,7 +12,9 @@
 # variables. The Stata cleaning code constructs total_P and total_K using the
 # product-grade percentages in NPK labels, so these are P2O5 and K2O rather than
 # elemental P and K. This table therefore compares actual and recommended N,
-# P2O5, and K2O in kg/ha.
+# P2O5, and K2O in kg/ha. Plot size is recorded in acres, so actual
+# application rates are converted to kg/ha before comparison to kg/ha
+# recommendations.
 
 if (!exists("replication_root")) {
   args <- commandArgs(trailingOnly = FALSE)
@@ -124,9 +126,11 @@ df$rec_K2O_kgha <-
   0.60 * df$rec_mop +
   0.16 * df$rec_npk152316
 
-df$actual_N_kgha <- df$total_N / df$plot_siz
-df$actual_P2O5_kgha <- df$total_P / df$plot_siz
-df$actual_K2O_kgha <- df$total_K / df$plot_siz
+acre_to_hectare <- 0.40468564224
+plot_area_ha <- df$plot_siz * acre_to_hectare
+df$actual_N_kgha <- df$total_N / plot_area_ha
+df$actual_P2O5_kgha <- df$total_P / plot_area_ha
+df$actual_K2O_kgha <- df$total_K / plot_area_ha
 
 df$abs_error_N_kgha <- abs(df$actual_N_kgha - df$rec_N_kgha)
 df$abs_error_P2O5_kgha <- abs(df$actual_P2O5_kgha - df$rec_P2O5_kgha)
@@ -280,6 +284,46 @@ fmt_coef <- function(beta, p_value) {
 
 preferred <- subset(results, controls == "Yes")
 
+panel_rows <- function(rows, panel_label) {
+  c(
+    sprintf("\\multicolumn{4}{l}{\\textit{%s}} \\\\", panel_label),
+    unlist(lapply(seq_len(nrow(rows)), function(i) {
+      c(
+        sprintf(
+          "%s & %s & %s & %s \\\\",
+          rows$outcome_label[i],
+          fmt_num(rows$t1_mean[i], 2),
+          fmt_coef(rows$t2_minus_t1[i], rows$t2_minus_t1_p[i]),
+          fmt_num(rows$n[i], 0)
+        ),
+        sprintf(
+          "& & (%s) & \\\\",
+          fmt_num(rows$t2_minus_t1_se[i], 2)
+        )
+      )
+    }))
+  )
+}
+
+nitrogen <- preferred[grepl(" N$|N applied|N application|N shortfall", preferred$outcome_label), ]
+phosphorus <- preferred[grepl("P\\$_2\\$O\\$_5\\$", preferred$outcome_label), ]
+potassium <- preferred[grepl("K\\$_2\\$O", preferred$outcome_label), ]
+
+nitrogen$outcome_label <- sub("^Recommended N$", "Recommended amount", nitrogen$outcome_label)
+nitrogen$outcome_label <- sub("^Actual N applied$", "Actual application", nitrogen$outcome_label)
+nitrogen$outcome_label <- sub("^Absolute N application error$", "Absolute application error", nitrogen$outcome_label)
+nitrogen$outcome_label <- sub("^N shortfall$", "Shortfall", nitrogen$outcome_label)
+
+phosphorus$outcome_label <- sub("^Recommended P\\$_2\\$O\\$_5\\$", "Recommended amount", phosphorus$outcome_label)
+phosphorus$outcome_label <- sub("^Actual P\\$_2\\$O\\$_5\\$ applied$", "Actual application", phosphorus$outcome_label)
+phosphorus$outcome_label <- sub("^Absolute P\\$_2\\$O\\$_5\\$ application error$", "Absolute application error", phosphorus$outcome_label)
+phosphorus$outcome_label <- sub("^P\\$_2\\$O\\$_5\\$ shortfall$", "Shortfall", phosphorus$outcome_label)
+
+potassium$outcome_label <- sub("^Recommended K\\$_2\\$O$", "Recommended amount", potassium$outcome_label)
+potassium$outcome_label <- sub("^Actual K\\$_2\\$O applied$", "Actual application", potassium$outcome_label)
+potassium$outcome_label <- sub("^Absolute K\\$_2\\$O application error$", "Absolute application error", potassium$outcome_label)
+potassium$outcome_label <- sub("^K\\$_2\\$O shortfall$", "Shortfall", potassium$outcome_label)
+
 table_lines <- c(
   "{",
   "\\def\\sym#1{\\ifmmode^{#1}\\else\\(^{#1}\\)\\fi}",
@@ -287,21 +331,11 @@ table_lines <- c(
   "\\toprule",
   "Outcome & T1 mean & T2 $-$ T1 & N \\\\",
   "\\midrule",
-  unlist(lapply(seq_len(nrow(preferred)), function(i) {
-    c(
-      sprintf(
-        "%s & %s & %s & %s \\\\",
-        preferred$outcome_label[i],
-        fmt_num(preferred$t1_mean[i], 2),
-        fmt_coef(preferred$t2_minus_t1[i], preferred$t2_minus_t1_p[i]),
-        fmt_num(preferred$n[i], 0)
-      ),
-      sprintf(
-        "& & (%s) & \\\\",
-        fmt_num(preferred$t2_minus_t1_se[i], 2)
-      )
-    )
-  })),
+  panel_rows(nitrogen, "Panel A: Nitrogen (kg/ha)"),
+  "\\midrule",
+  panel_rows(phosphorus, "Panel B: Phosphorus, P$_2$O$_5$ (kg/ha)"),
+  "\\midrule",
+  panel_rows(potassium, "Panel C: Potassium, K$_2$O (kg/ha)"),
   "\\bottomrule",
   "\\end{tabular}",
   "}"

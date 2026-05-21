@@ -1,0 +1,86 @@
+\documentclass[12pt]{article}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{geometry}
+\geometry{margin=1in}
+\begin{document}
+
+\begin{table}[htbp]
+\centering
+\caption{Soil chemistry balance: T1 vs.\ T2 (same lab: Cropnuts; $n$: T1\,=\,689, T2\,=\,661)}
+\label{tab:balance_t1_t2}
+\small
+\begin{tabular}{lrrrrrrrl}
+\toprule
+Variable & T1 mean & T2 mean & Diff & $t$ & df & $p$-value & Cohen's $d$ & \\
+\midrule
+pH & 5.987 & 5.900 & 0.087 & 4.22 & 1338 & $<$0.001 & 0.230 & *** \\
+Phosphorus (ppm) & 23.704 & 24.283 & -0.579 & -0.66 & 1283 & 0.510 & -0.037 &  \\
+Potassium (ppm) & 135.834 & 117.505 & 18.330 & 0.50 & 1346 & 0.621 & 0.027 &  \\
+Calcium (ppm) & 983.491 & 944.951 & 38.540 & 1.09 & 1346 & 0.274 & 0.060 &  \\
+Magnesium (ppm) & 169.392 & 156.229 & 13.163 & 1.15 & 1332 & 0.250 & 0.063 &  \\
+Iron (ppm) & 124.713 & 123.688 & 1.025 & 0.59 & 1258 & 0.556 & 0.033 &  \\
+Manganese (ppm) & 104.786 & 102.786 & 2.001 & 1.10 & 1296 & 0.273 & 0.061 &  \\
+Copper (ppm) & 3.665 & 3.698 & -0.033 & -0.06 & 1065 & 0.952 & -0.004 &  \\
+Zinc (ppm) & 1.431 & 1.643 & -0.211 & -3.82 & 1096 & $<$0.001 & -0.216 & *** \\
+Boron (ppm) & 0.268 & 0.272 & -0.004 & -0.06 & 1279 & 0.951 & -0.003 &  \\
+CEC (meq/100g) & 9.712 & 9.320 & 0.391 & 0.38 & 1244 & 0.707 & 0.021 &  \\
+Total N (\%) & 0.086 & 0.087 & -0.001 & -0.92 & 1263 & 0.360 & -0.051 &  \\
+\bottomrule
+\multicolumn{9}{l}{\footnotesize $^{***}p<0.001$; $^{**}p<0.01$; $^{*}p<0.05$; $^{\dag}p<0.10$. Welch's $t$-test (unequal variances).} \\
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption{Soil chemistry balance: T1 vs.\ C (different labs: Cropnuts vs.\ FES; $n$: T1\,=\,689, C\,=\,416)}
+\label{tab:balance_t1_c}
+\small
+\begin{tabular}{lrrrrrrrl}
+\toprule
+Variable & T1 mean & C mean & Diff & $t$ & df & $p$-value & Cohen's $d$ & \\
+\midrule
+pH & 5.987 & 5.595 & 0.392 & 18.49 & 967 & $<$0.001 & 1.111 & *** \\
+Phosphorus (ppm) & 23.704 & 20.962 & 2.742 & 2.76 & 857 & 0.006 & 0.173 & ** \\
+Potassium (ppm) & 135.834 & 95.077 & 40.758 & 1.53 & 696 & 0.127 & 0.074 &  \\
+Calcium (ppm) & 983.491 & 610.065 & 373.426 & 11.93 & 1098 & $<$0.001 & 0.654 & *** \\
+Magnesium (ppm) & 169.392 & 107.740 & 61.652 & 6.67 & 936 & $<$0.001 & 0.345 & *** \\
+Iron (ppm) & 124.713 & 48.515 & 76.198 & 36.00 & 752 & $<$0.001 & 2.347 & *** \\
+Manganese (ppm) & 104.786 & 31.817 & 72.969 & 41.07 & 1056 & $<$0.001 & 2.382 & *** \\
+Copper (ppm) & 3.665 & 2.571 & 1.094 & 3.35 & 773 & $<$0.001 & 0.175 & *** \\
+Zinc (ppm) & 1.431 & 1.446 & -0.015 & -0.24 & 694 & 0.807 & -0.016 &  \\
+Boron (ppm) & 0.268 & 0.123 & 0.145 & 3.22 & 687 & 0.001 & 0.157 & ** \\
+CEC (meq/100g) & 9.712 & 4.215 & 5.497 & 8.08 & 730 & $<$0.001 & 0.396 & *** \\
+Total N (\%) & 0.086 & 0.082 & 0.003 & 1.69 & 702 & 0.091 & 0.113 & \dag \\
+\bottomrule
+\multicolumn{9}{l}{\footnotesize $^{***}p<0.001$; $^{**}p<0.01$; $^{*}p<0.05$; $^{\dag}p<0.10$. Welch's $t$-test (unequal variances).} \\
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption{Soil chemistry balance: T2 vs.\ C (different labs: Cropnuts vs.\ FES; $n$: T2\,=\,661, C\,=\,416)}
+\label{tab:balance_t2_c}
+\small
+\begin{tabular}{lrrrrrrrl}
+\toprule
+Variable & T2 mean & C mean & Diff & $t$ & df & $p$-value & Cohen's $d$ & \\
+\midrule
+pH & 5.900 & 5.595 & 0.306 & 14.03 & 990 & $<$0.001 & 0.844 & *** \\
+Phosphorus (ppm) & 24.283 & 20.962 & 3.321 & 3.26 & 882 & 0.001 & 0.207 & ** \\
+Potassium (ppm) & 117.505 & 95.077 & 22.428 & 0.87 & 671 & 0.386 & 0.043 &  \\
+Calcium (ppm) & 944.951 & 610.065 & 334.887 & 10.85 & 1073 & $<$0.001 & 0.610 & *** \\
+Magnesium (ppm) & 156.229 & 107.740 & 48.489 & 5.56 & 937 & $<$0.001 & 0.296 & *** \\
+Iron (ppm) & 123.688 & 48.515 & 75.172 & 34.01 & 826 & $<$0.001 & 2.199 & *** \\
+Manganese (ppm) & 102.786 & 31.817 & 70.969 & 40.09 & 1013 & $<$0.001 & 2.418 & *** \\
+Copper (ppm) & 3.698 & 2.571 & 1.127 & 2.44 & 652 & 0.015 & 0.132 & * \\
+Zinc (ppm) & 1.643 & 1.446 & 0.196 & 2.80 & 926 & 0.005 & 0.175 & ** \\
+Boron (ppm) & 0.272 & 0.123 & 0.149 & 3.06 & 627 & 0.002 & 0.159 & ** \\
+CEC (meq/100g) & 9.320 & 4.215 & 5.105 & 6.34 & 651 & $<$0.001 & 0.330 & *** \\
+Total N (\%) & 0.087 & 0.082 & 0.005 & 2.32 & 754 & 0.021 & 0.154 & * \\
+\bottomrule
+\multicolumn{9}{l}{\footnotesize $^{***}p<0.001$; $^{**}p<0.01$; $^{*}p<0.05$; $^{\dag}p<0.10$. Welch's $t$-test (unequal variances).} \\
+\end{tabular}
+\end{table}
+
+\end{document}

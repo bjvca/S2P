@@ -1,0 +1,40 @@
+{
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{4}{c}}
+\hline\hline
+                &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}\\
+                &\multicolumn{1}{c}{Total fertilizer use (kg)}&\multicolumn{1}{c}{Total fertilizer use (kg)}&\multicolumn{1}{c}{Total fertilizer use (kg)}&\multicolumn{1}{c}{Total fertilizer use (kg)}\\
+\hline
+C               &     0.00         &     0.00         &     0.00         &     0.00         \\
+                &      (.)         &      (.)         &      (.)         &      (.)         \\
+T1              &   150.57         &    47.40         &     3.37         &     2.25         \\
+                & (147.71)         & (147.98)         &   (6.87)         &   (6.50)         \\
+T2              &   249.05         &   135.18         &    28.60\sym{***}&    34.51\sym{***}\\
+                & (217.73)         & (133.56)         &   (6.01)         &   (5.77)         \\
+Household size  &                  &    18.72         &                  &     1.37         \\
+                &                  &  (17.43)         &                  &   (1.52)         \\
+Household head age (years)&                  &    -0.14         &                  &    -0.02\sym{*}  \\
+                &                  &   (0.19)         &                  &   (0.01)         \\
+Household head education (years)&                  &    -7.80         &                  &     1.01         \\
+                &                  &  (11.05)         &                  &   (1.22)         \\
+Distance to agro-dealer (km)&                  &     0.10         &                  &     0.00         \\
+                &                  &   (0.15)         &                  &   (0.01)         \\
+Plot size (acres)&                  &    -0.06         &                  &    35.06\sym{***}\\
+                &                  &   (0.44)         &                  &   (4.25)         \\
+Visited agro-dealer (Yes=1)&                  &   424.67         &                  &    -1.44         \\
+                &                  & (299.91)         &                  &   (4.57)         \\
+Access to extension services (Yes=1)&                  &  -231.95         &                  &    10.34\sym{*}  \\
+                &                  & (176.95)         &                  &   (5.51)         \\
+Plot slope      &                  &    19.61         &                  &    -0.15         \\
+                &                  &  (24.24)         &                  &   (0.31)         \\
+Soil structure  &                  &    48.11         &                  &    -1.17         \\
+                &                  & (146.83)         &                  &   (1.75)         \\
+Seed type used  &                  &    93.16         &                  &     5.08\sym{**} \\
+                &                  &  (92.67)         &                  &   (2.16)         \\
+Constant        &    78.46\sym{***}&  -351.26         &    83.36\sym{***}&     8.07         \\
+                &   (5.84)         & (605.56)         &   (5.59)         &  (10.96)         \\
+\hline
+Number of Obs.  &     1953         &     1869         &     1626         &     1626         \\
+\hline\hline
+\end{tabular}
+}

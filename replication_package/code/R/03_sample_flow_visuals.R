@@ -35,7 +35,6 @@ sample_flow <- sample_flow[match(arm_levels, sample_flow$treatment), ]
 stage_labels <- c(
   "Baseline\nsampled",
   "Endline\ntarget",
-  "Found",
   "Interview\ncompleted",
   "Matched to\nsoil test data"
 )
@@ -43,7 +42,6 @@ stage_labels <- c(
 stage_counts <- rbind(
   sample_flow$baseline_sample_n,
   sample_flow$endline_target_n,
-  sample_flow$found_n,
   sample_flow$interview_completed_n,
   sample_flow$matched_recommendation_n
 )
@@ -128,22 +126,25 @@ fmt_npct <- function(n, denom) {
 }
 
 table_lines <- c(
-  "\\begin{tabular}{lccc}",
+  "\\begin{tabular}{lcccc}",
   "\\hline",
-  "Stage & Control & Treatment 1 & Treatment 2 \\\\",
+  "Stage & Control & Treatment 1 & Treatment 2 & Total \\\\",
   "\\hline"
 )
+
+total_baseline_n <- sum(sample_flow$baseline_sample_n)
 
 for (i in seq_len(nrow(stage_counts))) {
   stage <- rownames(stage_counts)[i]
   table_lines <- c(
     table_lines,
     sprintf(
-      "%s & %s & %s & %s \\\\",
+      "%s & %s & %s & %s & %s \\\\",
       stage,
       fmt_npct(stage_counts[i, "C"], sample_flow$baseline_sample_n[sample_flow$treatment == "C"]),
       fmt_npct(stage_counts[i, "T1"], sample_flow$baseline_sample_n[sample_flow$treatment == "T1"]),
-      fmt_npct(stage_counts[i, "T2"], sample_flow$baseline_sample_n[sample_flow$treatment == "T2"])
+      fmt_npct(stage_counts[i, "T2"], sample_flow$baseline_sample_n[sample_flow$treatment == "T2"]),
+      fmt_npct(sum(stage_counts[i, ]), total_baseline_n)
     )
   )
 }

@@ -191,12 +191,12 @@ fmt_coef <- function(beta, p_value, digits = 2) {
 }
 
 panel_block <- function(panel_df, panel_label, digits) {
+  panel_df <- subset(panel_df, uses_controls == "Yes")
   rows <- unlist(lapply(seq_len(nrow(panel_df)), function(i) {
     c(
       sprintf(
-        "%s, controls: %s & %s & %s & %s & %s & %s \\\\",
+        "%s & %s & %s & %s & %s & %s \\\\",
         panel_df$sample[i],
-        panel_df$uses_controls[i],
         fmt_num(panel_df$control_mean[i], digits),
         fmt_coef(panel_df$t1[i], panel_df$t1_p[i], digits),
         fmt_coef(panel_df$t2[i], panel_df$t2_p[i], digits),
@@ -231,7 +231,7 @@ table_lines <- c(
   "\\def\\sym#1{\\ifmmode^{#1}\\else\\(^{#1}\\)\\fi}",
   "\\begin{tabular}{lccccc}",
   "\\toprule",
-  "Sample and specification & Control mean & T1 $-$ Control & T2 $-$ Control & p-value: T2 = T1 & N \\\\",
+  "Sample & Control mean & T1 $-$ Control & T2 $-$ Control & p-value: T2 = T1 & N \\\\",
   "\\midrule",
   panels_tex,
   "\\bottomrule",

@@ -1,0 +1,40 @@
+{
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{2}{c}}
+\hline\hline
+                    &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}\\
+                    &\multicolumn{1}{c}{Log of maize yield (kg/acre)}&\multicolumn{1}{c}{Log of maize yield (kg/acre)}\\
+\hline
+C                   &        0.00         &        0.00         \\
+                    &         (.)         &         (.)         \\
+[1em]
+T1                  &       -0.13         &       -0.13         \\
+                    &      (0.11)         &      (0.10)         \\
+[1em]
+T2                  &        0.36\sym{***}&        0.33\sym{***}\\
+                    &      (0.10)         &      (0.10)         \\
+[1em]
+Household size      &                     &        0.03         \\
+                    &                     &      (0.02)         \\
+[1em]
+Age of household head&                     &       -0.00         \\
+                    &                     &      (0.00)         \\
+[1em]
+Education level of head&                     &        0.03         \\
+                    &                     &      (0.03)         \\
+[1em]
+Time to nearest agro-dealer (min)&                     &       -0.00\sym{***}\\
+                    &                     &      (0.00)         \\
+[1em]
+Size of plot (acres)&                     &       -0.19\sym{***}\\
+                    &                     &      (0.04)         \\
+[1em]
+Constant            &        6.01\sym{***}&        6.22\sym{***}\\
+                    &      (0.06)         &      (0.13)         \\
+\hline
+Number of  Obs.     &        1610         &        1610         \\
+\hline\hline
+\multicolumn{3}{l}{\footnotesize Standard errors in parentheses}\\
+\multicolumn{3}{l}{\footnotesize \sym{*} \(p<0.10\), \sym{**} \(p<0.05\), \sym{***} \(p<0.01\)}\\
+\end{tabular}
+}

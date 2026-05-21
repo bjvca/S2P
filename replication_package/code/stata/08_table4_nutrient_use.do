@@ -71,17 +71,18 @@ foreach v in treat_num cluster_id_num total_N total_P total_K total_nutrient ///
 
 rename cluster_id_num cluster_id
 
-gen N_kgha = total_N / plot_siz
-gen P_kgha = total_P / plot_siz
-gen K_kgha = total_K / plot_siz
-gen totalnutrient_kgha = total_nutrient / plot_siz
-
 replace dist_agro = . if dist_agro == 999
 replace plot_siz = . if plot_siz == 999
 replace hh_educ = "" if trim(hh_educ) == ""
 replace slope = "" if trim(slope) == ""
 replace soil_str = "" if trim(soil_str) == ""
 replace soil_str = "Other/unknown" if soil_str == "5"
+
+local acre_to_hectare = 0.40468564224
+gen N_kgha = total_N / (plot_siz * `acre_to_hectare')
+gen P_kgha = total_P / (plot_siz * `acre_to_hectare')
+gen K_kgha = total_K / (plot_siz * `acre_to_hectare')
+gen totalnutrient_kgha = total_nutrient / (plot_siz * `acre_to_hectare')
 
 encode hh_educ, gen(hh_educ_cat)
 encode slope, gen(slope_cat)

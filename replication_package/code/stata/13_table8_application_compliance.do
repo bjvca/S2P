@@ -137,9 +137,10 @@ gen rec_K2O_kgha = ///
     0.60 * rec_mop + ///
     0.16 * rec_npk152316
 
-gen actual_N_kgha = total_N / plot_siz
-gen actual_P2O5_kgha = total_P / plot_siz
-gen actual_K2O_kgha = total_K / plot_siz
+local acre_to_hectare = 0.40468564224
+gen actual_N_kgha = total_N / (plot_siz * `acre_to_hectare')
+gen actual_P2O5_kgha = total_P / (plot_siz * `acre_to_hectare')
+gen actual_K2O_kgha = total_K / (plot_siz * `acre_to_hectare')
 
 gen abs_error_N_kgha = abs(actual_N_kgha - rec_N_kgha)
 gen abs_error_P2O5_kgha = abs(actual_P2O5_kgha - rec_P2O5_kgha)
