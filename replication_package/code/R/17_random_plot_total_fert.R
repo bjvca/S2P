@@ -167,9 +167,9 @@ star_code <- function(p) {
 
 fmt_num <- function(x, digits) formatC(round(x, digits), format = "f", digits = digits)
 
-pref_bin  <- subset(results_bin,  uses_controls == "Yes")
-pref_kg   <- subset(results,      uses_controls == "Yes")
-pref_acre <- subset(results_acre, uses_controls == "Yes")
+pref_bin  <- subset(results_bin,  uses_controls == "No")
+pref_kg   <- subset(results,      uses_controls == "No")
+pref_acre <- subset(results_acre, uses_controls == "No")
 
 fmt_row <- function(label, r, digits = 1) {
   c(
