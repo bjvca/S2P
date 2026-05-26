@@ -191,7 +191,7 @@ fmt_coef <- function(beta, p_value, digits = 2) {
 }
 
 panel_block <- function(panel_df, panel_label, digits) {
-  panel_df <- subset(panel_df, uses_controls == "Yes")
+  panel_df <- subset(panel_df, uses_controls == "No")
   rows <- unlist(lapply(seq_len(nrow(panel_df)), function(i) {
     c(
       sprintf(
@@ -211,7 +211,7 @@ panel_block <- function(panel_df, panel_label, digits) {
     )
   }))
   c(
-    sprintf("\\multicolumn{6}{l}{\\textit{%s}} \\\\", panel_label),
+    sprintf("\\multicolumn{6}{c}{\\textit{%s}} \\\\", panel_label),
     rows,
     "\\midrule"
   )
