@@ -137,24 +137,18 @@ fit_one <- function(data, rhs_terms, sample_label, uses_controls,
 }
 
 results_bin <- rbind(
-  fit_one(subset(df, other_plots_bin == 1),      "treat_num",                       "All crops",  "No",  "rnd_any_fert"),
-  fit_one(subset(df, other_plots_bin == 1),      c("treat_num", preferred_controls), "All crops",  "Yes", "rnd_any_fert"),
-  fit_one(subset(df, main_maize & rnd_is_maize), "treat_num",                       "Maize only", "No",  "rnd_any_fert"),
-  fit_one(subset(df, main_maize & rnd_is_maize), c("treat_num", preferred_controls), "Maize only", "Yes", "rnd_any_fert")
+  fit_one(subset(df, other_plots_bin == 1), "treat_num",                       "All crops", "No",  "rnd_any_fert"),
+  fit_one(subset(df, other_plots_bin == 1), c("treat_num", preferred_controls), "All crops", "Yes", "rnd_any_fert")
 )
 
 results <- rbind(
-  fit_one(subset(df, other_plots_bin == 1),      "treat_num",                       "All crops",  "No",  "rnd_total_fert_scaled"),
-  fit_one(subset(df, other_plots_bin == 1),      c("treat_num", preferred_controls), "All crops",  "Yes", "rnd_total_fert_scaled"),
-  fit_one(subset(df, main_maize & rnd_is_maize), "treat_num",                       "Maize only", "No",  "rnd_total_fert"),
-  fit_one(subset(df, main_maize & rnd_is_maize), c("treat_num", preferred_controls), "Maize only", "Yes", "rnd_total_fert")
+  fit_one(subset(df, other_plots_bin == 1), "treat_num",                       "All crops", "No",  "rnd_total_fert_scaled"),
+  fit_one(subset(df, other_plots_bin == 1), c("treat_num", preferred_controls), "All crops", "Yes", "rnd_total_fert_scaled")
 )
 
 results_acre <- rbind(
-  fit_one(subset(df, other_plots_bin == 1),      "treat_num",                       "All crops",  "No",  "rnd_fert_per_acre_scaled"),
-  fit_one(subset(df, other_plots_bin == 1),      c("treat_num", preferred_controls), "All crops",  "Yes", "rnd_fert_per_acre_scaled"),
-  fit_one(subset(df, main_maize & rnd_is_maize), "treat_num",                       "Maize only", "No",  "rnd_fert_per_acre"),
-  fit_one(subset(df, main_maize & rnd_is_maize), c("treat_num", preferred_controls), "Maize only", "Yes", "rnd_fert_per_acre")
+  fit_one(subset(df, other_plots_bin == 1), "treat_num",                       "All crops", "No",  "rnd_fert_per_acre_scaled"),
+  fit_one(subset(df, other_plots_bin == 1), c("treat_num", preferred_controls), "All crops", "Yes", "rnd_fert_per_acre_scaled")
 )
 
 out_dir <- file.path(replication_root, "output", "logs")
@@ -215,10 +209,10 @@ table_lines <- c(
   "\\multicolumn{6}{l}{\\textit{Panel A: Any fertilizer used (proportion)}} \\\\",
   unlist(lapply(seq_len(nrow(pref_bin)),  function(i) fmt_row_bin(pref_bin[i, ]))),
   "\\midrule",
-  "\\multicolumn{6}{l}{\\textit{Panel B: Total kg applied (all crops: HT-scaled; maize only: single plot)}} \\\\",
+  "\\multicolumn{6}{l}{\\textit{Panel B: Total kg applied (HT-scaled)}} \\\\",
   unlist(lapply(seq_len(nrow(pref_kg)),   function(i) fmt_row(pref_kg[i, ]))),
   "\\midrule",
-  "\\multicolumn{6}{l}{\\textit{Panel C: Kg per acre (all crops: HT-scaled; maize only: single plot)}} \\\\",
+  "\\multicolumn{6}{l}{\\textit{Panel C: Kg per acre (HT-scaled)}} \\\\",
   unlist(lapply(seq_len(nrow(pref_acre)), function(i) fmt_row(pref_acre[i, ]))),
   "\\bottomrule",
   "\\end{tabular}",
