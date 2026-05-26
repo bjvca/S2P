@@ -193,7 +193,7 @@ fmt_coef <- function(beta, p_value) {
   paste0(fmt_num(beta, 3), star_code(p_value))
 }
 
-preferred <- subset(results, controls == "Yes")
+preferred <- subset(results, controls == "No")
 
 table_lines <- c(
   "{",
