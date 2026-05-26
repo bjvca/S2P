@@ -190,50 +190,47 @@ fmt_coef <- function(beta, p_value, digits = 2) {
   paste0(fmt_num(beta, digits), star_code(p_value))
 }
 
-panel_block <- function(panel_df, panel_label, digits) {
-  panel_df <- subset(panel_df, uses_controls == "No")
-  rows <- unlist(lapply(seq_len(nrow(panel_df)), function(i) {
-    c(
-      sprintf(
-        "%s & %s & %s & %s & %s & %s \\\\",
-        panel_df$sample[i],
-        fmt_num(panel_df$control_mean[i], digits),
-        fmt_coef(panel_df$t1[i], panel_df$t1_p[i], digits),
-        fmt_coef(panel_df$t2[i], panel_df$t2_p[i], digits),
-        fmt_num(panel_df$p_equal[i], 3),
-        fmt_num(panel_df$n[i], 0)
-      ),
-      sprintf(
-        "& & (%s) & (%s) & & \\\\",
-        fmt_num(panel_df$t1_se[i], digits),
-        fmt_num(panel_df$t2_se[i], digits)
-      )
-    )
-  }))
+outcome_row <- function(label, r, digits) {
   c(
-    sprintf("\\multicolumn{6}{c}{\\textit{%s}} \\\\", panel_label),
-    rows,
-    "\\midrule"
+    sprintf(
+      "%s & %s & %s & %s & %s & %s \\\\",
+      label,
+      fmt_num(r$control_mean, digits),
+      fmt_coef(r$t1, r$t1_p, digits),
+      fmt_coef(r$t2, r$t2_p, digits),
+      fmt_num(r$p_equal, 3),
+      fmt_num(r$n, 0)
+    ),
+    sprintf(
+      "& & (%s) & (%s) & & \\\\",
+      fmt_num(r$t1_se, digits),
+      fmt_num(r$t2_se, digits)
+    )
   )
 }
 
-# Panel A uses 3 decimals (binary), B/C/D use 2 (kg)
-panels_tex <- c(
-  panel_block(subset(all_results, grepl("^Panel A", panel)), "Panel A: Binary AIP receipt indicator",                3),
-  panel_block(subset(all_results, grepl("^Panel B", panel)), "Panel B: AIP fertilizer applied on the test plot (kg)", 2),
-  panel_block(subset(all_results, grepl("^Panel C", panel)), "Panel C: AIP fertilizer applied on the random plot (kg)", 2),
-  panel_block(subset(all_results, grepl("^Panel D", panel)), "Panel D: Two-plot AIP fertilizer total (kg)",            2)
+get_row <- function(panel_str, sample_str) {
+  subset(all_results, grepl(panel_str, panel) & sample == sample_str & uses_controls == "No")
+}
+
+rows_tex <- c(
+  outcome_row("AIP receipt (0/1)",          get_row("^Panel A", "All crops"), 3),
+  "\\midrule",
+  outcome_row("AIP on test plot (kg)",       get_row("^Panel B", "All crops"), 2),
+  "\\midrule",
+  outcome_row("AIP on random plot (kg)",     get_row("^Panel C", "All crops"), 2),
+  "\\midrule",
+  outcome_row("Two-plot AIP total (kg)",     get_row("^Panel D", "All crops"), 2)
 )
-panels_tex <- panels_tex[seq_len(length(panels_tex) - 1)]
 
 table_lines <- c(
   "{",
   "\\def\\sym#1{\\ifmmode^{#1}\\else\\(^{#1}\\)\\fi}",
   "\\begin{tabular}{lccccc}",
   "\\toprule",
-  "Sample & Control mean & T1 $-$ Control & T2 $-$ Control & p-value: T2 = T1 & N \\\\",
+  "Outcome & Control mean & T1 $-$ Control & T2 $-$ Control & p-value: T2 = T1 & N \\\\",
   "\\midrule",
-  panels_tex,
+  rows_tex,
   "\\bottomrule",
   "\\end{tabular}",
   "}"
