@@ -140,7 +140,7 @@ write.csv(
   row.names = FALSE
 )
 
-preferred_results <- subset(spec_results, controls == "Yes")
+preferred_results <- subset(spec_results, controls == "No")
 
 table_lines <- c(
   "{",

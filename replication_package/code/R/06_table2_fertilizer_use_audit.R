@@ -72,6 +72,8 @@ df <- subset(df, !(farmer_id %in% c("F_546", "F_387")))
 
 df$treat_num <- factor(df$treat_num, levels = c("C", "T1", "T2"))
 df$main_maize <- df$main_crp == "MAIZE"
+df$any_fert    <- as.integer(df$total_qty_fert > 0)
+df$fert_per_acre <- df$total_qty_fert / df$plot_siz
 
 # Sentinel values and blank strings are exported from Stata as literal values
 # in the CSV. They need to be normalized before the adjusted specification is
@@ -101,12 +103,13 @@ preferred_controls <- c(
   "seed_typ_num"
 )
 
-fit_spec <- function(data, rhs_terms, sample_label, column_label) {
-  vars_needed <- c("total_qty_fert", "treat_num", "cluster_id_num", rhs_terms)
+fit_spec <- function(data, rhs_terms, sample_label, column_label,
+                     outcome = "total_qty_fert") {
+  vars_needed <- c(outcome, "treat_num", "cluster_id_num", rhs_terms)
   vars_needed <- unique(vars_needed)
   data <- data[complete.cases(data[, vars_needed]), ]
 
-  model <- lm(reformulate(rhs_terms, response = "total_qty_fert"), data = data)
+  model <- lm(reformulate(rhs_terms, response = outcome), data = data)
   cluster_count <- length(unique(data$cluster_id_num))
   vcov_stage <- vcovCR(model, cluster = data$cluster_id_num, type = "CR1S")
   ct <- as.data.frame(coef_test(model, vcov = vcov_stage, test = "naive-t"))
@@ -134,7 +137,7 @@ fit_spec <- function(data, rhs_terms, sample_label, column_label) {
     sample = sample_label,
     n = nrow(data),
     clusters = cluster_count,
-    control_mean = mean(data$total_qty_fert[data$treat == "C"], na.rm = TRUE),
+    control_mean = mean(data[[outcome]][data$treat == "C"], na.rm = TRUE),
     t1 = t1_beta,
     t1_se = t1_se,
     t1_p = t1_p,
@@ -186,13 +189,77 @@ spec_results <- rbind(
   )
 )
 
+spec_results_acre <- rbind(
+  fit_spec(
+    data = df,
+    rhs_terms = "treat_num",
+    sample_label = "All soil-test plots",
+    column_label = "(1)",
+    outcome = "fert_per_acre"
+  ),
+  fit_spec(
+    data = df,
+    rhs_terms = c("treat_num", preferred_controls),
+    sample_label = "All soil-test plots",
+    column_label = "(2)",
+    outcome = "fert_per_acre"
+  ),
+  fit_spec(
+    data = subset(df, main_maize),
+    rhs_terms = "treat_num",
+    sample_label = "Maize soil-test plots",
+    column_label = "(3)",
+    outcome = "fert_per_acre"
+  ),
+  fit_spec(
+    data = subset(df, main_maize),
+    rhs_terms = c("treat_num", preferred_controls),
+    sample_label = "Maize soil-test plots",
+    column_label = "(4)",
+    outcome = "fert_per_acre"
+  )
+)
+
+spec_results_bin <- rbind(
+  fit_spec(df,                    "treat_num", "All soil-test plots",  "(1)", "any_fert"),
+  fit_spec(df,                    c("treat_num", preferred_controls), "All soil-test plots",  "(2)", "any_fert"),
+  fit_spec(subset(df, main_maize),"treat_num", "Maize soil-test plots","(3)", "any_fert"),
+  fit_spec(subset(df, main_maize),c("treat_num", preferred_controls), "Maize soil-test plots","(4)", "any_fert")
+)
+
+spec_results_bin$outcome  <- "any_fert"
+spec_results_acre$outcome <- "fert_per_acre"
+spec_results$outcome      <- "total_qty_fert"
 write.csv(
-  spec_results,
+  rbind(spec_results_bin, spec_results, spec_results_acre),
   file.path(dir_logs, "table2_fertilizer_use.csv"),
   row.names = FALSE
 )
 
-preferred_results <- subset(spec_results, uses_controls == "No")
+preferred_results_bin  <- subset(spec_results_bin,  uses_controls == "No")
+preferred_results      <- subset(spec_results,      uses_controls == "No")
+preferred_results_acre <- subset(spec_results_acre, uses_controls == "No")
+
+make_rows <- function(results) {
+  unlist(lapply(seq_len(nrow(results)), function(i) {
+    c(
+      sprintf(
+        "%s & %s & %s & %s & %s & %s \\\\",
+        results$sample[i],
+        fmt_num(results$control_mean[i], 2),
+        fmt_coef(results$t1[i], results$t1_p[i]),
+        fmt_coef(results$t2[i], results$t2_p[i]),
+        fmt_num(results$p_equal[i], 3),
+        fmt_num(results$n[i], 0)
+      ),
+      sprintf(
+        "& & (%s) & (%s) & & \\\\",
+        fmt_num(results$t1_se[i], 2),
+        fmt_num(results$t2_se[i], 2)
+      )
+    )
+  }))
+}
 
 table_lines <- c(
   "{",
@@ -201,24 +268,14 @@ table_lines <- c(
   "\\toprule",
   "Sample & Control mean & T1 $-$ Control & T2 $-$ Control & p-value: T2 = T1 & N \\\\",
   "\\midrule",
-  unlist(lapply(seq_len(nrow(preferred_results)), function(i) {
-    c(
-      sprintf(
-        "%s & %s & %s & %s & %s & %s \\\\",
-        preferred_results$sample[i],
-        fmt_num(preferred_results$control_mean[i], 2),
-        fmt_coef(preferred_results$t1[i], preferred_results$t1_p[i]),
-        fmt_coef(preferred_results$t2[i], preferred_results$t2_p[i]),
-        fmt_num(preferred_results$p_equal[i], 3),
-        fmt_num(preferred_results$n[i], 0)
-      ),
-      sprintf(
-        "& & (%s) & (%s) & & \\\\",
-        fmt_num(preferred_results$t1_se[i], 2),
-        fmt_num(preferred_results$t2_se[i], 2)
-      )
-    )
-  })),
+  "\\multicolumn{6}{l}{\\textit{Panel A: Any fertilizer used (proportion)}} \\\\",
+  make_rows(preferred_results_bin),
+  "\\midrule",
+  "\\multicolumn{6}{l}{\\textit{Panel B: Total kg applied}} \\\\",
+  make_rows(preferred_results),
+  "\\midrule",
+  "\\multicolumn{6}{l}{\\textit{Panel C: Kg per acre}} \\\\",
+  make_rows(preferred_results_acre),
   "\\bottomrule",
   "\\end{tabular}",
   "}"
