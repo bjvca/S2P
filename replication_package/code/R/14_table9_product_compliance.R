@@ -368,10 +368,10 @@ format_rows <- function(rows) {
 
 table_lines <- c(
   table_lines,
-  "\\multicolumn{4}{l}{\\textit{Panel A: Product-set compliance summary}} \\\\",
+  "\\multicolumn{4}{c}{\\textit{Panel A: Product-set compliance summary}} \\\\",
   format_rows(summary_rows),
   "\\midrule",
-  "\\multicolumn{4}{l}{\\textit{Panel B: Product-specific compliance, conditional on product recommendation}} \\\\",
+  "\\multicolumn{4}{c}{\\textit{Panel B: Product-specific compliance, conditional on product recommendation}} \\\\",
   format_rows(product_rows),
   "\\bottomrule",
   "\\end{tabular}",
