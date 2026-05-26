@@ -62,12 +62,14 @@ preferred_controls <- c(
   "seed_typ_num"
 )
 
-fit_spec <- function(data, rhs_terms, column_label) {
-  vars_needed <- c("lnyield", "yield_maize", "treat_num", "cluster_id_num", rhs_terms)
-  vars_needed <- unique(vars_needed)
+fit_spec <- function(data, rhs_terms, column_label, outcome = "lnyield",
+                     ctrl_mean_var = NULL) {
+  if (is.null(ctrl_mean_var)) ctrl_mean_var <- outcome
+  vars_needed <- unique(c(outcome, ctrl_mean_var, "lnyield", "yield_maize",
+                          "treat_num", "cluster_id_num", rhs_terms))
   data <- data[complete.cases(data[, vars_needed]), ]
 
-  model <- lm(reformulate(rhs_terms, response = "lnyield"), data = data)
+  model <- lm(reformulate(rhs_terms, response = outcome), data = data)
   cluster_count <- length(unique(data$cluster_id_num))
   vcov_stage <- vcovCR(model, cluster = data$cluster_id_num, type = "CR1S")
   ct <- as.data.frame(coef_test(model, vcov = vcov_stage, test = "naive-t"))
@@ -91,10 +93,10 @@ fit_spec <- function(data, rhs_terms, column_label) {
 
   data.frame(
     column = column_label,
+    outcome = outcome,
     n = nrow(data),
     clusters = cluster_count,
-    control_mean_log = mean(data$lnyield[data$treat == "C"], na.rm = TRUE),
-    control_mean_level = mean(data$yield_maize[data$treat == "C"], na.rm = TRUE),
+    control_mean = mean(data[[ctrl_mean_var]][data$treat == "C"], na.rm = TRUE),
     t1 = t1_beta,
     t1_se = t1_se,
     t1_p = t1_p,
@@ -119,10 +121,13 @@ fmt_coef <- function(beta, p_value) {
   paste0(fmt_num(beta, 2), star_code(p_value))
 }
 
-spec_results <- rbind(
-  fit_spec(df, "treat_num", "(1)"),
-  fit_spec(df, c("treat_num", preferred_controls), "(2)")
-)
+# Panel A: total kg harvested (levels, winsorized)
+spec_results_kg <- fit_spec(df, "treat_num", "(2)", "w_bags_Mcrp_maiz")
+
+# Panel B: log yield (kg/acre)
+spec_results_log <- fit_spec(df, "treat_num", "(2)", "lnyield", "yield_maize")
+
+spec_results <- rbind(spec_results_kg, spec_results_log)
 
 write.csv(
   spec_results,
@@ -213,33 +218,44 @@ writeLines(
   file.path(dir_tables, "table5_maize_yield_sensitivity.tex")
 )
 
+fmt_panel_row <- function(r, is_log) {
+  pct <- if (is_log) {
+    fmt_num(100 * (exp(r$t2) - 1), 1)
+  } else {
+    fmt_num(100 * r$t2 / r$control_mean, 1)
+  }
+  list(
+    sprintf(
+      "%s & %s & %s & %s & %s & %s \\\\",
+      fmt_num(r$control_mean, ifelse(is_log, 2, 0)),
+      fmt_coef(r$t1, r$t1_p),
+      fmt_coef(r$t2, r$t2_p),
+      pct,
+      fmt_num(r$p_equal, 3),
+      fmt_num(r$n, 0)
+    ),
+    sprintf(
+      "& (%s) & (%s) & & & \\\\",
+      fmt_num(r$t1_se, ifelse(is_log, 2, 0)),
+      fmt_num(r$t2_se, ifelse(is_log, 2, 0))
+    )
+  )
+}
+
 table_lines <- c(
   "{",
   "\\def\\sym#1{\\ifmmode^{#1}\\else\\(^{#1}\\)\\fi}",
-  "\\begin{tabular}{lccccccc}",
+  "\\begin{tabular}{rccccc}",
   "\\toprule",
-  "Specification & Ctrl. mean (log) & Ctrl. mean (kg/ac) & T1 $-$ C & T2 $-$ C & T2 \\% effect & $p$: T2 = T1 & N \\\\",
+  "Ctrl. mean & T1 $-$ C & T2 $-$ C & T2 \\% effect & $p$: T2 = T1 & N \\\\",
   "\\midrule",
-  unlist(lapply(seq_len(nrow(spec_results)), function(i) {
-    c(
-      sprintf(
-        "%s & %s & %s & %s & %s & %s & %s & %s \\\\",
-        ifelse(spec_results$uses_controls[i] == "Yes", "Preferred adjusted", "Unadjusted"),
-        fmt_num(spec_results$control_mean_log[i], 2),
-        fmt_num(spec_results$control_mean_level[i], 1),
-        fmt_coef(spec_results$t1[i], spec_results$t1_p[i]),
-        fmt_coef(spec_results$t2[i], spec_results$t2_p[i]),
-        fmt_num(100 * (exp(spec_results$t2[i]) - 1), 1),
-        fmt_num(spec_results$p_equal[i], 3),
-        fmt_num(spec_results$n[i], 0)
-      ),
-      sprintf(
-        "& & & (%s) & (%s) & & & \\\\",
-        fmt_num(spec_results$t1_se[i], 2),
-        fmt_num(spec_results$t2_se[i], 2)
-      )
-    )
-  })),
+  "\\multicolumn{6}{c}{\\textit{Panel A: Total kg harvested}} \\\\",
+  unlist(lapply(seq_len(nrow(spec_results_kg)), function(i)
+    fmt_panel_row(spec_results_kg[i, ], is_log = FALSE))),
+  "\\midrule",
+  "\\multicolumn{6}{c}{\\textit{Panel B: Log yield (kg/acre)}} \\\\",
+  unlist(lapply(seq_len(nrow(spec_results_log)), function(i)
+    fmt_panel_row(spec_results_log[i, ], is_log = TRUE))),
   "\\bottomrule",
   "\\end{tabular}",
   "}"
