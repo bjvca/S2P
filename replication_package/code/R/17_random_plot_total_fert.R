@@ -171,15 +171,16 @@ pref_bin  <- subset(results_bin,  uses_controls == "Yes")
 pref_kg   <- subset(results,      uses_controls == "Yes")
 pref_acre <- subset(results_acre, uses_controls == "Yes")
 
-fmt_row <- function(r, digits = 1) {
+fmt_row <- function(label, r, digits = 1) {
   c(
-    sprintf("%s & %s%s & %s%s & %s & %s \\\\",
+    sprintf("%s & %s & %s%s & %s%s & %s & %s \\\\",
+            label,
             fmt_num(r$control_mean, digits),
             fmt_num(r$t1, digits), star_code(r$t1_p),
             fmt_num(r$t2, digits), star_code(r$t2_p),
             fmt_num(r$p_equal, 3),
             fmt_num(r$n, 0)),
-    sprintf("& (%s) & (%s) & & \\\\",
+    sprintf("& & (%s) & (%s) & & \\\\",
             fmt_num(r$t1_se, digits), fmt_num(r$t2_se, digits))
   )
 }
@@ -187,18 +188,13 @@ fmt_row <- function(r, digits = 1) {
 table_lines <- c(
   "{",
   "\\def\\sym#1{\\ifmmode^{#1}\\else\\(^{#1}\\)\\fi}",
-  "\\begin{tabular}{rcccr}",
+  "\\begin{tabular}{lccccc}",
   "\\toprule",
-  "Ctrl.\\ mean & T1 $-$ C & T2 $-$ C & $p$: T2 = T1 & N \\\\",
+  "Outcome & Control mean & T1 $-$ Control & T2 $-$ Control & p-value: T2 = T1 & N \\\\",
   "\\midrule",
-  "\\multicolumn{5}{c}{\\textit{Panel A: Any fertilizer used on non-test plot (proportion)}} \\\\",
-  unlist(lapply(seq_len(nrow(pref_bin)),  function(i) fmt_row(pref_bin[i, ],  digits = 2))),
-  "\\midrule",
-  "\\multicolumn{5}{c}{\\textit{Panel B: Total fertilizer applied on non-test plots (kg, HT-scaled)}} \\\\",
-  unlist(lapply(seq_len(nrow(pref_kg)),   function(i) fmt_row(pref_kg[i, ],   digits = 1))),
-  "\\midrule",
-  "\\multicolumn{5}{c}{\\textit{Panel C: Fertilizer per acre on non-test plot (kg/acre, HT-scaled)}} \\\\",
-  unlist(lapply(seq_len(nrow(pref_acre)), function(i) fmt_row(pref_acre[i, ], digits = 1))),
+  fmt_row("Any fertilizer used (proportion)",          pref_bin[1,],  digits = 2),
+  fmt_row("Total kg applied on non-test plots (HT-scaled)", pref_kg[1,],   digits = 1),
+  fmt_row("Kg per acre on non-test plot (HT-scaled)",  pref_acre[1,], digits = 1),
   "\\bottomrule",
   "\\end{tabular}",
   "}"
