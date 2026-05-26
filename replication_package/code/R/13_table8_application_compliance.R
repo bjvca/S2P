@@ -286,7 +286,7 @@ preferred <- subset(results, controls == "No")
 
 panel_rows <- function(rows, panel_label) {
   c(
-    sprintf("\\multicolumn{4}{l}{\\textit{%s}} \\\\", panel_label),
+    sprintf("\\multicolumn{4}{c}{\\textit{%s}} \\\\", panel_label),
     unlist(lapply(seq_len(nrow(rows)), function(i) {
       c(
         sprintf(
