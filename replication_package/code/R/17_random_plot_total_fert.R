@@ -167,53 +167,38 @@ star_code <- function(p) {
 
 fmt_num <- function(x, digits) formatC(round(x, digits), format = "f", digits = digits)
 
-fmt_row <- function(r) {
-  c(
-    sprintf("%s & %s & %s%s & %s%s & %s & %s \\\\",
-            r$sample,
-            fmt_num(r$control_mean, 1),
-            fmt_num(r$t1, 1), star_code(r$t1_p),
-            fmt_num(r$t2, 1), star_code(r$t2_p),
-            fmt_num(r$p_equal, 2),
-            fmt_num(r$n, 0)),
-    sprintf("& & (%s) & (%s) & & \\\\",
-            fmt_num(r$t1_se, 1), fmt_num(r$t2_se, 1))
-  )
-}
-
 pref_bin  <- subset(results_bin,  uses_controls == "Yes")
 pref_kg   <- subset(results,      uses_controls == "Yes")
 pref_acre <- subset(results_acre, uses_controls == "Yes")
 
-fmt_row_bin <- function(r) {
+fmt_row <- function(r, digits = 1) {
   c(
-    sprintf("%s & %s & %s%s & %s%s & %s & %s \\\\",
-            r$sample,
-            fmt_num(r$control_mean, 2),
-            fmt_num(r$t1, 2), star_code(r$t1_p),
-            fmt_num(r$t2, 2), star_code(r$t2_p),
-            fmt_num(r$p_equal, 2),
+    sprintf("%s & %s%s & %s%s & %s & %s \\\\",
+            fmt_num(r$control_mean, digits),
+            fmt_num(r$t1, digits), star_code(r$t1_p),
+            fmt_num(r$t2, digits), star_code(r$t2_p),
+            fmt_num(r$p_equal, 3),
             fmt_num(r$n, 0)),
-    sprintf("& & (%s) & (%s) & & \\\\",
-            fmt_num(r$t1_se, 2), fmt_num(r$t2_se, 2))
+    sprintf("& (%s) & (%s) & & \\\\",
+            fmt_num(r$t1_se, digits), fmt_num(r$t2_se, digits))
   )
 }
 
 table_lines <- c(
   "{",
   "\\def\\sym#1{\\ifmmode^{#1}\\else\\(^{#1}\\)\\fi}",
-  "\\begin{tabular}{lrrrrr}",
+  "\\begin{tabular}{rcccr}",
   "\\toprule",
-  "Sample & Control mean & T1 $-$ Control & T2 $-$ Control & p-value: T2 = T1 & N \\\\",
+  "Ctrl.\\ mean & T1 $-$ C & T2 $-$ C & $p$: T2 = T1 & N \\\\",
   "\\midrule",
-  "\\multicolumn{6}{l}{\\textit{Panel A: Any fertilizer used (proportion)}} \\\\",
-  unlist(lapply(seq_len(nrow(pref_bin)),  function(i) fmt_row_bin(pref_bin[i, ]))),
+  "\\multicolumn{5}{c}{\\textit{Panel A: Any fertilizer used on non-test plot (proportion)}} \\\\",
+  unlist(lapply(seq_len(nrow(pref_bin)),  function(i) fmt_row(pref_bin[i, ],  digits = 2))),
   "\\midrule",
-  "\\multicolumn{6}{l}{\\textit{Panel B: Total kg applied (HT-scaled)}} \\\\",
-  unlist(lapply(seq_len(nrow(pref_kg)),   function(i) fmt_row(pref_kg[i, ]))),
+  "\\multicolumn{5}{c}{\\textit{Panel B: Total fertilizer applied on non-test plots (kg, HT-scaled)}} \\\\",
+  unlist(lapply(seq_len(nrow(pref_kg)),   function(i) fmt_row(pref_kg[i, ],   digits = 1))),
   "\\midrule",
-  "\\multicolumn{6}{l}{\\textit{Panel C: Kg per acre (HT-scaled)}} \\\\",
-  unlist(lapply(seq_len(nrow(pref_acre)), function(i) fmt_row(pref_acre[i, ]))),
+  "\\multicolumn{5}{c}{\\textit{Panel C: Fertilizer per acre on non-test plot (kg/acre, HT-scaled)}} \\\\",
+  unlist(lapply(seq_len(nrow(pref_acre)), function(i) fmt_row(pref_acre[i, ], digits = 1))),
   "\\bottomrule",
   "\\end{tabular}",
   "}"
