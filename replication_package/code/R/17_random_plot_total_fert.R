@@ -156,9 +156,7 @@ results_acre <- rbind(
 
 results_scaled <- rbind(
   fit_one(subset(df, other_plots_bin == 1),      "treat_num",                       "All crops",  "No",  "rnd_total_fert_scaled"),
-  fit_one(subset(df, other_plots_bin == 1),      c("treat_num", preferred_controls), "All crops",  "Yes", "rnd_total_fert_scaled"),
-  fit_one(subset(df, main_maize & rnd_is_maize), "treat_num",                       "Maize only", "No",  "rnd_total_fert_scaled"),
-  fit_one(subset(df, main_maize & rnd_is_maize), c("treat_num", preferred_controls), "Maize only", "Yes", "rnd_total_fert_scaled")
+  fit_one(subset(df, other_plots_bin == 1),      c("treat_num", preferred_controls), "All crops",  "Yes", "rnd_total_fert_scaled")
 )
 
 out_dir <- file.path(replication_root, "output", "logs")
