@@ -4,46 +4,43 @@
 Finalise `paper/S2PIEpaper.tex` for submission and revise blog post for publication. Core experiment: T1 = soil-test recommendation only; T2 = recommendation + fungible voucher (~$100 AIP-equivalent). Central finding: voucher raises fertilizer use and yield but not recommendation compliance; product mix mirrors AIP bundle, not soil-test prescription.
 
 ## Current Status
-Paper is compiled and pushed to Overleaf (commit `f79613e`). Blog post editorial pass is partially complete — factual fixes applied, stylistic rewrites suggested but not yet implemented. Latest blog version is `blog/blog_S2P_final.docx` (uploaded by Bjorn 2026-05-27).
+Blog post has been substantially revised in response to expert feedback from Ruth Stewart (received 2026-05-28). All four of Ruth's points addressed and pushed to GitHub (latest commit: `62a2a4b`). Paper abstract still has stale yield figure.
 
 ## Completed Tasks
 - [x] Switched ALL table notes and body text to "unadjusted ITT" — removed all "preferred adjusted specification" language throughout paper
-- [x] Fixed `de2024expecting` bib entry: `@Article` (no journal) → `@Unpublished` with `note = {Mimeo}`
-- [x] Fixed Table 6 note: "preferred adjusted ITT" → "Unadjusted ITT effects"
-- [x] Fixed compliance tables 8 and 9 notes: removed full adjusted-controls description
-- [x] Fixed appendix robustness table notes (profit and yield sensitivity)
-- [x] Blog: yield figure 33% → 19% (3 occurrences: lede, takeaways, body)
-- [x] Blog: potassium share "around 70%" → "roughly two-thirds"
-- [x] Blog: removed unverified lime application rate (950 kg/ha)
-- [x] Blog: fixed 4 author affiliations (Thomas → Agrifood Innovation and Resilience Unit; Jonathan → Solidaridad Southern Africa; David → School of Public Health, Washington University in St. Louis; Bjorn → MTI Unit)
-- [x] Blog: clarified 18+19 kg product split comes from separate product-level regressions
-- [x] Blog: condensed 8 key takeaways → 5
-- [x] All blog changes pushed to GitHub outer repo
+- [x] Fixed `de2024expecting` bib entry: `@Article` → `@Unpublished` with `note = {Mimeo}`
+- [x] Fixed Table 6, 8, 9 and appendix robustness table notes
+- [x] Blog factual fixes: yield 33%→19%, potassium share, affiliations, lime rate removed, 8→5 takeaways, product split clarification
+- [x] All prior blog changes pushed to GitHub outer repo
+- [x] Blog: rewrote "recommendation alone" paragraph — replaced "consistent with the broader literature" framing with account anchored in Nyondo (2025) Malawi precedent and voucher arm as direct test of AIP-entrenchment mechanism (Ruth point 1)
+- [x] Blog: removed "credible, well-resourced commercial agronomy service" credibility claim entirely (Ruth point 2)
+- [x] Blog para 25: added AIP institutional-prior sentence naming programme-shaped expectations as more fundamental than supply-demand constraints (Ruth points 3 & 4)
+- [x] Blog para 27: added context-specificity caveat — binding constraint may be institutional prior, not value chain links (Ruth points 3 & 4)
+- [x] Blog para 8 (key takeaway 5): scoped AI-tools caveat to "similar settings" (Ruth generalizability sweep)
+- [x] Blog para 23 (Tanzania contrast): added sentence that Malawi null may be context-specific, not universal property of voucher+recommendation (Ruth generalizability sweep)
+- [x] Wiki: added external literature section to `articles/ict-agricultural-extension.md` with full entries for Fabregas et al. (2025), Islam & Beg (2021), Maertens et al. (2023), Ayalew et al. (2022) — all relevant to S2P information-null framing
 
 ## In Progress
-- [ ] Blog stylistic rewrites — suggestions made but not yet applied to `blog_S2P_final.docx`
+- [ ] Nothing actively in progress
 
 ## Next Steps
-- [ ] **Paper abstract (line 113):** "maize yield rises by roughly a third" is the stale 33% adjusted-spec figure — fix to "19 percent" (total production) or "44 percent" (log yield per acre); confirm with Bjorn which to use
-- [ ] **Blog `blog_S2P_final.docx`:** Apply agreed stylistic rewrites (see Decisions/Notes below for the list of pending suggestions)
-- [ ] **Blog:** Decide whether to apply Ukraine/Hormuz fertilizer-price addition
+- [ ] **Paper abstract (line 113):** "maize yield rises by roughly a third" is stale (old adjusted-spec 33%) — fix to "19 percent" (total production) or "44 percent" (log yield per acre); confirm with Bjorn which to use
+- [ ] **Blog:** Decide whether remaining pending stylistic suggestions still apply (see Decisions/Notes)
 - [ ] Push replication package R script changes to outer GitHub (06, 08, 09 scripts + output logs/tex files are unstaged)
 - [ ] Lee (2009) trimming bounds for T2 retention differential — still unaddressed
 - [ ] AEA registration post-dates rollout — not yet addressed
 - [ ] Five §4-deleted PAP deviations still have no in-paper home — referee risk
 
 ## Decisions / Notes
-- **Working blog file is now `blog/blog_S2P_final.docx`** — Bjorn uploaded this 2026-05-27; supersedes `blog_post_draft_all.docx`
-- **Paper abstract "roughly a third"** — stale; comes from old adjusted spec (exp(0.291)−1 ≈ 34%); unadjusted results are 19% (Panel A, total production) or 44% (Panel B, log yield per acre); paper body uses 19%
-- **Pending blog suggestion 1:** "alternative version of AIP" → "an extension of AIP" (preferred wording; implies additive not substitutive, consistent with data showing partial rather than full crowd-out)
-- **Pending blog suggestion 2:** Potassium bullet split into two: (a) prescribed to two-thirds, often in place of urea, compliance zero; (b) mirror image — urea prescribed to <10% of households yet largest single component of voucher increment
-- **Pending blog suggestion 3:** Joachim JD5 fix — "pulled away from the distinctive components" → "not pulled toward the distinctive components" (farmers didn't use less recommended products relative to control; they just didn't use more)
-- **Pending blog suggestion 4:** Implications paragraph rewrite — reframe from supply-side-only problem to need for complementary innovations on both supply (stocking, package sizes, blue-spoon dosing tools) and demand (soil health training, behavioral nudges, trust, credit/risk)
-- **Pending blog suggestion 5:** Fertilizer price sentence — optionally tie to Ukraine war (gas markets, urea) and Strait of Hormuz (Gulf LNG) as concrete drivers of price volatility
+- **Working blog file is `blog/blog_S2P_final.docx`** — all Ruth edits applied here; GitHub latest = `62a2a4b`
+- **Ruth Stewart feedback (2026-05-28):** Four points, all addressed. Core: null result is Malawi/AIP-specific, not a universal information-failure finding; supply-demand framing secondary to institutional prior; generalizability caveats needed throughout.
+- **Nyondo et al. (2025) Food Policy:** Key citation — Malawi cluster RCT, soil-test advice raises complementary practices but does NOT move fertilizer quantities; authors attribute this to AIP. Our voucher arm is the direct confirmatory test. DOI: 10.1016/j.foodpol.2025.102850.
+- **Paper abstract "roughly a third"** — stale; comes from old adjusted spec; unadjusted results are 19% (Panel A, total production) or 44% (Panel B, log yield per acre); paper body uses 19%
+- **Pending blog suggestion (from earlier session):** Potassium bullet split into two, Joachim JD5 fix ("not pulled toward" rather than "pulled away from"), Ukraine/Hormuz sentence — these were suggested but not yet confirmed as wanted. Check with Bjorn.
 - **No controls in any reported regression.** All tables use unadjusted ITT only.
 - **No em dashes** anywhere in paper. Hard constraint.
 - **No Co-Authored-By trailer** in any commit message.
-- **Nested git structure.** Outer GitHub at `/workspace/S2P`; inner Overleaf at `paper/`. `paper/` is gitignored in outer repo. Pull GitHub before pushing from workspace (`git pull origin master` from `/workspace/S2P`). Pull Overleaf before pushing (`git stash && git pull --rebase origin master && git stash pop` from `paper/`).
+- **Nested git structure.** Outer GitHub at `/workspace/S2P`; inner Overleaf at `paper/`. `paper/` is gitignored in outer repo. Pull GitHub before pushing from workspace. Pull Overleaf before pushing from `paper/`.
 
 ## Issues / Blockers
 - Paper abstract still has stale yield figure ("roughly a third")
@@ -53,10 +50,9 @@ Paper is compiled and pushed to Overleaf (commit `f79613e`). Blog post editorial
 
 ## Key Files
 - `paper/S2PIEpaper.tex` — main manuscript; Overleaf HEAD = `f79613e`
-- `paper/s2p_bib.bib` — bibliography; `de2024expecting` is now `@Unpublished`
-- `blog/blog_S2P_final.docx` — **latest blog version** (uploaded by Bjorn 2026-05-27)
-- `blog/blog_post_draft_all.docx` — earlier working version (factual fixes applied)
-- `blog/blog_post_draft_all.txt` — plain-text mirror of above
+- `paper/s2p_bib.bib` — bibliography
+- `blog/blog_S2P_final.docx` — **latest blog version**; all Ruth edits applied; GitHub = `62a2a4b`
 - `replication_package/code/R/06_table2_fertilizer_use_audit.R` — unstaged changes
 - `replication_package/code/R/08_table4_nutrient_use.R` — unstaged changes
 - `replication_package/code/R/09_table5_maize_yield.R` — unstaged changes
+- `wiki/articles/ict-agricultural-extension.md` — updated with external literature section (4 papers)
