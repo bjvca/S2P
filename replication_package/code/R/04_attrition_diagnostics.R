@@ -6,8 +6,8 @@
 #   2. A retained-sample balance table using baseline covariates among
 #      households that completed the endline interview.
 #
-# All code lives in the replication package, but the endline file itself is
-# read from the main repository so we do not duplicate analysis extracts.
+# Inputs: the baseline sampled frame and the canonical endline analysis file
+# estimation_data_v3.dta (via load_estimation_data() in 00_setup.R).
 
 if (!exists("replication_root")) {
   args <- commandArgs(trailingOnly = FALSE)
@@ -27,12 +27,10 @@ suppressPackageStartupMessages({
   library(car)
 })
 
-dir_repo <- normalizePath(file.path(replication_root, ".."), mustWork = TRUE)
 baseline_path <- file.path(dir_data, "baseline_balance_sample.csv")
-endline_path <- file.path(dir_repo, "endline", "data", "public", "clear_merged_data.csv")
 
 baseline <- read.csv(baseline_path, stringsAsFactors = FALSE)
-endline <- read.csv(endline_path, stringsAsFactors = FALSE)
+endline <- load_estimation_data()
 
 # Keep only endline rows that correspond to households in the sampled baseline
 # frame, then enforce one row per sampled household. The current cleaned endline
@@ -40,7 +38,7 @@ endline <- read.csv(endline_path, stringsAsFactors = FALSE)
 # duplicates would indicate a data-management problem worth surfacing.
 endline_master <- endline[endline$farmer_id %in% baseline$farmer_ID, , drop = FALSE]
 if (any(duplicated(endline_master$farmer_id))) {
-  stop("Duplicate farmer_id values found in clear_merged_data.csv for sampled households.")
+  stop("Duplicate farmer_id values found in estimation_data_v3.dta for sampled households.")
 }
 
 df <- merge(

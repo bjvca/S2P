@@ -1,10 +1,10 @@
 "outcome","label","n_yes","n_no","n_blank"
-"green_inco","Green legume incorporation",296,1572,85
-"fresh_app","Fresh vegetative material",232,1636,85
-"mat_farm_app","Farmyard manure",452,1415,86
-"dairy_app","Dairy or poultry manure",431,1436,86
-"comp_app","Compost",422,1444,87
-"mbeya_app","Mbeya fertilizer",119,1748,86
-"till_app","Minimum tillage",95,1769,89
-"ridge_use","Ridges/check dams",1299,569,85
-"pit_use","Pit planting",133,1735,85
+"green_inco","Green legume incorporation",296,1571,85
+"fresh_app","Fresh vegetative material",232,1635,85
+"mat_farm_app","Farmyard manure",452,1414,86
+"dairy_app","Dairy or poultry manure",431,1435,86
+"comp_app","Compost",421,1444,87
+"mbeya_app","Mbeya fertilizer",119,1747,86
+"till_app","Minimum tillage",95,1768,89
+"ridge_use","Ridges/check dams",1299,568,85
+"pit_use","Pit planting",133,1734,85

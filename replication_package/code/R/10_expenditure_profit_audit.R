@@ -26,10 +26,8 @@ suppressPackageStartupMessages({
   library(clubSandwich)
 })
 
-dir_repo <- normalizePath(file.path(replication_root, ".."), mustWork = TRUE)
-endline_path <- file.path(dir_repo, "endline", "data", "public", "clear_merged_data.csv")
 
-df <- read.csv(endline_path, stringsAsFactors = FALSE)
+df <- load_estimation_data()
 df <- subset(df, treat %in% c("C", "T1", "T2") & main_crp == "MAIZE")
 
 df$treat_num <- factor(df$treat_num, levels = c("C", "T1", "T2"))

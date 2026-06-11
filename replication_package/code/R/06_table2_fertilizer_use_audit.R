@@ -59,10 +59,8 @@ suppressPackageStartupMessages({
   library(clubSandwich)
 })
 
-dir_repo <- normalizePath(file.path(replication_root, ".."), mustWork = TRUE)
-endline_path <- file.path(dir_repo, "endline", "data", "public", "clear_merged_data.csv")
 
-df <- read.csv(endline_path, stringsAsFactors = FALSE)
+df <- load_estimation_data()
 df <- subset(df, treat %in% c("C", "T1", "T2"))
 
 # Drop two implausibly large tobacco observations that dominate the all-crops

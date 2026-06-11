@@ -38,3 +38,31 @@ fmt_p <- function(x, digits = 3) {
   x[!is.na(x) & abs(x) < 0.5 * 10^(-digits)] <- 0
   ifelse(is.na(x), "", sprintf(paste0("%.", digits, "f"), x))
 }
+
+# Canonical analysis input. estimation_data_v3.dta is produced by the Stata
+# cleaning pipeline (do/Data cleaning and preparation.do +
+# do/Solving_duplicated_barcodes.do) and supersedes the earlier
+# clear_merged_data.csv export: it drops 9 duplicate interview records and
+# carries the barcode-corrected merge with the soil-test recommendation files.
+#
+# The table scripts were written against the CSV export, so the loader
+# reproduces its representation exactly: Stata value labels become the label
+# strings ("Yes", "T1", ...), and missing values in string columns become ""
+# (read.csv leaves empty cells as empty strings, and several scripts rely on
+# that when coding indicators on the full sample).
+load_estimation_data <- function() {
+  path <- file.path(dir_data, "estimation_data_v3.dta")
+  if (!file.exists(path)) {
+    stop("Missing canonical analysis file: ", path)
+  }
+  d <- haven::read_dta(path)
+  for (v in names(d)) {
+    if (inherits(d[[v]], "haven_labelled")) {
+      d[[v]] <- as.character(haven::as_factor(d[[v]], levels = "default"))
+    }
+    if (is.character(d[[v]])) {
+      d[[v]][is.na(d[[v]])] <- ""
+    }
+  }
+  as.data.frame(d, stringsAsFactors = FALSE)
+}

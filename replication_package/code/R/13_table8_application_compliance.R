@@ -33,10 +33,8 @@ suppressPackageStartupMessages({
   library(clubSandwich)
 })
 
-dir_repo <- normalizePath(file.path(replication_root, ".."), mustWork = TRUE)
-endline_path <- file.path(dir_repo, "endline", "data", "public", "clear_merged_data.csv")
 
-df <- read.csv(endline_path, stringsAsFactors = FALSE, check.names = FALSE)
+df <- load_estimation_data()
 df <- subset(df, treat %in% c("T1", "T2"))
 n_before_case_exclusions <- nrow(df)
 

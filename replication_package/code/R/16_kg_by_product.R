@@ -11,7 +11,9 @@ suppressPackageStartupMessages({
 })
 
 here <- function(...) file.path("/home/claude/workspace/S2P", ...)
-d <- fread(here("endline/data/public/clear_merged_data.csv"))
+replication_root <- here("replication_package")
+source(file.path(replication_root, "code", "R", "00_setup.R"))
+d <- as.data.table(load_estimation_data())
 d <- d[!is.na(treat) & treat %in% c("C", "T1", "T2")]
 
 ## ---- Applied kg per HH by product, on the test plot ------------------------

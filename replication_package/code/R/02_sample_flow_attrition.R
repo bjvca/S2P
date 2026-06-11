@@ -9,11 +9,8 @@
 #
 # This script reads:
 #   - replication_package/data/analysis/baseline_balance_sample.csv
-#   - endline/data/public/clear_merged_data.csv
-#
-# The endline file is kept in the main repository rather than duplicated inside
-# the replication package. That keeps the replication package lean while still
-# letting this audit script reproduce the sample-flow numbers used in the paper.
+#   - replication_package/data/analysis/estimation_data_v3.dta (via
+#     load_estimation_data() in 00_setup.R)
 
 if (!exists("replication_root")) {
   args <- commandArgs(trailingOnly = FALSE)
@@ -28,22 +25,14 @@ if (!exists("replication_root")) {
 
 source(file.path(replication_root, "code", "R", "00_setup.R"))
 
-# Resolve the repository root from the replication-package root.
-dir_repo <- normalizePath(file.path(replication_root, ".."), mustWork = TRUE)
-
 baseline_path <- file.path(dir_data, "baseline_balance_sample.csv")
-endline_path <- file.path(dir_repo, "endline", "data", "public", "clear_merged_data.csv")
 
 if (!file.exists(baseline_path)) {
   stop("Missing baseline sample file: ", baseline_path)
 }
 
-if (!file.exists(endline_path)) {
-  stop("Missing endline merged file: ", endline_path)
-}
-
 baseline <- read.csv(baseline_path, stringsAsFactors = FALSE)
-endline <- read.csv(endline_path, stringsAsFactors = FALSE)
+endline <- load_estimation_data()
 
 # Harmonize treatment labels and impose the experimental arm order used in the
 # paper. The baseline sample is the original sampled frame from which the RCT

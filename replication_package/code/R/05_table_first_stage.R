@@ -32,10 +32,8 @@ suppressPackageStartupMessages({
   library(car)
 })
 
-dir_repo <- normalizePath(file.path(replication_root, ".."), mustWork = TRUE)
-endline_path <- file.path(dir_repo, "endline", "data", "public", "clear_merged_data.csv")
 
-df <- read.csv(endline_path, stringsAsFactors = FALSE)
+df <- load_estimation_data()
 
 # Restrict to treatment-coded households with a usable endline interview.
 df <- subset(df, treat %in% c("C", "T1", "T2") & checkq9 == "Yes")
