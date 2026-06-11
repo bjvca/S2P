@@ -5,3 +5,4 @@ literature
 endline/data/public/*merged_data*.csv
 replication_package/data/analysis/estimation_data_v3.dta
 data/
+replication_package/code/R/.Rhistory
