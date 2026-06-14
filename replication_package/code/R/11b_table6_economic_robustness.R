@@ -66,14 +66,28 @@ winsorize <- function(x, probs = c(0.01, 0.99)) {
   pmin(pmax(x, q[1]), q[2])
 }
 
+# Farmer-private fertilizer cost: net voucher-funded kilograms out of each
+# fertilizer slot at that slot's own reported price per kg. Voucher fertilizer is
+# reported at full commercial value despite being free to the household, so the
+# raw fert_cost field is not a farmer-private cost. AIP kilograms are retained
+# (reported at the subsidized price actually paid). Mirrors the main table script.
+for (r in 1:4) {
+  qty  <- df[[paste0("test_plot", r, "qty_fert")]]
+  cost <- df[[paste0("fert_cost", r)]]
+  vour <- df[[paste0("test_plot", r, "vour_qnt_us")]]
+  vour[is.na(vour)] <- 0
+  own_frac <- ifelse(!is.na(qty) & qty > 0, pmax(qty - vour, 0) / qty, NA_real_)
+  df[[paste0("fert_cost_own", r)]] <- ifelse(is.na(cost), NA_real_, cost * own_frac)
+}
+
 cost_vars <- c(
   "price_seed",
   "ttl_cost_pest",
   "test_plotttl_exp",
-  "fert_cost1",
-  "fert_cost2",
-  "fert_cost3",
-  "fert_cost4"
+  "fert_cost_own1",
+  "fert_cost_own2",
+  "fert_cost_own3",
+  "fert_cost_own4"
 )
 
 df$cost_total <- row_total_na0(df, cost_vars)
@@ -101,10 +115,10 @@ positive_profit <- !is.na(df$profit_med) & df$profit_med > 0
 df$ln_profit_med_positive[positive_profit] <- log(df$profit_med[positive_profit])
 
 fit_spec <- function(data, outcome, label, control_mean_label) {
-  vars_needed <- unique(c(outcome, "treat_num", "cluster_id_num", preferred_controls))
+  vars_needed <- unique(c(outcome, "treat_num", "cluster_id_num"))
   data <- data[complete.cases(data[, vars_needed]), ]
 
-  model <- lm(reformulate(c("treat_num", preferred_controls), response = outcome), data = data)
+  model <- lm(reformulate("treat_num", response = outcome), data = data)
   cluster_count <- length(unique(data$cluster_id_num))
   vcov_stage <- vcovCR(model, cluster = data$cluster_id_num, type = "CR1S")
   ct <- as.data.frame(coef_test(model, vcov = vcov_stage, test = "naive-t"))

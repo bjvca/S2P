@@ -80,7 +80,9 @@ keep if inlist(treat, "C", "T1", "T2")
 
 foreach v in treat_num cluster_id_num hh_size hh_age dist_agro plot_siz ///
     maize_area seed_typ_num price_seed ttl_cost_pest test_plotttl_exp ///
-    fert_cost1 fert_cost2 fert_cost3 fert_cost4 prc_main bags_Mcrp {
+    fert_cost1 fert_cost2 fert_cost3 fert_cost4 prc_main bags_Mcrp ///
+    test_plot1qty_fert test_plot2qty_fert test_plot3qty_fert test_plot4qty_fert ///
+    test_plot1vour_qnt_us test_plot2vour_qnt_us test_plot3vour_qnt_us test_plot4vour_qnt_us {
     destring `v', replace force
 }
 
@@ -99,11 +101,29 @@ encode hh_educ, gen(hh_educ_cat)
 encode slope, gen(slope_cat)
 encode soil_str, gen(soil_str_cat)
 
+* Farmer-private fertilizer cost. The endline fertilizer-cost question (Q68)
+* elicits the total cost of fertilizer *applied* to the plot, regardless of
+* source. Respondents report voucher-sourced fertilizer at its full commercial
+* value (median ~2,200 MWK/kg) even though they paid nothing for it, so the raw
+* fert_cost field charges treatment-2 households for the voucher transfer and is
+* not a farmer-private cost. We net the voucher-funded kilograms (vour_qnt_us)
+* out of each fertilizer slot, valued at that slot's own reported price per kg,
+* leaving only fertilizer the household actually purchased. AIP-sourced kilograms
+* are retained: they are reported at the subsidized price the household actually
+* paid (median ~362 MWK/kg), so they already reflect genuine out-of-pocket cost.
+forvalues r = 1/4 {
+    gen vour`r' = test_plot`r'vour_qnt_us
+    replace vour`r' = 0 if missing(vour`r')
+    gen own_frac`r' = max(test_plot`r'qty_fert - vour`r', 0) / test_plot`r'qty_fert ///
+        if !missing(test_plot`r'qty_fert) & test_plot`r'qty_fert > 0
+    gen fert_cost_own`r' = fert_cost`r' * own_frac`r' if !missing(fert_cost`r')
+}
+
 * Sum monetary input costs. The missing option keeps cost_total missing when all
 * components are missing, while treating item-level missing components as zero
 * when at least one cost component is observed.
 egen cost_total = rowtotal(price_seed ttl_cost_pest test_plotttl_exp ///
-    fert_cost1 fert_cost2 fert_cost3 fert_cost4), missing
+    fert_cost_own1 fert_cost_own2 fert_cost_own3 fert_cost_own4), missing
 
 * Crop prices are observed only for sellers. Use crop-level medians after
 * dropping nonpositive prices; this makes the valuation less sensitive to
@@ -141,8 +161,8 @@ tempname handle
 postfile `handle' str30 sample str30 label str30 outcome double n clusters ///
     control_mean t1_coef t1_se t1_p t2_coef t2_se t2_p p_equal using "`results'", replace
 
-local controls hh_size hh_age i.hh_educ_cat dist_agro plot_siz ///
-    i.slope_cat i.soil_str_cat i.seed_typ_num
+* Unadjusted ITT: tables report the raw treatment contrast with no covariates.
+local controls
 
 quietly regress value_production i.treat_num `controls' ///
     if main_crp != "" & !missing(value_production, cost_total), vce(cluster cluster_id)

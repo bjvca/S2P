@@ -68,14 +68,33 @@ row_total_na0 <- function(data, vars) {
   out
 }
 
+# Farmer-private fertilizer cost. The endline fertilizer-cost question (Q68)
+# elicits the total cost of the fertilizer *applied* to the plot, regardless of
+# source. Respondents report voucher-sourced fertilizer at its full commercial
+# value (median ~2,200 MWK/kg) even though they paid nothing for it, so the raw
+# fert_cost field charges treatment-2 households for the voucher transfer and is
+# not a farmer-private cost. We net the voucher-funded kilograms (vour_qnt_us)
+# out of each fertilizer slot, valued at that slot's own reported price per kg,
+# leaving only fertilizer the household actually purchased. AIP-sourced kilograms
+# are retained: they are reported at the subsidized price the household actually
+# paid (median ~362 MWK/kg), so they already reflect genuine out-of-pocket cost.
+for (r in 1:4) {
+  qty  <- df[[paste0("test_plot", r, "qty_fert")]]
+  cost <- df[[paste0("fert_cost", r)]]
+  vour <- df[[paste0("test_plot", r, "vour_qnt_us")]]
+  vour[is.na(vour)] <- 0
+  own_frac <- ifelse(!is.na(qty) & qty > 0, pmax(qty - vour, 0) / qty, NA_real_)
+  df[[paste0("fert_cost_own", r)]] <- ifelse(is.na(cost), NA_real_, cost * own_frac)
+}
+
 cost_vars <- c(
   "price_seed",
   "ttl_cost_pest",
   "test_plotttl_exp",
-  "fert_cost1",
-  "fert_cost2",
-  "fert_cost3",
-  "fert_cost4"
+  "fert_cost_own1",
+  "fert_cost_own2",
+  "fert_cost_own3",
+  "fert_cost_own4"
 )
 
 df$cost_total <- row_total_na0(df, cost_vars)
@@ -227,7 +246,7 @@ results <- do.call(
       data = data_i,
       outcome = outcomes$outcome[i],
       sample_label = outcomes$sample[i],
-      rhs_terms = c("treat_num", preferred_controls)
+      rhs_terms = "treat_num"
     )
   })
 )
