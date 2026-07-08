@@ -1,0 +1,87 @@
+\documentclass[10pt]{article}
+\usepackage[a4paper,margin=1.7cm]{geometry}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{parskip}
+\usepackage[hidelinks]{hyperref}
+
+\definecolor{brand}{RGB}{0,110,100}
+\definecolor{brandlt}{RGB}{224,240,238}
+
+\titleformat{\section}{\large\bfseries\color{brand}}{}{0em}{}
+\titlespacing{\section}{0pt}{7pt}{2pt}
+
+\setlist[itemize]{leftmargin=1.2em,itemsep=1.5pt,topsep=2pt}
+\setlist[enumerate]{leftmargin=1.5em,itemsep=3pt,topsep=2pt}
+
+\newcommand{\callout}[1]{%
+  \begin{center}\colorbox{brandlt}{\parbox{0.955\textwidth}{\vspace{3pt}#1\vspace{3pt}}}\end{center}}
+
+\pagestyle{empty}
+\setlength{\parskip}{3pt}
+
+\begin{document}
+
+{\color{brand}\rule{\textwidth}{2.5pt}}\\[2pt]
+{\LARGE\bfseries Same Budget, Smarter Spend}\\[2pt]
+{\large\color{brand} Making Malawi's Fertilizer Subsidy Work Harder}\\[3pt]
+{\footnotesize\textsc{Policy Brief} \, $\cdot$ \, 2026 \, $\cdot$ \, Evidence from a randomized controlled trial (RCT) in 113 villages of central Malawi}\\[-4pt]
+{\color{brand}\rule{\textwidth}{0.6pt}}
+
+\callout{%
+\textbf{The bottom line.} Malawi does not need to spend more to get more from its fertilizer subsidy. In a randomized trial, a soil-test recommendation on its own changed nothing. The same recommendation paired with a flexible voucher worth the value of the Affordable Inputs Programme (AIP) bundle raised maize yields by about 19~percent, but farmers spent it on the same urea and nitrogen-phosphorus-potassium (NPK) products the AIP already distributes, not the site-specific blends their soil tests prescribed. Three implications follow: information is not the binding constraint; a flexible voucher can deliver the AIP's yield gains through private agro-dealers at comparable cost; and precision fertilization will not happen until the recommended products are on the shelf. A phased reform can cut waste and build private input markets \textbf{at no additional fiscal cost}.}
+
+\section{Why this matters now}
+Fertilizer subsidies absorb a large share of Malawi's agricultural budget, and world prices remain volatile. Every kwacha spent subsidising the wrong nutrient, or fertilizer a household would have bought anyway, is a kwacha not spent elsewhere. With fiscal space tight, the question is no longer \emph{whether} to subsidise fertilizer but \emph{how to deliver the same support with less waste and more output}. We tested this directly: 113 villages were randomly assigned to (i)~a plot-level soil-test recommendation, (ii)~the same recommendation plus a voucher of 170{,}000 Malawi kwacha (MWK, about US\$100) redeemable for any fertilizer at a commercial agro-dealer, or (iii)~a comparison group.
+
+\section{What we found}
+\begin{itemize}
+\item \textbf{A soil test alone does nothing.} No change in fertilizer use, nutrients applied, maize yield, or subsidy participation. After two decades of a standard subsidised bundle, better information is not what is missing.
+\item \textbf{Money works, but farmers buy the familiar bundle.} The voucher raised fertilizer use by about 30~kg and maize yield by about 19~percent (roughly 151~kg per household). The extra fertilizer was almost entirely urea and NPK~23:10:5, a near-copy of the AIP bundle.
+\item \textbf{The precision products were prescribed but never bought.} Potassium was recommended for about two-thirds of households and lime for about a quarter; uptake of both, and of calcium ammonium nitrate (CAN) and monoammonium phosphate (MAP), was essentially zero. The barriers are practical: these products are rarely stocked, come in oversized packs, and are unfamiliar.
+\item \textbf{Much of the voucher displaced spending farmers would have made anyway.} This makes it very attractive to the household (farm profit rose about 190{,}000~MWK, half of it money saved on purchases no longer needed) but limits its \emph{additional} contribution to national production.
+\end{itemize}
+
+\section{The numbers: a cost-benefit snapshot}
+The programme's return to the public purse depends almost entirely on \textbf{how maize is valued}. Most beneficiaries are net maize buyers (about 44~percent of maize consumption is bought on the market), so the output they gain is worth far more at lean-season retail prices than at harvest-time farmgate prices.
+
+\begin{center}
+\small
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+\textbf{Valuation scenario} & \textbf{Maize price} & \textbf{Value of +151\,kg} & \textbf{Voucher cost} & \textbf{Benefit--cost} \\
+ & (MWK/kg) & (MWK) & (MWK) & \textbf{ratio} \\
+\midrule
+Harvest-time farmgate (median) & 750 & 113{,}000 & 170{,}000 & \textbf{0.67} \\
+Break-even & 1{,}126 & 170{,}000 & 170{,}000 & \textbf{1.00} \\
+Lean-season retail (2025) & 1{,}360 & 205{,}000 & 170{,}000 & \textbf{1.21} \\
+Peak retail (prior year) & 1{,}742 & 263{,}000 & 170{,}000 & \textbf{1.55} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent Valued at the price farmers receive selling just after harvest, the voucher does \emph{not} pay for itself; valued at the price the same households pay buying maize back in the lean season, it clears its cost comfortably. \textbf{The biggest lever on value is price and timing, not agronomy.} Two honest cautions: the soil test is an added cost that bought no behaviour change (it is excluded above and would lower every ratio), and the household's profit gain is partly a transfer of spending, not new production, so the reform case rests on delivering support \emph{more efficiently}, not on the headline profit figure.
+
+\section{Five recommendations}
+\begin{enumerate}
+\item \textbf{Do not pay for soil tests until the products they prescribe can be bought.} Recommendations changed no behaviour even with money in hand; the diagnostic is overhead until farmers can act on it. Sequence diagnostics \emph{after} the supply chain.
+\item \textbf{Fix the shelf before promoting precision.} Invest first in agro-dealer stocking of precision blends, plot-sized packages, and on-farm demonstration. Precision fertilization is a supply-and-familiarity problem, not an information problem.
+\item \textbf{Pilot flexible commercial vouchers as an AIP delivery channel, and measure leakage head-to-head.} At comparable cost the voucher matched the in-kind bundle's yield gains through the private sector; the case for switching is targeting, reduced diversion, and market development. Let a costed pilot decide the scale-up.
+\item \textbf{Value and time the subsidy to the consumption calendar.} Returns more than double when output is valued at lean-season retail prices, which net-buyer households actually face. Pair input support with storage or timing that captures the high-value window.
+\item \textbf{Score the programme on net profit and additional production, not kilograms distributed.} Track crowd-out-adjusted additionality so the budget is judged on \emph{new} production it creates, not on inputs farmers would have bought anyway.
+\end{enumerate}
+
+\section{The opportunity}
+Malawi can make its largest agricultural expenditure work harder without spending a kwacha more, through a simple, politically safe sequence:
+\textbf{(1)}~shift AIP delivery toward flexible commercial vouchers to capture targeting and market-building gains at equal cost (farmers still receive support, yields still rise);
+\textbf{(2)}~reinvest the efficiency savings in the supply chain and farmer familiarity precision fertilization requires;
+\textbf{(3)}~add soil-based diagnostics only once the recommended products can be bought. This turns a static, in-kind handout into a market-building, precision-ready system. It preserves what farmers and voters value about the subsidy and removes what the Treasury cannot afford: waste.
+
+\vspace{4pt}
+{\footnotesize\color{black!60}\textit{Methods and caveats.} Findings are from a pre-registered cluster-randomized trial of roughly 2{,}000 households; effects are intention-to-treat and reflect one season in central Malawi. The voucher was delivered on top of the existing AIP, so the trial identifies the effect of adding a recommendation-paired voucher within the current regime; the ``voucher as a full replacement for the AIP'' comparison is a supported extrapolation, not a directly measured contrast. Price scenarios use observed sample and market prices. The soil-test unit cost is excluded from the ratios and should be added for any programme-level accounting.}
+
+\end{document}
