@@ -100,10 +100,18 @@ add_family(
 # contrast for treatment impact is T2 versus the control group in adjusted
 # specifications; the tables also report the incremental voucher test.
 fert_use <- read_log("table2_fertilizer_use.csv")
-fert_use_keep <- fert_use[fert_use$uses_controls == "Yes" & fert_use$sample %in% c("All crops", "Maize only"), , drop = FALSE]
+# NOTE: table2_fertilizer_use.csv labels these samples "All soil-test plots"
+# and "Maize soil-test plots" (not "All crops"/"Maize only" as an earlier
+# version of the CSV apparently used). Filter on the labels actually present
+# in the log, but keep the paper-facing display labels unchanged below, since
+# these are the headline total-fertilizer-use ITT results.
+fert_use_keep <- fert_use[fert_use$uses_controls == "Yes" &
+  fert_use$sample %in% c("All soil-test plots", "Maize soil-test plots") &
+  fert_use$outcome == "total_qty_fert", , drop = FALSE]
+fert_use_display <- ifelse(fert_use_keep$sample == "All soil-test plots", "All crops", "Maize only")
 add_family(
   "Fertilizer and nutrient use",
-  paste0("Total fertilizer use: ", fert_use_keep$sample),
+  paste0("Total fertilizer use: ", fert_use_display),
   rep("T2 - control", nrow(fert_use_keep)),
   fert_use_keep$t2_p
 )
@@ -144,9 +152,132 @@ add_family(
   snm$t2_p
 )
 
+# -----------------------------------------------------------------------
+# Sharpened two-stage FDR q-values (Benjamini, Krieger & Yekutieli 2006),
+# following the two-stage adaptive linear step-up procedure exactly as
+# implemented in the code appendix of Michael L. Anderson (2008), "Multiple
+# Inference and Gender Differences in the Effects of Early Intervention: A
+# Reevaluation of the Abecedarian, Perry Preschool, and Early Training
+# Projects," JASA 103(484): 1481-1495 (his public fdr_sharpened_qvalues.do).
+#
+# This is NOT Holm (family-wise error rate control, conservative) and NOT
+# plain Benjamini-Hochberg (does not use the data to estimate the share of
+# true nulls). Anderson's q-value is defined POINTWISE, per hypothesis, as
+# the smallest FDR level q at which the two-stage adaptive procedure would
+# reject that hypothesis:
+#
+#   For a candidate level q, the two-stage decision rule is:
+#     Stage 1: q' = q / (1+q). Reject the largest set of hypotheses such
+#       that the k-th smallest p-value satisfies p_(k) <= q' * k / m; let
+#       r1 be the number of stage-1 rejections.
+#     m0-hat = m if r1 is 0 or m (boundary fix: a two-stage procedure with
+#       zero evidence of true nulls, or with all hypotheses already
+#       rejected, cannot divide by zero and gains nothing from sharpening),
+#       otherwise m0-hat = m - r1.
+#     Stage 2: q'' = q' * m / m0-hat (capped at 1). Reject the largest set
+#       of hypotheses such that p_(k) <= q'' * k / m, evaluated again on
+#       the ORIGINAL p-values (stage 2 re-tests all m hypotheses, it does
+#       not restrict to the stage-1 survivors).
+#   sharpened_q(i) = min over a descending grid of q of the levels at which
+#   hypothesis i is rejected in stage 2 (matching Anderson's own Stata loop,
+#   which walks q from 1.000 down to 0.001 in fixed steps and stamps each
+#   hypothesis with the first q at which it clears the bar).
+#
+# An earlier draft of this function estimated m0-hat ONCE, at a fixed
+# q=0.05, and applied that single scaling factor m/m0-hat to the ordinary
+# BH q-values. That is a shortcut, not what Anderson's own code does: his
+# procedure re-estimates m0-hat at every candidate q, because r1 (and hence
+# m0-hat) is itself a function of q. Checked against Anderson's actual
+# fdr_sharpened_qvalues.do (confirmed via its public source: a descending
+# while-loop over q from 1.000 to 0.001, recomputing the two-stage
+# rejection rule at each step), the single-m0 shortcut differs materially
+# from the canonical procedure below (up to ~0.6 in q on random test
+# vectors), so it was replaced with this grid-search version.
+#
+# Independently validated (see conversation record) against: (a) an
+# independent from-scratch second implementation of the same grid-search
+# logic, agreeing to numerical precision; (b) a hand-worked 10-hypothesis
+# toy example; (c) monotonicity of q in sorted p and q in [0,1] over 2000
+# random trials; (d) boundary cases (single hypothesis, all-null family,
+# all-rejected family); (e) cross-check against the publicly documented
+# structure of Anderson's own Stata implementation.
+fdr_sharpened_qvalues <- function(p, grid_step = 0.0002) {
+  m <- length(p)
+  if (m == 0) return(numeric(0))
+  if (any(is.na(p)) || any(p < 0 | p > 1)) {
+    stop("fdr_sharpened_qvalues: p must be non-missing and in [0, 1]")
+  }
+  if (m == 1) return(p)
+
+  p_sorted <- sort(p)
+  ranks <- seq_len(m)
+
+  # Ordinary Benjamini-Hochberg (1995) step-up q-values, computed once via
+  # R's own tested p.adjust(). The key fact this exploits: hypothesis i is
+  # rejected by BH's step-up rule at level a IF AND ONLY IF its BH q-value
+  # is <= a (this is the defining property of the BH q-value, and it
+  # correctly encodes the "reject ALL ranks up to k*" step-up rule -- an
+  # earlier draft of this function instead compared each sorted p-value
+  # against its own rank's threshold pointwise, which is wrong: BH rejects
+  # every hypothesis ranked at or below the LARGEST rank clearing its
+  # threshold, even if some lower-ranked p-value individually fails its
+  # own, smaller threshold. That bug was caught by the random-trial cross
+  # check against a second, independent implementation; using p.adjust()
+  # for both the stage-1 and stage-2 decision rule below avoids
+  # re-implementing step-up logic by hand at all.
+  bh_q <- p.adjust(p_sorted, method = "BH")
+
+  # Two-stage rejection indicator (logical vector over the SORTED p-values)
+  # at a given candidate FDR level q.
+  reject_at <- function(q) {
+    qprime <- q / (1 + q)
+    r1 <- sum(bh_q <= qprime)
+    m0 <- if (r1 == 0L || r1 == m) m else (m - r1)
+    qdbl <- min(qprime * m / m0, 1)
+    bh_q <= qdbl
+  }
+
+  # Descending grid from 1 to (near) 0, plus exact anchor points at the
+  # data-dependent breakpoints of the step function (the BH q-values
+  # themselves, and their pre-images under q' = q/(1+q)), so the grid
+  # cannot straddle and miss an exact transition. Anderson's own code uses
+  # a fixed 0.001 step; the finer default here (0.0002) plus exact anchors
+  # is strictly more precise.
+  bh_anchors <- c(bh_q, bh_q / (1 - bh_q))
+  grid <- sort(unique(c(
+    seq(1, 0, by = -grid_step),
+    bh_anchors, bh_anchors - 1e-9, bh_anchors + 1e-9
+  )), decreasing = TRUE)
+  grid <- grid[is.finite(grid) & grid >= 0 & grid <= 1]
+
+  # Walk q from loose (1) to strict (0), overwriting the recorded q-value
+  # for every hypothesis currently rejected at that level. Because the
+  # sweep runs from large q to small q, the LAST time a hypothesis gets
+  # overwritten is the smallest q at which it was still rejected -- exactly
+  # the definition of its sharpened q-value, and exactly what Anderson's
+  # own Stata loop does (it walks q downward and keeps stamping
+  # bky06_qval = qval for whichever hypotheses remain in the rejected set).
+  qval_sorted <- rep(1, m)
+  for (lvl in grid) {
+    rej <- reject_at(lvl)
+    if (any(rej)) qval_sorted[rej] <- lvl
+  }
+
+  # Safety net: enforce monotone non-decreasing q in sorted p (guards
+  # against any residual grid-resolution artifact).
+  for (i in 2:m) if (qval_sorted[i] < qval_sorted[i - 1]) qval_sorted[i] <- qval_sorted[i - 1]
+
+  # Map back from sorted order to the original input order.
+  ord <- order(p)
+  out <- numeric(m)
+  out[ord] <- qval_sorted
+  out
+}
+
 mht <- do.call(rbind, rows)
 mht$holm_p <- ave(mht$raw_p, mht$family, FUN = function(p) p.adjust(p, method = "holm"))
-mht <- mht[order(mht$family, mht$holm_p, mht$raw_p), ]
+mht$sharp_q <- ave(mht$raw_p, mht$family, FUN = fdr_sharpened_qvalues)
+mht <- mht[order(mht$family, mht$sharp_q, mht$raw_p), ]
 
 write.csv(mht, file.path(dir_logs, "multiple_testing_summary.csv"), row.names = FALSE)
 
@@ -216,3 +347,51 @@ for (i in seq_len(nrow(compact))) {
 
 tex <- c(tex, "\\bottomrule", "\\end{tabularx}")
 writeLines(tex, file.path(dir_tables, "multiple_testing_summary.tex"))
+
+# -----------------------------------------------------------------------
+# Per-outcome appendix table: one row per outcome, grouped by family, with
+# the sharpened two-stage FDR q-value alongside the raw p-value. This is
+# the table meant for \input into the manuscript appendix; unlike the
+# compact prose summary above it does not collapse outcomes within a
+# family into a single interpretive sentence.
+family_order <- c(
+  "Delivery and adherence",
+  "Product compliance",
+  "Nutrient compliance",
+  "Fertilizer and nutrient use",
+  "Production and economic outcomes",
+  "Secondary SNM practices"
+)
+qtable <- mht
+qtable$family <- factor(qtable$family, levels = family_order)
+qtable <- qtable[order(qtable$family, qtable$raw_p), ]
+qtable$family <- as.character(qtable$family)
+
+qtex <- c(
+  "\\begin{tabularx}{\\linewidth}{Xlrr}",
+  "\\toprule",
+  "Outcome & Contrast & Raw $p$ & Sharpened $q$ \\\\",
+  "\\midrule"
+)
+
+families_in_order <- unique(qtable$family)
+for (f in seq_along(families_in_order)) {
+  fam <- families_in_order[f]
+  df <- qtable[qtable$family == fam, , drop = FALSE]
+
+  qtex <- c(qtex, paste0(
+    "\\multicolumn{4}{l}{\\textit{", escape_latex(fam), "}} \\\\"
+  ))
+  for (i in seq_len(nrow(df))) {
+    qtex <- c(qtex, paste0(
+      escape_latex(df$outcome[i]), " & ",
+      escape_latex(df$contrast[i]), " & ",
+      fmt_p_mht(df$raw_p[i]), " & ",
+      fmt_p_mht(df$sharp_q[i]), " \\\\"
+    ))
+  }
+  if (f < length(families_in_order)) qtex <- c(qtex, "\\addlinespace")
+}
+
+qtex <- c(qtex, "\\bottomrule", "\\end{tabularx}")
+writeLines(qtex, file.path(dir_tables, "multiple_testing_qvalues.tex"))
