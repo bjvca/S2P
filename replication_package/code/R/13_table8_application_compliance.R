@@ -12,9 +12,17 @@
 # variables. The Stata cleaning code constructs total_P and total_K using the
 # product-grade percentages in NPK labels, so these are P2O5 and K2O rather than
 # elemental P and K. This table therefore compares actual and recommended N,
-# P2O5, and K2O in kg/ha. Plot size is recorded in acres, so actual
-# application rates are converted to kg/ha before comparison to kg/ha
-# recommendations.
+# P2O5, and K2O in kg/acre. Plot size (plot_siz) is already recorded in acres,
+# so actual application rates are total kg divided directly by plot_siz, with
+# no unit conversion. Recommended rates are parsed from the TR_* report
+# fields in kg/ha (that is the unit the recommendation engine reports in),
+# so they are converted to kg/acre by multiplying by 0.40468564224 ha/acre
+# before being compared to the (already per-acre) actual rates. Both sides
+# of every comparison -- absolute error and shortfall -- are therefore in
+# kg/acre. Variable names keep the historical "_kgha" suffix because
+# 15_multiple_testing_summary.R matches on these exact strings in the
+# "outcome" column of this script's log; only the units of the VALUES have
+# changed.
 
 if (!exists("replication_root")) {
   args <- commandArgs(trailingOnly = FALSE)
@@ -125,10 +133,19 @@ df$rec_K2O_kgha <-
   0.16 * df$rec_npk152316
 
 acre_to_hectare <- 0.40468564224
-plot_area_ha <- df$plot_siz * acre_to_hectare
-df$actual_N_kgha <- df$total_N / plot_area_ha
-df$actual_P2O5_kgha <- df$total_P / plot_area_ha
-df$actual_K2O_kgha <- df$total_K / plot_area_ha
+
+# Actual application: total kg applied divided directly by plot size in
+# acres (no conversion -- plot_siz is already acres).
+df$actual_N_kgha <- df$total_N / df$plot_siz
+df$actual_P2O5_kgha <- df$total_P / df$plot_siz
+df$actual_K2O_kgha <- df$total_K / df$plot_siz
+
+# Recommended application: rec_*_kgha above is parsed straight from the
+# TR_* report fields in kg/ha, so it is rescaled to kg/acre here before
+# being compared against the (per-acre) actual rates.
+df$rec_N_kgha <- df$rec_N_kgha * acre_to_hectare
+df$rec_P2O5_kgha <- df$rec_P2O5_kgha * acre_to_hectare
+df$rec_K2O_kgha <- df$rec_K2O_kgha * acre_to_hectare
 
 df$abs_error_N_kgha <- abs(df$actual_N_kgha - df$rec_N_kgha)
 df$abs_error_P2O5_kgha <- abs(df$actual_P2O5_kgha - df$rec_P2O5_kgha)
@@ -329,11 +346,11 @@ table_lines <- c(
   "\\toprule",
   "Outcome & T1 mean & T2 $-$ T1 & N \\\\",
   "\\midrule",
-  panel_rows(nitrogen, "Panel A: Nitrogen (kg/ha)"),
+  panel_rows(nitrogen, "Panel A: Nitrogen (kg/acre)"),
   "\\midrule",
-  panel_rows(phosphorus, "Panel B: Phosphorus, P$_2$O$_5$ (kg/ha)"),
+  panel_rows(phosphorus, "Panel B: Phosphorus, P$_2$O$_5$ (kg/acre)"),
   "\\midrule",
-  panel_rows(potassium, "Panel C: Potassium, K$_2$O (kg/ha)"),
+  panel_rows(potassium, "Panel C: Potassium, K$_2$O (kg/acre)"),
   "\\bottomrule",
   "\\end{tabular}",
   "}"

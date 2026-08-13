@@ -1,9 +1,13 @@
 # Generate the nutrient-use table for the manuscript.
 #
-# The table follows the Stata analysis structure: nutrient outcomes are
-# measured in kg/ha and restricted to households whose main crop is maize.
-# Plot size is recorded in acres, so total nutrient kg must be divided by
-# acres converted to hectares. The adjusted columns use the preferred
+# Nutrient outcomes are measured in kg/acre and restricted to households
+# whose main crop is maize. Plot size (plot_siz) is already recorded in
+# acres in the raw data, so nutrient application rates are simply total kg
+# divided by plot_siz -- no unit conversion is needed or applied. (An
+# earlier version of this script multiplied plot_siz by 0.40468564224 to
+# convert acres to hectares and reported kg/ha; that conversion has been
+# removed so the table matches the acre-based convention used throughout
+# the rest of the paper.) The adjusted columns use the preferred
 # pre-treatment controls only and enter categorical controls as factors.
 
 if (!exists("replication_root")) {
@@ -41,12 +45,17 @@ df$slope <- factor(df$slope)
 df$soil_str <- factor(df$soil_str)
 df$seed_typ_num <- factor(df$seed_typ_num)
 
-acre_to_hectare <- 0.40468564224
-plot_area_ha <- df$plot_siz * acre_to_hectare
-df$N_kgha <- df$total_N / plot_area_ha
-df$P_kgha <- df$total_P / plot_area_ha
-df$K_kgha <- df$total_K / plot_area_ha
-df$totalnutrient_kgha <- df$total_nutrient / plot_area_ha
+# Per-acre nutrient application rates: total kg of nutrient applied divided
+# directly by plot size in acres (plot_siz is already in acres in the raw
+# data -- no acre-to-hectare conversion). Variable names keep the historical
+# "_kgha" suffix so downstream scripts that key on these names by string
+# (e.g. 15_multiple_testing_summary.R for table8's analogous variables) are
+# unaffected; only the units of the VALUES have changed, from kg/ha to
+# kg/acre.
+df$N_kgha <- df$total_N / df$plot_siz
+df$P_kgha <- df$total_P / df$plot_siz
+df$K_kgha <- df$total_K / df$plot_siz
+df$totalnutrient_kgha <- df$total_nutrient / df$plot_siz
 
 preferred_controls <- c(
   "hh_size",
@@ -118,7 +127,12 @@ fmt_coef <- function(beta, p_value) {
 
 outcomes <- data.frame(
   var = c("N_kgha", "P_kgha", "K_kgha", "totalnutrient_kgha"),
-  label = c("Nitrogen", "Phosphorus", "Potassium", "Total nutrients"),
+  label = c(
+    "Nitrogen (kg/acre)",
+    "Phosphorus (kg/acre)",
+    "Potassium (kg/acre)",
+    "Total nutrients (kg/acre)"
+  ),
   stringsAsFactors = FALSE
 )
 

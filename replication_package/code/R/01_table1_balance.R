@@ -89,18 +89,25 @@ sampling_frame$q62a <- q62a_raw
 sampling_frame$q62a[sampling_frame$q62a >= 100] <- NA
 
 # Land size mostly follows sampling/sample_frame.R: sum the three land
-# components, remove implausible totals above 50 acres, and convert acres to
-# hectares. We make one correction relative to the original script: if all three
-# crop-acreage components are missing, land size is set to missing. In base R,
+# components and remove implausible totals above 50 acres. We make one
+# correction relative to the original script: if all three crop-acreage
+# components are missing, land size is set to missing. In base R,
 # rowSums(..., na.rm = TRUE) returns zero in that case, which would incorrectly
 # classify households with no valid crop-acreage data as having zero land.
+#
+# Land area is reported in ACRES throughout the paper. q54a/q58a/q62a are
+# already in acres in the raw data, so land_size is acres with no conversion
+# needed. land_size_ha keeps its historical name (it feeds balance_vars and
+# the regression formulas below by that string) but now holds acres, not
+# hectares; an earlier version of this script divided by 2.471 (acres per
+# hectare) to report hectares.
 land_components <- cbind(sampling_frame$q54a, sampling_frame$q58a, sampling_frame$q62a)
 land_component_count <- rowSums(!is.na(land_components))
 sampling_frame$land_size <- rowSums(land_components, na.rm = TRUE)
 sampling_frame$land_size[land_component_count == 0] <- NA
 land_size_before_topcode <- sampling_frame$land_size
 sampling_frame$land_size[sampling_frame$land_size > 50] <- NA
-sampling_frame$land_size_ha <- sampling_frame$land_size / 2.471
+sampling_frame$land_size_ha <- sampling_frame$land_size
 
 sampling_frame$q19 <- q19_raw
 sampling_frame$q19[sampling_frame$q19 > 15] <- NA
@@ -264,7 +271,7 @@ row_labels <- c(
   "Household head age (years)",
   "Household head is male (1=yes)",
   "Household size (number)",
-  "Land area (ha)",
+  "Land area (acres)",
   "Had difficulties feeding family in last year (1=yes)"
 )
 
