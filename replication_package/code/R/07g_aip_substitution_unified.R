@@ -212,7 +212,7 @@ get_row <- function(panel_str, sample_str) {
 }
 
 rows_tex <- c(
-  outcome_row("AIP receipt (0/1)",          get_row("^Panel A", "All crops"), 3),
+  outcome_row("AIP take-up (0/1)",          get_row("^Panel A", "All crops"), 3),
   "\\midrule",
   outcome_row("AIP on test plot (kg)",       get_row("^Panel B", "All crops"), 2),
   "\\midrule",
