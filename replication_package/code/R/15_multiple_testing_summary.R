@@ -96,16 +96,16 @@ add_family(
   application_keep$t2_minus_t1_p
 )
 
-# Fertilizer and nutrient use are ITT outcomes. The preferred inferential
-# contrast for treatment impact is T2 versus the control group in adjusted
-# specifications; the tables also report the incremental voucher test.
+# Fertilizer and nutrient use are ITT outcomes. The paper reports unadjusted
+# ITT specifications only, so q-values are computed from the same unadjusted
+# p-values the tables display; the tables also report the incremental voucher test.
 fert_use <- read_log("table2_fertilizer_use.csv")
 # NOTE: table2_fertilizer_use.csv labels these samples "All soil-test plots"
 # and "Maize soil-test plots" (not "All crops"/"Maize only" as an earlier
 # version of the CSV apparently used). Filter on the labels actually present
 # in the log, but keep the paper-facing display labels unchanged below, since
 # these are the headline total-fertilizer-use ITT results.
-fert_use_keep <- fert_use[fert_use$uses_controls == "Yes" &
+fert_use_keep <- fert_use[fert_use$uses_controls == "No" &
   fert_use$sample %in% c("All soil-test plots", "Maize soil-test plots") &
   fert_use$outcome == "total_qty_fert", , drop = FALSE]
 fert_use_display <- ifelse(fert_use_keep$sample == "All soil-test plots", "All crops", "Maize only")
@@ -123,13 +123,36 @@ add_family(
   nutrient$t2_p
 )
 
+# AIP substitution outcomes: unadjusted ITT, all-crops sample, matching the
+# displayed table. Not a pre-specified PAP family; disclosed as such in the
+# paper text.
+aip <- read_log("table_aip_substitution.csv")
+aip_keep <- aip[aip$uses_controls == "No" & aip$sample == "All crops", , drop = FALSE]
+aip_labels <- c(
+  "Panel A: Binary AIP receipt indicator" = "AIP take-up (0/1)",
+  "Panel B: AIP fertilizer applied on the test plot (kg)" = "AIP fertilizer on test plot",
+  "Panel C: AIP fertilizer applied on the random plot (kg)" = "AIP fertilizer on random plot",
+  "Panel D: Two-plot AIP fertilizer total (kg)" = "Two-plot AIP fertilizer total"
+)
+add_family(
+  "AIP substitution",
+  unname(aip_labels[aip_keep$panel]),
+  rep("T2 - control", nrow(aip_keep)),
+  aip_keep$t2_p
+)
+
 # Production and economic outcomes. Maize-main-crop economic outcomes are the
 # preferred welfare-relevant economic panel because price support is strongest.
+# Yield rows use the unadjusted specification the paper displays.
 yield <- read_log("table5_maize_yield.csv")
-yield_keep <- yield[yield$uses_controls == "Yes", , drop = FALSE]
+yield_keep <- yield[yield$uses_controls == "No", , drop = FALSE]
+yield_labels <- c(
+  "w_bags_Mcrp_maiz" = "Total maize harvested",
+  "lnyield" = "Log maize yield"
+)
 add_family(
   "Production and economic outcomes",
-  rep("Log maize yield", nrow(yield_keep)),
+  unname(yield_labels[yield_keep$outcome]),
   rep("T2 - control", nrow(yield_keep)),
   yield_keep$t2_p
 )
@@ -321,9 +344,10 @@ compact <- do.call(rbind, lapply(split(mht, mht$family), function(df) {
 
 compact <- compact[match(c(
   "Delivery and adherence",
+  "Fertilizer and nutrient use",
   "Product compliance",
   "Nutrient compliance",
-  "Fertilizer and nutrient use",
+  "AIP substitution",
   "Production and economic outcomes",
   "Secondary SNM practices"
 ), compact$family), ]
@@ -356,9 +380,10 @@ writeLines(tex, file.path(dir_tables, "multiple_testing_summary.tex"))
 # family into a single interpretive sentence.
 family_order <- c(
   "Delivery and adherence",
+  "Fertilizer and nutrient use",
   "Product compliance",
   "Nutrient compliance",
-  "Fertilizer and nutrient use",
+  "AIP substitution",
   "Production and economic outcomes",
   "Secondary SNM practices"
 )

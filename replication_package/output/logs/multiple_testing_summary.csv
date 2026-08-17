@@ -1,21 +1,25 @@
 "family","outcome","contrast","raw_p","holm_p","sharp_q"
+"AIP substitution","AIP fertilizer on test plot","T2 - control",9.70053973015765e-08,3.88021589206306e-07,3.89021589206306e-07
+"AIP substitution","Two-plot AIP fertilizer total","T2 - control",6.12912892064311e-06,1.83873867619293e-05,1.22572578412862e-05
+"AIP substitution","AIP take-up (0/1)","T2 - control",0.00229666155545816,0.00459332311091632,0.00159999999999993
+"AIP substitution","AIP fertilizer on random plot","T2 - control",0.846064380195058,0.846064380195058,0.2684
 "Delivery and adherence","Received recommendation","T2 = T1",0.0958927061589825,0.191785412317965,0.237295162993787
 "Delivery and adherence","Agronaut visited household","T2 = T1",0.780173899326818,0.780173899326818,0.6396
-"Fertilizer and nutrient use","Maize nutrient use: Potassium","T2 - control",2.83900171087239e-15,1.70340102652343e-14,1.41882277753132e-14
-"Fertilizer and nutrient use","Maize nutrient use: Phosphorus","T2 - control",4.72940925843767e-15,2.36470462921883e-14,1.41882277753132e-14
-"Fertilizer and nutrient use","Maize nutrient use: Total nutrients","T2 - control",2.15460182668098e-12,8.61840730672392e-12,4.30920365336196e-12
-"Fertilizer and nutrient use","Maize nutrient use: Nitrogen","T2 - control",2.26526141587103e-11,6.79578424761309e-11,3.39789212380654e-11
-"Fertilizer and nutrient use","Total fertilizer use: All crops","T2 - control",1.59689305562673e-10,3.19378611125346e-10,1.91627166675208e-10
-"Fertilizer and nutrient use","Total fertilizer use: Maize only","T2 - control",7.46412543606176e-09,7.46412543606176e-09,6.46412543606176e-09
-"Nutrient compliance","Actual N applied","T2 - T1",3.0474417064099e-16,2.74269753576891e-15,2.74269753576892e-15
-"Nutrient compliance","N shortfall","T2 - T1",5.65718041245447e-12,4.52574432996358e-11,2.54573118560451e-11
-"Nutrient compliance","Actual P$_2$O$_5$ applied","T2 - T1",3.07536398699134e-10,2.15275479089394e-09,9.22609196097402e-10
-"Nutrient compliance","Absolute N application error","T2 - T1",7.83436516292194e-07,4.70061909775316e-06,1.76173216165744e-06
-"Nutrient compliance","Actual K$_2$O applied","T2 - T1",1.62394950798675e-06,8.11974753993375e-06,1.76273526888759e-06
-"Nutrient compliance","K$_2$O shortfall","T2 - T1",0.338527223306274,1,0.247
-"Nutrient compliance","Absolute K$_2$O application error","T2 - T1",0.346571452166201,1,0.247
-"Nutrient compliance","Absolute P$_2$O$_5$ application error","T2 - T1",0.901014654645209,1,0.6962
-"Nutrient compliance","P$_2$O$_5$ shortfall","T2 - T1",0.923431816634245,1,0.6962
+"Fertilizer and nutrient use","Maize nutrient use: Potassium (kg/acre)","T2 - control",2.8390017108747e-15,1.70340102652482e-14,1.41882277753311e-14
+"Fertilizer and nutrient use","Maize nutrient use: Phosphorus (kg/acre)","T2 - control",4.72940925844364e-15,2.36470462922182e-14,1.41882277753311e-14
+"Fertilizer and nutrient use","Maize nutrient use: Total nutrients (kg/acre)","T2 - control",2.15460182668132e-12,8.61840730672528e-12,4.30920365336264e-12
+"Fertilizer and nutrient use","Maize nutrient use: Nitrogen (kg/acre)","T2 - control",2.26526141587008e-11,6.79578424761024e-11,3.39789212380512e-11
+"Fertilizer and nutrient use","Total fertilizer use: All crops","T2 - control",5.61604130631217e-06,1.12320826126243e-05,5.71086845985355e-06
+"Fertilizer and nutrient use","Total fertilizer use: Maize only","T2 - control",5.71186845985355e-06,1.12320826126243e-05,5.71086845985355e-06
+"Nutrient compliance","Actual N applied","T2 - T1",3.04744170640718e-16,2.74269753576646e-15,2.74269753576647e-15
+"Nutrient compliance","N shortfall","T2 - T1",5.65718041245734e-12,4.52574432996587e-11,2.5457311856058e-11
+"Nutrient compliance","Actual P$_2$O$_5$ applied","T2 - T1",3.07536398699211e-10,2.15275479089448e-09,9.22609196097633e-10
+"Nutrient compliance","Absolute N application error","T2 - T1",7.83436516292204e-07,4.70061909775322e-06,1.76173216165746e-06
+"Nutrient compliance","Actual K$_2$O applied","T2 - T1",1.623949507987e-06,8.119747539935e-06,1.76273526888761e-06
+"Nutrient compliance","K$_2$O shortfall","T2 - T1",0.338527223306277,1,0.247
+"Nutrient compliance","Absolute K$_2$O application error","T2 - T1",0.3465714521662,1,0.247
+"Nutrient compliance","Absolute P$_2$O$_5$ application error","T2 - T1",0.901014654645208,1,0.6962
+"Nutrient compliance","P$_2$O$_5$ shortfall","T2 - T1",0.923431816634244,1,0.6962
 "Product compliance","Recommended NPK 23:10:5 applied","T2 - T1",8.05788373550347e-12,5.64051861485243e-11,5.64051861517058e-11
 "Product compliance","Applied at least one recommended product","T2 - T1",3.17460124739422e-05,0.000190476074843653,0.000111110043658798
 "Product compliance","Share of recommended products applied","T2 - T1",0.00391398690098574,0.0195699345049287,0.00659999999999994
@@ -23,12 +27,14 @@
 "Product compliance","Recommended potassium product applied","T2 - T1",0.0274071065265385,0.0822213195796155,0.0178500836593168
 "Product compliance","Applied exact recommended product set","T2 - T1",0.0633107479352008,0.126621495870402,0.0327999999999999
 "Product compliance","Applied all recommended products","T2 - T1",0.563307496928255,0.563307496928255,0.0876
-"Production and economic outcomes","Profits","T2 - control",0.000438565158421024,0.00263139095052614,0.00232223133548011
-"Production and economic outcomes","Total costs","T2 - control",0.000772283358650327,0.00386141679325163,0.00232223133548011
-"Production and economic outcomes","Profits per acre","T2 - control",0.0138354699233608,0.0553418796934432,0.0187999999999999
-"Production and economic outcomes","Value per acre","T2 - control",0.0472623804570311,0.141787141371093,0.0367999999999999
-"Production and economic outcomes","Value of production","T2 - control",0.123918995313872,0.247837990627744,0.0763029599718257
-"Production and economic outcomes","Costs per acre","T2 - control",0.179928014409273,0.247837990627744,0.0763029599718257
+"Production and economic outcomes","Profits","T2 - control",0.000438565158421024,0.00350852126736819,0.00195280432031312
+"Production and economic outcomes","Log maize yield","T2 - control",0.000487249576999244,0.00350852126736819,0.00195280432031312
+"Production and economic outcomes","Total costs","T2 - control",0.000772283358650327,0.00463370015190196,0.00195280432031312
+"Production and economic outcomes","Profits per acre","T2 - control",0.0138354699233608,0.069177349616804,0.0175999999999999
+"Production and economic outcomes","Total maize harvested","T2 - control",0.039355642709562,0.157422570838248,0.0326
+"Production and economic outcomes","Value per acre","T2 - control",0.0472623804570311,0.157422570838248,0.0326
+"Production and economic outcomes","Value of production","T2 - control",0.123918995313872,0.247837990627744,0.0672005848008004
+"Production and economic outcomes","Costs per acre","T2 - control",0.179928014409273,0.247837990627744,0.0672546611177136
 "Secondary SNM practices","Dairy or poultry manure","T2 - control",0.00373398365697342,0.0336058529127608,0.0172935602946696
 "Secondary SNM practices","Ridges/check dams","T2 - control",0.00377768358157872,0.0336058529127608,0.0172935602946696
 "Secondary SNM practices","Fresh vegetative material","T2 - control",0.00929125363721886,0.065038775460532,0.0222
