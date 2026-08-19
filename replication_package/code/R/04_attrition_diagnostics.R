@@ -104,9 +104,19 @@ write.csv(
 )
 
 # Build a LaTeX appendix table with one row per stage.
+star_sym <- function(p) {
+  if (is.na(p)) return("")
+  if (p < 0.01) return("\\sym{***}")
+  if (p < 0.05) return("\\sym{**}")
+  if (p < 0.10) return("\\sym{*}")
+  ""
+}
+
 attrition_lines <- c(
-  "\\begin{tabular}{lrrrrr}",
-  "\\hline",
+  "{",
+  "\\def\\sym#1{\\ifmmode^{#1}\\else\\(^{#1}\\)\\fi}",
+  "\\begin{tabular}{lccccc}",
+  "\\hline\\hline",
   "Stage & Control mean & T1 $-$ Control & T2 $-$ Control & $p$-value: T1 = T2 & N \\\\",
   "\\hline"
 )
@@ -119,8 +129,8 @@ for (i in seq_len(nrow(attrition_results))) {
       "%s & %s & %s & %s & %s & %s \\\\",
       row$stage,
       fmt_num(row$control_mean, 3),
-      fmt_num(row$t1_coef, 3),
-      fmt_num(row$t2_coef, 3),
+      paste0(fmt_num(row$t1_coef, 3), star_sym(row$t1_p)),
+      paste0(fmt_num(row$t2_coef, 3), star_sym(row$t2_p)),
       fmt_p(row$p_equal, 3),
       fmt_num(row$n, 0)
     ),
@@ -134,8 +144,9 @@ for (i in seq_len(nrow(attrition_results))) {
 
 attrition_lines <- c(
   attrition_lines,
-  "\\hline",
-  "\\end{tabular}"
+  "\\hline\\hline",
+  "\\end{tabular}",
+  "}"
 )
 
 writeLines(attrition_lines, file.path(dir_tables, "attrition_stage_regressions.tex"))
