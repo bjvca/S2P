@@ -229,14 +229,14 @@ for (i in seq_len(nrow(first_stage_results))) {
   if (i == 1) {
     table_lines <- c(
       table_lines,
-      "\\multicolumn{6}{l}{\\textit{Panel A: Delivery among interviewed households}} \\\\"
+      "\\multicolumn{6}{c}{\\textit{Panel A: Delivery among interviewed households}} \\\\"
     )
   }
   if (row$outcome == "Found recommendation easy/very easy, conditional on receipt") {
     table_lines <- c(
       table_lines,
       "\\hline",
-      "\\multicolumn{6}{l}{\\textit{Panel B: Recommendation comprehension and adherence, conditional on receipt}} \\\\"
+      "\\multicolumn{6}{c}{\\textit{Panel B: Recommendation comprehension and adherence, conditional on receipt}} \\\\"
     )
     row$outcome <- "Found recommendation easy/very easy"
   }
@@ -247,7 +247,7 @@ for (i in seq_len(nrow(first_stage_results))) {
     table_lines <- c(
       table_lines,
       "\\hline",
-      "\\multicolumn{6}{l}{\\textit{Panel C: Voucher implementation, T2 only}} \\\\"
+      "\\multicolumn{6}{c}{\\textit{Panel C: Voucher implementation, T2 only}} \\\\"
     )
   }
   table_lines <- c(
