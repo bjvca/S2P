@@ -40,11 +40,8 @@ g <- ggplot(df, aes(x = price, y = ret)) +
   scale_y_continuous(breaks = seq(0, 250000, by = 50000),
                      labels = function(x) format(x, big.mark = ",")) +
   labs(x = "Maize price (MWK / kg)",
-       y = "Voucher-induced production value (MWK / household)",
-       caption = paste0("Yield effect: 150.83 kg per household (Table 5, Panel A); ",
-                        "shaded band: 95% CI.")) +
-  theme_classic(base_size = 11) +
-  theme(plot.caption = element_text(hjust = 0, size = 9, colour = "grey40"))
+       y = "Voucher-induced production value (MWK / household)") +
+  theme_classic(base_size = 11)
 
 out_pdf <- "/home/claude/workspace/S2P/paper/figures/voucher_breakeven.pdf"
 out_png <- "/home/claude/workspace/S2P/paper/figures/voucher_breakeven.png"

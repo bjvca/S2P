@@ -55,67 +55,39 @@ stage_pct <- sweep(stage_counts, 2, sample_flow$baseline_sample_n, "/") * 100
 # -----------------------------------------------------------------------------
 
 retention_png <- file.path(dir_figures, "sample_flow_retention_plot.png")
-png(retention_png, width = 1600, height = 1000, res = 180)
 
-old_mar <- par("mar")
-par(mar = c(7, 6, 3, 5))
+suppressPackageStartupMessages({ library(ggplot2) })
 
-x <- seq_along(stage_labels)
-cols <- c("C" = "#4E79A7", "T1" = "#F28E2B", "T2" = "#59A14F")
-ltys <- c("C" = 1, "T1" = 1, "T2" = 1)
-pchs <- c("C" = 16, "T1" = 17, "T2" = 15)
+arm_names <- c("C" = "Control", "T1" = "Treatment 1", "T2" = "Treatment 2")
+arm_cols <- c("Control" = "#4E79A7", "Treatment 1" = "#F28E2B", "Treatment 2" = "#59A14F")
 
-plot(
-  x, stage_pct[, "C"],
-  type = "n",
-  xaxt = "n",
-  xlim = c(min(x), max(x) + 0.95),
-  ylim = c(60, 102),
-  xlab = "",
-  ylab = "Percent of baseline sampled households",
-  las = 1
-)
-axis(1, at = x, labels = FALSE)
-usr <- par("usr")
-text(
-  x = x,
-  y = usr[3] - 2.8,
-  labels = stage_labels,
-  cex = 0.85,
-  xpd = NA
-)
-abline(h = seq(60, 100, by = 10), col = "grey90", lwd = 1)
-
-for (arm in arm_levels) {
-  lines(x, stage_pct[, arm], lwd = 3, col = cols[[arm]], lty = ltys[[arm]])
-  points(x, stage_pct[, arm], pch = pchs[[arm]], col = cols[[arm]], cex = 1.3)
-}
-
-# Label only the final-stage percentages to keep the figure readable.
-for (arm in arm_levels) {
-  text(
-    x[length(x)] + 0.12,
-    stage_pct[length(stage_labels), arm],
-    labels = sprintf("%s: %.1f%%", arm, stage_pct[length(stage_labels), arm]),
-    col = cols[[arm]],
-    pos = 4,
-    cex = 0.95
+plot_df <- do.call(rbind, lapply(arm_levels, function(arm) {
+  data.frame(
+    stage = factor(stage_labels, levels = stage_labels),
+    arm = arm_names[[arm]],
+    pct = stage_pct[, arm],
+    stringsAsFactors = FALSE
   )
-}
+}))
+end_df <- plot_df[plot_df$stage == stage_labels[length(stage_labels)], ]
+end_df$label <- sprintf("%s: %.1f%%", names(arm_names)[match(end_df$arm, arm_names)], end_df$pct)
 
-legend(
-  "bottomleft",
-  legend = c("Control", "Treatment 1", "Treatment 2"),
-  col = cols[arm_levels],
-  pch = pchs[arm_levels],
-  lwd = 3,
-  bty = "n",
-  cex = 0.95
-)
+g_ret <- ggplot(plot_df, aes(x = stage, y = pct, colour = arm, group = arm, shape = arm)) +
+  geom_line(linewidth = 0.9) +
+  geom_point(size = 2.2) +
+  geom_text(data = end_df, aes(label = label), hjust = 0, nudge_x = 0.08,
+            size = 3.4, show.legend = FALSE) +
+  scale_colour_manual(values = arm_cols) +
+  scale_shape_manual(values = c("Control" = 16, "Treatment 1" = 17, "Treatment 2" = 15)) +
+  scale_y_continuous(limits = c(60, 102), breaks = seq(60, 100, by = 10)) +
+  scale_x_discrete(expand = expansion(add = c(0.15, 0.95))) +
+  labs(x = NULL, y = "Percent of baseline sampled households",
+       colour = NULL, shape = NULL) +
+  theme_classic(base_size = 11) +
+  theme(legend.position = c(0.14, 0.18),
+        legend.background = element_blank())
 
-title("Sample retention by treatment arm and survey stage")
-par(mar = old_mar)
-dev.off()
+ggsave(retention_png, g_ret, width = 6.5, height = 4.2, dpi = 200)
 
 # -----------------------------------------------------------------------------
 # Table: counts plus percentages by arm
@@ -127,7 +99,7 @@ fmt_npct <- function(n, denom) {
 
 table_lines <- c(
   "\\begin{tabular}{lcccc}",
-  "\\hline",
+  "\\hline\\hline",
   "Stage & Control & Treatment 1 & Treatment 2 & Total \\\\",
   "\\hline"
 )
@@ -151,7 +123,7 @@ for (i in seq_len(nrow(stage_counts))) {
 
 table_lines <- c(
   table_lines,
-  "\\hline",
+  "\\hline\\hline",
   "\\end{tabular}"
 )
 
