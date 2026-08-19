@@ -236,7 +236,7 @@ for (i in seq_len(nrow(first_stage_results))) {
   if (row$outcome == "Found recommendation easy/very easy, conditional on receipt") {
     table_lines <- c(
       table_lines,
-      "\\hline",
+      "\\addlinespace[6pt]",
       "\\multicolumn{6}{c}{\\textit{Panel B: Recommendation comprehension and adherence, conditional on receipt}} \\\\",
       "\\hline"
     )
@@ -248,7 +248,7 @@ for (i in seq_len(nrow(first_stage_results))) {
   if (row$outcome == "Redeemed voucher, conditional on receipt") {
     table_lines <- c(
       table_lines,
-      "\\hline",
+      "\\addlinespace[6pt]",
       "\\multicolumn{6}{c}{\\textit{Panel C: Voucher implementation, T2 only}} \\\\",
       "\\hline"
     )

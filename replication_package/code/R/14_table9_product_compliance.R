@@ -369,7 +369,7 @@ table_lines <- c(
   "\\multicolumn{4}{c}{\\textit{Panel A: Product-set compliance summary}} \\\\",
   "\\hline",
   format_rows(summary_rows),
-  "\\hline",
+  "\\addlinespace[6pt]",
   "\\multicolumn{4}{c}{\\textit{Panel B: Product-specific compliance, conditional on product recommendation}} \\\\",
   "\\hline",
   format_rows(product_rows),

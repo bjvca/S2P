@@ -340,7 +340,7 @@ table_lines <- c(
   "\\multicolumn{6}{c}{\\textit{Panel A: Maize main crop}} \\\\",
   "\\hline",
   make_rows("Maize main crop"),
-  "\\hline",
+  "\\addlinespace[6pt]",
   "\\multicolumn{6}{c}{\\textit{Panel B: All sampled main crops}} \\\\",
   "\\hline",
   make_rows("All sampled main crops"),

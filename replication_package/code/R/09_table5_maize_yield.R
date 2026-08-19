@@ -251,7 +251,7 @@ table_lines <- c(
   "\\hline",
   unlist(lapply(seq_len(nrow(spec_results_kg)), function(i)
     fmt_panel_row(spec_results_kg[i, ], is_log = FALSE))),
-  "\\hline",
+  "\\addlinespace[6pt]",
   "\\multicolumn{6}{c}{\\textit{Panel B: Log yield (kg/acre)}} \\\\",
   "\\hline",
   unlist(lapply(seq_len(nrow(spec_results_log)), function(i)
