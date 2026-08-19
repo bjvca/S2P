@@ -201,9 +201,9 @@ table_lines <- c(
   "{",
   "\\def\\sym#1{\\ifmmode^{#1}\\else\\(^{#1}\\)\\fi}",
   "\\begin{tabular}{lcccc}",
-  "\\toprule",
+  "\\hline\\hline",
   "Outcome & N & T1 & T2 & p-value: T2 = T1 \\\\",
-  "\\midrule",
+  "\\hline",
   paste0(
     labels,
     " & ",
@@ -216,7 +216,7 @@ table_lines <- c(
     fmt_num(preferred$p_equal, 3),
     " \\\\"
   ),
-  "\\bottomrule",
+  "\\hline\\hline",
   "\\end{tabular}",
   "}"
 )

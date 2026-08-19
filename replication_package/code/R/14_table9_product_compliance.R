@@ -333,9 +333,9 @@ table_lines <- c(
   "{",
   "\\def\\sym#1{\\ifmmode^{#1}\\else\\(^{#1}\\)\\fi}",
   "\\begin{tabular}{lccc}",
-  "\\toprule",
+  "\\hline\\hline",
   "Outcome & T1 mean & T2 $-$ T1 & N \\\\",
-  "\\midrule"
+  "\\hline"
 )
 
 summary_rows <- preferred[preferred$outcome %in% c(
@@ -367,10 +367,13 @@ format_rows <- function(rows) {
 table_lines <- c(
   table_lines,
   "\\multicolumn{4}{c}{\\textit{Panel A: Product-set compliance summary}} \\\\",
+  "\\hline",
   format_rows(summary_rows),
+  "\\hline",
   "\\multicolumn{4}{c}{\\textit{Panel B: Product-specific compliance, conditional on product recommendation}} \\\\",
+  "\\hline",
   format_rows(product_rows),
-  "\\bottomrule",
+  "\\hline\\hline",
   "\\end{tabular}",
   "}"
 )

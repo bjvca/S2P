@@ -213,11 +213,11 @@ get_row <- function(panel_str, sample_str) {
 
 rows_tex <- c(
   outcome_row("AIP take-up (0/1)",          get_row("^Panel A", "All crops"), 3),
-  "\\midrule",
+  "\\hline",
   outcome_row("AIP on test plot (kg)",       get_row("^Panel B", "All crops"), 2),
-  "\\midrule",
+  "\\hline",
   outcome_row("AIP on random plot (kg)",     get_row("^Panel C", "All crops"), 2),
-  "\\midrule",
+  "\\hline",
   outcome_row("Two-plot AIP total (kg)",     get_row("^Panel D", "All crops"), 2)
 )
 
@@ -225,11 +225,11 @@ table_lines <- c(
   "{",
   "\\def\\sym#1{\\ifmmode^{#1}\\else\\(^{#1}\\)\\fi}",
   "\\begin{tabular}{lccccc}",
-  "\\toprule",
+  "\\hline\\hline",
   "Outcome & Control mean & T1 $-$ Control & T2 $-$ Control & p-value: T2 = T1 & N \\\\",
-  "\\midrule",
+  "\\hline",
   rows_tex,
-  "\\bottomrule",
+  "\\hline\\hline",
   "\\end{tabular}",
   "}"
 )

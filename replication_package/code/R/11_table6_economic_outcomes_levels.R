@@ -334,15 +334,15 @@ table_lines <- c(
   "{",
   "\\def\\sym#1{\\ifmmode^{#1}\\else\\(^{#1}\\)\\fi}",
   "\\begin{tabular}{lccccc}",
-  "\\toprule",
+  "\\hline\\hline",
   "Outcome & Control mean & T1 & T2 & p-value: T2 = T1 & N \\\\",
-  "\\midrule",
+  "\\hline",
   "\\multicolumn{6}{l}{\\textit{Maize main crop}} \\\\",
   make_rows("Maize main crop"),
   "\\addlinespace",
   "\\multicolumn{6}{l}{\\textit{All sampled main crops}} \\\\",
   make_rows("All sampled main crops"),
-  "\\bottomrule",
+  "\\hline\\hline",
   "\\end{tabular}",
   "}"
 )

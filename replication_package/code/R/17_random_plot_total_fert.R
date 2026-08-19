@@ -187,13 +187,13 @@ table_lines <- c(
   "{",
   "\\def\\sym#1{\\ifmmode^{#1}\\else\\(^{#1}\\)\\fi}",
   "\\begin{tabular}{lccccc}",
-  "\\toprule",
+  "\\hline\\hline",
   "Outcome & Control mean & T1 $-$ Control & T2 $-$ Control & p-value: T2 = T1 & N \\\\",
-  "\\midrule",
+  "\\hline",
   fmt_row("Any fertilizer used (proportion)",          pref_bin[1,],  digits = 2),
   fmt_row("Total kg applied on non-test plots (HT-scaled)", pref_kg[1,],   digits = 1),
   fmt_row("Kg per acre on non-test plot (HT-scaled)",  pref_acre[1,], digits = 1),
-  "\\bottomrule",
+  "\\hline\\hline",
   "\\end{tabular}",
   "}"
 )

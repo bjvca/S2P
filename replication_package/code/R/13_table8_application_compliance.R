@@ -155,6 +155,11 @@ df$shortfall_N_kgha <- pmax(df$rec_N_kgha - df$actual_N_kgha, 0)
 df$shortfall_P2O5_kgha <- pmax(df$rec_P2O5_kgha - df$actual_P2O5_kgha, 0)
 df$shortfall_K2O_kgha <- pmax(df$rec_K2O_kgha - df$actual_K2O_kgha, 0)
 
+# Share applying more of each nutrient than the plot-specific recommendation.
+df$over_N <- as.numeric(df$actual_N_kgha > df$rec_N_kgha)
+df$over_P2O5 <- as.numeric(df$actual_P2O5_kgha > df$rec_P2O5_kgha)
+df$over_K2O <- as.numeric(df$actual_K2O_kgha > df$rec_K2O_kgha)
+
 # A valid compliance observation needs a treatment recommendation record,
 # usable actual fertilizer application data, and a non-sentinel plot size.
 valid_application <- !is.na(df$TR_N_Req) &
@@ -225,28 +230,34 @@ outcomes <- data.frame(
     "actual_N_kgha",
     "abs_error_N_kgha",
     "shortfall_N_kgha",
+    "over_N",
     "rec_P2O5_kgha",
     "actual_P2O5_kgha",
     "abs_error_P2O5_kgha",
     "shortfall_P2O5_kgha",
+    "over_P2O5",
     "rec_K2O_kgha",
     "actual_K2O_kgha",
     "abs_error_K2O_kgha",
-    "shortfall_K2O_kgha"
+    "shortfall_K2O_kgha",
+    "over_K2O"
   ),
   label = c(
     "Recommended N",
     "Actual N applied",
     "Absolute N application error",
     "N shortfall",
+    "Applied more N than recommended (share)",
     "Recommended P$_2$O$_5$",
     "Actual P$_2$O$_5$ applied",
     "Absolute P$_2$O$_5$ application error",
     "P$_2$O$_5$ shortfall",
+    "Applied more P$_2$O$_5$ than recommended (share)",
     "Recommended K$_2$O",
     "Actual K$_2$O applied",
     "Absolute K$_2$O application error",
-    "K$_2$O shortfall"
+    "K$_2$O shortfall",
+    "Applied more K$_2$O than recommended (share)"
   ),
   stringsAsFactors = FALSE
 )
@@ -302,6 +313,7 @@ preferred <- subset(results, controls == "No")
 panel_rows <- function(rows, panel_label) {
   c(
     sprintf("\\multicolumn{4}{c}{\\textit{%s}} \\\\", panel_label),
+    "\\hline",
     unlist(lapply(seq_len(nrow(rows)), function(i) {
       c(
         sprintf(
@@ -320,38 +332,41 @@ panel_rows <- function(rows, panel_label) {
   )
 }
 
-nitrogen <- preferred[grepl(" N$|N applied|N application|N shortfall", preferred$outcome_label), ]
+nitrogen <- preferred[grepl(" N$|N applied|N application|N shortfall|more N than", preferred$outcome_label), ]
 phosphorus <- preferred[grepl("P\\$_2\\$O\\$_5\\$", preferred$outcome_label), ]
 potassium <- preferred[grepl("K\\$_2\\$O", preferred$outcome_label), ]
 
-nitrogen$outcome_label <- sub("^Recommended N$", "Recommended amount", nitrogen$outcome_label)
-nitrogen$outcome_label <- sub("^Actual N applied$", "Actual application", nitrogen$outcome_label)
-nitrogen$outcome_label <- sub("^Absolute N application error$", "Absolute application error", nitrogen$outcome_label)
-nitrogen$outcome_label <- sub("^N shortfall$", "Shortfall", nitrogen$outcome_label)
+nitrogen$outcome_label <- sub("^Recommended N$", "Recommended amount (kg/acre)", nitrogen$outcome_label)
+nitrogen$outcome_label <- sub("^Actual N applied$", "Actual application (kg/acre)", nitrogen$outcome_label)
+nitrogen$outcome_label <- sub("^Absolute N application error$", "Absolute application error (kg/acre)", nitrogen$outcome_label)
+nitrogen$outcome_label <- sub("^N shortfall$", "Shortfall (kg/acre)", nitrogen$outcome_label)
+nitrogen$outcome_label <- sub("Applied more N than recommended (share)", "Applied more than recommended (share)", nitrogen$outcome_label, fixed = TRUE)
 
-phosphorus$outcome_label <- sub("^Recommended P\\$_2\\$O\\$_5\\$", "Recommended amount", phosphorus$outcome_label)
-phosphorus$outcome_label <- sub("^Actual P\\$_2\\$O\\$_5\\$ applied$", "Actual application", phosphorus$outcome_label)
-phosphorus$outcome_label <- sub("^Absolute P\\$_2\\$O\\$_5\\$ application error$", "Absolute application error", phosphorus$outcome_label)
-phosphorus$outcome_label <- sub("^P\\$_2\\$O\\$_5\\$ shortfall$", "Shortfall", phosphorus$outcome_label)
+phosphorus$outcome_label <- sub("^Recommended P\\$_2\\$O\\$_5\\$", "Recommended amount (kg/acre)", phosphorus$outcome_label)
+phosphorus$outcome_label <- sub("^Actual P\\$_2\\$O\\$_5\\$ applied$", "Actual application (kg/acre)", phosphorus$outcome_label)
+phosphorus$outcome_label <- sub("^Absolute P\\$_2\\$O\\$_5\\$ application error$", "Absolute application error (kg/acre)", phosphorus$outcome_label)
+phosphorus$outcome_label <- sub("^P\\$_2\\$O\\$_5\\$ shortfall$", "Shortfall (kg/acre)", phosphorus$outcome_label)
+phosphorus$outcome_label <- sub("Applied more P$_2$O$_5$ than recommended (share)", "Applied more than recommended (share)", phosphorus$outcome_label, fixed = TRUE)
 
-potassium$outcome_label <- sub("^Recommended K\\$_2\\$O$", "Recommended amount", potassium$outcome_label)
-potassium$outcome_label <- sub("^Actual K\\$_2\\$O applied$", "Actual application", potassium$outcome_label)
-potassium$outcome_label <- sub("^Absolute K\\$_2\\$O application error$", "Absolute application error", potassium$outcome_label)
-potassium$outcome_label <- sub("^K\\$_2\\$O shortfall$", "Shortfall", potassium$outcome_label)
+potassium$outcome_label <- sub("^Recommended K\\$_2\\$O$", "Recommended amount (kg/acre)", potassium$outcome_label)
+potassium$outcome_label <- sub("^Actual K\\$_2\\$O applied$", "Actual application (kg/acre)", potassium$outcome_label)
+potassium$outcome_label <- sub("^Absolute K\\$_2\\$O application error$", "Absolute application error (kg/acre)", potassium$outcome_label)
+potassium$outcome_label <- sub("^K\\$_2\\$O shortfall$", "Shortfall (kg/acre)", potassium$outcome_label)
+potassium$outcome_label <- sub("Applied more K$_2$O than recommended (share)", "Applied more than recommended (share)", potassium$outcome_label, fixed = TRUE)
 
 table_lines <- c(
   "{",
   "\\def\\sym#1{\\ifmmode^{#1}\\else\\(^{#1}\\)\\fi}",
   "\\begin{tabular}{lccc}",
-  "\\toprule",
+  "\\hline\\hline",
   "Outcome & T1 mean & T2 $-$ T1 & N \\\\",
-  "\\midrule",
-  panel_rows(nitrogen, "Panel A: Nitrogen (kg/acre)"),
-  "\\midrule",
-  panel_rows(phosphorus, "Panel B: Phosphorus, P$_2$O$_5$ (kg/acre)"),
-  "\\midrule",
-  panel_rows(potassium, "Panel C: Potassium, K$_2$O (kg/acre)"),
-  "\\bottomrule",
+  "\\hline",
+  panel_rows(nitrogen, "Panel A: Nitrogen"),
+  "\\hline",
+  panel_rows(phosphorus, "Panel B: Phosphorus, P$_2$O$_5$"),
+  "\\hline",
+  panel_rows(potassium, "Panel C: Potassium, K$_2$O"),
+  "\\hline\\hline",
   "\\end{tabular}",
   "}"
 )

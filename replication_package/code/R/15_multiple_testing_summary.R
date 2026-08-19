@@ -354,9 +354,9 @@ compact <- compact[match(c(
 
 tex <- c(
   "\\begin{tabularx}{\\linewidth}{p{0.20\\linewidth}cp{0.18\\linewidth}X}",
-  "\\toprule",
+  "\\hline\\hline",
   "Family & Tests & Contrast & Multiplicity-adjusted interpretation \\\\",
-  "\\midrule"
+  "\\hline"
 )
 
 for (i in seq_len(nrow(compact))) {
@@ -369,7 +369,7 @@ for (i in seq_len(nrow(compact))) {
   if (i < nrow(compact)) tex <- c(tex, "\\addlinespace")
 }
 
-tex <- c(tex, "\\bottomrule", "\\end{tabularx}")
+tex <- c(tex, "\\hline\\hline", "\\end{tabularx}")
 writeLines(tex, file.path(dir_tables, "multiple_testing_summary.tex"))
 
 # -----------------------------------------------------------------------
@@ -394,9 +394,9 @@ qtable$family <- as.character(qtable$family)
 
 qtex <- c(
   "\\begin{tabularx}{\\linewidth}{Xlrr}",
-  "\\toprule",
+  "\\hline\\hline",
   "Outcome & Contrast & Raw $p$ & Sharpened $q$ \\\\",
-  "\\midrule"
+  "\\hline"
 )
 
 families_in_order <- unique(qtable$family)
@@ -418,5 +418,5 @@ for (f in seq_along(families_in_order)) {
   if (f < length(families_in_order)) qtex <- c(qtex, "\\addlinespace")
 }
 
-qtex <- c(qtex, "\\bottomrule", "\\end{tabularx}")
+qtex <- c(qtex, "\\hline\\hline", "\\end{tabularx}")
 writeLines(qtex, file.path(dir_tables, "multiple_testing_qvalues.tex"))

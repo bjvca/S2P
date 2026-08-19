@@ -158,9 +158,9 @@ table_lines <- c(
   "{",
   "\\def\\sym#1{\\ifmmode^{#1}\\else\\(^{#1}\\)\\fi}",
   "\\begin{tabular}{lccccc}",
-  "\\toprule",
+  "\\hline\\hline",
   "Outcome & Control mean & T1 $-$ Control & T2 $-$ Control & p-value: T2 = T1 & N \\\\",
-  "\\midrule",
+  "\\hline",
   unlist(lapply(seq_len(nrow(preferred_results)), function(i) {
     c(
       sprintf(
@@ -179,7 +179,7 @@ table_lines <- c(
       )
     )
   })),
-  "\\bottomrule",
+  "\\hline\\hline",
   "\\end{tabular}",
   "}"
 )

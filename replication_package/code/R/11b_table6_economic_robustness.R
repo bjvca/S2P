@@ -234,9 +234,9 @@ table_lines <- c(
   "{",
   "\\def\\sym#1{\\ifmmode^{#1}\\else\\(^{#1}\\)\\fi}",
   "\\begin{tabular}{lccccc}",
-  "\\toprule",
+  "\\hline\\hline",
   "Robustness check & Control mean & T1 & T2 & p-value: T2 = T1 & N \\\\",
-  "\\midrule",
+  "\\hline",
   unlist(lapply(seq_len(nrow(robustness_results)), function(i) {
     unit_label <- robustness_results$control_mean_label[i]
     c(
@@ -256,7 +256,7 @@ table_lines <- c(
       )
     )
   })),
-  "\\bottomrule",
+  "\\hline\\hline",
   "\\end{tabular}",
   "}"
 )

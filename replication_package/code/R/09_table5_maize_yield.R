@@ -192,9 +192,9 @@ sensitivity_table_lines <- c(
   "{",
   "\\def\\sym#1{\\ifmmode^{#1}\\else\\(^{#1}\\)\\fi}",
   "\\begin{tabular}{lcccc}",
-  "\\toprule",
+  "\\hline\\hline",
   "Scenario & N & T1 & T2 & p-value: T2 = T1 \\\\",
-  "\\midrule",
+  "\\hline",
   paste0(
     sens_labels,
     " & ",
@@ -207,7 +207,7 @@ sensitivity_table_lines <- c(
     fmt_num(sens$p_equal, 3),
     " \\\\"
   ),
-  "\\bottomrule",
+  "\\hline\\hline",
   "\\end{tabular}",
   "}"
 )
@@ -244,17 +244,19 @@ table_lines <- c(
   "{",
   "\\def\\sym#1{\\ifmmode^{#1}\\else\\(^{#1}\\)\\fi}",
   "\\begin{tabular}{rccccc}",
-  "\\toprule",
+  "\\hline\\hline",
   "Ctrl. mean & T1 $-$ C & T2 $-$ C & T2 \\% effect & $p$: T2 = T1 & N \\\\",
-  "\\midrule",
+  "\\hline",
   "\\multicolumn{6}{c}{\\textit{Panel A: Total kg harvested}} \\\\",
+  "\\hline",
   unlist(lapply(seq_len(nrow(spec_results_kg)), function(i)
     fmt_panel_row(spec_results_kg[i, ], is_log = FALSE))),
-  "\\midrule",
+  "\\hline",
   "\\multicolumn{6}{c}{\\textit{Panel B: Log yield (kg/acre)}} \\\\",
+  "\\hline",
   unlist(lapply(seq_len(nrow(spec_results_log)), function(i)
     fmt_panel_row(spec_results_log[i, ], is_log = TRUE))),
-  "\\bottomrule",
+  "\\hline\\hline",
   "\\end{tabular}",
   "}"
 )
