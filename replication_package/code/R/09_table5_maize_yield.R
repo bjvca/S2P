@@ -247,6 +247,7 @@ table_lines <- c(
   "\\hline\\hline",
   "Ctrl. mean & T1 $-$ C & T2 $-$ C & T2 \\% effect & $p$: T2 = T1 & N \\\\",
   "\\hline",
+  "\\addlinespace[6pt]",
   "\\multicolumn{6}{c}{\\textit{Panel A: Total kg harvested}} \\\\",
   "\\hline",
   unlist(lapply(seq_len(nrow(spec_results_kg)), function(i)

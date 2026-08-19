@@ -266,6 +266,7 @@ table_lines <- c(
   "\\hline\\hline",
   "Sample & Control mean & T1 $-$ Control & T2 $-$ Control & p-value: T2 = T1 & N \\\\",
   "\\hline",
+  "\\addlinespace[6pt]",
   "\\multicolumn{6}{c}{\\textit{Panel A: Any fertilizer used (proportion)}} \\\\",
   "\\hline",
   make_rows(preferred_results_bin),

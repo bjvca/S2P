@@ -312,6 +312,7 @@ preferred <- subset(results, controls == "No")
 
 panel_rows <- function(rows, panel_label) {
   c(
+    "\\addlinespace[6pt]",
     sprintf("\\multicolumn{4}{c}{\\textit{%s}} \\\\", panel_label),
     "\\hline",
     unlist(lapply(seq_len(nrow(rows)), function(i) {
@@ -362,9 +363,7 @@ table_lines <- c(
   "Outcome & T1 mean & T2 $-$ T1 & N \\\\",
   "\\hline",
   panel_rows(nitrogen, "Panel A: Nitrogen"),
-  "\\addlinespace[6pt]",
   panel_rows(phosphorus, "Panel B: Phosphorus, P$_2$O$_5$"),
-  "\\addlinespace[6pt]",
   panel_rows(potassium, "Panel C: Potassium, K$_2$O"),
   "\\hline\\hline",
   "\\end{tabular}",

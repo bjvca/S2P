@@ -366,6 +366,7 @@ format_rows <- function(rows) {
 
 table_lines <- c(
   table_lines,
+  "\\addlinespace[6pt]",
   "\\multicolumn{4}{c}{\\textit{Panel A: Product-set compliance summary}} \\\\",
   "\\hline",
   format_rows(summary_rows),

@@ -229,6 +229,7 @@ for (i in seq_len(nrow(first_stage_results))) {
   if (i == 1) {
     table_lines <- c(
       table_lines,
+      "\\addlinespace[6pt]",
       "\\multicolumn{6}{c}{\\textit{Panel A: Delivery among interviewed households}} \\\\",
       "\\hline"
     )

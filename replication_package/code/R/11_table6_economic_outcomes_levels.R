@@ -337,6 +337,7 @@ table_lines <- c(
   "\\hline\\hline",
   "Outcome & Control mean & T1 & T2 & p-value: T2 = T1 & N \\\\",
   "\\hline",
+  "\\addlinespace[6pt]",
   "\\multicolumn{6}{c}{\\textit{Panel A: Maize main crop}} \\\\",
   "\\hline",
   make_rows("Maize main crop"),
