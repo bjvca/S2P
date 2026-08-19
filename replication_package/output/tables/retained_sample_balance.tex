@@ -1,4 +1,6 @@
-\begin{tabular}{lrrrr}
+{
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{lcccc}
 \hline\hline
 Variable & Control mean & T1 $-$ Control & T2 $-$ Control & N \\
 \hline
@@ -6,11 +8,12 @@ Household head age & 42.514 & 1.049 & 1.103 & 1843 \\
  &  & (0.892) & (0.820) &  \\
 Household head male & 0.779 & 0.018 & 0.025 & 1868 \\
  &  & (0.027) & (0.026) &  \\
-Household size & 4.892 & 0.106 & 0.309 & 1866 \\
+Household size & 4.892 & 0.106 & 0.309\sym{**} & 1866 \\
  &  & (0.128) & (0.138) &  \\
-Land area (ha) & 1.011 & 0.003 & 0.007 & 1863 \\
- &  & (0.056) & (0.059) &  \\
+Land area (acres) & 2.499 & 0.007 & 0.016 & 1863 \\
+ &  & (0.137) & (0.145) &  \\
 Difficulty feeding family & 0.271 & 0.058 & 0.047 & 1868 \\
  &  & (0.040) & (0.035) &  \\
 \hline\hline
 \end{tabular}
+}

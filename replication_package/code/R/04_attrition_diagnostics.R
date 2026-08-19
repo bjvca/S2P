@@ -197,12 +197,12 @@ retained$land_size_ha <- retained$land_size / 2.471
 
 retained$poor <- retained$q69 == 4 | retained$q69 == 5
 
-balance_vars <- c("age_head", "male_head", "HH_size", "land_size_ha", "poor")
+balance_vars <- c("age_head", "male_head", "HH_size", "land_size", "poor")
 balance_labels <- c(
   "Household head age",
   "Household head male",
   "Household size",
-  "Land area (ha)",
+  "Land area (acres)",
   "Difficulty feeding family"
 )
 
@@ -220,8 +220,10 @@ for (i in seq_along(balance_vars)) {
     control_mean = mean(retained[retained$treat == "C", var_name], na.rm = TRUE),
     t1_coef = ct["t1", "beta"],
     t1_se = ct["t1", "SE"],
+    t1_p = ct["t1", "p_Satt"],
     t2_coef = ct["t2", "beta"],
     t2_se = ct["t2", "SE"],
+    t2_p = ct["t2", "p_Satt"],
     n = sum(!is.na(retained[[var_name]])),
     stringsAsFactors = FALSE
   )
@@ -236,8 +238,10 @@ write.csv(
 )
 
 balance_lines <- c(
-  "\\begin{tabular}{lrrrr}",
-  "\\hline",
+  "{",
+  "\\def\\sym#1{\\ifmmode^{#1}\\else\\(^{#1}\\)\\fi}",
+  "\\begin{tabular}{lcccc}",
+  "\\hline\\hline",
   "Variable & Control mean & T1 $-$ Control & T2 $-$ Control & N \\\\",
   "\\hline"
 )
@@ -250,8 +254,8 @@ for (i in seq_len(nrow(retained_balance))) {
       "%s & %s & %s & %s & %s \\\\",
       row$variable,
       fmt_num(row$control_mean, 3),
-      fmt_num(row$t1_coef, 3),
-      fmt_num(row$t2_coef, 3),
+      paste0(fmt_num(row$t1_coef, 3), star_sym(row$t1_p)),
+      paste0(fmt_num(row$t2_coef, 3), star_sym(row$t2_p)),
       fmt_num(row$n, 0)
     ),
     sprintf(
@@ -264,8 +268,9 @@ for (i in seq_len(nrow(retained_balance))) {
 
 balance_lines <- c(
   balance_lines,
-  "\\hline",
-  "\\end{tabular}"
+  "\\hline\\hline",
+  "\\end{tabular}",
+  "}"
 )
 
 writeLines(balance_lines, file.path(dir_tables, "retained_sample_balance.tex"))
